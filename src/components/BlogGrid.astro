@@ -1,0 +1,19 @@
+---
+import BlogCard from './BlogCard.astro';
+const { posts = [] } = Astro.props;
+---
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {posts.map((post, i) => (
+    <div class="motion-safe:animate-fadeUp" style={`animation-delay: ${i * 100}ms`}>
+      <BlogCard post={post} />
+    </div>
+  ))}
+</div>
+
+{posts.length === 0 && (
+  <div class="text-center py-16">
+    <p class="text-spades-muted text-lg">No articles published yet.</p>
+    <p class="text-spades-muted mt-2">Check back soon for updates.</p>
+  </div>
+)}
+

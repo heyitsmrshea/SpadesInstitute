@@ -1,10 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import CardGrid from '../components/CardGrid.astro';
+import BlogCard from '../components/BlogCard.astro';
 import engagements from '../data/engagements.json';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Get latest blog posts (up to 3)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPosts = allPosts
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
 ---
 <Layout 
   title="Spades Institute | Home" 
@@ -101,6 +110,34 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </div>
   </section>
+
+  <!-- Latest Articles Section -->
+  {latestPosts.length > 0 && (
+    <section class="bg-white border-b border-spades-border">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-12 motion-safe:animate-fadeUp">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-4">Insights & Perspectives</p>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl italic text-spades-ink">Latest Articles</h2>
+          <p class="mt-4 text-spades-muted max-w-2xl mx-auto">
+            Thoughts on national security, ethics, and cross-sector collaboration from our team.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {latestPosts.map((post, i) => (
+            <div class="motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+              <BlogCard post={post} />
+            </div>
+          ))}
+        </div>
+        <div class="mt-12 text-center">
+          <a href={`${base}/blog`} class="btn btn-outline">
+            View all articles
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- CTA Section -->
   <section class="bg-spades-ink text-white relative overflow-hidden">

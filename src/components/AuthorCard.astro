@@ -1,0 +1,49 @@
+---
+import people from '../data/people.json';
+const { authorName, date, readingTime } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Try to find the author in people.json
+const author = people.find(p => p.name === authorName);
+
+// Format date
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+<div class="flex items-center gap-4">
+  {author?.headshot ? (
+    <img
+      src={`${base}${author.headshot.replace(/^\//, '')}`}
+      alt={`${authorName} headshot`}
+      class="w-12 h-12 rounded-full object-cover border-2 border-spades-border"
+    />
+  ) : (
+    <div class="w-12 h-12 rounded-full bg-spades-ink text-white flex items-center justify-center text-lg font-display">
+      {authorName.charAt(0)}
+    </div>
+  )}
+  <div>
+    <p class="font-semibold text-spades-ink">
+      {author ? (
+        <a href={`${base}/people`} class="hover:underline">
+          {authorName}
+        </a>
+      ) : (
+        authorName
+      )}
+    </p>
+    <div class="flex items-center gap-2 text-sm text-spades-muted">
+      <time datetime={date}>{formattedDate}</time>
+      {readingTime && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span>{readingTime} min read</span>
+        </>
+      )}
+    </div>
+  </div>
+</div>
+

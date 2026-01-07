@@ -53,6 +53,8 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
         "https://www.linkedin.com"
       ]
     })} />
+    <!-- Additional page-specific head content -->
+    <slot name="head" />
   </head>
   <body class="bg-spades-paper text-spades-ink antialiased">
     <div class="min-h-screen flex flex-col">

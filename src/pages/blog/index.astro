@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../components/Layout.astro';
+import Section from '../../components/Section.astro';
+import BlogGrid from '../../components/BlogGrid.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Get all non-draft blog posts, sorted by date (newest first)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Page metadata
+const title = "Blog | Spades Institute";
+const description = "Insights and perspectives on national security, ethics, and cross-sector collaboration from the Spades Institute team.";
+---
+
+<Layout {title} {description}>
+  <head slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://HeyItsMrShea.github.io${base}/blog`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+
+  <Breadcrumbs items={[
+    { label: 'Home', href: `${base}/` },
+    { label: 'Blog', href: `${base}/blog` }
+  ]} />
+
+  <!-- Hero Section -->
+  <section class="bg-spades-ink text-white py-20 md:py-28">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-6 motion-safe:animate-fadeIn">
+        Insights &amp; Perspectives
+      </p>
+      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl italic leading-tight mb-8 motion-safe:animate-fadeUp">
+        Our Blog
+      </h1>
+      <p class="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed motion-safe:animate-fadeUp" style="animation-delay: 100ms">
+        Thoughts on national security, ethics, democracy, and building bridges across sectors.
+      </p>
+    </div>
+  </section>
+
+  <!-- Posts Grid -->
+  <Section>
+    <BlogGrid posts={sortedPosts} />
+  </Section>
+
+  <!-- Subscribe CTA -->
+  <section class="bg-spades-paper py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeIn">
+      <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink mb-4">
+        Stay Informed
+      </h2>
+      <p class="text-spades-muted text-lg mb-8">
+        Want to receive updates when we publish new articles? Get in touch.
+      </p>
+      <a
+        href={`${base}/connect`}
+        class="btn btn-primary"
+      >
+        Contact Us
+      </a>
+    </div>
+  </section>
+</Layout>
+
