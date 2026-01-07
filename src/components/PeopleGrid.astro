@@ -1,5 +1,4 @@
 ---
-import ExpandableBioCard from './ExpandableBioCard.astro';
 const { people = [], variant = 'card' } = Astro.props;
 const isDark = variant === 'dark';
 // Ensure base URL ends with a slash
@@ -8,21 +7,18 @@ const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
 ---
 <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {people.map((person, i) => {
-    const hasFullBio = person.fullBio && person.fullBio.length > 0;
-    
-    if (hasFullBio) {
-      return (
-        <ExpandableBioCard person={person} variant={variant} index={i} />
-      );
-    }
+    // Combine bio and fullBio into a single longer bio
+    const combinedBio = person.fullBio && person.fullBio.length > 0
+      ? person.fullBio.join(' ')
+      : person.bio;
     
     return (
       <article
         class:list={[
-          'group flex flex-col gap-4 motion-safe:animate-fadeUp transition-all duration-300 hover:-translate-y-2',
+          'group flex flex-col gap-6 motion-safe:animate-fadeUp transition-all duration-300 hover:-translate-y-2',
           isDark
             ? 'bg-transparent p-6'
-            : 'bg-white border border-spades-border rounded-[1.25rem] p-6 shadow-card hover:shadow-xl'
+            : 'bg-white border border-spades-border rounded-[1.25rem] p-8 shadow-card hover:shadow-xl'
         ]}
         style={`animation-delay: ${i * 100}ms`}
       >
@@ -46,7 +42,16 @@ const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
           </div>
         </div>
 
-        {!isDark && <p class="text-sm leading-relaxed text-spades-muted">{person.bio}</p>}
+        <div class="flex-1">
+          <p class:list={[
+            'leading-relaxed',
+            isDark 
+              ? 'text-white/90 text-base' 
+              : 'text-spades-muted text-[15px]'
+          ]}>
+            {combinedBio}
+          </p>
+        </div>
 
         {person.linkedin && (
           <div class:list={[isDark ? 'flex justify-center' : '']}>

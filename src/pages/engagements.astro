@@ -37,4 +37,34 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <CardGrid items={engagements} />
     </div>
   </section>
+
+  <!-- Veterans Fellowship Section -->
+  <section class="bg-white border-t border-spades-border">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      {(() => {
+        const veteransFellowship = engagements.find(e => e.meta.includes('Veterans Fellowship'));
+        if (!veteransFellowship) return null;
+        return (
+          <div class="bg-spades-paper border border-spades-border rounded-xl p-8 md:p-10 shadow-card">
+            <div class="text-center mb-8">
+              <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Veterans Initiative</p>
+              <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink mb-4">{veteransFellowship.title}</h2>
+              <p class="text-spades-muted max-w-2xl mx-auto">{veteransFellowship.description}</p>
+            </div>
+            <div class="text-center">
+              <a
+                href="https://operationmos.com"
+                target="_blank"
+                rel="noreferrer"
+                class="btn btn-primary inline-flex items-center gap-2"
+              >
+                Get started: translate your military experience into corporate résumé
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        );
+      })()}
+    </div>
+  </section>
 </Layout>

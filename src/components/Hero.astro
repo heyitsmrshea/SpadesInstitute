@@ -44,8 +44,8 @@ const missionStatements = [
         <div class="mt-12 max-w-4xl mx-auto">
           <div class="grid md:grid-cols-3 gap-6 text-left">
             {missionStatements.map((mission, i) => (
-              <div class="motion-safe:animate-fadeIn" style={`animation-delay: ${500 + i * 100}ms`}>
-                <p class="flex gap-3 text-sm text-spades-muted leading-relaxed">
+              <div class="motion-safe:animate-fadeIn h-full flex flex-col" style={`animation-delay: ${500 + i * 100}ms`}>
+                <p class="flex gap-3 text-sm text-spades-muted leading-relaxed flex-1">
                   <span aria-hidden="true" class="text-spades-ink/50 mt-1 flex-shrink-0">♠︎</span>
                   <span>{mission}</span>
                 </p>
