@@ -1,0 +1,48 @@
+---
+import Layout from '../components/Layout.astro';
+import CardGrid from '../components/CardGrid.astro';
+import engagements from '../data/engagements.json';
+---
+<Layout title="Spades Institute | Engagements">
+  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/70">Engagements</p>
+      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Public/Private Programs</h1>
+      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+        Speaker series and fellowships that pair mission leaders, technologists, and practitioners—built for trust, clarity, and execution.
+      </p>
+      <div class="mt-10">
+        <a
+          href="/connect"
+          class="btn btn-invert"
+        >
+          Propose an engagement <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-spades-ink text-white">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <CardGrid items={engagements} />
+    </div>
+  </section>
+
+  <section class="bg-white border-t border-spades-border">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="text-center">
+        <p class="text-xs uppercase tracking-[0.4em] text-spades-muted">Request participation</p>
+        <h2 class="mt-5 font-display text-4xl md:text-5xl italic text-spades-ink">Tell us your priority</h2>
+        <p class="mt-5 text-spades-muted max-w-2xl mx-auto">
+          Share your mission area and we’ll recommend the right program, format, and timeline.
+        </p>
+      </div>
+      <div class="mt-10 flex justify-center">
+        <a class="btn btn-primary" href="/connect">
+          Contact us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import '../styles/global.css';
+const { title = 'Spades Institute', description = 'Trusted collaboration for national security outcomes.' } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-spades-paper text-spades-ink antialiased">
+    <div class="min-h-screen flex flex-col">
+      <a
+        href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3 focus:rounded-md focus:bg-white focus:text-spades-ink focus:shadow-card"
+      >
+        Skip to content
+      </a>
+      <Nav />
+      <main id="main" class="flex-1 w-full">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

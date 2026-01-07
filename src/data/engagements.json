@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Quarterly Speaker Series",
+    "description": "Candid discussions with senior leaders in government, defense, tech, and industry—built for actionable insights, not surface-level commentary.",
+    "meta": ["Public/Private Engagements"],
+    "bestFor": "Senior leaders, operators, and innovators",
+    "bullets": [
+      "Curated speakers and closed-door exchange",
+      "Timely topics tied to mission outcomes",
+      "Practical takeaways participants can apply"
+    ],
+    "cta": { "label": "Get more info", "href": "/connect" }
+  },
+  {
+    "title": "Bi-directional National Security Fellowship",
+    "description": "Two-way placement between government and industry professionals to foster trust, share expertise, and align on mission-critical technology and policy.",
+    "meta": ["Fellowship"],
+    "bestFor": "Government and industry professionals",
+    "bullets": [
+      "Immersion in each other’s operating environments",
+      "Trust-building through hands-on mission work",
+      "Shared objectives, measurable deliverables"
+    ],
+    "cta": { "label": "Get more info", "href": "/connect" }
+  },
+  {
+    "title": "Department of War National Security Fellowship",
+    "description": "A veterans-focused pathway that pairs operational experience with executive leadership to tackle emerging security challenges.",
+    "meta": ["Veterans Fellowship"],
+    "bestFor": "Veterans and executive leadership teams",
+    "bullets": [
+      "Mentorship and structured engagement",
+      "Operational expertise translated into solutions",
+      "Cross-sector collaboration and resilience"
+    ],
+    "cta": { "label": "Get more info", "href": "/connect" }
+  }
+]

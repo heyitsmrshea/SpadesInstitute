@@ -1,0 +1,114 @@
+---
+import Layout from '../components/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import CardGrid from '../components/CardGrid.astro';
+import PeopleGrid from '../components/PeopleGrid.astro';
+import engagements from '../data/engagements.json';
+import people from '../data/people.json';
+const previewPeople = people.slice(0, 4);
+---
+<Layout title="Spades Institute | Home">
+  <Hero
+    title="We connect government, industry, and academia to solve national security priorities."
+    description="Through trusted, nonpartisan collaboration."
+    proof="501(c)(3) · Washington, D.C. · Public/Private Convenings"
+    primaryCta={{ href: '/connect', label: 'Partner with us' }}
+    secondaryCta={{ href: '/engagements', label: 'View programs' }}
+    tertiaryCta={{ href: 'https://givebutter.com/spadesinstitute', label: 'Donate' }}
+  />
+
+  <section class="border-y border-spades-border bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs uppercase tracking-[0.28em] text-spades-muted">
+      <span class="motion-safe:animate-fadeIn" style="animation-delay: 0ms">501(c)(3) nonprofit</span>
+      <span aria-hidden="true" class="text-spades-muted/60 tracking-normal">·</span>
+      <span class="motion-safe:animate-fadeIn" style="animation-delay: 100ms">Nonpartisan</span>
+      <span aria-hidden="true" class="text-spades-muted/60 tracking-normal">·</span>
+      <span class="motion-safe:animate-fadeIn" style="animation-delay: 200ms">Public/Private</span>
+      <span aria-hidden="true" class="text-spades-muted/60 tracking-normal">·</span>
+      <span class="motion-safe:animate-fadeIn" style="animation-delay: 300ms">Washington, D.C.</span>
+      <span aria-hidden="true" class="text-spades-muted/60 tracking-normal">·</span>
+      <span class="motion-safe:animate-fadeIn" style="animation-delay: 400ms">Ethics-first</span>
+    </div>
+  </section>
+
+  <section class="bg-spades-ink text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-2 items-start relative motion-safe:animate-fadeUp">
+      <div>
+        <h2 class="font-display text-5xl md:text-6xl italic leading-tight">Our Mission</h2>
+        <div class="mt-6 h-px w-14 bg-white/30"></div>
+        <p class="mt-6 text-xl text-white/85 max-w-md">Strengthen U.S. national security through trusted collaboration.</p>
+      </div>
+      <div class="space-y-6 text-white/80 leading-relaxed md:pt-2">
+        <p class="flex gap-3 motion-safe:animate-fadeIn" style="animation-delay: 100ms"><span aria-hidden="true" class="text-white/70 mt-1">♠︎</span> Spades Institute was formed and built to empower individuals, organizations and communities to instill a lasting dedication to democracy, freedom, and ethics.</p>
+        <p class="flex gap-3 motion-safe:animate-fadeIn" style="animation-delay: 200ms"><span aria-hidden="true" class="text-white/70 mt-1">♠︎</span> We are a community committed to advancing ethics, democracy, and freedom through trusted, nonpartisan engagement across the public and private sectors. We are dedicated to forging strong partnerships to build resilience within our national security frameworks.</p>
+        <p class="flex gap-3 motion-safe:animate-fadeIn" style="animation-delay: 300ms"><span aria-hidden="true" class="text-white/70 mt-1">♠︎</span> We focus on convening the right voices, fostering collaboration across sectors, and delivering practical outcomes that strengthen the security and resilience of the United States.</p>
+        <div class="mt-6 rounded-md border border-white/15 bg-white/5 p-5 text-sm text-white/80">
+          <p class="text-xs uppercase tracking-[0.28em] text-white/60">Impact snapshot</p>
+          <div class="mt-4 grid gap-3">
+            <div class="flex items-center justify-between"><span>Engagements hosted</span><span class="text-white/90">Quarterly series</span></div>
+            <div class="flex items-center justify-between"><span>Fellows placed</span><span class="text-white/90">Bi-directional & veterans</span></div>
+            <div class="flex items-center justify-between"><span>Partners</span><span class="text-white/90">Gov · Industry · Academia</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-spades-paper border-y border-spades-border">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-center gap-4 text-xs uppercase tracking-[0.28em] text-spades-muted motion-safe:animate-fadeUp">
+      <span class="h-px w-10 bg-spades-border transition-all duration-500 hover:w-16"></span>
+      <span class="motion-safe:animate-pulse">Our work takes three forms</span>
+      <span class="h-px w-10 bg-spades-border transition-all duration-500 hover:w-16"></span>
+    </div>
+  </section>
+
+  <section class="bg-spades-ink text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-14 relative">
+      <h2 class="font-display text-4xl md:text-5xl text-center motion-safe:animate-fadeUp">Programs that deliver</h2>
+      <p class="mt-5 text-center text-white/75 max-w-3xl mx-auto motion-safe:animate-fadeIn" style="animation-delay: 200ms">
+        Speaker series and fellowships that bring the right people into the room—then turn dialogue into deliverables.
+      </p>
+      <div class="mt-8">
+        <CardGrid items={engagements} />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-spades-ink text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-25" style="background-image: radial-gradient(circle at 30% 80%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-14 relative">
+      <h2 class="font-display text-4xl md:text-5xl italic text-center motion-safe:animate-bounceIn">Our Team</h2>
+      <p class="mt-5 text-white/75 max-w-3xl mx-auto text-center motion-safe:animate-fadeIn" style="animation-delay: 300ms">
+        A dedicated group of leaders committed to advancing democracy, freedom, and ethics through trusted collaboration.
+      </p>
+      <div class="mt-10">
+        <PeopleGrid people={previewPeople} variant="dark" />
+      </div>
+      <div class="mt-12 text-center">
+        <a class="text-xs uppercase tracking-[0.4em] text-white/85 hover:text-white underline underline-offset-6 decoration-white/30" href="/people">View all people</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-spades-paper border-t border-spades-border">
+    <Section title="Connect" description="Want to collaborate? Send us a note and share your priority." className="pt-16">
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="bg-white border border-spades-border rounded-md p-8 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Email</p>
+          <a class="font-display text-2xl md:text-3xl text-spades-ink" href="mailto:info@spadesinstitute.org">info@spadesinstitute.org</a>
+        </article>
+        <article class="bg-white border border-spades-border rounded-md p-8 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Social</p>
+          <a class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.22em] text-spades-ink hover:opacity-70" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+            LinkedIn
+            <span aria-hidden="true">→</span>
+          </a>
+          <p class="mt-4 text-spades-muted">Follow for updates and announcements.</p>
+        </article>
+      </div>
+    </Section>
+  </section>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import Layout from '../components/Layout.astro';
+import PeopleGrid from '../components/PeopleGrid.astro';
+import people from '../data/people.json';
+---
+<Layout title="Spades Institute | People">
+  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/70">People</p>
+      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Our Team</h1>
+      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+        Leaders and advisors committed to advancing democracy, freedom, and ethics through trusted, nonpartisan collaboration.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-spades-ink text-white">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <PeopleGrid people={people} variant="dark" />
+    </div>
+  </section>
+</Layout>

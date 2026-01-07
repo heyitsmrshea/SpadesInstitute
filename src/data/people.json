@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Vishal Amin",
+    "role": "Founding Partner",
+    "bio": "Brings intelligence community insight and a track record of driving cross-sector collaboration in complex security missions.",
+    "headshot": "/people/vishal.avif",
+    "linkedin": "https://www.linkedin.com/in/vishaljamin/"
+  },
+  {
+    "name": "Lili Davoudian",
+    "role": "Founding Partner",
+    "bio": "Operates at the intersection of policy, technology, and operations to translate strategy into measurable impact.",
+    "headshot": "/people/Lili.avif",
+    "linkedin": "https://www.linkedin.com/in/lilidavoudian/"
+  },
+  {
+    "name": "Tim Kosiba",
+    "role": "Founding Partner",
+    "bio": "Designs resilient engagement models that unite mission leadership, entrepreneurs, and practitioners to solve national security risks.",
+    "headshot": "/people/Tim.avif",
+    "linkedin": "https://www.linkedin.com/in/tim-kosiba-37b5682/"
+  },
+  {
+    "name": "Dan Goodwin",
+    "role": "Senior Advisor",
+    "bio": "Leverages decades of government and defense experience to guide the Institute’s ethics-first collaboration framework.",
+    "headshot": "/people/Dan.avif",
+    "linkedin": "https://www.linkedin.com/in/goodwindan/"
+  }
+]

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7410 3900" role="img" aria-label="United States flag">
+  <path fill="#b22234" d="M0 0h7410v3900H0z"/>
+  <path stroke="#fff" stroke-width="300" d="M0 450h7410M0 1050h7410M0 1650h7410M0 2250h7410M0 2850h7410M0 3450h7410"/>
+  <path fill="#3c3b6e" d="M0 0h2964v2100H0z"/>
+  <g fill="#fff">
+    <g id="s" transform="translate(247 175) scale(35)">
+      <path d="M0-1l.309.951H1.309L.5.588.809 1.539 0 .951l-.809.588L-.5.588-1.309-.049H-.309z"/>
+    </g>
+    <g>
+      <g id="r">
+        <use href="#s" x="0" y="0"/><use href="#s" x="494" y="0"/><use href="#s" x="988" y="0"/><use href="#s" x="1482" y="0"/><use href="#s" x="1976" y="0"/><use href="#s" x="2470" y="0"/>
+      </g>
+      <use href="#r" y="350"/><use href="#r" y="700"/><use href="#r" y="1050"/><use href="#r" y="1400"/><use href="#r" y="1750"/>
+      <g transform="translate(247 350)">
+        <use href="#s" x="247" y="0"/><use href="#s" x="741" y="0"/><use href="#s" x="1235" y="0"/><use href="#s" x="1729" y="0"/><use href="#s" x="2223" y="0"/>
+      </g>
+      <g transform="translate(247 700)">
+        <use href="#s" x="247" y="0"/><use href="#s" x="741" y="0"/><use href="#s" x="1235" y="0"/><use href="#s" x="1729" y="0"/><use href="#s" x="2223" y="0"/>
+      </g>
+      <g transform="translate(247 1050)">
+        <use href="#s" x="247" y="0"/><use href="#s" x="741" y="0"/><use href="#s" x="1235" y="0"/><use href="#s" x="1729" y="0"/><use href="#s" x="2223" y="0"/>
+      </g>
+      <g transform="translate(247 1400)">
+        <use href="#s" x="247" y="0"/><use href="#s" x="741" y="0"/><use href="#s" x="1235" y="0"/><use href="#s" x="1729" y="0"/><use href="#s" x="2223" y="0"/>
+      </g>
+      <g transform="translate(247 1750)">
+        <use href="#s" x="247" y="0"/><use href="#s" x="741" y="0"/><use href="#s" x="1235" y="0"/><use href="#s" x="1729" y="0"/><use href="#s" x="2223" y="0"/>
+      </g>
+    </g>
+  </g>
+</svg>

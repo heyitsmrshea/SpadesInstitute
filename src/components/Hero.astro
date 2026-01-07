@@ -1,0 +1,61 @@
+---
+const {
+  eyebrow = 'DEMOCRACY | FREEDOM | ETHICS',
+  title,
+  description,
+  primaryCta = { href: 'https://givebutter.com/spadesinstitute', label: 'Donate' },
+  secondaryCta,
+  tertiaryCta
+} = Astro.props;
+---
+<section class="relative overflow-hidden pb-16">
+  <div class="absolute inset-0 bg-gradient-to-b from-white via-spades-paper to-spades-wash" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 1px 1px, rgba(17,24,39,1) 1px, transparent 0); background-size: 28px 28px;" aria-hidden="true"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(0,0,0,0.02), rgba(0,0,0,0.08));" aria-hidden="true"></div>
+  <div class="max-w-6xl mx-auto px-6 pt-14 pb-14 relative text-center">
+    <div class="mx-auto max-w-4xl motion-safe:animate-fadeUp">
+      <div class="mb-6 flex justify-center">
+        <img
+          src="/flag-us.svg"
+          alt="United States flag"
+          width="96"
+          height="50"
+          loading="eager"
+          class="h-12 w-auto rounded-sm border border-spades-border flag-real motion-safe:animate-flagWave"
+        />
+      </div>
+      <p class="text-xs tracking-[0.34em] uppercase text-spades-muted mb-4 motion-safe:animate-fadeIn" style="animation-delay: 100ms">{eyebrow}</p>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight text-spades-ink motion-safe:animate-fadeUp" style="animation-delay: 200ms">{title}</h1>
+      <p class="mt-5 text-lg text-spades-muted motion-safe:animate-fadeIn" style="animation-delay: 400ms">{description}</p>
+      {Astro.props.proof && (
+        <p class="mt-3 text-xs uppercase tracking-[0.28em] text-spades-muted">{Astro.props.proof}</p>
+      )}
+      <p class="mt-6 text-spades-ink/70 motion-safe:animate-bounceIn" style="animation-delay: 500ms" aria-hidden="true">♠︎</p>
+      <div class="mt-5 flex flex-wrap gap-4 justify-center motion-safe:animate-fadeUp" style="animation-delay: 600ms">
+        <a
+          href={primaryCta.href}
+          target="_blank"
+          rel="noreferrer"
+          class="btn btn-primary"
+        >
+          {primaryCta.label}
+        </a>
+        {secondaryCta && (
+          <a
+            href={secondaryCta.href}
+            class="btn btn-outline"
+          >
+            {secondaryCta.label}
+          </a>
+        )}
+      </div>
+      {tertiaryCta && (
+        <div class="mt-3">
+          <a href={tertiaryCta.href} class="text-xs uppercase tracking-[0.24em] text-spades-muted hover:text-spades-ink">
+            {tertiaryCta.label} →
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

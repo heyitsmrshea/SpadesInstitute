@@ -1,0 +1,115 @@
+---
+import Layout from '../components/Layout.astro';
+---
+<Layout title="Spades Institute | Connect">
+  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/70">Connect</p>
+      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Partner with Spades</h1>
+      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+        Share a challenge, an idea, or a partnership opportunity. We’ll respond within the week.
+      </p>
+      <p class="mt-8 text-white/70" aria-hidden="true">♠︎</p>
+    </div>
+  </section>
+
+  <section class="bg-spades-paper">
+    <div class="max-w-6xl mx-auto px-6 py-16 grid gap-10 lg:grid-cols-5 items-start">
+      <div class="lg:col-span-3">
+        <div class="bg-white border border-spades-border rounded-md p-10 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted">Message</p>
+          <h2 class="mt-5 font-display text-3xl md:text-4xl italic text-spades-ink">Send a note</h2>
+          <p class="mt-4 text-spades-muted">
+            Use this form to draft an email. When you submit, we’ll open your email client with your message pre-filled.
+          </p>
+
+          <form id="contactForm" class="mt-10 grid gap-5">
+            <label class="grid gap-2">
+              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Name</span>
+              <input name="name" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+            </label>
+            <label class="grid gap-2">
+              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Email</span>
+              <input name="email" type="email" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+            </label>
+            <label class="grid gap-2">
+              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Organization (optional)</span>
+              <input name="org" class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+            </label>
+            <label class="grid gap-2">
+              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Topic</span>
+              <select name="topic" class="w-full rounded-md border border-spades-border px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-spades-ink/20">
+                <option>Speaker Series</option>
+                <option>Bi-directional Fellowship</option>
+                <option>Veterans Fellowship</option>
+                <option>Partnership / Sponsorship</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="grid gap-2">
+              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Message</span>
+              <textarea name="message" rows="6" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20"></textarea>
+            </label>
+
+            <div class="mt-4 flex flex-wrap items-center gap-4">
+              <button type="submit" class="btn btn-primary">
+                Draft email
+              </button>
+              <a class="btn btn-ghost px-0 py-0" href="mailto:info@spadesinstitute.org">
+                Or email directly
+              </a>
+            </div>
+            <p class="text-xs text-spades-muted">
+              We don’t store submissions on this mockup. This page simply helps you draft a message to <span class="text-spades-ink">info@spadesinstitute.org</span>.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-2 space-y-6">
+        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Email</p>
+          <a href="mailto:info@spadesinstitute.org" class="font-display text-2xl italic text-spades-ink">info@spadesinstitute.org</a>
+        </div>
+        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">LinkedIn</p>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" class="text-sm font-semibold uppercase tracking-[0.22em] text-spades-ink hover:opacity-70">
+            Follow updates →
+          </a>
+        </div>
+        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
+          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Location</p>
+          <p class="text-spades-muted">Washington, D.C.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const name = String(data.get('name') || '');
+        const email = String(data.get('email') || '');
+        const org = String(data.get('org') || '');
+        const topic = String(data.get('topic') || '');
+        const message = String(data.get('message') || '');
+
+        const subject = `[Spades Institute] ${topic}`;
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          org ? `Organization: ${org}` : null,
+          '',
+          message
+        ].filter(Boolean).join('\\n');
+
+        const mailto = `mailto:info@spadesinstitute.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+      });
+    }
+  </script>
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Layout from '../components/Layout.astro';
+import Section from '../components/Section.astro';
+---
+<Layout title="Spades Institute | About">
+  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-[0.4em] text-white/70">About</p>
+      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Why Spades</h1>
+      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+        We advance ethics, democracy, and freedom through trusted, nonpartisan engagement across the public and private sectors.
+      </p>
+    </div>
+  </section>
+
+  <Section
+    title="How We Work"
+    description="We connect the right voices, align incentives, and keep the focus on practical outcomes that strengthen U.S. security and resilience."
+  >
+    <div class="grid gap-6 md:grid-cols-2">
+      <article class="bg-white rounded-md border border-spades-border p-8 shadow-card">
+        <h3 class="font-display text-2xl italic mb-3">Our Promise</h3>
+        <p class="text-spades-muted leading-relaxed">
+          Every engagement we facilitate is designed to accelerate deployment, sharpen decision-making, and guard democratic values—no noise, just purposeful collaboration.
+        </p>
+      </article>
+      <article class="bg-white rounded-md border border-spades-border p-8 shadow-card">
+        <h3 class="font-display text-2xl italic mb-3">How we operate</h3>
+        <p class="text-spades-muted leading-relaxed">
+          We work with mission leadership, technologists, and scholars to connect perspective with execution. Our programs are research-informed, delivery focused, and built to last.
+        </p>
+      </article>
+    </div>
+  </Section>
+
+  <Section title="Guiding Principles" description="Democracy, freedom, and ethics define how we convene, design, and deliver." className="pt-0">
+    <div class="grid gap-6 md:grid-cols-3">
+      {['Democracy', 'Freedom', 'Ethics'].map((value, i) => (
+        <article class="bg-white rounded-md border border-spades-border p-8 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+          <p class="font-display text-3xl italic text-spades-ink">{value}</p>
+          <p class="mt-3 text-spades-muted leading-relaxed">Committed to protecting this core value in every collaboration.</p>
+        </article>
+      ))}
+    </div>
+  </Section>
+</Layout>
