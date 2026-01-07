@@ -7,6 +7,7 @@ const {
   secondaryCta,
   tertiaryCta
 } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 <section class="relative overflow-hidden pb-16">
   <div class="absolute inset-0 bg-gradient-to-b from-white via-spades-paper to-spades-wash" aria-hidden="true"></div>
@@ -16,7 +17,7 @@ const {
     <div class="mx-auto max-w-4xl motion-safe:animate-fadeUp">
       <div class="mb-6 flex justify-center">
         <img
-          src="/flag-us.svg"
+          src={`${base}flag-us.svg`}
           alt="United States flag"
           width="96"
           height="50"
@@ -34,8 +35,8 @@ const {
       <div class="mt-5 flex flex-wrap gap-4 justify-center motion-safe:animate-fadeUp" style="animation-delay: 600ms">
         <a
           href={primaryCta.href}
-          target="_blank"
-          rel="noreferrer"
+          target={primaryCta.href.startsWith('http') ? '_blank' : undefined}
+          rel={primaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
           class="btn btn-primary"
         >
           {primaryCta.label}
@@ -43,6 +44,8 @@ const {
         {secondaryCta && (
           <a
             href={secondaryCta.href}
+            target={secondaryCta.href.startsWith('http') ? '_blank' : undefined}
+            rel={secondaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
             class="btn btn-outline"
           >
             {secondaryCta.label}
@@ -51,7 +54,12 @@ const {
       </div>
       {tertiaryCta && (
         <div class="mt-3">
-          <a href={tertiaryCta.href} class="text-xs uppercase tracking-[0.24em] text-spades-muted hover:text-spades-ink">
+          <a 
+            href={tertiaryCta.href} 
+            target={tertiaryCta.href.startsWith('http') ? '_blank' : undefined}
+            rel={tertiaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
+            class="text-xs uppercase tracking-[0.24em] text-spades-muted hover:text-spades-ink"
+          >
             {tertiaryCta.label} →
           </a>
         </div>

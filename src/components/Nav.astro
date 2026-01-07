@@ -1,18 +1,19 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Programs', href: '/engagements' },
-  { label: 'People', href: '/people' },
-  { label: 'Partner', href: '/connect' }
+  { label: 'Home', href: `${base}/` },
+  { label: 'About Us', href: `${base}/about` },
+  { label: 'Programs', href: `${base}/engagements` },
+  { label: 'People', href: `${base}/people` },
+  { label: 'Partner', href: `${base}/connect` }
 ];
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href) => (href === '/' ? pathname === '/' : pathname === href);
+const isActive = (href) => pathname === href.replace(/\/$/, '') || (href.endsWith('/') && pathname === href.slice(0, -1));
 ---
 <header class="w-full bg-spades-ink sticky top-0 z-40">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-    <a class="font-display text-2xl tracking-wide text-spades-paper flex items-center gap-3" href="/">
+    <a class="font-display text-2xl tracking-wide text-spades-paper flex items-center gap-3" href={`${base}/`}>
       <span aria-hidden="true" class="text-3xl leading-none">♠︎</span>
       <span>Spades Institute</span>
     </a>

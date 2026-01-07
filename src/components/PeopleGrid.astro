@@ -1,6 +1,7 @@
 ---
 const { people = [], variant = 'card' } = Astro.props;
 const isDark = variant === 'dark';
+const base = import.meta.env.BASE_URL;
 ---
 <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {people.map((person, i) => (
@@ -15,7 +16,7 @@ const isDark = variant === 'dark';
     >
       <div class:list={['flex items-center gap-4', isDark ? 'justify-center text-center flex-col' : '']}>
         <img
-          src={person.headshot}
+          src={`${base}${person.headshot.replace(/^\//, '')}`}
           alt={`${person.name} headshot`}
           loading="lazy"
           class:list={[
