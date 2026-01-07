@@ -29,8 +29,11 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
       <img
         src={`${base}${post.data.featuredImage.replace(/^\//, '')}`}
         alt=""
+        width="400"
+        height="225"
         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         loading="lazy"
+        decoding="async"
       />
     </div>
   )}

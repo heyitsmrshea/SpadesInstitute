@@ -31,13 +31,38 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         {engagements.map((program, i) => (
           <article class="card p-6 md:p-8 motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
             <div class="flex flex-col lg:flex-row gap-6">
-              <!-- Content -->
               <div class="flex-1">
-                <div class="flex flex-wrap items-center gap-3 mb-3">
-                  <span class="text-xs uppercase tracking-widest text-spades-accent font-medium">{program.subtitle}</span>
-                  <span class="text-xs text-spades-text-secondary px-2 py-1 bg-spades-paper rounded border border-spades-border">{program.format}</span>
-                </div>
+                <!-- Program type label -->
+                <p class="text-xs uppercase tracking-widest text-spades-accent font-medium mb-3">{program.subtitle}</p>
+                
+                <!-- Title -->
                 <h3 class="text-xl md:text-2xl font-semibold text-spades-text mb-3">{program.title}</h3>
+                
+                <!-- Facts row -->
+                {program.facts && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {program.facts.duration && (
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        {program.facts.duration}
+                      </span>
+                    )}
+                    {program.facts.format && (
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        {program.facts.format}
+                      </span>
+                    )}
+                    {program.facts.location && (
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" /></svg>
+                        {program.facts.location}
+                      </span>
+                    )}
+                  </div>
+                )}
+                
+                <!-- Description -->
                 <p class="text-body text-spades-text-secondary mb-4">{program.description}</p>
                 
                 <!-- Audience badges -->
@@ -59,8 +84,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                   ))}
                 </ul>
 
-                <a href={`${base}/connect`} class="btn btn-secondary">
+                <!-- CTA -->
+                <a 
+                  href={program.cta.external ? program.cta.href : `${base}/connect`}
+                  target={program.cta.external ? '_blank' : undefined}
+                  rel={program.cta.external ? 'noreferrer' : undefined}
+                  class="btn btn-primary"
+                >
                   {program.cta.label}
+                  {program.cta.external && <span aria-hidden="true">→</span>}
                 </a>
               </div>
             </div>
@@ -70,20 +102,44 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </section>
 
-  <!-- Veterans Initiative Highlight -->
+  <!-- Veterans Initiative Highlight with Eligibility -->
   <section class="bg-white section-padding border-y border-spades-border">
     <div class="max-w-4xl mx-auto px-6">
       <div class="card p-8 md:p-10 bg-spades-ink-deep text-white border-0">
-        <div class="text-center mb-6">
+        <div class="text-center mb-8">
           <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-3">Featured Initiative</p>
           <h2 class="text-heading-lg md:text-heading-xl text-white mb-3">Veterans Fellowship</h2>
           <p class="text-dark-secondary max-w-xl mx-auto">
             Translate your military experience into meaningful civilian impact. Our veterans-focused pathway pairs operational expertise with executive leadership.
           </p>
         </div>
+        
+        <!-- Eligibility Checklist -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 mb-8 max-w-md mx-auto">
+          <p class="text-sm font-medium text-white mb-4 text-center">Eligibility Requirements</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-dark-secondary">
+              <span class="text-white/80 mt-0.5">✓</span>
+              <span>Honorably discharged U.S. military veteran</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-dark-secondary">
+              <span class="text-white/80 mt-0.5">✓</span>
+              <span>Minimum 4 years of active duty service</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-dark-secondary">
+              <span class="text-white/80 mt-0.5">✓</span>
+              <span>Interest in national security or public service</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-dark-secondary">
+              <span class="text-white/80 mt-0.5">✓</span>
+              <span>Commitment to ethics-first collaboration</span>
+            </li>
+          </ul>
+        </div>
+        
         <div class="text-center">
           <a
-            href="https://operationmos.com"
+            href="https://app.operationmos.com"
             target="_blank"
             rel="noreferrer"
             class="btn btn-invert"
@@ -123,6 +179,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <p class="text-sm text-spades-text-secondary">Engage in structured programs designed for trust, clarity, and measurable outcomes.</p>
         </div>
       </div>
+
+      <div class="mt-10 text-center">
+        <a href={`${base}/connect`} class="btn btn-primary">
+          Propose an engagement
+        </a>
+      </div>
     </div>
   </section>
 
@@ -151,7 +213,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             q: "Is there a cost to participate?",
             a: "Program costs vary. Many of our programs are funded through partnerships and grants. Contact us to discuss specific opportunities and any associated costs."
           }
-        ].map((faq, i) => (
+        ].map((faq) => (
           <details class="group card p-0 overflow-hidden">
             <summary class="cursor-pointer p-6 flex items-center justify-between gap-4 focus-accent">
               <span class="font-semibold text-spades-text">{faq.q}</span>
@@ -164,22 +226,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             </div>
           </details>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-spades-ink-deep section-padding">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-heading-lg md:text-heading-xl text-white">Ready to Propose an Engagement?</h2>
-      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto">
-        Let's discuss how we can work together to address your national security challenges.
-      </p>
-      <div class="mt-8">
-        <a href={`${base}/connect`} class="btn btn-invert">
-          Propose an engagement
-          <span aria-hidden="true">→</span>
-        </a>
       </div>
     </div>
   </section>

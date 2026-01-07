@@ -21,7 +21,10 @@ const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
             <img
               src={`${base}${person.headshot.replace(/^\//, '')}`}
               alt={`${person.name} headshot`}
+              width="128"
+              height="128"
               loading="lazy"
+              decoding="async"
               class="w-24 h-24 md:w-32 md:h-32 rounded-xl object-cover border border-spades-border"
             />
           </div>

@@ -6,13 +6,17 @@
     "description": "Candid discussions with senior leaders in government, defense, tech, and industry—built for actionable insights, not surface-level commentary.",
     "meta": ["Public/Private Engagements"],
     "audience": ["Senior leaders", "Operators", "Innovators"],
-    "format": "Quarterly, closed-door sessions",
+    "facts": {
+      "duration": "Quarterly",
+      "format": "In-person",
+      "location": "Washington, D.C."
+    },
     "outcomes": [
       "Curated speakers and closed-door exchange",
       "Timely topics tied to mission outcomes",
       "Practical takeaways participants can apply"
     ],
-    "cta": { "label": "Learn more", "href": "/connect" }
+    "cta": { "label": "Request an invite", "href": "/connect" }
   },
   {
     "title": "National Security Fellowship",
@@ -21,13 +25,17 @@
     "description": "Two-way placement between government and industry professionals to foster trust, share expertise, and align on mission-critical technology and policy.",
     "meta": ["Fellowship"],
     "audience": ["Government professionals", "Industry leaders"],
-    "format": "6-12 month immersion program",
+    "facts": {
+      "duration": "6-12 months",
+      "format": "Hybrid",
+      "location": "Flexible"
+    },
     "outcomes": [
       "Immersion in each other's operating environments",
       "Trust-building through hands-on mission work",
       "Shared objectives, measurable deliverables"
     ],
-    "cta": { "label": "Learn more", "href": "/connect" }
+    "cta": { "label": "Apply now", "href": "/connect" }
   },
   {
     "title": "Veterans Fellowship",
@@ -36,12 +44,16 @@
     "description": "A veterans-focused pathway that pairs operational experience with executive leadership to tackle emerging security challenges.",
     "meta": ["Veterans Fellowship"],
     "audience": ["Veterans", "Executive teams"],
-    "format": "Structured mentorship program",
+    "facts": {
+      "duration": "Ongoing",
+      "format": "Virtual + In-person",
+      "location": "Nationwide"
+    },
     "outcomes": [
       "Mentorship and structured engagement",
       "Operational expertise translated into solutions",
       "Cross-sector collaboration and resilience"
     ],
-    "cta": { "label": "Learn more", "href": "/connect" }
+    "cta": { "label": "Get started", "href": "https://app.operationmos.com", "external": true }
   }
 ]

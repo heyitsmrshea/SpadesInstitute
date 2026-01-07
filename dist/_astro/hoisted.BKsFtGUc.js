@@ -1,0 +1,1 @@
+const o=document.getElementById("backToTop");if(o){const t=()=>{window.scrollY>300?(o.classList.remove("opacity-0","pointer-events-none"),o.classList.add("opacity-100")):(o.classList.add("opacity-0","pointer-events-none"),o.classList.remove("opacity-100"))};window.addEventListener("scroll",t),o.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})})}

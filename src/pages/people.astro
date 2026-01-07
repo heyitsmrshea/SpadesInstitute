@@ -9,6 +9,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const foundingPartners = people.filter(p => p.role.includes('Founding Partner'));
 const advisors = people.filter(p => p.role.includes('Advisor'));
 const others = people.filter(p => !p.role.includes('Founding Partner') && !p.role.includes('Advisor'));
+
+// Build jump links based on available sections
+const sections = [
+  { id: 'founding-partners', label: 'Founding Partners', count: foundingPartners.length },
+  { id: 'advisors', label: 'Advisors', count: advisors.length },
+  { id: 'team', label: 'Team', count: others.length }
+].filter(s => s.count > 0);
 ---
 <Layout 
   title="Spades Institute | People" 
@@ -27,6 +34,21 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
       <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
         Leaders and advisors committed to advancing democracy, freedom, and ethics through trusted, nonpartisan collaboration.
       </p>
+      
+      <!-- Jump Links -->
+      {sections.length > 1 && (
+        <nav class="mt-8 flex flex-wrap justify-center gap-3" aria-label="Jump to section">
+          {sections.map((section) => (
+            <a 
+              href={`#${section.id}`}
+              class="nav-link inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-white/80 hover:bg-white/10 hover:text-white hover:border-white/40 transition-colors focus-white"
+            >
+              {section.label}
+              <span class="text-xs text-white/60">({section.count})</span>
+            </a>
+          ))}
+        </nav>
+      )}
     </div>
   </section>
 
@@ -34,7 +56,7 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
   <section class="bg-spades-paper section-padding">
     <div class="max-w-4xl mx-auto px-6">
       {foundingPartners.length > 0 && (
-        <div class="mb-12">
+        <div id="founding-partners" class="mb-12 scroll-mt-24">
           <div class="flex items-center gap-4 mb-6">
             <h2 class="text-heading-md text-spades-text">Founding Partners</h2>
             <div class="flex-1 h-px bg-spades-border"></div>
@@ -44,7 +66,7 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
       )}
 
       {advisors.length > 0 && (
-        <div class="mb-12">
+        <div id="advisors" class="mb-12 scroll-mt-24">
           <div class="flex items-center gap-4 mb-6">
             <h2 class="text-heading-md text-spades-text">Advisors</h2>
             <div class="flex-1 h-px bg-spades-border"></div>
@@ -54,7 +76,7 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
       )}
 
       {others.length > 0 && (
-        <div>
+        <div id="team" class="scroll-mt-24">
           <div class="flex items-center gap-4 mb-6">
             <h2 class="text-heading-md text-spades-text">Team</h2>
             <div class="flex-1 h-px bg-spades-border"></div>
@@ -78,3 +100,9 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
     </div>
   </section>
 </Layout>
+
+<style>
+  .scroll-mt-24 {
+    scroll-margin-top: 6rem;
+  }
+</style>

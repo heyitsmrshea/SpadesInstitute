@@ -19,6 +19,9 @@ const remainingPosts = sortedPosts.slice(1);
 // Get unique tags for filtering
 const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
+// Determine layout mode based on post count
+const isLowVolume = sortedPosts.length <= 3;
+
 // Page metadata
 const title = "Blog | Spades Institute";
 const description = "Insights and perspectives on national security, ethics, and cross-sector collaboration from the Spades Institute team.";
@@ -57,11 +60,22 @@ const description = "Insights and perspectives on national security, ethics, and
       <div class="max-w-5xl mx-auto px-6 py-4">
         <div class="flex flex-wrap items-center gap-3">
           <span class="text-sm font-medium text-spades-text">Topics:</span>
-          <div class="flex flex-wrap gap-2">
+          <div id="filter-chips" class="flex flex-wrap gap-2">
+            <button 
+              type="button"
+              data-tag="all"
+              class="filter-chip active inline-flex items-center px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-accent"
+            >
+              All
+            </button>
             {allTags.map((tag) => (
-              <span class="inline-flex items-center px-3 py-1 rounded-full bg-spades-paper border border-spades-border text-sm text-spades-text-secondary hover:border-spades-accent hover:text-spades-accent cursor-pointer transition-colors">
+              <button 
+                type="button"
+                data-tag={tag}
+                class="filter-chip inline-flex items-center px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-accent"
+              >
                 {tag}
-              </span>
+              </button>
             ))}
           </div>
         </div>
@@ -74,23 +88,68 @@ const description = "Insights and perspectives on national security, ethics, and
     <section class="bg-spades-paper section-padding-sm border-b border-spades-border">
       <div class="max-w-5xl mx-auto px-6">
         <p class="text-xs uppercase tracking-widest text-spades-muted mb-4">Featured Article</p>
-        <BlogCard post={featuredPost} featured={true} />
+        <div data-tags={JSON.stringify(featuredPost.data.tags)}>
+          <BlogCard post={featuredPost} featured={true} />
+        </div>
       </div>
     </section>
   )}
 
-  <!-- Posts Grid -->
+  <!-- Posts Grid/List -->
   <section class="bg-white section-padding">
     <div class="max-w-5xl mx-auto px-6">
       {remainingPosts.length > 0 ? (
         <>
           <h2 class="text-heading-md text-spades-text mb-6">More Articles</h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {remainingPosts.map((post, i) => (
-              <div class="motion-safe:animate-fadeIn" style={`animation-delay: ${i * 50}ms`}>
-                <BlogCard post={post} />
-              </div>
-            ))}
+          
+          {isLowVolume ? (
+            <!-- Compact list layout for low volume -->
+            <div id="posts-container" class="space-y-4">
+              {remainingPosts.map((post, i) => {
+                const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric'
+                });
+                return (
+                  <a 
+                    href={`${base}/blog/${post.slug}`}
+                    data-tags={JSON.stringify(post.data.tags)}
+                    class="post-item group card p-4 flex flex-col sm:flex-row sm:items-center gap-4 motion-safe:animate-fadeIn"
+                    style={`animation-delay: ${i * 50}ms`}
+                  >
+                    <div class="flex-1 min-w-0">
+                      <h3 class="font-semibold text-spades-text group-hover:text-spades-accent transition-colors truncate">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm text-spades-text-secondary mt-1 clamp-2">{post.data.excerpt}</p>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm text-spades-muted flex-shrink-0">
+                      <span>{post.data.author}</span>
+                      <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          ) : (
+            <!-- Grid layout for higher volume -->
+            <div id="posts-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {remainingPosts.map((post, i) => (
+                <div 
+                  data-tags={JSON.stringify(post.data.tags)}
+                  class="post-item motion-safe:animate-fadeIn" 
+                  style={`animation-delay: ${i * 50}ms`}
+                >
+                  <BlogCard post={post} />
+                </div>
+              ))}
+            </div>
+          )}
+          
+          <!-- Empty state -->
+          <div id="empty-state" class="hidden text-center py-12">
+            <p class="text-spades-text-secondary">No articles match this topic. Try selecting a different one.</p>
           </div>
         </>
       ) : (
@@ -108,20 +167,161 @@ const description = "Insights and perspectives on national security, ethics, and
       <p class="text-spades-text-secondary mb-6">
         Subscribe to receive new articles and updates from Spades Institute.
       </p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action={`mailto:info@spadesinstitute.org?subject=Newsletter Subscription`} method="post" enctype="text/plain">
-        <input 
-          type="email" 
-          placeholder="your@email.com" 
-          class="flex-1 px-4 py-3 rounded-lg border border-spades-border bg-white text-spades-text placeholder-spades-muted focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent"
-          required
-        />
-        <button type="submit" class="btn btn-primary">
-          Subscribe
-        </button>
+      
+      <form id="subscribe-form" class="max-w-md mx-auto">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="flex-1">
+            <label for="subscribe-email" class="sr-only">Email address</label>
+            <input 
+              id="subscribe-email"
+              type="email" 
+              name="email"
+              placeholder="your@email.com" 
+              class="w-full px-4 py-3 rounded-lg border border-spades-border bg-white text-spades-text placeholder-spades-muted focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow"
+              required
+              aria-describedby="email-error"
+            />
+            <p id="email-error" class="hidden mt-2 text-sm text-red-600" role="alert"></p>
+          </div>
+          <button 
+            type="submit" 
+            id="subscribe-btn"
+            class="btn btn-primary whitespace-nowrap"
+          >
+            <span id="btn-text">Subscribe</span>
+            <svg id="btn-spinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Success message -->
+        <div id="success-message" class="hidden mt-4 p-4 rounded-lg bg-green-50 border border-green-200">
+          <p class="text-sm text-green-800">
+            ✓ Thank you for subscribing! Check your email to confirm.
+          </p>
+        </div>
       </form>
+      
       <p class="mt-4 text-xs text-spades-muted">
         We respect your privacy. Unsubscribe at any time.
       </p>
     </div>
   </section>
 </Layout>
+
+<style>
+  .filter-chip {
+    background-color: var(--color-paper, #fbfbf7);
+    border-color: var(--color-border, #e5e7eb);
+    color: var(--color-muted, #4b5563);
+  }
+  
+  .filter-chip:hover {
+    border-color: var(--color-accent, #1e3a5f);
+    color: var(--color-accent, #1e3a5f);
+  }
+  
+  .filter-chip.active {
+    background-color: var(--color-accent, #1e3a5f);
+    border-color: var(--color-accent, #1e3a5f);
+    color: white;
+  }
+</style>
+
+<script>
+  // Topic filtering
+  const filterChips = document.querySelectorAll('.filter-chip');
+  const postItems = document.querySelectorAll('.post-item, [data-tags]');
+  const emptyState = document.getElementById('empty-state');
+  
+  filterChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const selectedTag = chip.getAttribute('data-tag');
+      
+      // Update active state
+      filterChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      
+      // Filter posts
+      let visibleCount = 0;
+      postItems.forEach(item => {
+        const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
+        const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
+        
+        if (shouldShow) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      
+      // Show/hide empty state
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    });
+  });
+  
+  // Subscribe form validation
+  const form = document.getElementById('subscribe-form') as HTMLFormElement;
+  const emailInput = document.getElementById('subscribe-email') as HTMLInputElement;
+  const emailError = document.getElementById('email-error');
+  const submitBtn = document.getElementById('subscribe-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const successMessage = document.getElementById('success-message');
+  
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Clear previous errors
+      if (emailError) {
+        emailError.classList.add('hidden');
+        emailError.textContent = '';
+      }
+      
+      // Validate email
+      const email = emailInput?.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!email || !emailRegex.test(email)) {
+        if (emailError) {
+          emailError.textContent = 'Please enter a valid email address.';
+          emailError.classList.remove('hidden');
+        }
+        emailInput?.focus();
+        return;
+      }
+      
+      // Show loading state
+      if (submitBtn) submitBtn.setAttribute('disabled', 'true');
+      if (btnText) btnText.textContent = 'Subscribing...';
+      if (btnSpinner) btnSpinner.classList.remove('hidden');
+      
+      // Simulate submission (in production, this would be an API call)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Show success
+      if (successMessage) successMessage.classList.remove('hidden');
+      if (emailInput) emailInput.value = '';
+      
+      // Reset button
+      if (submitBtn) submitBtn.removeAttribute('disabled');
+      if (btnText) btnText.textContent = 'Subscribe';
+      if (btnSpinner) btnSpinner.classList.add('hidden');
+      
+      // Open mailto as fallback
+      const subject = encodeURIComponent('Newsletter Subscription');
+      const body = encodeURIComponent(`Please add ${email} to the Spades Institute newsletter.`);
+      window.location.href = `mailto:info@spadesinstitute.org?subject=${subject}&body=${body}`;
+    });
+  }
+</script>
