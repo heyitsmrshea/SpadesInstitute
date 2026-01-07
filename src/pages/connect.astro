@@ -11,151 +11,175 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     { label: 'Home', href: `${base}/` },
     { label: 'Connect', href: `${base}/connect` }
   ]} />
-  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
-    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
-      <p class="text-xs uppercase tracking-[0.4em] text-white/70">Connect</p>
-      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Partner with Spades</h1>
-      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
-        Share a challenge, an idea, or a partnership opportunity. We’ll respond within the week.
+
+  <!-- Hero -->
+  <section class="bg-spades-ink-deep section-padding-sm">
+    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">Connect</p>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white">Partner with Spades</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
+        Share a challenge, an idea, or a partnership opportunity. We'll respond within the week.
       </p>
-      <p class="mt-8 text-white/70" aria-hidden="true">♠︎</p>
     </div>
   </section>
 
-  <section class="bg-spades-paper">
-    <div class="max-w-6xl mx-auto px-6 py-16 grid gap-10 lg:grid-cols-5 items-start">
+  <!-- Contact Form -->
+  <section class="bg-spades-paper section-padding">
+    <div class="max-w-5xl mx-auto px-6 grid gap-8 lg:grid-cols-5 items-start">
+      <!-- Form -->
       <div class="lg:col-span-3">
-        <div class="bg-white border border-spades-border rounded-md p-10 shadow-card">
-          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted">Message</p>
-          <h2 class="mt-5 font-display text-3xl md:text-4xl italic text-spades-ink">Send a note</h2>
-          <p class="mt-4 text-spades-muted">
-            Fill out the form below and we'll open your email client with your message pre-filled. We'll respond within one week.
+        <div class="card p-8">
+          <h2 class="text-heading-md text-spades-text mb-2">Send a note</h2>
+          <p class="text-body text-spades-text-secondary mb-8">
+            Fill out the form below and we'll open your email client with your message pre-filled.
           </p>
 
-          <form id="contactForm" class="mt-10 grid gap-5">
-            <label class="grid gap-2">
-              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Name</span>
-              <input name="name" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+          <form id="contactForm" class="space-y-5">
+            <label class="block">
+              <span class="text-sm font-medium text-spades-text mb-2 block">Name</span>
+              <input 
+                name="name" 
+                required 
+                class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
+              />
             </label>
-            <label class="grid gap-2">
-              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Email</span>
-              <input name="email" type="email" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+            <label class="block">
+              <span class="text-sm font-medium text-spades-text mb-2 block">Email</span>
+              <input 
+                name="email" 
+                type="email" 
+                required 
+                class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
+              />
             </label>
-            <label class="grid gap-2">
-              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Organization (optional)</span>
-              <input name="org" class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20" />
+            <label class="block">
+              <span class="text-sm font-medium text-spades-text mb-2 block">Organization <span class="text-spades-muted font-normal">(optional)</span></span>
+              <input 
+                name="org" 
+                class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
+              />
             </label>
-            <label class="grid gap-2">
-              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Topic</span>
-              <select name="topic" class="w-full rounded-md border border-spades-border px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-spades-ink/20">
+            <label class="block">
+              <span class="text-sm font-medium text-spades-text mb-2 block">Topic</span>
+              <select 
+                name="topic" 
+                class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow"
+              >
                 <option>Speaker Series</option>
-                <option>Bi-directional Fellowship</option>
+                <option>National Security Fellowship</option>
                 <option>Veterans Fellowship</option>
                 <option>Partnership / Sponsorship</option>
                 <option>Other</option>
               </select>
             </label>
-            <label class="grid gap-2">
-              <span class="text-xs uppercase tracking-[0.26em] text-spades-muted">Message</span>
-              <textarea name="message" rows="6" required class="w-full rounded-md border border-spades-border px-4 py-3 focus:outline-none focus:ring-2 focus:ring-spades-ink/20"></textarea>
+            <label class="block">
+              <span class="text-sm font-medium text-spades-text mb-2 block">Message</span>
+              <textarea 
+                name="message" 
+                rows="5" 
+                required 
+                class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow resize-y"
+              ></textarea>
             </label>
 
-            <div class="mt-4 flex flex-wrap items-center gap-4">
+            <div class="pt-2 flex flex-wrap items-center gap-4">
               <button type="submit" class="btn btn-primary">
                 Draft email
               </button>
-              <a class="btn btn-ghost px-0 py-0" href="mailto:info@spadesinstitute.org">
+              <a class="btn btn-tertiary" href="mailto:info@spadesinstitute.org">
                 Or email directly
               </a>
             </div>
-            <p class="text-xs text-spades-muted">
+            <p class="text-sm text-spades-muted">
               Your message will open in your email client. We typically respond within one week.
             </p>
           </form>
         </div>
       </div>
 
-      <aside class="lg:col-span-2 space-y-6">
-        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
-          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Email</p>
-          <a href="mailto:info@spadesinstitute.org" class="font-display text-2xl italic text-spades-ink">info@spadesinstitute.org</a>
-        </div>
-        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
-          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">LinkedIn</p>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" class="text-sm font-semibold uppercase tracking-[0.22em] text-spades-ink hover:opacity-70">
-            Follow updates →
+      <!-- Sidebar -->
+      <aside class="lg:col-span-2 space-y-4">
+        <div class="card p-6">
+          <p class="text-sm font-medium text-spades-muted mb-2">Email</p>
+          <a href="mailto:info@spadesinstitute.org" class="text-lg font-semibold text-spades-accent hover:text-spades-accent-hover transition-colors">
+            info@spadesinstitute.org
           </a>
         </div>
-        <div class="bg-white border border-spades-border rounded-md p-8 shadow-card">
-          <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Location</p>
-          <p class="text-spades-muted">Washington, D.C.</p>
+        <div class="card p-6">
+          <p class="text-sm font-medium text-spades-muted mb-2">LinkedIn</p>
+          <a 
+            href="https://www.linkedin.com" 
+            target="_blank" 
+            rel="noreferrer" 
+            class="text-sm font-medium text-spades-accent hover:text-spades-accent-hover transition-colors inline-flex items-center gap-1"
+          >
+            Follow updates <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="card p-6">
+          <p class="text-sm font-medium text-spades-muted mb-2">Location</p>
+          <p class="text-spades-text-secondary">Washington, D.C.</p>
         </div>
       </aside>
     </div>
   </section>
 
   <!-- Government Employees Section -->
-  <section class="bg-spades-ink text-white border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-      <div class="bg-white/5 border border-white/10 rounded-xl p-8 md:p-10">
-        <div class="text-center mb-8">
-          <p class="text-xs uppercase tracking-[0.4em] text-white/70 mb-3">For Government Employees</p>
-          <h2 class="font-display text-3xl md:text-4xl italic text-white mb-4">Volunteer or Request an Engagement</h2>
-          <p class="text-white/80 max-w-2xl mx-auto">
-            Government employees can volunteer their time or request an engagement with Spades Institute. Generate a pre-filled ethics printout to submit with your request.
-          </p>
-        </div>
-        <div class="text-center">
-          <a
-            href="mailto:info@spadesinstitute.org?subject=[Government Employee] Volunteer or Engagement Request&body=ETHICS DISCLOSURE AND CONFLICT OF INTEREST STATEMENT%0D%0A%0D%0AThis form is for government employees who wish to volunteer their time or request an engagement with Spades Institute.%0D%0A%0D%0A---%0D%0A%0D%0AEMPLOYEE INFORMATION:%0D%0AName: [Your Name]%0D%0AAgency/Department: [Your Agency]%0D%0APosition/Title: [Your Position]%0D%0AEmail: [Your Email]%0D%0A%0D%0A---%0D%0A%0D%0AETHICS CERTIFICATION:%0D%0A%0D%0AI certify that:%0D%0A1. My participation with Spades Institute is in compliance with all applicable ethics rules and regulations.%0D%0A2. I have reviewed and understand my agency's ethics guidelines regarding outside activities.%0D%0A3. I have disclosed any potential conflicts of interest to my ethics official.%0D%0A4. My participation will not create a conflict of interest or appearance of impropriety.%0D%0A5. I will not use government resources, time, or information for Spades Institute activities.%0D%0A%0D%0A---%0D%0A%0D%0AREQUEST TYPE:%0D%0A[ ] Volunteer Time%0D%0A[ ] Request Engagement%0D%0A%0D%0A---%0D%0A%0D%0ADESCRIPTION OF PROPOSED ACTIVITY:%0D%0A[Describe your proposed volunteer work or engagement request]%0D%0A%0D%0A---%0D%0A%0D%0ASIGNATURE:%0D%0A[Your Signature]%0D%0A[Date]%0D%0A%0D%0A---%0D%0A%0D%0ANOTE: Please print this email and submit it to your ethics official for approval before proceeding with Spades Institute activities."
-            class="btn btn-invert inline-flex items-center gap-2"
-          >
-            Generate pre-filled ethics printout
-            <span aria-hidden="true">→</span>
-          </a>
-          <p class="mt-4 text-sm text-white/70">
-            This will open your email client with a pre-filled ethics disclosure form. Print the email to submit to your ethics official.
-          </p>
-        </div>
+  <section class="bg-spades-ink-deep section-padding">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="card card-dark p-8 md:p-10 text-center">
+        <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-3">For Government Employees</p>
+        <h2 class="text-heading-lg text-white mb-4">Volunteer or Request an Engagement</h2>
+        <p class="text-dark-secondary max-w-xl mx-auto mb-6">
+          Generate a pre-filled ethics disclosure form to submit with your volunteer or engagement request.
+        </p>
+        <a
+          href="mailto:info@spadesinstitute.org?subject=[Government Employee] Volunteer or Engagement Request&body=ETHICS DISCLOSURE AND CONFLICT OF INTEREST STATEMENT%0D%0A%0D%0AThis form is for government employees who wish to volunteer their time or request an engagement with Spades Institute.%0D%0A%0D%0A---%0D%0A%0D%0AEMPLOYEE INFORMATION:%0D%0AName: [Your Name]%0D%0AAgency/Department: [Your Agency]%0D%0APosition/Title: [Your Position]%0D%0AEmail: [Your Email]%0D%0A%0D%0A---%0D%0A%0D%0AETHICS CERTIFICATION:%0D%0A%0D%0AI certify that:%0D%0A1. My participation with Spades Institute is in compliance with all applicable ethics rules and regulations.%0D%0A2. I have reviewed and understand my agency's ethics guidelines regarding outside activities.%0D%0A3. I have disclosed any potential conflicts of interest to my ethics official.%0D%0A4. My participation will not create a conflict of interest or appearance of impropriety.%0D%0A5. I will not use government resources, time, or information for Spades Institute activities.%0D%0A%0D%0A---%0D%0A%0D%0AREQUEST TYPE:%0D%0A[ ] Volunteer Time%0D%0A[ ] Request Engagement%0D%0A%0D%0A---%0D%0A%0D%0ADESCRIPTION OF PROPOSED ACTIVITY:%0D%0A[Describe your proposed volunteer work or engagement request]%0D%0A%0D%0A---%0D%0A%0D%0ASIGNATURE:%0D%0A[Your Signature]%0D%0A[Date]%0D%0A%0D%0A---%0D%0A%0D%0ANOTE: Please print this email and submit it to your ethics official for approval before proceeding with Spades Institute activities."
+          class="btn btn-invert"
+        >
+          Generate ethics printout
+          <span aria-hidden="true">→</span>
+        </a>
+        <p class="mt-4 text-sm text-dark-muted">
+          Opens your email client with a pre-filled ethics disclosure form.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section class="bg-white border-t border-spades-border">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-      <div class="text-center mb-12">
-        <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink">Frequently Asked Questions</h2>
+  <section class="bg-white section-padding border-t border-spades-border">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-heading-lg text-spades-text">Frequently Asked Questions</h2>
       </div>
-      <div class="max-w-3xl mx-auto space-y-6">
-        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
-          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
-            <span>What happens after I submit?</span>
-            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <p class="mt-4 text-spades-muted leading-relaxed">
-            Your email client will open with your message pre-filled. Send the email, and we'll receive it at info@spadesinstitute.org. We typically respond within one week.
-          </p>
-        </details>
-        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
-          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
-            <span>What types of partnerships do you consider?</span>
-            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <p class="mt-4 text-spades-muted leading-relaxed">
-            We work with government agencies, industry leaders, academic institutions, and nonprofits. We're particularly interested in partnerships that advance ethics, democracy, and freedom through trusted collaboration.
-          </p>
-        </details>
-        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
-          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
-            <span>How quickly will I receive a response?</span>
-            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
-          </summary>
-          <p class="mt-4 text-spades-muted leading-relaxed">
-            We aim to respond to all inquiries within one week. For urgent matters, please note that in your message subject line.
-          </p>
-        </details>
+      <div class="space-y-4">
+        {[
+          {
+            q: "What happens after I submit?",
+            a: "Your email client will open with your message pre-filled. Send the email, and we'll receive it at info@spadesinstitute.org. We typically respond within one week."
+          },
+          {
+            q: "What types of partnerships do you consider?",
+            a: "We work with government agencies, industry leaders, academic institutions, and nonprofits. We're particularly interested in partnerships that advance ethics, democracy, and freedom through trusted collaboration."
+          },
+          {
+            q: "How quickly will I receive a response?",
+            a: "We aim to respond to all inquiries within one week. For urgent matters, please note that in your message subject line."
+          }
+        ].map((faq) => (
+          <details class="group card p-0 overflow-hidden">
+            <summary class="cursor-pointer p-6 flex items-center justify-between gap-4 focus-accent">
+              <span class="font-semibold text-spades-text">{faq.q}</span>
+              <svg class="w-5 h-5 text-spades-muted flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-0">
+              <p class="text-body text-spades-text-secondary">{faq.a}</p>
+            </div>
+          </details>
+        ))}
       </div>
     </div>
   </section>
@@ -165,7 +189,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     if (form) {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const data = new FormData(form);
+        const data = new FormData(form as HTMLFormElement);
         const name = String(data.get('name') || '');
         const email = String(data.get('email') || '');
         const org = String(data.get('org') || '');
@@ -179,7 +203,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           org ? `Organization: ${org}` : null,
           '',
           message
-        ].filter(Boolean).join('\\n');
+        ].filter(Boolean).join('\n');
 
         const mailto = `mailto:info@spadesinstitute.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;

@@ -1,38 +1,47 @@
 [
   {
     "title": "Quarterly Speaker Series",
+    "shortTitle": "Speaker Series",
+    "subtitle": "Public/Private Engagements",
     "description": "Candid discussions with senior leaders in government, defense, tech, and industry—built for actionable insights, not surface-level commentary.",
     "meta": ["Public/Private Engagements"],
-    "bestFor": "Senior leaders, operators, and innovators",
-    "bullets": [
+    "audience": ["Senior leaders", "Operators", "Innovators"],
+    "format": "Quarterly, closed-door sessions",
+    "outcomes": [
       "Curated speakers and closed-door exchange",
       "Timely topics tied to mission outcomes",
       "Practical takeaways participants can apply"
     ],
-    "cta": { "label": "Get more info", "href": "/connect" }
+    "cta": { "label": "Learn more", "href": "/connect" }
   },
   {
-    "title": "Bi-directional National Security Fellowship",
+    "title": "National Security Fellowship",
+    "shortTitle": "NS Fellowship",
+    "subtitle": "Bi-directional Government/Industry",
     "description": "Two-way placement between government and industry professionals to foster trust, share expertise, and align on mission-critical technology and policy.",
     "meta": ["Fellowship"],
-    "bestFor": "Government and industry professionals",
-    "bullets": [
-      "Immersion in each other’s operating environments",
+    "audience": ["Government professionals", "Industry leaders"],
+    "format": "6-12 month immersion program",
+    "outcomes": [
+      "Immersion in each other's operating environments",
       "Trust-building through hands-on mission work",
       "Shared objectives, measurable deliverables"
     ],
-    "cta": { "label": "Get more info", "href": "/connect" }
+    "cta": { "label": "Learn more", "href": "/connect" }
   },
   {
-    "title": "Department of War National Security Fellowship",
+    "title": "Veterans Fellowship",
+    "shortTitle": "Veterans Initiative",
+    "subtitle": "Department of War Track",
     "description": "A veterans-focused pathway that pairs operational experience with executive leadership to tackle emerging security challenges.",
     "meta": ["Veterans Fellowship"],
-    "bestFor": "Veterans and executive leadership teams",
-    "bullets": [
+    "audience": ["Veterans", "Executive teams"],
+    "format": "Structured mentorship program",
+    "outcomes": [
       "Mentorship and structured engagement",
       "Operational expertise translated into solutions",
       "Cross-sector collaboration and resilience"
     ],
-    "cta": { "label": "Get more info", "href": "/connect" }
+    "cta": { "label": "Learn more", "href": "/connect" }
   }
 ]

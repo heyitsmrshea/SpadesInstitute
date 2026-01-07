@@ -1,6 +1,5 @@
 ---
 import Layout from '../components/Layout.astro';
-import CardGrid from '../components/CardGrid.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import engagements from '../data/engagements.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -13,58 +12,175 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     { label: 'Home', href: `${base}/` },
     { label: 'Programs', href: `${base}/engagements` }
   ]} />
-  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
-    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
-      <p class="text-xs uppercase tracking-[0.4em] text-white/70">Engagements</p>
-      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Public/Private Programs</h1>
-      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+
+  <!-- Hero -->
+  <section class="bg-spades-ink-deep section-padding-sm">
+    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">Programs</p>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white">Public/Private Engagements</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
         Speaker series and fellowships that pair mission leaders, technologists, and practitioners—built for trust, clarity, and execution.
       </p>
-      <div class="mt-10">
-        <a
-          href={`${base}/connect`}
-          class="btn btn-invert"
-        >
-          Propose an engagement <span aria-hidden="true">→</span>
-        </a>
+    </div>
+  </section>
+
+  <!-- Programs Grid -->
+  <section class="bg-spades-paper section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="space-y-6">
+        {engagements.map((program, i) => (
+          <article class="card p-6 md:p-8 motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+            <div class="flex flex-col lg:flex-row gap-6">
+              <!-- Content -->
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-3 mb-3">
+                  <span class="text-xs uppercase tracking-widest text-spades-accent font-medium">{program.subtitle}</span>
+                  <span class="text-xs text-spades-text-secondary px-2 py-1 bg-spades-paper rounded border border-spades-border">{program.format}</span>
+                </div>
+                <h3 class="text-xl md:text-2xl font-semibold text-spades-text mb-3">{program.title}</h3>
+                <p class="text-body text-spades-text-secondary mb-4">{program.description}</p>
+                
+                <!-- Audience badges -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {program.audience.map((aud) => (
+                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-spades-accent/10 text-spades-accent text-xs font-medium">
+                      {aud}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Outcomes -->
+                <ul class="space-y-2 mb-6">
+                  {program.outcomes.map((outcome) => (
+                    <li class="flex items-start gap-2 text-sm text-spades-text-secondary">
+                      <span class="text-spades-accent mt-0.5">✓</span>
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a href={`${base}/connect`} class="btn btn-secondary">
+                  {program.cta.label}
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-spades-ink text-white">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-      <CardGrid items={engagements} />
+  <!-- Veterans Initiative Highlight -->
+  <section class="bg-white section-padding border-y border-spades-border">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="card p-8 md:p-10 bg-spades-ink-deep text-white border-0">
+        <div class="text-center mb-6">
+          <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-3">Featured Initiative</p>
+          <h2 class="text-heading-lg md:text-heading-xl text-white mb-3">Veterans Fellowship</h2>
+          <p class="text-dark-secondary max-w-xl mx-auto">
+            Translate your military experience into meaningful civilian impact. Our veterans-focused pathway pairs operational expertise with executive leadership.
+          </p>
+        </div>
+        <div class="text-center">
+          <a
+            href="https://operationmos.com"
+            target="_blank"
+            rel="noreferrer"
+            class="btn btn-invert"
+          >
+            Get started: translate your experience
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Veterans Fellowship Section -->
-  <section class="bg-white border-t border-spades-border">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-      {(() => {
-        const veteransFellowship = engagements.find(e => e.meta.includes('Veterans Fellowship'));
-        if (!veteransFellowship) return null;
-        return (
-          <div class="bg-spades-paper border border-spades-border rounded-xl p-8 md:p-10 shadow-card">
-            <div class="text-center mb-8">
-              <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-3">Veterans Initiative</p>
-              <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink mb-4">{veteransFellowship.title}</h2>
-              <p class="text-spades-muted max-w-2xl mx-auto">{veteransFellowship.description}</p>
+  <!-- How to Engage -->
+  <section class="bg-spades-paper section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-heading-lg text-spades-text">How to Engage</h2>
+        <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
+          A straightforward path from initial contact to active collaboration.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6 text-center">
+          <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">1</div>
+          <h3 class="font-semibold text-spades-text mb-2">Connect</h3>
+          <p class="text-sm text-spades-text-secondary">Reach out to discuss your goals and explore how we might work together.</p>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">2</div>
+          <h3 class="font-semibold text-spades-text mb-2">Discover</h3>
+          <p class="text-sm text-spades-text-secondary">We'll identify the right program and format for your needs and objectives.</p>
+        </div>
+        <div class="card p-6 text-center">
+          <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">3</div>
+          <h3 class="font-semibold text-spades-text mb-2">Collaborate</h3>
+          <p class="text-sm text-spades-text-secondary">Engage in structured programs designed for trust, clarity, and measurable outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="bg-white section-padding border-t border-spades-border">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-heading-lg text-spades-text">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="space-y-4">
+        {[
+          {
+            q: "Who can participate in Spades Institute programs?",
+            a: "Our programs are designed for professionals in government, industry, and academia who are committed to strengthening national security through ethical collaboration. We welcome senior leaders, operators, innovators, veterans, and researchers."
+          },
+          {
+            q: "What's the time commitment for a fellowship?",
+            a: "Fellowship programs typically run 6-12 months and involve immersion experiences in partner organizations. The exact commitment varies based on the specific program and participant availability."
+          },
+          {
+            q: "How are speaker series topics selected?",
+            a: "Topics are curated based on timely national security challenges and participant input. We focus on actionable insights that participants can apply to their work immediately."
+          },
+          {
+            q: "Is there a cost to participate?",
+            a: "Program costs vary. Many of our programs are funded through partnerships and grants. Contact us to discuss specific opportunities and any associated costs."
+          }
+        ].map((faq, i) => (
+          <details class="group card p-0 overflow-hidden">
+            <summary class="cursor-pointer p-6 flex items-center justify-between gap-4 focus-accent">
+              <span class="font-semibold text-spades-text">{faq.q}</span>
+              <svg class="w-5 h-5 text-spades-muted flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 pt-0">
+              <p class="text-body text-spades-text-secondary">{faq.a}</p>
             </div>
-            <div class="text-center">
-              <a
-                href="https://operationmos.com"
-                target="_blank"
-                rel="noreferrer"
-                class="btn btn-primary inline-flex items-center gap-2"
-              >
-                Get started: translate your military experience into corporate résumé
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        );
-      })()}
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-spades-ink-deep section-padding">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-heading-lg md:text-heading-xl text-white">Ready to Propose an Engagement?</h2>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto">
+        Let's discuss how we can work together to address your national security challenges.
+      </p>
+      <div class="mt-8">
+        <a href={`${base}/connect`} class="btn btn-invert">
+          Propose an engagement
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </section>
 </Layout>

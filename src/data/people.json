@@ -2,12 +2,17 @@
   {
     "name": "Vishal Amin",
     "role": "Founding Partner",
+    "tagline": "From fighter pilot to cybersecurity executive to nonprofit founder",
     "bio": "Founder of Spades Institute and Operating Partner at Crosspoint Capital. Former Marine Corps Fighter Pilot and Microsoft GM who led a $6.5B National Security business.",
+    "highlights": [
+      "20-year Marine Corps Fighter Pilot (F/A-18 WSO)",
+      "Former GM, Microsoft National Security Group ($6.5B)",
+      "Presidential Scholar, Bush Center"
+    ],
     "fullBio": [
       "Vishal Amin is the Founder of Spades Institute and currently serves as an Operating Partner at Crosspoint Capital, where he focuses on cybersecurity and infrastructure software investments. His journey spans two decades of service as a Marine Corps Fighter Pilot (F/A-18 WSO), followed by transformative leadership roles in the private sector that have shaped national security collaboration.",
-      "After his distinguished 20-year career in the United States Marine Corps, Vishal transitioned to Microsoft where he served as GM & Executive Leader of the National Security Group, responsible for the growth and vision of Microsoft's Security Business supporting the United States Federal Government. Under his leadership, the Security business exceeded $6.5 billion and comprised seven businesses with professionals solving the most challenging missions for the federal government. He also co-authored Microsoft's commitment to invest over $500 million in granted software and cloud services to protect the critical infrastructure of the United States.",
-      "A Presidential Scholar and graduate of the George W. Bush Presidential Center's Stand-To Leadership Program, Vishal is committed to investing positive influence across the nation, including serving veteran and service-based communities. His leadership philosophy centers on doing \"the next right thing\" and \"if not me, then who\"—principles inspired by a fellow Marine who sacrificed through actions for the betterment of others.",
-      "Vishal's unique background—from fighter pilot to cybersecurity executive to nonprofit founder—enables him to bridge the worlds of government, industry, and academia. At Spades Institute, he brings together his operational military experience, business leadership, and commitment to democratic values to build the trust and frameworks necessary for sustained, ethical collaboration that strengthens national security."
+      "After his distinguished 20-year career in the United States Marine Corps, Vishal transitioned to Microsoft where he served as GM & Executive Leader of the National Security Group, responsible for the growth and vision of Microsoft's Security Business supporting the United States Federal Government. Under his leadership, the Security business exceeded $6.5 billion and comprised seven businesses with professionals solving the most challenging missions for the federal government.",
+      "A Presidential Scholar and graduate of the George W. Bush Presidential Center's Stand-To Leadership Program, Vishal is committed to investing positive influence across the nation, including serving veteran and service-based communities."
     ],
     "headshot": "/people/vishal.avif",
     "linkedin": "https://www.linkedin.com/in/vishaljamin/"
@@ -15,12 +20,17 @@
   {
     "name": "Lili Davoudian",
     "role": "Founding Partner",
+    "tagline": "Cloud security expert bridging policy, technology, and operations",
     "bio": "Cloud security subject matter expert with 8+ years at Microsoft, leading teams to showcase technical excellence in security platforms and AI security.",
+    "highlights": [
+      "Senior Director, Microsoft Security",
+      "Former Director, National Security Group",
+      "Focus: Zero Trust, AI Security"
+    ],
     "fullBio": [
-      "Lili Davoudian is a cloud security subject matter expert with over eight years of experience at Microsoft, where she currently serves as Senior Director leading a team responsible for showcasing the technical excellence of Microsoft's security platform, with a focus on security for and with AI. Her experience spans product management, sales leadership, and technical delivery across Microsoft's security ecosystem.",
-      "Throughout her career at Microsoft, Lili has held key roles including Director of the National Security Group, where she led multi-disciplinary teams of sales engineers and specialists to bring Microsoft security solutions to government customers. She has deep expertise in Zero Trust architecture, Microsoft Sentinel, Azure Security, and has helped build Microsoft Defender for Cloud with a focus on sovereign cloud security.",
-      "Lili's unique ability to operate at the intersection of policy, technology, and operations enables her to translate strategic vision into measurable impact. She has experience shipping features across Microsoft security to enhance posture and drive adoption, and has led multi-disciplinary teams to ensure successful delivery of Azure workloads. Beyond her technical expertise, Lili is passionate about closing the broadband gap and advancing national security through trusted collaboration.",
-      "At Spades Institute, Lili brings her extensive experience in cloud security, product development, and cross-sector collaboration to design programs that bridge the gap between high-level strategy and on-the-ground implementation, ensuring tangible results that enhance the security and resilience of the United States."
+      "Lili Davoudian is a cloud security subject matter expert with over eight years of experience at Microsoft, where she currently serves as Senior Director leading a team responsible for showcasing the technical excellence of Microsoft's security platform, with a focus on security for and with AI.",
+      "Throughout her career at Microsoft, Lili has held key roles including Director of the National Security Group, where she led multi-disciplinary teams of sales engineers and specialists to bring Microsoft security solutions to government customers. She has deep expertise in Zero Trust architecture, Microsoft Sentinel, Azure Security, and Microsoft Defender for Cloud.",
+      "Lili's unique ability to operate at the intersection of policy, technology, and operations enables her to translate strategic vision into measurable impact."
     ],
     "headshot": "/people/Lili.avif",
     "linkedin": "https://www.linkedin.com/in/lilidavoudian/"
@@ -28,14 +38,26 @@
   {
     "name": "Tim Kosiba",
     "role": "Founding Partner",
+    "tagline": "Building resilient engagement models for national security",
     "bio": "Designs resilient engagement models that unite mission leadership, entrepreneurs, and practitioners to solve national security risks.",
+    "highlights": [
+      "Engagement model design",
+      "Mission leadership alignment",
+      "Cross-sector collaboration"
+    ],
     "headshot": "/people/Tim.avif",
     "linkedin": "https://www.linkedin.com/in/tim-kosiba-37b5682/"
   },
   {
     "name": "Dan Goodwin",
     "role": "Senior Advisor",
-    "bio": "Leverages decades of government and defense experience to guide the Institute’s ethics-first collaboration framework.",
+    "tagline": "Decades of government and defense experience",
+    "bio": "Leverages decades of government and defense experience to guide the Institute's ethics-first collaboration framework.",
+    "highlights": [
+      "Government & defense veteran",
+      "Ethics-first framework",
+      "Strategic guidance"
+    ],
     "headshot": "/people/Dan.avif",
     "linkedin": "https://www.linkedin.com/in/goodwindan/"
   }

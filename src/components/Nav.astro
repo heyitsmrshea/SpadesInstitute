@@ -1,30 +1,43 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Main nav links (excluding Partner which is now a CTA)
 const navLinks = [
   { label: 'Home', href: `${base}/` },
-  { label: 'About Us', href: `${base}/about` },
+  { label: 'About', href: `${base}/about` },
   { label: 'Programs', href: `${base}/engagements` },
   { label: 'People', href: `${base}/people` },
-  { label: 'Blog', href: `${base}/blog` },
-  { label: 'Partner', href: `${base}/connect` }
+  { label: 'Blog', href: `${base}/blog` }
 ];
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href) => pathname === href.replace(/\/$/, '') || (href.endsWith('/') && pathname === href.slice(0, -1));
+const isActive = (href) => {
+  const normalizedHref = href.replace(/\/$/, '') || '/';
+  const normalizedPath = pathname || '/';
+  return normalizedPath === normalizedHref || 
+         (normalizedHref !== '/' && normalizedPath.startsWith(normalizedHref));
+};
 ---
-<header class="w-full bg-spades-ink sticky top-0 z-40">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-    <a class="font-display text-2xl tracking-wide text-spades-paper flex items-center gap-3" href={`${base}/`}>
-      <span aria-hidden="true" class="text-3xl leading-none">♠︎</span>
-      <span>Spades Institute</span>
+<header class="w-full bg-spades-ink-deep sticky top-0 z-40 border-b border-white/10">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
+    <!-- Logo -->
+    <a 
+      class="nav-link flex items-center gap-2 text-white hover:text-white/90 transition-colors focus-white rounded" 
+      href={`${base}/`}
+    >
+      <span aria-hidden="true" class="text-2xl leading-none">♠︎</span>
+      <span class="font-semibold text-lg tracking-tight">Spades Institute</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-8 text-sm text-spades-paper/80">
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
       {navLinks.map((link) => (
         <a
           class:list={[
-            'transition-colors hover:text-spades-paper focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-spades-ink',
-            isActive(link.href) ? 'text-spades-paper underline underline-offset-6 decoration-white/40' : ''
+            'nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors focus-white',
+            isActive(link.href) 
+              ? 'text-white bg-white/10' 
+              : 'text-white/75 hover:text-white hover:bg-white/5'
           ]}
           href={link.href}
           aria-current={isActive(link.href) ? 'page' : undefined}
@@ -34,9 +47,16 @@ const isActive = (href) => pathname === href.replace(/\/$/, '') || (href.endsWit
       ))}
     </nav>
 
-    <div class="flex items-center gap-3">
+    <!-- CTAs -->
+    <div class="flex items-center gap-2">
       <a
-        class="btn btn-invert-outline px-5 py-2.5"
+        class="hidden sm:inline-flex nav-link px-3 py-2 rounded-md text-sm font-medium text-white/75 hover:text-white hover:bg-white/5 transition-colors focus-white"
+        href={`${base}/connect`}
+      >
+        Partner
+      </a>
+      <a
+        class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-white text-spades-ink-deep hover:bg-white/90 transition-colors focus-accent"
         href="https://givebutter.com/spadesinstitute"
         target="_blank"
         rel="noreferrer"
@@ -44,19 +64,22 @@ const isActive = (href) => pathname === href.replace(/\/$/, '') || (href.endsWit
         Donate
       </a>
 
+      <!-- Mobile Menu Button -->
       <details class="md:hidden relative">
-        <summary class="list-none cursor-pointer select-none p-2 rounded-md hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
+        <summary class="list-none cursor-pointer select-none p-2 rounded-md hover:bg-white/10 focus-white">
           <span class="sr-only">Open menu</span>
-          <span class="block w-5 h-[2px] bg-white mb-1"></span>
-          <span class="block w-4 h-[2px] bg-white mb-1"></span>
-          <span class="block w-6 h-[2px] bg-white"></span>
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </summary>
-        <div class="absolute right-0 mt-3 w-56 rounded-xl border border-white/10 bg-spades-ink shadow-card p-2">
+        <div class="absolute right-0 mt-2 w-56 rounded-xl border border-white/10 bg-spades-ink-deep shadow-lg p-2 motion-safe:animate-slideDown">
           {navLinks.map((link) => (
             <a
               class:list={[
-                'block px-3 py-2 rounded-lg text-sm text-white/85 hover:bg-white/10 hover:text-white transition',
-                isActive(link.href) ? 'bg-white/10 text-white' : ''
+                'block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                isActive(link.href) 
+                  ? 'bg-white/10 text-white' 
+                  : 'text-white/80 hover:bg-white/5 hover:text-white'
               ]}
               href={link.href}
               aria-current={isActive(link.href) ? 'page' : undefined}
@@ -64,6 +87,13 @@ const isActive = (href) => pathname === href.replace(/\/$/, '') || (href.endsWit
               {link.label}
             </a>
           ))}
+          <hr class="my-2 border-white/10" />
+          <a
+            class="block px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/5 hover:text-white transition-colors"
+            href={`${base}/connect`}
+          >
+            Partner with us
+          </a>
         </div>
       </details>
     </div>

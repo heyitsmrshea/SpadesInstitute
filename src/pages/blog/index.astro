@@ -1,8 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../components/Layout.astro';
-import Section from '../../components/Section.astro';
-import BlogGrid from '../../components/BlogGrid.astro';
+import BlogCard from '../../components/BlogCard.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -12,6 +11,13 @@ const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const sortedPosts = allPosts.sort((a, b) => 
   new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
 );
+
+// Featured post is the newest
+const featuredPost = sortedPosts[0];
+const remainingPosts = sortedPosts.slice(1);
+
+// Get unique tags for filtering
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 
 // Page metadata
 const title = "Blog | Spades Institute";
@@ -35,41 +41,87 @@ const description = "Insights and perspectives on national security, ethics, and
   ]} />
 
   <!-- Hero Section -->
-  <section class="bg-spades-ink text-white py-20 md:py-28">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <p class="text-xs uppercase tracking-[0.4em] text-white/60 mb-6 motion-safe:animate-fadeIn">
-        Insights &amp; Perspectives
-      </p>
-      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl italic leading-tight mb-8 motion-safe:animate-fadeUp">
-        Our Blog
-      </h1>
-      <p class="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed motion-safe:animate-fadeUp" style="animation-delay: 100ms">
+  <section class="bg-spades-ink-deep section-padding-sm">
+    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">Insights & Perspectives</p>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white">Our Blog</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
         Thoughts on national security, ethics, democracy, and building bridges across sectors.
       </p>
     </div>
   </section>
 
+  <!-- Category Filters -->
+  {allTags.length > 0 && (
+    <section class="bg-white border-b border-spades-border">
+      <div class="max-w-5xl mx-auto px-6 py-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="text-sm font-medium text-spades-text">Topics:</span>
+          <div class="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-spades-paper border border-spades-border text-sm text-spades-text-secondary hover:border-spades-accent hover:text-spades-accent cursor-pointer transition-colors">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Featured Post -->
+  {featuredPost && (
+    <section class="bg-spades-paper section-padding-sm border-b border-spades-border">
+      <div class="max-w-5xl mx-auto px-6">
+        <p class="text-xs uppercase tracking-widest text-spades-muted mb-4">Featured Article</p>
+        <BlogCard post={featuredPost} featured={true} />
+      </div>
+    </section>
+  )}
+
   <!-- Posts Grid -->
-  <Section>
-    <BlogGrid posts={sortedPosts} />
-  </Section>
+  <section class="bg-white section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      {remainingPosts.length > 0 ? (
+        <>
+          <h2 class="text-heading-md text-spades-text mb-6">More Articles</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {remainingPosts.map((post, i) => (
+              <div class="motion-safe:animate-fadeIn" style={`animation-delay: ${i * 50}ms`}>
+                <BlogCard post={post} />
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-spades-text-secondary">More articles coming soon.</p>
+        </div>
+      )}
+    </div>
+  </section>
 
   <!-- Subscribe CTA -->
-  <section class="bg-spades-paper py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeIn">
-      <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink mb-4">
-        Stay Informed
-      </h2>
-      <p class="text-spades-muted text-lg mb-8">
-        Want to receive updates when we publish new articles? Get in touch.
+  <section class="bg-spades-paper section-padding border-t border-spades-border">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="text-heading-lg text-spades-text mb-4">Stay Informed</h2>
+      <p class="text-spades-text-secondary mb-6">
+        Subscribe to receive new articles and updates from Spades Institute.
       </p>
-      <a
-        href={`${base}/connect`}
-        class="btn btn-primary"
-      >
-        Contact Us
-      </a>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action={`mailto:info@spadesinstitute.org?subject=Newsletter Subscription`} method="post" enctype="text/plain">
+        <input 
+          type="email" 
+          placeholder="your@email.com" 
+          class="flex-1 px-4 py-3 rounded-lg border border-spades-border bg-white text-spades-text placeholder-spades-muted focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent"
+          required
+        />
+        <button type="submit" class="btn btn-primary">
+          Subscribe
+        </button>
+      </form>
+      <p class="mt-4 text-xs text-spades-muted">
+        We respect your privacy. Unsubscribe at any time.
+      </p>
     </div>
   </section>
 </Layout>
-

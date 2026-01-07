@@ -18,44 +18,58 @@ const others = people.filter(p => !p.role.includes('Founding Partner') && !p.rol
     { label: 'Home', href: `${base}/` },
     { label: 'People', href: `${base}/people` }
   ]} />
-  <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
-    <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
-      <p class="text-xs uppercase tracking-[0.4em] text-white/70">People</p>
-      <h1 class="mt-6 font-display text-5xl md:text-6xl italic">Our Team</h1>
-      <p class="mt-6 text-white/75 max-w-3xl mx-auto">
+
+  <!-- Hero -->
+  <section class="bg-spades-ink-deep section-padding-sm">
+    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">People</p>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white">Our Team</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
         Leaders and advisors committed to advancing democracy, freedom, and ethics through trusted, nonpartisan collaboration.
       </p>
     </div>
   </section>
 
-  <section class="bg-spades-ink text-white">
-    <div class="max-w-6xl mx-auto px-6 py-16">
+  <!-- People List -->
+  <section class="bg-spades-paper section-padding">
+    <div class="max-w-4xl mx-auto px-6">
       {foundingPartners.length > 0 && (
-        <div class="mb-16">
-          <h2 class="font-display text-2xl md:text-3xl italic mb-8 text-center">Founding Partners</h2>
-          <PeopleGrid people={foundingPartners} variant="dark" />
+        <div class="mb-12">
+          <div class="flex items-center gap-4 mb-6">
+            <h2 class="text-heading-md text-spades-text">Founding Partners</h2>
+            <div class="flex-1 h-px bg-spades-border"></div>
+          </div>
+          <PeopleGrid people={foundingPartners} />
         </div>
       )}
+
       {advisors.length > 0 && (
-        <div class="mb-16">
-          <h2 class="font-display text-2xl md:text-3xl italic mb-8 text-center">Advisors</h2>
-          <PeopleGrid people={advisors} variant="dark" />
+        <div class="mb-12">
+          <div class="flex items-center gap-4 mb-6">
+            <h2 class="text-heading-md text-spades-text">Advisors</h2>
+            <div class="flex-1 h-px bg-spades-border"></div>
+          </div>
+          <PeopleGrid people={advisors} />
         </div>
       )}
+
       {others.length > 0 && (
         <div>
-          <h2 class="font-display text-2xl md:text-3xl italic mb-8 text-center">Team</h2>
-          <PeopleGrid people={others} variant="dark" />
+          <div class="flex items-center gap-4 mb-6">
+            <h2 class="text-heading-md text-spades-text">Team</h2>
+            <div class="flex-1 h-px bg-spades-border"></div>
+          </div>
+          <PeopleGrid people={others} />
         </div>
       )}
     </div>
   </section>
 
-  <section class="bg-white border-t border-spades-border">
-    <div class="max-w-6xl mx-auto px-6 py-16 text-center">
-      <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink mb-4">Join Our Team</h2>
-      <p class="text-spades-muted max-w-2xl mx-auto mb-8">
+  <!-- Join Section -->
+  <section class="bg-white section-padding border-t border-spades-border">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-heading-lg text-spades-text mb-4">Join Our Team</h2>
+      <p class="text-body-lg text-spades-text-secondary mb-8">
         We're always looking for passionate leaders committed to advancing ethics, democracy, and freedom through trusted collaboration.
       </p>
       <a href={`${base}/connect`} class="btn btn-primary">

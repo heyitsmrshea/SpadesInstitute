@@ -3,22 +3,29 @@ import Nav from './Nav.astro';
 import Footer from './Footer.astro';
 import BackToTop from './BackToTop.astro';
 import '../styles/global.css';
+
 const { 
   title = 'Spades Institute', 
-  description = 'Trusted collaboration for national security outcomes.',
+  description = 'Connecting government, industry, and academia to solve national security priorities through trusted, nonpartisan collaboration.',
   image = '/flag-us.png',
   type = 'website'
 } = Astro.props;
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = 'https://HeyItsMrShea.github.io';
 const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${image}`;
 ---
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
     <title>{title}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
@@ -26,13 +33,14 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:site_name" content="Spades Institute" />
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={`${siteUrl}${base}${Astro.url.pathname}`} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={fullImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${siteUrl}${base}${Astro.url.pathname}`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
     
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -41,8 +49,10 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
       "name": "Spades Institute",
       "url": `${siteUrl}${base}`,
       "logo": `${siteUrl}${base}/flag-us.png`,
-      "description": description,
+      "description": "Connecting government, industry, and academia to solve national security priorities through trusted, nonpartisan collaboration.",
       "email": "info@spadesinstitute.org",
+      "foundingDate": "2024",
+      "nonprofitStatus": "501(c)(3)",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Washington",
@@ -53,21 +63,26 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
         "https://www.linkedin.com"
       ]
     })} />
+    
     <!-- Additional page-specific head content -->
     <slot name="head" />
   </head>
-  <body class="bg-spades-paper text-spades-ink antialiased">
+  <body class="bg-spades-paper text-spades-text antialiased">
     <div class="min-h-screen flex flex-col">
+      <!-- Skip link for accessibility -->
       <a
         href="#main"
-        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3 focus:rounded-md focus:bg-white focus:text-spades-ink focus:shadow-card"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3 focus:rounded-lg focus:bg-white focus:text-spades-ink focus:shadow-card focus:ring-2 focus:ring-spades-accent"
       >
-        Skip to content
+        Skip to main content
       </a>
+      
       <Nav />
-      <main id="main" class="flex-1 w-full">
+      
+      <main id="main" class="flex-1 w-full" tabindex="-1">
         <slot />
       </main>
+      
       <Footer />
       <BackToTop />
     </div>
