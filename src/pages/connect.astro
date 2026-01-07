@@ -1,7 +1,16 @@
 ---
 import Layout from '../components/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<Layout title="Spades Institute | Connect">
+<Layout 
+  title="Spades Institute | Connect" 
+  description="Partner with Spades Institute. Share a challenge, idea, or partnership opportunity. We'll respond within one week."
+>
+  <Breadcrumbs items={[
+    { label: 'Home', href: `${base}/` },
+    { label: 'Connect', href: `${base}/connect` }
+  ]} />
   <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
     <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
     <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
@@ -21,7 +30,7 @@ import Layout from '../components/Layout.astro';
           <p class="text-xs uppercase tracking-[0.4em] text-spades-muted">Message</p>
           <h2 class="mt-5 font-display text-3xl md:text-4xl italic text-spades-ink">Send a note</h2>
           <p class="mt-4 text-spades-muted">
-            Use this form to draft an email. When you submit, we’ll open your email client with your message pre-filled.
+            Fill out the form below and we'll open your email client with your message pre-filled. We'll respond within one week.
           </p>
 
           <form id="contactForm" class="mt-10 grid gap-5">
@@ -61,7 +70,7 @@ import Layout from '../components/Layout.astro';
               </a>
             </div>
             <p class="text-xs text-spades-muted">
-              We don’t store submissions on this mockup. This page simply helps you draft a message to <span class="text-spades-ink">info@spadesinstitute.org</span>.
+              Your message will open in your email client. We typically respond within one week.
             </p>
           </form>
         </div>
@@ -83,6 +92,44 @@ import Layout from '../components/Layout.astro';
           <p class="text-spades-muted">Washington, D.C.</p>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="bg-white border-t border-spades-border">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl md:text-4xl italic text-spades-ink">Frequently Asked Questions</h2>
+      </div>
+      <div class="max-w-3xl mx-auto space-y-6">
+        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
+          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
+            <span>What happens after I submit?</span>
+            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-spades-muted leading-relaxed">
+            Your email client will open with your message pre-filled. Send the email, and we'll receive it at info@spadesinstitute.org. We typically respond within one week.
+          </p>
+        </details>
+        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
+          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
+            <span>What types of partnerships do you consider?</span>
+            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-spades-muted leading-relaxed">
+            We work with government agencies, industry leaders, academic institutions, and nonprofits. We're particularly interested in partnerships that advance ethics, democracy, and freedom through trusted collaboration.
+          </p>
+        </details>
+        <details class="bg-spades-paper border border-spades-border rounded-md p-6 group">
+          <summary class="font-display text-lg italic text-spades-ink cursor-pointer list-none flex items-center justify-between">
+            <span>How quickly will I receive a response?</span>
+            <span class="text-spades-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-spades-muted leading-relaxed">
+            We aim to respond to all inquiries within one week. For urgent matters, please note that in your message subject line.
+          </p>
+        </details>
+      </div>
     </div>
   </section>
 

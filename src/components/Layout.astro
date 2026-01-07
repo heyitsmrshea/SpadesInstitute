@@ -1,8 +1,17 @@
 ---
 import Nav from './Nav.astro';
 import Footer from './Footer.astro';
+import BackToTop from './BackToTop.astro';
 import '../styles/global.css';
-const { title = 'Spades Institute', description = 'Trusted collaboration for national security outcomes.' } = Astro.props;
+const { 
+  title = 'Spades Institute', 
+  description = 'Trusted collaboration for national security outcomes.',
+  image = '/flag-us.png',
+  type = 'website'
+} = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = 'https://HeyItsMrShea.github.io';
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${image}`;
 ---
 <html lang="en">
   <head>
@@ -10,6 +19,40 @@ const { title = 'Spades Institute', description = 'Trusted collaboration for nat
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={`${siteUrl}${base}${Astro.url.pathname}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`${siteUrl}${base}${Astro.url.pathname}`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullImageUrl} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Spades Institute",
+      "url": `${siteUrl}${base}`,
+      "logo": `${siteUrl}${base}/flag-us.png`,
+      "description": description,
+      "email": "info@spadesinstitute.org",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Washington",
+        "addressRegion": "DC",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com"
+      ]
+    })} />
   </head>
   <body class="bg-spades-paper text-spades-ink antialiased">
     <div class="min-h-screen flex flex-col">
@@ -24,6 +67,7 @@ const { title = 'Spades Institute', description = 'Trusted collaboration for nat
         <slot />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   </body>
 </html>

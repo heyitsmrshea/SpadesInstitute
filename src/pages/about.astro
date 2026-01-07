@@ -1,8 +1,17 @@
 ---
 import Layout from '../components/Layout.astro';
 import Section from '../components/Section.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<Layout title="Spades Institute | About">
+<Layout 
+  title="Spades Institute | About" 
+  description="Learn about Spades Institute's mission to advance ethics, democracy, and freedom through trusted collaboration across government, industry, and academia."
+>
+  <Breadcrumbs items={[
+    { label: 'Home', href: `${base}/` },
+    { label: 'About', href: `${base}/about` }
+  ]} />
   <section class="bg-spades-ink text-white border-b border-white/10 relative overflow-hidden">
     <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 55%);" aria-hidden="true"></div>
     <div class="max-w-6xl mx-auto px-6 py-16 text-center relative motion-safe:animate-fadeUp">
@@ -34,12 +43,56 @@ import Section from '../components/Section.astro';
     </div>
   </Section>
 
+  <!-- Our Story Section -->
+  <Section title="Our Story" description="Spades Institute was founded to bridge the gap between government, industry, and academia in addressing critical national security challenges." className="pt-0">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white rounded-md border border-spades-border p-8 shadow-card">
+        <p class="text-spades-muted leading-relaxed mb-4">
+          In an era of complex security challenges, effective solutions require collaboration across sectors. Yet too often, government, industry, and academia operate in silos, missing opportunities to leverage collective expertise.
+        </p>
+        <p class="text-spades-muted leading-relaxed">
+          Spades Institute was created to change that. We convene the right voices, align incentives, and focus on practical outcomes that strengthen U.S. security and resilience. Through our speaker series, fellowships, and strategic convenings, we build the trust and relationships necessary for meaningful collaboration.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- How We Connect Sectors -->
+  <Section title="How We Connect Sectors" description="A visual representation of our collaborative model" className="pt-0">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 100ms">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-spades-ink text-white flex items-center justify-center text-2xl font-display">G</div>
+          <h3 class="font-display text-xl italic text-spades-ink mb-2">Government</h3>
+          <p class="text-sm text-spades-muted">Mission leadership and policy expertise</p>
+        </div>
+        <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 200ms">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-spades-ink text-white flex items-center justify-center text-2xl font-display">♠︎</div>
+          <h3 class="font-display text-xl italic text-spades-ink mb-2">Spades Institute</h3>
+          <p class="text-sm text-spades-muted">Trusted convening and facilitation</p>
+        </div>
+        <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 300ms">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-spades-ink text-white flex items-center justify-center text-2xl font-display">I</div>
+          <h3 class="font-display text-xl italic text-spades-ink mb-2">Industry & Academia</h3>
+          <p class="text-sm text-spades-muted">Technology, research, and innovation</p>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <p class="text-spades-muted italic">Together, we deliver practical outcomes that strengthen national security.</p>
+      </div>
+    </div>
+  </Section>
+
   <Section title="Guiding Principles" description="Democracy, freedom, and ethics define how we convene, design, and deliver." className="pt-0">
     <div class="grid gap-6 md:grid-cols-3">
-      {['Democracy', 'Freedom', 'Ethics'].map((value, i) => (
-        <article class="bg-white rounded-md border border-spades-border p-8 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
-          <p class="font-display text-3xl italic text-spades-ink">{value}</p>
-          <p class="mt-3 text-spades-muted leading-relaxed">Committed to protecting this core value in every collaboration.</p>
+      {[
+        { name: 'Democracy', desc: 'Committed to protecting this core value in every collaboration. We ensure all voices are heard and democratic processes are respected.' },
+        { name: 'Freedom', desc: 'Committed to protecting this core value in every collaboration. We safeguard individual liberties and free expression.' },
+        { name: 'Ethics', desc: 'Committed to protecting this core value in every collaboration. We operate with integrity, transparency, and accountability.' }
+      ].map((principle, i) => (
+        <article class="bg-white rounded-md border border-spades-border p-8 shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl motion-safe:animate-fadeIn group" style={`animation-delay: ${i * 100}ms`}>
+          <p class="font-display text-3xl italic text-spades-ink mb-3">{principle.name}</p>
+          <p class="text-spades-muted leading-relaxed text-sm">{principle.desc}</p>
         </article>
       ))}
     </div>

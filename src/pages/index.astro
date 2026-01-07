@@ -6,7 +6,10 @@ import CardGrid from '../components/CardGrid.astro';
 import engagements from '../data/engagements.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<Layout title="Spades Institute | Home">
+<Layout 
+  title="Spades Institute | Home" 
+  description="Spades Institute connects government, industry, and academia to solve national security priorities through trusted, nonpartisan collaboration."
+>
   <Hero
     title="We connect government, industry, and academia to solve national security priorities."
     description="Through trusted, nonpartisan collaboration."
