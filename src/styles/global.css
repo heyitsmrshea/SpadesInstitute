@@ -107,7 +107,7 @@
 
   /* Primary - Main action, high emphasis */
   .btn-primary {
-    @apply bg-spades-accent text-white shadow-card hover:bg-spades-accent-hover hover:shadow-[0_8px_30px_rgba(30, 58, 95, 0.25)] hover:-translate-y-0.5 focus-visible:ring-spades-accent;
+    @apply bg-spades-accent text-white shadow-card hover:bg-spades-accent-hover hover:shadow-[0_8px_30px_rgba(30,58,95,0.25)] hover:-translate-y-0.5 focus-visible:ring-spades-accent;
   }
 
   /* Secondary - Alternative action, medium emphasis */
@@ -228,7 +228,7 @@
   }
 
   .hover-glow {
-    @apply transition-shadow duration-200 hover:shadow-[0_0_30px_rgba(30, 58, 95, 0.15)];
+    @apply transition-shadow duration-200 hover:shadow-[0_0_30px_rgba(30,58,95,0.15)];
   }
 
   /* Focus utilities */
