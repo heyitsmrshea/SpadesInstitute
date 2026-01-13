@@ -15,8 +15,8 @@ const footerLinks = [
     <div class="grid md:grid-cols-4 gap-8 mb-10">
       <!-- Brand -->
       <div class="md:col-span-2">
-        <a href={`${base}/`} class="nav-link inline-flex items-center gap-2 text-white hover:text-white/90 mb-4">
-          <span aria-hidden="true" class="text-2xl">♠︎</span>
+        <a href={`${base}/`} class="nav-link inline-flex items-center gap-2 text-white hover:text-white/90 mb-4 group">
+          <span aria-hidden="true" class="text-2xl transition-transform group-hover:scale-110">♠︎</span>
           <span class="font-semibold text-lg">Spades Institute</span>
         </a>
         <p class="text-sm text-dark-secondary max-w-xs">
@@ -24,7 +24,7 @@ const footerLinks = [
         </p>
         <div class="mt-4 space-y-1 text-sm text-dark-muted">
           <p>501(c)(3) nonprofit · EIN 99-2763425</p>
-          <p>Washington, D.C.</p>
+          <p>Washington DC</p>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ const footerLinks = [
           {footerLinks.map((link) => (
             <a 
               href={link.href} 
-              class="nav-link block text-sm text-dark-secondary hover:text-white transition-colors"
+              class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"
             >
               {link.label}
             </a>

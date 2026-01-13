@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="max-w-5xl mx-auto px-6">
       <div class="space-y-6">
         {engagements.map((program, i) => (
-          <article class="card p-6 md:p-8 motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+          <article class="card card-hover p-6 md:p-8 motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
             <div class="flex flex-col lg:flex-row gap-6">
               <div class="flex-1">
                 <!-- Program type label -->

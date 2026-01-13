@@ -11,6 +11,20 @@
     --color-focus: rgba(30, 58, 95, 0.4);
     --section-padding: 4rem;
     --section-padding-md: 5rem;
+
+    /* Animation timing system */
+    --duration-fast: 200ms;
+    --duration-normal: 300ms;
+    --duration-slow: 600ms;
+
+    /* Easing functions */
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Elevation changes */
+    --lift-small: -2px;
+    --lift-medium: -4px;
+    --lift-large: -8px;
   }
 
   html {
@@ -30,14 +44,18 @@
   }
 
   /* Headings - serif for H1/H2 only, sans for rest */
-  h1, h2 {
+  h1,
+  h2 {
     font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     font-style: italic;
     color: inherit;
     letter-spacing: -0.01em;
   }
 
-  h3, h4, h5, h6 {
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif;
     font-weight: 600;
     color: inherit;
@@ -82,59 +100,43 @@
      ============================================ */
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 
-           text-sm font-semibold tracking-wide
-           transition-all duration-200 ease-out
-           focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
     text-transform: none;
     letter-spacing: 0.02em;
   }
 
   /* Primary - Main action, high emphasis */
   .btn-primary {
-    @apply bg-spades-accent text-white shadow-card
-           hover:bg-spades-accent-hover hover:shadow-card-hover hover:-translate-y-0.5
-           focus-visible:ring-spades-accent;
+    @apply bg-spades-accent text-white shadow-card hover:bg-spades-accent-hover hover:shadow-[0_8px_30px_rgba(30, 58, 95, 0.25)] hover:-translate-y-0.5 focus-visible:ring-spades-accent;
   }
 
   /* Secondary - Alternative action, medium emphasis */
   .btn-secondary {
-    @apply border-2 border-spades-accent text-spades-accent bg-transparent
-           hover:bg-spades-accent hover:text-white hover:-translate-y-0.5
-           focus-visible:ring-spades-accent;
+    @apply border-2 border-spades-accent text-spades-accent bg-transparent hover:bg-spades-accent hover:text-white hover:-translate-y-0.5 focus-visible:ring-spades-accent;
   }
 
   /* Tertiary - Minor action, low emphasis */
   .btn-tertiary {
-    @apply text-spades-accent underline underline-offset-4 decoration-spades-accent/30
-           hover:decoration-spades-accent px-0 py-0
-           focus-visible:ring-spades-accent;
+    @apply text-spades-accent underline underline-offset-4 decoration-spades-accent/30 hover:decoration-spades-accent px-0 py-0 focus-visible:ring-spades-accent;
   }
 
   /* Outline variant (alternative to secondary) */
   .btn-outline {
-    @apply border border-spades-ink/20 text-spades-ink bg-transparent
-           hover:border-spades-ink hover:bg-spades-ink/5 hover:-translate-y-0.5
-           focus-visible:ring-spades-ink;
+    @apply border border-spades-ink/20 text-spades-ink bg-transparent hover:border-spades-ink hover:bg-spades-ink/5 hover:-translate-y-0.5 focus-visible:ring-spades-ink;
   }
 
   /* Inverted for dark backgrounds */
   .btn-invert {
-    @apply bg-white text-spades-ink shadow-card
-           hover:bg-white/90 hover:shadow-card-hover hover:-translate-y-0.5
-           focus-visible:ring-white;
+    @apply bg-white text-spades-ink shadow-card hover:bg-white/90 hover:shadow-card-hover hover:-translate-y-0.5 focus-visible:ring-white;
   }
 
   .btn-invert-outline {
-    @apply border-2 border-white/60 text-white bg-transparent
-           hover:border-white hover:bg-white/10 hover:-translate-y-0.5
-           focus-visible:ring-white;
+    @apply border-2 border-white/60 text-white bg-transparent hover:border-white hover:bg-white/10 hover:-translate-y-0.5 focus-visible:ring-white;
   }
 
   /* Ghost button */
   .btn-ghost {
-    @apply text-spades-muted hover:text-spades-ink px-3 py-2
-           focus-visible:ring-spades-ink;
+    @apply text-spades-muted hover:text-spades-ink px-3 py-2 focus-visible:ring-spades-ink;
   }
 
   /* ============================================
@@ -142,8 +144,7 @@
      ============================================ */
 
   .card {
-    @apply bg-white border border-spades-border rounded-xl p-6 
-           shadow-card transition-all duration-200;
+    @apply bg-white border border-spades-border rounded-xl p-6 shadow-card transition-all duration-200;
   }
 
   .card-hover {
@@ -227,7 +228,7 @@
   }
 
   .hover-glow {
-    @apply transition-shadow duration-200 hover:shadow-[0_0_30px_rgba(30,58,95,0.15)];
+    @apply transition-shadow duration-200 hover:shadow-[0_0_30px_rgba(30, 58, 95, 0.15)];
   }
 
   /* Focus utilities */
@@ -241,7 +242,9 @@
 }
 
 /* Smooth transitions for all interactive elements */
-article, a, button {
+article,
+a,
+button {
   transition-property: transform, box-shadow, opacity, background-color, border-color, color;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -249,7 +252,10 @@ article, a, button {
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
