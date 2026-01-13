@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Sarah Chen",
+    "cohort": "2024 Spring",
+    "role": "National Security Fellow",
+    "organization": "Department of Defense",
+    "placement": "Microsoft",
+    "bio": "Former intelligence analyst with 12 years at DIA. Focused on AI/ML applications in threat detection and cross-agency data sharing initiatives.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Marcus Johnson",
+    "cohort": "2024 Spring",
+    "role": "National Security Fellow",
+    "organization": "Palantir Technologies",
+    "placement": "NSA",
+    "bio": "Senior software architect specializing in secure data infrastructure. Building bridges between commercial tech and government mission requirements.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Emily Rodriguez",
+    "cohort": "2024 Spring",
+    "role": "Veterans Fellow",
+    "organization": "U.S. Army (Ret.)",
+    "placement": "Amazon Web Services",
+    "bio": "15-year Army logistics officer. Now helping AWS Public Sector understand military supply chain challenges and cloud adoption barriers.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "David Park",
+    "cohort": "2024 Fall",
+    "role": "National Security Fellow",
+    "organization": "CISA",
+    "placement": "CrowdStrike",
+    "bio": "Cybersecurity policy lead focused on critical infrastructure protection. Bringing government perspective to commercial threat intelligence.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Jessica Williams",
+    "cohort": "2024 Fall",
+    "role": "Veterans Fellow",
+    "organization": "U.S. Marine Corps (Ret.)",
+    "placement": "Booz Allen Hamilton",
+    "bio": "Former Marine Corps intelligence officer with deployments to CENTCOM. Translating operational experience into strategic consulting.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Robert Kim",
+    "cohort": "2024 Fall",
+    "role": "National Security Fellow",
+    "organization": "Google Public Sector",
+    "placement": "Department of Energy",
+    "bio": "Cloud security engineer helping DOE modernize legacy systems while maintaining compliance with nuclear security requirements.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Amanda Foster",
+    "cohort": "2025 Spring",
+    "role": "National Security Fellow",
+    "organization": "FBI",
+    "placement": "Recorded Future",
+    "bio": "Counterintelligence specialist exploring how commercial threat intelligence can enhance bureau operations and information sharing.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Michael Torres",
+    "cohort": "2025 Spring",
+    "role": "Veterans Fellow",
+    "organization": "U.S. Navy (Ret.)",
+    "placement": "Northrop Grumman",
+    "bio": "Former Navy SEAL with expertise in special operations planning. Now focused on defense innovation and rapid capability development.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Rachel Adams",
+    "cohort": "2025 Spring",
+    "role": "National Security Fellow",
+    "organization": "State Department",
+    "placement": "Meta",
+    "bio": "Foreign service officer specializing in technology diplomacy. Bridging the gap between tech platform policy and national security interests.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  },
+  {
+    "name": "Christopher Lee",
+    "cohort": "2025 Spring",
+    "role": "National Security Fellow",
+    "organization": "Anduril Industries",
+    "placement": "DARPA",
+    "bio": "Defense tech entrepreneur exploring how emerging technologies can accelerate government R&D timelines and acquisition processes.",
+    "headshot": "/fellows/placeholder.png",
+    "linkedin": ""
+  }
+]
+

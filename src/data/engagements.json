@@ -3,28 +3,42 @@
     "title": "Quarterly Speaker Series",
     "shortTitle": "Speaker Series",
     "subtitle": "Public/Private Engagements",
-    "description": "Candid discussions with senior leaders in government, defense, tech, and industry—built for actionable insights, not surface-level commentary.",
-    "meta": ["Public/Private Engagements"],
-    "audience": ["Senior leaders", "Operators", "Innovators"],
+    "description": "Candid discussions with senior leaders in government, defense, tech, and industry. Built for actionable insights, not surface-level commentary.",
+    "meta": [
+      "Public/Private Engagements"
+    ],
+    "audience": [
+      "Senior leaders",
+      "Operators",
+      "Innovators"
+    ],
     "facts": {
       "duration": "Quarterly",
-      "format": "In-person",
-      "location": "Washington, D.C."
+      "format": "In-person or Virtual",
+      "location": "Washington, D.C. & Beyond"
     },
     "outcomes": [
       "Curated speakers and closed-door exchange",
       "Timely topics tied to mission outcomes",
       "Practical takeaways participants can apply"
     ],
-    "cta": { "label": "Request an invite", "href": "/connect" }
+    "cta": {
+      "label": "Request a Speaker Series",
+      "href": "/connect"
+    }
   },
   {
     "title": "National Security Fellowship",
     "shortTitle": "NS Fellowship",
     "subtitle": "Bi-directional Government/Industry",
     "description": "Two-way placement between government and industry professionals to foster trust, share expertise, and align on mission-critical technology and policy.",
-    "meta": ["Fellowship"],
-    "audience": ["Government professionals", "Industry leaders"],
+    "meta": [
+      "Fellowship"
+    ],
+    "audience": [
+      "Government professionals",
+      "Industry leaders"
+    ],
     "facts": {
       "duration": "6-12 months",
       "format": "Hybrid",
@@ -35,25 +49,37 @@
       "Trust-building through hands-on mission work",
       "Shared objectives, measurable deliverables"
     ],
-    "cta": { "label": "Apply now", "href": "/connect" }
+    "cta": {
+      "label": "Learn more",
+      "href": "/connect"
+    }
   },
   {
-    "title": "Veterans Fellowship",
-    "shortTitle": "Veterans Initiative",
-    "subtitle": "Department of War Track",
-    "description": "A veterans-focused pathway that pairs operational experience with executive leadership to tackle emerging security challenges.",
-    "meta": ["Veterans Fellowship"],
-    "audience": ["Veterans", "Executive teams"],
+    "title": "Veteran Mentoring",
+    "shortTitle": "Veteran Mentoring",
+    "subtitle": "Career Transition Support",
+    "description": "A veterans-focused program that pairs operational experience with executive mentorship. Start by building your resume on Operation MOS, then connect with industry leaders for guidance.",
+    "meta": [
+      "Veteran Mentoring"
+    ],
+    "audience": [
+      "Veterans",
+      "Executive teams"
+    ],
     "facts": {
       "duration": "Ongoing",
       "format": "Virtual + In-person",
       "location": "Nationwide"
     },
     "outcomes": [
-      "Mentorship and structured engagement",
-      "Operational expertise translated into solutions",
-      "Cross-sector collaboration and resilience"
+      "Professional resume via Operation MOS",
+      "Mentorship from industry executives",
+      "Cross-sector networking and career guidance"
     ],
-    "cta": { "label": "Get started", "href": "https://app.operationmos.com", "external": true }
+    "cta": {
+      "label": "Build Your Resume",
+      "href": "https://app.operationmos.com",
+      "external": true
+    }
   }
 ]

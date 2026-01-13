@@ -13,7 +13,7 @@ In an era of rapidly evolving security threats, the intersection of ethics and n
 
 ## The Challenge
 
-Traditional approaches to national security often operate in silos, with government, industry, and academia pursuing separate—sometimes conflicting—objectives. This fragmentation creates gaps in our collective ability to address complex challenges while maintaining ethical standards.
+Traditional approaches to national security often operate in silos, with government, industry, and academia pursuing separate (sometimes conflicting) objectives. This fragmentation creates gaps in our collective ability to address complex challenges while maintaining ethical standards.
 
 ### Key Issues
 
@@ -27,7 +27,7 @@ Spades Institute proposes a collaborative framework built on three pillars:
 
 ### Democracy
 
-Every voice matters. Our convenings ensure that perspectives from across the spectrum—government operators, industry innovators, and academic researchers—are heard and valued. This democratic approach strengthens outcomes by incorporating diverse viewpoints.
+Every voice matters. Our convenings ensure that perspectives from across the spectrum (government operators, industry innovators, and academic researchers) are heard and valued. This democratic approach strengthens outcomes by incorporating diverse viewpoints.
 
 ### Freedom
 
@@ -35,7 +35,7 @@ We safeguard the freedom to innovate, to question, and to challenge conventional
 
 ### Ethics
 
-Ethics is not a constraint—it's an enabler. By establishing clear ethical guidelines upfront, we create the trust necessary for genuine collaboration. Partners can engage fully, knowing that shared principles guide every interaction.
+Ethics is not a constraint; it's an enabler. By establishing clear ethical guidelines upfront, we create the trust necessary for genuine collaboration. Partners can engage fully, knowing that shared principles guide every interaction.
 
 ## Practical Applications
 

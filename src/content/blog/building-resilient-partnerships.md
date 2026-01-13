@@ -9,7 +9,7 @@ draft: false
 
 # The Foundation of Resilience
 
-Resilience in national security isn't built through isolated efforts—it emerges from the strength of connections between diverse stakeholders. At Spades Institute, we've witnessed firsthand how strategic partnerships transform challenges into opportunities.
+Resilience in national security isn't built through isolated efforts. It emerges from the strength of connections between diverse stakeholders. At Spades Institute, we've witnessed firsthand how strategic partnerships transform challenges into opportunities.
 
 ## Why Partnerships Matter
 
@@ -35,7 +35,7 @@ In today's interconnected world, no single entity possesses all the expertise, r
 
 ## The Spades Institute Approach
 
-We don't just connect organizations—we build lasting relationships based on:
+We don't just connect organizations; we build lasting relationships based on:
 
 1. **Trust**: Earned through consistent, ethical engagement
 2. **Transparency**: Clear communication of objectives and constraints
@@ -51,7 +51,7 @@ While we maintain the confidentiality of our partners, the outcomes speak for th
 
 ## Your Role
 
-Building resilient partnerships requires active participation from leaders across all sectors. Consider how your organization might contribute to—and benefit from—cross-sector collaboration.
+Building resilient partnerships requires active participation from leaders across all sectors. Consider how your organization might contribute to, and benefit from, cross-sector collaboration.
 
 The challenges we face demand nothing less than our best collective effort.
 

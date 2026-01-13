@@ -2,20 +2,20 @@
 title: "Why I Built Operation MOS: The Resume Industry Is Failing Veterans (And We're Fixing It)"
 author: "Andrew Shea"
 date: 2026-01-07
-excerpt: "60% of veterans are underemployed in their first year of separation. Not because they're not qualified—because the career transition industry is teaching advice that worked in 1995 but gets them rejected in 2026."
+excerpt: "60% of veterans are underemployed in their first year of separation. Not because they're not qualified. because the career transition industry is teaching advice that worked in 1995 but gets them rejected in 2026."
 tags: ["veterans", "career-transition", "mission"]
 draft: false
 ---
 
-**TL;DR:** The veteran career transition industry is broken. TAP classes teach outdated advice. Resume services charge $500 for templates. Veterans deserve better. I built Operation MOS—a free, AI-powered resume builder that tailors your military experience to your target civilian role. 30 minutes. One page. Actually works. [Try it free.](https://app.operationmos.com)
+**TL;DR:** The veteran career transition industry is broken. TAP classes teach outdated advice. Resume services charge $500 for templates. Veterans deserve better. I built Operation MOS. a free, AI-powered resume builder that tailors your military experience to your target civilian role. 30 minutes. One page. Actually works. [Try it free.](https://app.operationmos.com)
 
 ---
 
-Last week, I launched Operation MOS—a free, AI-powered resume builder for veterans.
+Last week, I launched Operation MOS. a free, AI-powered resume builder for veterans.
 
 But here's what keeps me up at night: **60% of veterans are underemployed in their first year of separation.** Not because they're not qualified. Not because they lack skills. Because the entire career transition industry is teaching them advice that worked in 1995 but gets them **rejected** in 2026.
 
-I've watched nonprofit resume workshops. I've seen veterans pay $500 for templates they could get for free. I've talked to hundreds of veterans stuck in the same cycle—great experience, terrible resumes, no callbacks. And I'm done watching it happen.
+I've watched nonprofit resume workshops. I've seen veterans pay $500 for templates they could get for free. I've talked to hundreds of veterans stuck in the same cycle. great experience, terrible resumes, no callbacks. And I'm done watching it happen.
 
 ## Why I Built This
 
@@ -25,7 +25,7 @@ During my transition, I struggled with the same problem every veteran faces: tra
 
 I felt like I was starting over from zero. Like everything I'd accomplished didn't matter anymore. Like I was less than.
 
-But here's what made the difference: Many veterans invested in me during my transition process. They didn't just give me advice—they sat with me, helped me understand how my experience translated, and showed me what actually worked. They gave me something tangible I could use. Not another workshop. Not another appointment. A resume.
+But here's what made the difference: Many veterans invested in me during my transition process. They didn't just give me advice. they sat with me, helped me understand how my experience translated, and showed me what actually worked. They gave me something tangible I could use. Not another workshop. Not another appointment. A resume.
 
 Now I'm at Microsoft, leading security teams around the world. And I want to give back.
 
@@ -35,7 +35,7 @@ I don't believe that's true.
 
 Veterans have world-class skills. They've led teams in the most demanding environments on Earth. They've managed million-dollar budgets. They've solved problems under pressure that would break most people. They've earned security clearances that companies pay premium salaries to access. The transition shouldn't be this complicated.
 
-But here's what I kept seeing: Veterans would have conversations with career counselors, attend workshops, sit through TAP classes—and walk away with nothing. No resume. Just more advice and another appointment to schedule. Another week of unemployment. Another month of self-doubt.
+But here's what I kept seeing: Veterans would have conversations with career counselors, attend workshops, sit through TAP classes. and walk away with nothing. No resume. Just more advice and another appointment to schedule. Another week of unemployment. Another month of self-doubt.
 
 I wanted to change that. Every conversation with a veteran should end with something they can actually use. A resume in hand. Not just another "here's what you should do" conversation.
 
@@ -68,13 +68,13 @@ Every year, 200,000+ service members transition out of the military. They bring 
 
 The military teaches veterans to communicate in a language civilians don't speak. The result? Resumes filled with acronyms that confuse hiring managers. Valuable experience that gets lost in translation. Qualified candidates filtered out by ATS systems. Months of unemployment that shouldn't happen.
 
-Take Mark, an Army Intelligence Officer transitioning to a Business Intelligence Analyst role. His military experience includes terms like "Executive Officer (XO)," "All-Source Intelligence," and "Company Readiness." To a civilian recruiter? That translates to "Operations Manager," "Business Intelligence," and "Operational Efficiency"—but only if someone helps make that connection. Without that bridge, Mark's application never reaches a human.
+Take Mark, an Army Intelligence Officer transitioning to a Business Intelligence Analyst role. His military experience includes terms like "Executive Officer (XO)," "All-Source Intelligence," and "Company Readiness." To a civilian recruiter? That translates to "Operations Manager," "Business Intelligence," and "Operational Efficiency". but only if someone helps make that connection. Without that bridge, Mark's application never reaches a human.
 
 ## The Broken Solutions
 
 The current "solutions" aren't working.
 
-**TAP Classes:** A week-long curriculum that tries to cover everything—and ends up teaching outdated resume formats. Four-page resumes. Objective statements. Skills matrices. Advice from a different era that doesn't land with modern recruiters.
+**TAP Classes:** A week-long curriculum that tries to cover everything. and ends up teaching outdated resume formats. Four-page resumes. Objective statements. Skills matrices. Advice from a different era that doesn't land with modern recruiters.
 
 **Resume Services:** $300-500 for a template and a 3-week turnaround. Same generic bullets everyone else gets. No industry-specific tailoring. Just expensive templates that look exactly like everyone else's.
 
@@ -82,7 +82,7 @@ The current "solutions" aren't working.
 
 **DIY Translation:** Veterans spend months trying to figure it out alone. Translating military jargon into civilian language. Hoping it works. Getting rejected. Trying again. The cycle continues.
 
-The entire industry is stuck in the past—and veterans are paying the price.
+The entire industry is stuck in the past. and veterans are paying the price.
 
 ## What Employers Actually Want
 
@@ -108,7 +108,7 @@ The gap between what veterans are **taught** and what employers actually **want*
 
 This is the question I hear most often. And it's valid.
 
-After years of having your career path laid out—promotions, assignments, duty stations—suddenly you're staring at thousands of job titles that all blur together. Project Manager. Operations Analyst. Program Coordinator. What's the difference? Which one fits?
+After years of having your career path laid out. promotions, assignments, duty stations. suddenly you're staring at thousands of job titles that all blur together. Project Manager. Operations Analyst. Program Coordinator. What's the difference? Which one fits?
 
 Here's the truth: You don't need to have it all figured out before you start. Operation MOS is designed to help you explore. Build a resume targeting Project Management. Then build another one targeting Operations. See which version of your experience resonates more. See which language feels right.
 
@@ -134,7 +134,7 @@ The resume gets you **TO** the interview. **YOU** get the job **AT** the intervi
 
 Traditional services ask: "What was your MOS?" We ask: **"What job do you want?"**
 
-Then we build your resume **backwards**—starting from what the target employer values and showing why your military experience makes you the perfect fit.
+Then we build your resume **backwards**. starting from what the target employer values and showing why your military experience makes you the perfect fit.
 
 **Traditional Approach:** Military Experience → Generic Translation → Hope It Works  
 **Operation MOS Approach:** Target Role → Industry Language Analysis → Tailored Resume → Interviews
@@ -149,10 +149,10 @@ A logistics officer has the same military experience. But targeting supply chain
 
 Here's how Operation MOS transforms military experience into civilian-ready resumes.
 
-Mark, an Army Intelligence Officer, wants to become a Business Intelligence Analyst. He starts by telling us his target role—not his MOS equivalent, but the job he actually wants.
+Mark, an Army Intelligence Officer, wants to become a Business Intelligence Analyst. He starts by telling us his target role. not his MOS equivalent, but the job he actually wants.
 
 **Step 1: Define Your Mission**  
-Mark inputs his contact details, military branch (U.S. Army), MOS code (35D), and most importantly—his target role: Business Intelligence Analyst. This target informs everything that follows.
+Mark inputs his contact details, military branch (U.S. Army), MOS code (35D), and most importantly. his target role: Business Intelligence Analyst. This target informs everything that follows.
 
 **Step 2: Capture Your Experience**  
 Mark enters his work history in plain language. "Improved readiness by tightening tracking and follow-up, which reduced last-minute issues before major events. Cut administrative rework by standardizing packet formats and using simple checklists."
@@ -166,7 +166,7 @@ With one click, our AI analyzes his input and generates professional, impact-ori
 The experience didn't change. The language did. Now it's speaking business intelligence, not military operations.
 
 **Step 4: Add Your Edge**  
-Mark adds his skills and certifications—Security+, Certified ScrumMaster, Secret clearance—all aligned with his target role. These differentiators matter. A Secret clearance alone can add $10-20K to a salary offer in the right industry.
+Mark adds his skills and certifications. Security+, Certified ScrumMaster, Secret clearance. all aligned with his target role. These differentiators matter. A Secret clearance alone can add $10-20K to a salary offer in the right industry.
 
 **Step 5: AI-Generated Professional Summary**  
 The AI generates a summary that ties everything together: "Army veteran with extensive experience in intelligence operations, seeking to transition into a Business Intelligence Analyst role. Skilled in managing readiness, training, and operations to support high-stakes missions, with a proven track record of improving product quality and increasing efficiency through standardized processes."
@@ -179,7 +179,7 @@ The AI generates a summary that ties everything together: "Army veteran with ext
 - **Role-Specific Language:** Every bullet tailored to your target industry
 - **Instant Download:** PDF and DOCX formats, ready to submit
 
-> **Ready to try it?** [Build your resume now](https://app.operationmos.com) — it's free.
+> **Ready to try it?** [Build your resume now](https://app.operationmos.com) .  it's free.
 
 ## Why AI Actually Works (And "Experts" Don't)
 
@@ -213,10 +213,10 @@ The future of career transition isn't about "certified" anything. It's about **r
 ## "Yeah, But..."
 
 **"But I need personalized help from a human."**  
-I get it. And for some things—interview coaching, salary negotiation, networking strategy—human mentorship is irreplaceable. But a resume? It's a document that needs to pass an algorithm and get scanned by a recruiter in 6 seconds. AI is actually better at optimizing for that than humans are. Use Operation MOS for the resume. Save the human time for the conversations that matter.
+I get it. And for some things. interview coaching, salary negotiation, networking strategy. human mentorship is irreplaceable. But a resume? It's a document that needs to pass an algorithm and get scanned by a recruiter in 6 seconds. AI is actually better at optimizing for that than humans are. Use Operation MOS for the resume. Save the human time for the conversations that matter.
 
 **"AI can't understand my unique military experience."**  
-Our AI is trained on military terminology, MOS codes from all branches, and thousands of military-to-civilian translations. It understands that a "Company Commander" is equivalent to a "General Manager" and that "NCOER" means performance evaluation. But more importantly, it's not trying to translate your experience—it's tailoring it to what your target employer cares about.
+Our AI is trained on military terminology, MOS codes from all branches, and thousands of military-to-civilian translations. It understands that a "Company Commander" is equivalent to a "General Manager" and that "NCOER" means performance evaluation. But more importantly, it's not trying to translate your experience. it's tailoring it to what your target employer cares about.
 
 **"What if I'm not tech-savvy?"**  
 If you can fill out a form, you can use Operation MOS. It's a step-by-step guided process. No complex features. No confusing options. Just answer the questions, click the buttons, download your resume.
@@ -243,7 +243,7 @@ Start now. Use Operation MOS to explore different career paths. Build test resum
 You need a resume today. Build one in 30 minutes. Start applying. You can always refine it later, but you can't get back the months you spent perfecting something instead of applying.
 
 **Experienced Veterans (1+ years out):**  
-Maybe your current resume isn't working. Maybe you're pivoting to a new industry. Build a fresh version targeting your new goal. Your military experience still matters—it just needs to be reframed.
+Maybe your current resume isn't working. Maybe you're pivoting to a new industry. Build a fresh version targeting your new goal. Your military experience still matters. it just needs to be reframed.
 
 **Military Spouses:**  
 You've moved every 2-3 years. Your resume looks "scattered." Use Operation MOS to reframe that as adaptability, resilience, and diverse experience. Those are strengths, not weaknesses.
@@ -256,7 +256,7 @@ Here's the truth: Resumes will always be free. Always. No hidden fees. No premiu
 
 Why? Because I've seen too many veterans get exploited by an industry that profits from their confusion. Because I have a day job at Microsoft and don't need this to pay my rent. Because the whole point is to remove barriers, not create new ones.
 
-Future features—interview prep, LinkedIn optimization, cover letters—might not all be free. We'll see. But the core resume builder? That's free forever.
+Future features. interview prep, LinkedIn optimization, cover letters. might not all be free. We'll see. But the core resume builder? That's free forever.
 
 Every veteran deserves a fair shot at civilian success. The men and women who served our country shouldn't struggle to explain why they're qualified for jobs they can absolutely do. A DD-214 should be a launching pad, not a barrier.
 
@@ -293,10 +293,10 @@ Your call.
 
 ---
 
-**Build your resume in 30 minutes—free:** [app.operationmos.com](https://app.operationmos.com)
+**Build your resume in 30 minutes. free:** [app.operationmos.com](https://app.operationmos.com)
 
 **Questions? Comments? Pushback?** I'd love to hear it. The industry needs this conversation.
 
 ---
 
-*Andrew Shea is the founder of Operation MOS and currently leads security teams at Microsoft. He's talked to 50+ hiring managers and struggled with the same transition challenges every veteran faces. Many veterans invested in him during his transition—this is his attempt to pay it forward. [Connect on LinkedIn](https://linkedin.com/in/awillshea)*
+*Andrew Shea is the founder of Operation MOS and currently leads security teams at Microsoft. He's talked to 50+ hiring managers and struggled with the same transition challenges every veteran faces. Many veterans invested in him during his transition. this is his attempt to pay it forward. [Connect on LinkedIn](https://linkedin.com/in/awillshea)*
