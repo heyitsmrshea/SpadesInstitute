@@ -3,24 +3,33 @@ import LinkedInIcon from './icons/LinkedInIcon.astro';
 const { people = [] } = Astro.props;
 const baseRaw = import.meta.env.BASE_URL || '/';
 const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
+
+// Determine if we should use 2-column or 3-column grid
+// Use 2-column until we have 6+ people
+const useTwoColumn = people.length < 6;
 ---
-<!-- Editorial 3-column grid with centered last item support -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 [&>*:last-child]:lg:col-start-2 [&>*:last-child]:lg:col-end-3 has-[>:nth-child(4)]:lg:[&>*:last-child]:col-auto has-[>:nth-child(4)]:lg:[&>*:nth-child(4)]:col-start-2 has-[>:nth-child(4)]:lg:[&>*:nth-child(4)]:col-end-3">
+<!-- Premium 2-column grid until 6+ people -->
+<div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
   {people.map((person, i) => {
     const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
     
     return (
       <article
-        class="group relative bg-white border border-stone-200 rounded-lg overflow-hidden transition-all duration-300 hover:border-spades-accent/40 hover:shadow-lg flex flex-col"
+        class="group relative bg-white border border-spades-border/40 rounded-xl overflow-hidden transition-all duration-300 hover:border-spades-accent/30 hover:shadow-[0_4px_20px_rgba(30,58,95,0.08)] flex flex-col"
         style={`animation-delay: ${i * 100}ms`}
         id={cardId}
+        data-role={person.role.includes('Founding Partner') ? 'founding-partner' : 'advisor'}
       >
-        <!-- Top Accent Rule -->
-        <div class="h-1 w-full bg-spades-accent"></div>
+        <!-- Top Accent Rule by Role -->
+        {person.role.includes('Founding Partner') ? (
+          <div class="h-0.5 w-full bg-spades-accent"></div>
+        ) : (
+          <div class="h-0.5 w-full bg-blue-500"></div>
+        )}
 
-        <!-- Photo Frame -->
+        <!-- Photo Frame with Premium Treatment -->
         <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
-          <!-- Image with fixed container logic -->
+          <!-- Image -->
           <img
             src={`${base}${person.headshot.replace(/^\//, '')}`}
             alt={`${person.name} headshot`}
@@ -30,22 +39,28 @@ const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
             style="object-position: center 20%;" 
           />
           
-          <!-- Consistent Editorial Overlays -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 mix-blend-multiply pointer-events-none"></div>
-          <div class="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] pointer-events-none"></div>
+          <!-- Premium Editorial Overlays -->
+          <!-- Dark navy gradient from bottom (35% opacity at bottom, 0% at 60% height) -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/35 via-transparent to-transparent" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.35) 0%, rgba(30, 58, 95, 0.2) 40%, transparent 60%);" aria-hidden="true"></div>
           
-          <!-- Role Chip (Top Left) -->
-          <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded text-xs font-bold text-spades-ink uppercase tracking-wider shadow-sm">
-            {person.role}
+          <!-- Subtle inner border -->
+          <div class="absolute inset-0 border border-white/20 pointer-events-none" aria-hidden="true"></div>
+          
+          <!-- Optional: Very subtle noise texture (using CSS pattern) -->
+          <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+          
+          <!-- Role Badge (Smaller, Top Left) -->
+          <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-semibold text-spades-ink tracking-wide shadow-sm">
+            {person.role.includes('Founding Partner') ? 'Founding Partner' : 'Advisor'}
           </div>
 
-          <!-- LinkedIn Icon (Top Right) -->
+          <!-- LinkedIn Icon (Top Right, Hover Only on Desktop, Always Visible on Mobile) -->
           {person.linkedin && (
             <a
               href={person.linkedin}
               target="_blank"
               rel="noreferrer"
-              class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded flex items-center justify-center text-spades-muted hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-sm z-10"
+              class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-spades-muted hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-sm z-10 opacity-100 md:opacity-0 md:group-hover:opacity-100"
               aria-label={`${person.name} on LinkedIn`}
             >
               <LinkedInIcon class="w-4 h-4" />
@@ -54,13 +69,13 @@ const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
         </div>
 
         <!-- Content -->
-        <div class="p-5 flex-1 flex flex-col justify-between">
+        <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
-            <h3 class="text-xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+            <h3 class="text-2xl font-bold text-spades-text leading-tight mb-3">{person.name}</h3>
             
-            <!-- One-line signal (tagline) -->
+            <!-- Bio line (2-line clamp, consistent style) -->
             {person.tagline && (
-              <p class="text-sm text-spades-text-secondary leading-relaxed line-clamp-2">
+              <p class="text-sm text-spades-text-secondary/80 leading-relaxed line-clamp-2 font-light">
                 {person.tagline}
               </p>
             )}

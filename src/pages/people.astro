@@ -26,44 +26,41 @@ const sections = [
     <link rel="canonical" href={`${siteUrl}${base}/people`} />
   </head>
   
-  <Breadcrumbs items={[
-    { label: 'Home', href: `${base}/` },
-    { label: 'People', href: `${base}/people` }
-  ]} />
+  <!-- Breadcrumbs removed for cleaner look on small site -->
 
-  <!-- Hero -->
-  <section class="bg-spades-ink-deep py-12 md:py-16 relative overflow-hidden">
+  <!-- Hero (Reduced Height) -->
+  <section class="bg-spades-ink-deep py-10 md:py-12 relative overflow-hidden">
     <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
     
     <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
-      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">People</p>
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-3">People</p>
       <h1 class="text-heading-xl md:text-heading-2xl text-white not-italic">Our Team</h1>
-      <p class="mt-4 text-lg text-dark-secondary max-w-xl mx-auto leading-relaxed">
+      <p class="mt-3 text-base text-dark-secondary max-w-xl mx-auto leading-relaxed">
         Leaders and advisors advancing nonpartisan, outcomes-driven collaboration.
       </p>
       
-      <!-- Filter Pills -->
-      <div class="mt-8 flex flex-wrap justify-center gap-3" role="group" aria-label="Filter by role">
+      <!-- Filter Pills with Counts -->
+      <div class="mt-6 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter by role">
         <button 
           type="button"
           data-filter="all"
-          class="filter-pill active px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+          class="filter-pill active px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200"
         >
-          All
+          All <span class="opacity-70">({people.length})</span>
         </button>
         <button 
           type="button"
           data-filter="founding-partner"
-          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200"
         >
-          Founding Partners
+          Founding Partners <span class="opacity-70">({foundingPartners.length})</span>
         </button>
         <button 
           type="button"
           data-filter="advisor"
-          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200"
         >
-          Advisors
+          Advisors <span class="opacity-70">({advisors.length})</span>
         </button>
       </div>
     </div>
@@ -72,7 +69,9 @@ const sections = [
   <!-- People Grid -->
   <section class="bg-spades-paper section-padding">
     <div class="max-w-5xl mx-auto px-6">
-      <PeopleGrid people={people} />
+      <div id="people-container">
+        <PeopleGrid people={people} />
+      </div>
     </div>
   </section>
 
@@ -100,6 +99,7 @@ const sections = [
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.8);
+    position: relative;
   }
   
   .filter-pill:hover {
@@ -112,6 +112,52 @@ const sections = [
     background-color: white;
     border-color: white;
     color: #0f172a;
+    font-weight: 600;
+  }
+  
+  .filter-pill.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background-color: #1e3a5f;
+    border-radius: 1px;
   }
 </style>
+
+<script>
+  // Filter functionality
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const peopleContainer = document.getElementById('people-container');
+  
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.getAttribute('data-filter');
+      
+      // Update active state
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      
+      // Filter people cards
+      const cards = peopleContainer?.querySelectorAll('article');
+      cards?.forEach(card => {
+        const role = card.getAttribute('data-role') || '';
+        const shouldShow = 
+          filter === 'all' ||
+          role === filter;
+        
+        if (shouldShow) {
+          card.classList.remove('hidden');
+          card.style.display = '';
+        } else {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 
