@@ -4,6 +4,7 @@ import PeopleGrid from '../components/PeopleGrid.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import people from '../data/people.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 
 // Group people by role
 const foundingPartners = people.filter(p => p.role.includes('Founding Partner'));
@@ -21,6 +22,10 @@ const sections = [
   title="Spades Institute | People" 
   description="Meet the leaders and advisors of Spades Institute, committed to advancing democracy, freedom, and ethics through trusted collaboration."
 >
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/people`} />
+  </head>
+  
   <Breadcrumbs items={[
     { label: 'Home', href: `${base}/` },
     { label: 'People', href: `${base}/people` }

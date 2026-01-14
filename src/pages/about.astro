@@ -2,11 +2,16 @@
 import Layout from '../components/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 ---
 <Layout 
   title="Spades Institute | About" 
   description="Learn about Spades Institute's mission to advance ethics, democracy, and freedom through trusted collaboration across government, industry, and academia."
 >
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/about`} />
+  </head>
+  
   <Breadcrumbs items={[
     { label: 'Home', href: `${base}/` },
     { label: 'About', href: `${base}/about` }

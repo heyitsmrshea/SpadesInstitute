@@ -1,4 +1,5 @@
 ---
+import MenuIcon from './icons/MenuIcon.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 // Main nav links (excluding Partner which is now a CTA)
@@ -24,6 +25,7 @@ const isActive = (href) => {
     <a 
       class="nav-link flex items-center gap-2 text-white hover:text-white/90 transition-colors focus-white rounded group" 
       href={`${base}/`}
+      aria-label="Spades Institute Home"
     >
       <span aria-hidden="true" class="text-2xl leading-none transition-transform group-hover:scale-110">♠︎</span>
       <span class="font-semibold text-lg tracking-tight">Spades Institute</span>
@@ -68,9 +70,7 @@ const isActive = (href) => {
       <details class="md:hidden relative">
         <summary class="list-none cursor-pointer select-none p-2 rounded-md hover:bg-white/10 focus-white">
           <span class="sr-only">Open menu</span>
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <MenuIcon class="w-6 h-6 text-white" />
         </summary>
         <div class="absolute right-0 mt-2 w-56 rounded-xl border border-white/10 bg-spades-ink-deep shadow-lg p-2 motion-safe:animate-slideDown">
           {navLinks.map((link) => (

@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+// import sitemap from '@astrojs/sitemap'; // TODO: Fix compatibility issue
 
 // For custom domain (e.g., spadesinstitute.org), use:
 // site: 'https://spadesinstitute.org',
@@ -12,5 +13,8 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: 'shiki'
   },
-  integrations: [tailwind()]
+  integrations: [
+    tailwind()
+    // sitemap() // TODO: Re-enable after fixing compatibility
+  ]
 });

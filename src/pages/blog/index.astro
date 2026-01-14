@@ -5,6 +5,7 @@ import BlogCard from '../../components/BlogCard.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 
 // Get all non-draft blog posts, sorted by date (newest first)
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -29,10 +30,11 @@ const description = "Insights and perspectives on national security, ethics, and
 
 <Layout {title} {description}>
   <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/blog`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://HeyItsMrShea.github.io${base}/blog`} />
+    <meta property="og:url" content={`${siteUrl}${base}/blog`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

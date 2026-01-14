@@ -13,7 +13,7 @@ const {
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const siteUrl = 'https://HeyItsMrShea.github.io';
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${image}`;
 ---
 <!DOCTYPE html>
@@ -43,6 +43,9 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImageUrl} />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href={`${siteUrl}${base}${Astro.url.pathname}`} />
+    
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -61,7 +64,7 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
         "addressCountry": "US"
       },
       "sameAs": [
-        "https://www.linkedin.com"
+        "https://www.linkedin.com/company/spades-institute"
       ]
     })} />
     

@@ -49,6 +49,10 @@ const isoDate = new Date(post.data.date).toISOString();
       <img
         src={`${base}${post.data.featuredImage.replace(/^\//, '')}`}
         alt={post.data.title}
+        width="1200"
+        height="630"
+        loading="eager"
+        decoding="async"
         class="w-full rounded-xl shadow-card"
       />
     </div>

@@ -2,12 +2,55 @@
 import Layout from '../components/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import engagements from '../data/engagements.json';
+import ClockIcon from '../components/icons/ClockIcon.astro';
+import MapPinIcon from '../components/icons/MapPinIcon.astro';
+import VideoCameraIcon from '../components/icons/VideoCameraIcon.astro';
+import ChevronDownIcon from '../components/icons/ChevronDownIcon.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
+
+// FAQ data for structured data
+const faqs = [
+  {
+    q: "Who can participate in Spades Institute programs?",
+    a: "Our programs are designed for professionals in government, industry, and academia who are committed to strengthening national security through ethical collaboration. We welcome senior leaders, operators, innovators, veterans, and researchers."
+  },
+  {
+    q: "What's the time commitment for a fellowship?",
+    a: "Fellowship programs typically run 6-12 months and involve immersion experiences in partner organizations. The exact commitment varies based on the specific program and participant availability."
+  },
+  {
+    q: "How are speaker series topics selected?",
+    a: "Topics are curated based on timely national security challenges and participant input. We focus on actionable insights that participants can apply to their work immediately."
+  },
+  {
+    q: "Is there a cost to participate?",
+    a: "Program costs vary. Many of our programs are funded through partnerships and grants. Contact us to discuss specific opportunities and any associated costs."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 <Layout 
   title="Spades Institute | Programs" 
   description="Explore our speaker series and fellowships that bring together mission leaders, technologists, and practitioners to solve national security challenges."
 >
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/engagements`} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  
   <Breadcrumbs items={[
     { label: 'Home', href: `${base}/` },
     { label: 'Programs', href: `${base}/engagements` }
@@ -43,19 +86,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                   <div class="flex flex-wrap gap-2 mb-4">
                     {program.facts.duration && (
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <ClockIcon class="w-3.5 h-3.5" />
                         {program.facts.duration}
                       </span>
                     )}
                     {program.facts.format && (
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <VideoCameraIcon class="w-3.5 h-3.5" />
                         {program.facts.format}
                       </span>
                     )}
                     {program.facts.location && (
                       <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spades-paper border border-spades-border text-xs text-spades-text-secondary">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" /></svg>
+                        <MapPinIcon class="w-3.5 h-3.5" />
                         {program.facts.location}
                       </span>
                     )}
@@ -199,30 +242,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
 
       <div class="space-y-4">
-        {[
-          {
-            q: "Who can participate in Spades Institute programs?",
-            a: "Our programs are designed for professionals in government, industry, and academia who are committed to strengthening national security through ethical collaboration. We welcome senior leaders, operators, innovators, veterans, and researchers."
-          },
-          {
-            q: "What's the time commitment for a fellowship?",
-            a: "Fellowship programs typically run 6-12 months and involve immersion experiences in partner organizations. The exact commitment varies based on the specific program and participant availability."
-          },
-          {
-            q: "How are speaker series topics selected?",
-            a: "Topics are curated based on timely national security challenges and participant input. We focus on actionable insights that participants can apply to their work immediately."
-          },
-          {
-            q: "Is there a cost to participate?",
-            a: "Program costs vary. Many of our programs are funded through partnerships and grants. Contact us to discuss specific opportunities and any associated costs."
-          }
-        ].map((faq) => (
+        {faqs.map((faq) => (
           <details class="group card p-0 overflow-hidden">
             <summary class="cursor-pointer p-6 flex items-center justify-between gap-4 focus-accent">
               <span class="font-semibold text-spades-text">{faq.q}</span>
-              <svg class="w-5 h-5 text-spades-muted flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
+              <ChevronDownIcon class="w-5 h-5 text-spades-muted flex-shrink-0 transition-transform duration-200 group-open:rotate-180" />
             </summary>
             <div class="px-6 pb-6 pt-0">
               <p class="text-body text-spades-text-secondary">{faq.a}</p>
