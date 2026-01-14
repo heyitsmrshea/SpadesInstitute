@@ -19,9 +19,6 @@ const sortedPosts = allPosts.sort((a, b) =>
 const featuredPost = sortedPosts[0];
 const remainingPosts = sortedPosts.slice(1);
 
-// Get unique tags for filtering
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
-
 // Determine layout mode based on post count
 const isLowVolume = sortedPosts.length <= 3;
 
