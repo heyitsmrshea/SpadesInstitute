@@ -5,7 +5,8 @@ import BlogCard from '../../components/BlogCard.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import people from '../../data/people.json';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const baseRaw = import.meta.env.BASE_URL || '/';
+const base = baseRaw.endsWith('/') ? baseRaw.slice(0, -1) : baseRaw;
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 
 // Get all non-draft blog posts, sorted by date (newest first)
@@ -132,7 +133,7 @@ const description = "Insights and perspectives on national security, ethics, and
                     <div class="flex items-center gap-3 text-sm text-spades-muted flex-shrink-0">
                       {author?.headshot && (
                         <img
-                          src={`${base}${author.headshot}`}
+                          src={`${base}${author.headshot.startsWith('/') ? author.headshot : '/' + author.headshot}`}
                           alt={`${post.data.author} headshot`}
                           class="w-8 h-8 rounded-full object-cover border border-spades-border"
                           width="32"
