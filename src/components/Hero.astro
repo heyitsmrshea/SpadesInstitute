@@ -42,9 +42,7 @@ const valueProps = [
       </div>
 
       <!-- Main heading with blur reveal effect -->
-      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-spades-text max-w-4xl mx-auto blur-reveal">
-        {title}
-      </h1>
+      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-spades-text max-w-4xl mx-auto blur-reveal" set:html={title} />
 
       <!-- Description with staggered reveal -->
       <p class="mt-5 text-lg md:text-xl text-spades-text-secondary max-w-2xl mx-auto leading-relaxed reveal-up">
