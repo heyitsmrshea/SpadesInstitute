@@ -32,7 +32,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
       featured ? "md:w-2/5 aspect-video" : "aspect-video"
     ]}>
       <img
-        src={`${base}${post.data.featuredImage.replace(/^\//, '')}`}
+        src={`${base}${post.data.featuredImage.startsWith('/') ? post.data.featuredImage : '/' + post.data.featuredImage}`}
         alt={post.data.title}
         width="400"
         height="225"
