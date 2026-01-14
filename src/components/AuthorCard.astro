@@ -16,7 +16,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 <div class="flex items-center gap-4">
   {author?.headshot ? (
     <img
-      src={`${base}${author.headshot.replace(/^\//, '')}`}
+      src={`${base}${author.headshot.startsWith('/') ? author.headshot : '/' + author.headshot}`}
       alt={`${authorName} headshot`}
       class="w-12 h-12 rounded-full object-cover border-2 border-spades-border"
     />

@@ -50,7 +50,7 @@ const isoDate = new Date(post.data.date).toISOString();
   {post.data.featuredImage && (
     <div class="max-w-5xl mx-auto px-6 -mt-8 md:-mt-12 motion-safe:animate-fadeIn" style="animation-delay: 200ms">
       <img
-        src={`${base}${post.data.featuredImage.replace(/^\//, '')}`}
+        src={`${base}${post.data.featuredImage.startsWith('/') ? post.data.featuredImage : '/' + post.data.featuredImage}`}
         alt={post.data.title}
         width="1200"
         height="630"
