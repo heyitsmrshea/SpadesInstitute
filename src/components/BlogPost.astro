@@ -78,7 +78,7 @@ const isoDate = new Date(post.data.date).toISOString();
       <p class="text-xs uppercase tracking-[0.4em] text-spades-muted mb-4">Share this article</p>
       <div class="flex gap-3">
         <a
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(`https://HeyItsMrShea.github.io${base}/blog/${post.slug}`)}`}
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(`https://www.spadesinstitute.org${base}/blog/${post.slug}`)}`}
           target="_blank"
           rel="noreferrer"
           class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-spades-border text-spades-ink hover:bg-spades-paper transition-colors"
@@ -89,7 +89,7 @@ const isoDate = new Date(post.data.date).toISOString();
           </svg>
         </a>
         <a
-          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://HeyItsMrShea.github.io${base}/blog/${post.slug}`)}`}
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://www.spadesinstitute.org${base}/blog/${post.slug}`)}`}
           target="_blank"
           rel="noreferrer"
           class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-spades-border text-spades-ink hover:bg-spades-paper transition-colors"
@@ -100,7 +100,7 @@ const isoDate = new Date(post.data.date).toISOString();
           </svg>
         </a>
         <a
-          href={`mailto:?subject=${encodeURIComponent(post.data.title)}&body=${encodeURIComponent(`Check out this article: https://HeyItsMrShea.github.io${base}/blog/${post.slug}`)}`}
+          href={`mailto:?subject=${encodeURIComponent(post.data.title)}&body=${encodeURIComponent(`Check out this article: https://www.spadesinstitute.org${base}/blog/${post.slug}`)}`}
           class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-spades-border text-spades-ink hover:bg-spades-paper transition-colors"
           aria-label="Share via Email"
         >
