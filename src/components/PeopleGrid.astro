@@ -39,7 +39,7 @@ const useTwoColumn = people.length < 6;
                   href={person.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  class="relative w-full h-48 bg-stone-100 overflow-hidden block"
+                  class="relative w-full max-h-48 bg-stone-100 overflow-hidden block"
                   aria-label={`${person.name} on LinkedIn`}
                 >
                   <!-- Image with unified quality treatment -->
@@ -48,8 +48,8 @@ const useTwoColumn = people.length < 6;
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                    class="w-full h-auto max-h-48 object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="filter: contrast(1.05) saturate(0.95);" 
                   />
                   
                   <!-- Premium Editorial Overlays -->
@@ -77,15 +77,17 @@ const useTwoColumn = people.length < 6;
                   </div>
                 </a>
               ) : (
-                <div class="relative w-full h-48 bg-stone-100 overflow-hidden">
+                <div class="relative w-full bg-stone-100 overflow-hidden flex items-center justify-center"
+                  style="min-height: 120px; max-height: 192px;"
+                >
                   <!-- Image with unified quality treatment -->
                   <img
                     src={`${base}${person.headshot.replace(/^\//, '')}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                    class="w-full h-auto max-h-48 object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="filter: contrast(1.05) saturate(0.95);" 
                   />
                   
                   <!-- Premium Editorial Overlays -->
@@ -161,7 +163,7 @@ const useTwoColumn = people.length < 6;
                   href={person.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  class="relative w-full h-48 bg-stone-100 overflow-hidden block"
+                  class="relative w-full max-h-48 bg-stone-100 overflow-hidden block"
                   aria-label={`${person.name} on LinkedIn`}
                 >
                   <!-- Image with unified quality treatment -->
@@ -170,8 +172,8 @@ const useTwoColumn = people.length < 6;
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                    class="w-full h-auto max-h-48 object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="filter: contrast(1.05) saturate(0.95);" 
                   />
                   
                   <!-- Premium Editorial Overlays -->
@@ -199,15 +201,17 @@ const useTwoColumn = people.length < 6;
                   </div>
                 </a>
               ) : (
-                <div class="relative w-full h-48 bg-stone-100 overflow-hidden">
+                <div class="relative w-full bg-stone-100 overflow-hidden flex items-center justify-center"
+                  style="min-height: 120px; max-height: 192px;"
+                >
                   <!-- Image with unified quality treatment -->
                   <img
                     src={`${base}${person.headshot.replace(/^\//, '')}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                    class="w-full h-auto max-h-48 object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="filter: contrast(1.05) saturate(0.95);" 
                   />
                   
                   <!-- Premium Editorial Overlays -->
