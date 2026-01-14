@@ -1,7 +1,11 @@
 ---
 import TagList from './TagList.astro';
+import people from '../data/people.json';
 const { post, featured = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Find author in people.json for photo
+const author = people.find(p => p.name === post.data.author);
 
 // Calculate reading time (approx 200 words per minute)
 const wordCount = post.body?.split(/\s+/).length || 0;
@@ -24,7 +28,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
   {post.data.featuredImage && (
     <div class:list={[
       "overflow-hidden bg-spades-paper",
-      featured ? "md:w-2/5 aspect-video md:aspect-auto" : "aspect-video"
+      featured ? "md:w-2/5 aspect-video" : "aspect-video"
     ]}>
       <img
         src={`${base}${post.data.featuredImage.replace(/^\//, '')}`}
@@ -40,7 +44,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
   
   <div class:list={[
     "p-6 flex flex-col flex-1",
-    featured && "md:p-8"
+    featured && "md:p-6"
   ]}>
     <!-- Tags -->
     <div class="mb-3">
@@ -50,7 +54,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
     <!-- Title -->
     <h3 class:list={[
       "font-semibold text-spades-text mb-3 group-hover:text-spades-accent transition-colors leading-tight",
-      featured ? "text-2xl md:text-3xl" : "text-xl"
+      featured ? "text-xl md:text-2xl" : "text-xl"
     ]}>
       {post.data.title}
     </h3>
@@ -58,14 +62,26 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
     <!-- Excerpt -->
     <p class:list={[
       "text-spades-text-secondary leading-relaxed mb-4 flex-1",
-      featured ? "text-base clamp-3 md:clamp-2" : "text-sm clamp-3"
+      featured ? "text-sm clamp-3" : "text-sm clamp-3"
     ]}>
       {post.data.excerpt}
     </p>
     
     <!-- Meta -->
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 border-t border-spades-border mt-auto">
-      <span class="text-sm font-medium text-spades-text">{post.data.author}</span>
+      <div class="flex items-center gap-2">
+        {author?.headshot && (
+          <img
+            src={`${base}${author.headshot.replace(/^\//, '')}`}
+            alt={`${post.data.author} headshot`}
+            class="w-6 h-6 rounded-full object-cover border border-spades-border"
+            width="24"
+            height="24"
+            loading="lazy"
+          />
+        )}
+        <span class="text-sm font-medium text-spades-text">{post.data.author}</span>
+      </div>
       <div class="flex items-center gap-2 text-sm text-spades-text-secondary">
         <time datetime={post.data.date}>{formattedDate}</time>
         <span aria-hidden="true">·</span>
