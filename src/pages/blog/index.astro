@@ -59,43 +59,12 @@ const description = "Insights and perspectives on national security, ethics, and
     </div>
   </section>
 
-  <!-- Category Filters -->
-  {allTags.length > 0 && (
-    <section class="bg-white border-b border-spades-border">
-      <div class="max-w-5xl mx-auto px-6 py-4">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="text-sm font-medium text-spades-text">Topics:</span>
-          <div id="filter-chips" class="flex flex-wrap gap-2">
-            <button 
-              type="button"
-              data-tag="all"
-              class="filter-chip active inline-flex items-center px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-accent"
-            >
-              All
-            </button>
-            {allTags.map((tag) => (
-              <button 
-                type="button"
-                data-tag={tag}
-                class="filter-chip inline-flex items-center px-3 py-1.5 rounded-full border text-sm font-medium transition-colors focus-accent"
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
-
   <!-- Featured Post -->
   {featuredPost && (
     <section class="bg-spades-paper section-padding-sm border-b border-spades-border">
       <div class="max-w-5xl mx-auto px-6">
         <p class="text-xs uppercase tracking-widest text-spades-muted mb-4">Featured Briefing</p>
-        <div data-tags={JSON.stringify(featuredPost.data.tags)}>
-          <BlogCard post={featuredPost} featured={true} />
-        </div>
+        <BlogCard post={featuredPost} featured={true} />
       </div>
     </section>
   )}
@@ -120,7 +89,6 @@ const description = "Insights and perspectives on national security, ethics, and
                 return (
                   <a 
                     href={`${base}/blog/${post.slug}`}
-                    data-tags={JSON.stringify(post.data.tags)}
                     class="post-item group card p-4 flex flex-col sm:flex-row sm:items-center gap-4 motion-safe:animate-fadeIn"
                     style={`animation-delay: ${i * 50}ms`}
                   >
@@ -166,10 +134,6 @@ const description = "Insights and perspectives on national security, ethics, and
             </div>
           )}
           
-          <!-- Empty state -->
-          <div id="empty-state" class="hidden text-center py-12">
-            <p class="text-spades-text-secondary">No articles match this topic. Try selecting a different one.</p>
-          </div>
         </>
       ) : (
         <div class="text-center py-12">
@@ -230,64 +194,7 @@ const description = "Insights and perspectives on national security, ethics, and
   </section>
 </Layout>
 
-<style>
-  .filter-chip {
-    background-color: var(--color-paper, #fbfbf7);
-    border-color: var(--color-border, #e5e7eb);
-    color: var(--color-muted, #4b5563);
-  }
-  
-  .filter-chip:hover {
-    border-color: var(--color-accent, #1e3a5f);
-    color: var(--color-accent, #1e3a5f);
-  }
-  
-  .filter-chip.active {
-    background-color: var(--color-accent, #1e3a5f);
-    border-color: var(--color-accent, #1e3a5f);
-    color: white;
-  }
-</style>
-
 <script>
-  // Topic filtering
-  const filterChips = document.querySelectorAll('.filter-chip');
-  const postItems = document.querySelectorAll('.post-item, [data-tags]');
-  const emptyState = document.getElementById('empty-state');
-  
-  filterChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const selectedTag = chip.getAttribute('data-tag');
-      
-      // Update active state
-      filterChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      
-      // Filter posts
-      let visibleCount = 0;
-      postItems.forEach(item => {
-        const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
-        const shouldShow = selectedTag === 'all' || tags.includes(selectedTag);
-        
-        if (shouldShow) {
-          item.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-      
-      // Show/hide empty state
-      if (emptyState) {
-        if (visibleCount === 0) {
-          emptyState.classList.remove('hidden');
-        } else {
-          emptyState.classList.add('hidden');
-        }
-      }
-    });
-  });
-  
   // Subscribe form validation
   const form = document.getElementById('subscribe-form') as HTMLFormElement;
   const emailInput = document.getElementById('subscribe-email') as HTMLInputElement;
