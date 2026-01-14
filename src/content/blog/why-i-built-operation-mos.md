@@ -4,7 +4,7 @@ author: "Andrew Shea"
 date: 2026-01-07
 excerpt: "60% of veterans are underemployed in their first year of separation. Not because they're not qualified. because the career transition industry is teaching advice that worked in 1995 but gets them rejected in 2026."
 tags: ["veterans", "career-transition", "mission"]
-featuredImage: "/blog/veteran-transition-split-portrait.jpg"
+featuredImage: "/blog/background.jpeg"
 draft: false
 ---
 
