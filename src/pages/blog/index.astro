@@ -31,6 +31,7 @@ const description = "Insights and perspectives on national security, ethics, and
 
 <Layout {title} {description}>
   <head slot="head">
+    <meta name="description" content={description} />
     <link rel="canonical" href={`${siteUrl}${base}/blog`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

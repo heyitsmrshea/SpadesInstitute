@@ -53,33 +53,37 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
           </div>
 
           <form id="contactForm" class="space-y-5">
-            <label class="block">
+            <label for="contact-name" class="block">
               <span class="text-sm font-medium text-spades-text mb-2 block">Name</span>
               <input 
+                id="contact-name"
                 name="name" 
                 required 
                 class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
               />
             </label>
-            <label class="block">
+            <label for="contact-email" class="block">
               <span class="text-sm font-medium text-spades-text mb-2 block">Email</span>
               <input 
+                id="contact-email"
                 name="email" 
                 type="email" 
                 required 
                 class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
               />
             </label>
-            <label class="block">
+            <label for="contact-org" class="block">
               <span class="text-sm font-medium text-spades-text mb-2 block">Organization <span class="text-spades-muted font-normal">(optional)</span></span>
               <input 
+                id="contact-org"
                 name="org" 
                 class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
               />
             </label>
-            <label class="block">
+            <label for="contact-topic" class="block">
               <span class="text-sm font-medium text-spades-text mb-2 block">Topic</span>
               <select 
+                id="contact-topic"
                 name="topic" 
                 required
                 class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow"
@@ -92,7 +96,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
                 <option>Other</option>
               </select>
             </label>
-            <label class="block">
+            <label for="message-textarea" class="block">
               <span class="text-sm font-medium text-spades-text mb-2 block">
                 Message
                 <span id="char-count" class="text-spades-muted font-normal ml-2">(0 characters)</span>

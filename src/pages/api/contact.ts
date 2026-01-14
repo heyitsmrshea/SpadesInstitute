@@ -9,6 +9,16 @@ const getResend = () => {
   return new Resend(apiKey);
 };
 
+export const GET: APIRoute = () => {
+  return new Response(
+    JSON.stringify({ error: 'Method not allowed. Use POST.' }),
+    {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    }
+  );
+};
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
