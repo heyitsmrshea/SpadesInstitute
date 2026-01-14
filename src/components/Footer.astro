@@ -4,11 +4,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
-  { label: 'About', href: `${base}/about` },
-  { label: 'Programs', href: `${base}/engagements` },
-  { label: 'People', href: `${base}/people` },
-  { label: 'Blog', href: `${base}/blog` },
-  { label: 'Partner', href: `${base}/connect` }
+  { label: 'About', href: `${base}/about/` },
+  { label: 'Programs', href: `${base}/engagements/` },
+  { label: 'People', href: `${base}/people/` },
+  { label: 'Blog', href: `${base}/blog/` },
+  { label: 'Partner', href: `${base}/connect/` },
+  { label: 'Ethics Letter', href: `${base}/ethics-letter/` }
 ];
 ---
 <footer class="bg-spades-ink-deep text-white">
@@ -57,7 +58,7 @@ const footerLinks = [
             href="https://www.linkedin.com/company/spades-institute" 
             target="_blank" 
             rel="noreferrer" 
-            class="nav-link inline-flex items-center gap-2 text-sm text-dark-secondary hover:text-white transition-colors"
+            class="nav-link flex items-center gap-2 text-sm text-dark-secondary hover:text-white transition-colors"
             aria-label="Spades Institute on LinkedIn"
           >
             <LinkedInIcon class="w-4 h-4" />
@@ -67,7 +68,7 @@ const footerLinks = [
             href="https://givebutter.com/spadesinstitute" 
             target="_blank" 
             rel="noreferrer" 
-            class="nav-link inline-flex items-center gap-1 text-sm text-dark-secondary hover:text-white transition-colors"
+            class="nav-link flex items-center gap-1 text-sm text-dark-secondary hover:text-white transition-colors"
           >
             Donate <span aria-hidden="true">→</span>
           </a>
