@@ -416,14 +416,13 @@ button {
 }
 
 /* Fallback: if JavaScript doesn't run, show content after a delay */
-@supports (animation: fade-in) {
-  .reveal-up:not(.revealed),
-  .reveal-left:not(.revealed),
-  .reveal-right:not(.revealed),
-  .reveal-scale:not(.revealed),
-  .blur-reveal:not(.revealed) {
-    animation: fade-in-fallback 0.1s ease-out 0.5s forwards;
-  }
+/* This ensures content is visible even if JS fails */
+.reveal-up:not(.revealed),
+.reveal-left:not(.revealed),
+.reveal-right:not(.revealed),
+.reveal-scale:not(.revealed),
+.blur-reveal:not(.revealed) {
+  animation: fade-in-fallback 0.1s ease-out 0.3s forwards;
 }
 
 @keyframes fade-in-fallback {

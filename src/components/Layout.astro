@@ -168,11 +168,28 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
         initHeaderScroll();
       });
       
-      // Fallback: reveal all elements after 1 second if script hasn't run
+      // Fallback: reveal all elements immediately on page load, then again after delay
+      // This ensures content is visible even if intersection observer fails
+      function revealAllImmediately() {
+        const allRevealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .blur-reveal');
+        allRevealElements.forEach(el => {
+          // Check if element is in viewport or near it
+          const rect = el.getBoundingClientRect();
+          const isVisible = rect.top < window.innerHeight + 200;
+          if (isVisible) {
+            el.classList.add('revealed');
+          }
+        });
+      }
+      
+      // Reveal immediately visible elements right away
+      revealAllImmediately();
+      
+      // Fallback: reveal all remaining elements after 500ms
       setTimeout(() => {
         const unrevealed = document.querySelectorAll('.reveal-up:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-scale:not(.revealed), .blur-reveal:not(.revealed)');
         unrevealed.forEach(el => el.classList.add('revealed'));
-      }, 1000);
+      }, 500);
     </script>
   </body>
 </html>
