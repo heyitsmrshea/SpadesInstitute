@@ -82,7 +82,7 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
       <div class="flex items-center gap-2">
         {author?.headshot && (
           <img
-            src={`${base}${author.headshot.replace(/^\//, '')}`}
+            src={`${base}/${author.headshot.replace(/^\//, '')}`}
             alt={`${post.data.author} headshot`}
             class="w-6 h-6 rounded-full object-cover border border-spades-border"
             width="24"
