@@ -39,7 +39,7 @@ const useTwoColumn = people.length < 6;
                   href={person.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  class="relative w-full aspect-[3/4] bg-stone-100 overflow-hidden block"
+                  class="relative w-full h-48 bg-stone-100 overflow-hidden block"
                   aria-label={`${person.name} on LinkedIn`}
                 >
                   <!-- Image with unified quality treatment -->
@@ -77,7 +77,7 @@ const useTwoColumn = people.length < 6;
                   </div>
                 </a>
               ) : (
-                <div class="relative w-full aspect-[3/4] bg-stone-100 overflow-hidden">
+                <div class="relative w-full h-48 bg-stone-100 overflow-hidden">
                   <!-- Image with unified quality treatment -->
                   <img
                     src={`${base}${person.headshot.replace(/^\//, '')}`}
@@ -161,7 +161,7 @@ const useTwoColumn = people.length < 6;
                   href={person.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  class="relative w-full aspect-[3/4] bg-stone-100 overflow-hidden block"
+                  class="relative w-full h-48 bg-stone-100 overflow-hidden block"
                   aria-label={`${person.name} on LinkedIn`}
                 >
                   <!-- Image with unified quality treatment -->
@@ -199,7 +199,7 @@ const useTwoColumn = people.length < 6;
                   </div>
                 </a>
               ) : (
-                <div class="relative w-full aspect-[3/4] bg-stone-100 overflow-hidden">
+                <div class="relative w-full h-48 bg-stone-100 overflow-hidden">
                   <!-- Image with unified quality treatment -->
                   <img
                     src={`${base}${person.headshot.replace(/^\//, '')}`}
