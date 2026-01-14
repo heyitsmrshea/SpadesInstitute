@@ -39,7 +39,7 @@ Ethics is not a constraint; it's an enabler. By establishing clear ethical guide
 
 ## Practical Applications
 
-Our quarterly speaker series and fellowship programs put these principles into action:
+Our speaker series and fellowship programs put these principles into action:
 
 - **Speaker Series**: Senior leaders share candid insights on navigating ethical challenges in their domains.
 - **Bi-directional Fellowships**: Practitioners gain firsthand experience in each other's environments, building empathy and understanding.
