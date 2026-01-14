@@ -1,2 +1,0 @@
-import"./hoisted.BKsFtGUc.js";const n=document.getElementById("contactForm");n&&n.addEventListener("submit",o=>{o.preventDefault();const t=new FormData(n),i=String(t.get("name")||""),a=String(t.get("email")||""),e=String(t.get("org")||""),s=String(t.get("topic")||""),c=String(t.get("message")||""),m=`[Spades Institute] ${s}`,g=[`Name: ${i}`,`Email: ${a}`,e?`Organization: ${e}`:null,"",c].filter(Boolean).join(`
-`),r=`mailto:info@spadesinstitute.org?subject=${encodeURIComponent(m)}&body=${encodeURIComponent(g)}`;window.location.href=r});

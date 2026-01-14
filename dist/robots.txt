@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://HeyItsMrShea.github.io/SpadesInstitute/sitemap.xml

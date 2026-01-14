@@ -6,17 +6,6 @@ import people from '../data/people.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
 
-// Group people by role
-const foundingPartners = people.filter(p => p.role.includes('Founding Partner'));
-const advisors = people.filter(p => p.role.includes('Advisor'));
-const others = people.filter(p => !p.role.includes('Founding Partner') && !p.role.includes('Advisor'));
-
-// Build jump links based on available sections
-const sections = [
-  { id: 'founding-partners', label: 'Founding Partners', count: foundingPartners.length },
-  { id: 'advisors', label: 'Advisors', count: advisors.length },
-  { id: 'team', label: 'Team', count: others.length }
-].filter(s => s.count > 0);
 ---
 <Layout 
   title="Spades Institute | People" 
