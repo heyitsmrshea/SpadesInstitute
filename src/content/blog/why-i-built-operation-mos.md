@@ -216,4 +216,4 @@ Your call.
 
 Andrew Shea is the founder of Operation MOS and currently leads security teams at Microsoft. He's talked to 50+ hiring managers and struggled with the same transition challenges every veteran faces. Many veterans invested in him during his transition—this is his attempt to pay it forward.
 
-[Connect on LinkedIn →](https://linkedin.com/in/yourprofile)
+[Connect on LinkedIn →](https://linkedin.com/in/awillshea)
