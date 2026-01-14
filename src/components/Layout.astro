@@ -152,14 +152,27 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
       }
       
       // Initialize immediately
-      initScrollReveal();
-      initHeaderScroll();
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initScrollReveal();
+          initHeaderScroll();
+        });
+      } else {
+        initScrollReveal();
+        initHeaderScroll();
+      }
       
       // Re-initialize after view transitions (Astro)
       document.addEventListener('astro:page-load', () => {
         initScrollReveal();
         initHeaderScroll();
       });
+      
+      // Fallback: reveal all elements after 1 second if script hasn't run
+      setTimeout(() => {
+        const unrevealed = document.querySelectorAll('.reveal-up:not(.revealed), .reveal-left:not(.revealed), .reveal-right:not(.revealed), .reveal-scale:not(.revealed), .blur-reveal:not(.revealed)');
+        unrevealed.forEach(el => el.classList.add('revealed'));
+      }, 1000);
     </script>
   </body>
 </html>
