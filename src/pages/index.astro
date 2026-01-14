@@ -188,7 +188,7 @@ const latestPosts = allPosts
                     <div class="flex items-center gap-3">
                       {authorData ? (
                         <img 
-                          src={`${base}${authorData.headshot.replace(/^\//, '')}`} 
+                          src={`${base}${authorData.headshot.startsWith('/') ? authorData.headshot : '/' + authorData.headshot}`} 
                           alt={authorName}
                           class="w-10 h-10 rounded-full object-cover border border-stone-200"
                         />
