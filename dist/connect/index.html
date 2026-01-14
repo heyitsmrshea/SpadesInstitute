@@ -195,15 +195,25 @@ Opens a printable letter you can save as PDF or print directly.
         return;
       }
       
-      ethicsForm.addEventListener('submit', function(event) {
+      // Remove any existing listeners by cloning the form
+      const formClone = ethicsForm.cloneNode(true) as HTMLFormElement;
+      ethicsForm.parentNode?.replaceChild(formClone, ethicsForm);
+      const form = document.getElementById('ethicsForm') as HTMLFormElement;
+      
+      if (!form) {
+        console.error('Ethics form not found after clone');
+        return;
+      }
+      
+      form.addEventListener('submit', function(event) {
         event.preventDefault();
         event.stopPropagation();
         
-        const data = new FormData(ethicsForm);
-        const fullName = String(data.get('fullName') || '').trim();
-        const agency = String(data.get('agency') || '').trim();
-        const position = String(data.get('position') || '').trim();
-        const email = String(data.get('email') || '').trim();
+        const formData = new FormData(form);
+        const fullName = String(formData.get('fullName') || '').trim();
+        const agency = String(formData.get('agency') || '').trim();
+        const position = String(formData.get('position') || '').trim();
+        const email = String(formData.get('email') || '').trim();
         
         // Validation
         if (!fullName || !agency || !position || !email) {
@@ -513,11 +523,18 @@ Opens a printable letter you can save as PDF or print directly.
     }
     
     // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initEthicsForm);
-    } else {
+    function setupEthicsForm() {
       initEthicsForm();
     }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEthicsForm);
+    } else {
+      setupEthicsForm();
+    }
+    
+    // Re-initialize after Astro view transitions
+    document.addEventListener('astro:page-load', setupEthicsForm);
   })();</script>  </main> <footer class="bg-spades-ink-deep text-white"> <div class="max-w-5xl mx-auto px-6 py-12"> <div class="grid md:grid-cols-4 gap-8 mb-10"> <!-- Brand --> <div class="md:col-span-2"> <a href="/SpadesInstitute/" class="nav-link inline-block mb-4 group" aria-label="Spades Institute Home"> <img src="/SpadesInstitute/logo.jpg" alt="Spades Institute" class="h-20 md:h-24 w-auto mix-blend-screen opacity-90 group-hover:opacity-100 transition-opacity"> </a> <p class="text-sm text-dark-secondary max-w-xs">
 Connecting government, industry, and academia to solve national security priorities through trusted, nonpartisan collaboration.
 </p> <div class="mt-4 space-y-1 text-sm text-dark-muted"> <p>501(c)(3) nonprofit · EIN 99-2763425</p> <p>Washington DC</p> </div> </div> <!-- Links --> <div> <p class="text-sm font-medium text-white mb-4">Quick Links</p> <nav class="space-y-2" aria-label="Footer navigation"> <a href="/SpadesInstitute/about" class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"> About </a><a href="/SpadesInstitute/engagements" class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"> Programs </a><a href="/SpadesInstitute/people" class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"> People </a><a href="/SpadesInstitute/blog" class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"> Blog </a><a href="/SpadesInstitute/connect" class="nav-link block text-sm text-dark-secondary hover:text-white hover:underline underline-offset-2 transition-all"> Partner </a> </nav> </div> <!-- Contact --> <div> <p class="text-sm font-medium text-white mb-4">Contact</p> <div class="space-y-3"> <a href="mailto:info@spadesinstitute.org" class="nav-link block text-sm text-dark-secondary hover:text-white transition-colors">

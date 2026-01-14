@@ -433,15 +433,25 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
         return;
       }
       
-      ethicsForm.addEventListener('submit', function(event) {
+      // Remove any existing listeners by cloning the form
+      const formClone = ethicsForm.cloneNode(true) as HTMLFormElement;
+      ethicsForm.parentNode?.replaceChild(formClone, ethicsForm);
+      const form = document.getElementById('ethicsForm') as HTMLFormElement;
+      
+      if (!form) {
+        console.error('Ethics form not found after clone');
+        return;
+      }
+      
+      form.addEventListener('submit', function(event) {
         event.preventDefault();
         event.stopPropagation();
         
-        const data = new FormData(ethicsForm);
-        const fullName = String(data.get('fullName') || '').trim();
-        const agency = String(data.get('agency') || '').trim();
-        const position = String(data.get('position') || '').trim();
-        const email = String(data.get('email') || '').trim();
+        const formData = new FormData(form);
+        const fullName = String(formData.get('fullName') || '').trim();
+        const agency = String(formData.get('agency') || '').trim();
+        const position = String(formData.get('position') || '').trim();
+        const email = String(formData.get('email') || '').trim();
         
         // Validation
         if (!fullName || !agency || !position || !email) {
@@ -751,10 +761,17 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
     }
     
     // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initEthicsForm);
-    } else {
+    function setupEthicsForm() {
       initEthicsForm();
     }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEthicsForm);
+    } else {
+      setupEthicsForm();
+    }
+    
+    // Re-initialize after Astro view transitions
+    document.addEventListener('astro:page-load', setupEthicsForm);
   </script>
 </Layout>
