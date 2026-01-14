@@ -38,11 +38,11 @@ Every conversation with a veteran should end with something they can actually us
 
 Every year, 200,000+ service members transition out. They bring leadership, discipline, and operational expertise that Fortune 500 companies would pay top dollar for. But here's what happens when they try to explain their experience:
 
-| What Veterans Say | What Employers Hear |
-|-------------------|---------------------|
-| "Supervised 15-person fire team during 6-month OEF rotation" | "…what's OEF?" |
-| "Managed $2.3M MTOE property book with 100% accountability" | "…MTOE?" |
-| "E-7 with 18 years TIS, MOS 11B" | "…is that good?" |
+**What Veterans Say** → **What Employers Hear**
+
+- *"Supervised 15-person fire team during 6-month OEF rotation"* → "…what's OEF?"
+- *"Managed $2.3M MTOE property book with 100% accountability"* → "…MTOE?"
+- *"E-7 with 18 years TIS, MOS 11B"* → "…is that good?"
 
 The military teaches veterans to communicate in a language civilians don't speak. The result?
 
@@ -82,11 +82,11 @@ I talked to 50+ hiring managers last year. Asked them all the same question: *"W
 
 The gap between what veterans are taught and what employers actually want? It's massive.
 
-| Veterans Are Taught | Employers Want |
-|---------------------|----------------|
-| MOS translation | Role-specific language |
-| 4-6 page resumes | One page |
-| Focus on your past | Fit for their future |
+**Veterans Are Taught** → **Employers Want**
+
+- MOS translation → Role-specific language
+- 4-6 page resumes → One page
+- Focus on your past → Fit for their future
 
 ## We Don't Translate Your Past. We Tailor Your Resume to Your Future.
 
