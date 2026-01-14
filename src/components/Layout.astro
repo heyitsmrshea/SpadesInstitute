@@ -68,6 +68,22 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
       ]
     })} />
     
+    <!-- WebSite Schema with Search Action -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Spades Institute",
+      "url": `${siteUrl}${base}`,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteUrl}${base}/blog?search={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+    
     <!-- Additional page-specific head content -->
     <slot name="head" />
     

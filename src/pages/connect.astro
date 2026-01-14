@@ -91,13 +91,20 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
               </select>
             </label>
             <label class="block">
-              <span class="text-sm font-medium text-spades-text mb-2 block">Message</span>
+              <span class="text-sm font-medium text-spades-text mb-2 block">
+                Message
+                <span id="char-count" class="text-spades-muted font-normal ml-2">(0 characters)</span>
+              </span>
               <textarea 
                 name="message" 
+                id="message-textarea"
                 rows="5" 
                 required 
+                maxlength="2000"
                 class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow resize-y"
+                aria-describedby="char-count message-error"
               ></textarea>
+              <p id="message-error" class="hidden mt-2 text-sm text-red-600" role="alert"></p>
             </label>
 
             <div class="pt-2 flex flex-wrap items-center gap-4">
@@ -161,7 +168,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
           </p>
         </div>
         
-        <form id="ethicsForm" class="space-y-5 max-w-md mx-auto">
+        <form id="ethicsForm" class="space-y-5 max-w-md mx-auto" novalidate>
           <label class="block">
             <span class="text-sm font-medium text-white mb-2 block">Full Name</span>
             <input 
@@ -259,6 +266,49 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
     const formSuccess = document.getElementById('form-success');
     const formError = document.getElementById('form-error');
     const errorMessage = document.getElementById('error-message');
+    const messageTextarea = document.getElementById('message-textarea') as HTMLTextAreaElement;
+    const charCount = document.getElementById('char-count');
+    const messageError = document.getElementById('message-error');
+    
+    // Character count for textarea
+    if (messageTextarea && charCount) {
+      messageTextarea.addEventListener('input', () => {
+        const length = messageTextarea.value.length;
+        charCount.textContent = `(${length} / 2000 characters)`;
+        if (length > 1800) {
+          charCount.classList.add('text-orange-600');
+          charCount.classList.remove('text-spades-muted');
+        } else {
+          charCount.classList.remove('text-orange-600');
+          charCount.classList.add('text-spades-muted');
+        }
+      });
+    }
+    
+    // Real-time validation
+    const inputs = form?.querySelectorAll('input, textarea, select');
+    inputs?.forEach((input) => {
+      input.addEventListener('blur', () => {
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement || input instanceof HTMLSelectElement) {
+          if (input.hasAttribute('required') && !input.value.trim()) {
+            input.classList.add('border-red-300');
+            input.classList.remove('border-spades-border');
+          } else {
+            input.classList.remove('border-red-300');
+            input.classList.add('border-spades-border');
+          }
+        }
+      });
+      
+      input.addEventListener('input', () => {
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement || input instanceof HTMLSelectElement) {
+          if (input.value.trim()) {
+            input.classList.remove('border-red-300');
+            input.classList.add('border-spades-border');
+          }
+        }
+      });
+    });
 
     if (form) {
       form.addEventListener('submit', async (event) => {
@@ -284,6 +334,38 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
             errorMessage.textContent = 'Please fill in all required fields.';
             formError.classList.remove('hidden');
           }
+          // Highlight invalid fields
+          if (!payload.name) form.querySelector('[name="name"]')?.classList.add('border-red-300');
+          if (!payload.email) form.querySelector('[name="email"]')?.classList.add('border-red-300');
+          if (!payload.topic) form.querySelector('[name="topic"]')?.classList.add('border-red-300');
+          if (!payload.message) {
+            messageTextarea?.classList.add('border-red-300');
+            if (messageError) {
+              messageError.textContent = 'Message is required.';
+              messageError.classList.remove('hidden');
+            }
+          }
+          return;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(payload.email)) {
+          if (formError && errorMessage) {
+            errorMessage.textContent = 'Please enter a valid email address.';
+            formError.classList.remove('hidden');
+          }
+          form.querySelector('[name="email"]')?.classList.add('border-red-300');
+          return;
+        }
+        
+        // Validate message length
+        if (payload.message.length < 10) {
+          if (messageError) {
+            messageError.textContent = 'Message must be at least 10 characters.';
+            messageError.classList.remove('hidden');
+          }
+          messageTextarea?.classList.add('border-red-300');
           return;
         }
 
@@ -305,6 +387,13 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
             // Show success
             if (formSuccess) formSuccess.classList.remove('hidden');
             form.reset();
+            
+            // Reset character count
+            if (charCount) charCount.textContent = '(0 characters)';
+            if (charCount) {
+              charCount.classList.remove('text-orange-600');
+              charCount.classList.add('text-spades-muted');
+            }
             
             // Scroll to success message
             formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -331,15 +420,36 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
     }
 
     // Ethics Letter Generator
-    const ethicsForm = document.getElementById('ethicsForm');
-    if (ethicsForm) {
-      ethicsForm.addEventListener('submit', (event) => {
+    function initEthicsForm() {
+      const ethicsForm = document.getElementById('ethicsForm') as HTMLFormElement;
+      if (!ethicsForm) {
+        console.error('Ethics form not found');
+        return;
+      }
+      
+      ethicsForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const data = new FormData(ethicsForm as HTMLFormElement);
-        const fullName = String(data.get('fullName') || '');
-        const agency = String(data.get('agency') || '');
-        const position = String(data.get('position') || '');
-        const email = String(data.get('email') || '');
+        event.stopPropagation();
+        
+        const data = new FormData(ethicsForm);
+        const fullName = String(data.get('fullName') || '').trim();
+        const agency = String(data.get('agency') || '').trim();
+        const position = String(data.get('position') || '').trim();
+        const email = String(data.get('email') || '').trim();
+        
+        // Validation
+        if (!fullName || !agency || !position || !email) {
+          alert('Please fill in all required fields.');
+          return false;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address.');
+          return false;
+        }
+        
         const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
         const letterHTML = `
@@ -627,8 +737,18 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
         if (printWindow) {
           printWindow.document.write(letterHTML);
           printWindow.document.close();
+        } else {
+          alert('Please allow pop-ups for this site to generate the ethics letter.');
         }
+        return false;
       });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initEthicsForm);
+    } else {
+      initEthicsForm();
     }
   </script>
 </Layout>

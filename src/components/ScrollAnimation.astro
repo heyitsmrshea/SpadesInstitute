@@ -1,0 +1,31 @@
+---
+const { animation = 'fade-in', delay = 0 } = Astro.props;
+---
+<div class={`${animation} scroll-animate` style={`transition-delay: ${delay}ms`}>
+  <slot />
+</div>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -100px 0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Optionally unobserve after animation
+        // observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with scroll-animate class
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((el) => observer.observe(el));
+  });
+</script>
