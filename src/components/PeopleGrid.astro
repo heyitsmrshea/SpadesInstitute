@@ -4,84 +4,210 @@ const { people = [] } = Astro.props;
 const baseRaw = import.meta.env.BASE_URL || '/';
 const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
 
+// Separate people by role
+const foundingPartners = people.filter(p => p.role.includes('Founding Partner'));
+const advisors = people.filter(p => p.role.includes('Advisor'));
+
 // Determine if we should use 2-column or 3-column grid
 // Use 2-column until we have 6+ people
 const useTwoColumn = people.length < 6;
 ---
-<!-- Premium 2-column grid until 6+ people -->
-<div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
-  {people.map((person, i) => {
-    const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
-    
-    return (
-      <article
-        class="group relative bg-white border border-spades-border/40 rounded-xl overflow-hidden transition-all duration-300 hover:border-spades-accent/30 hover:shadow-[0_4px_20px_rgba(30,58,95,0.08)] flex flex-col"
-        style={`animation-delay: ${i * 100}ms`}
-        id={cardId}
-        data-role={person.role.includes('Founding Partner') ? 'founding-partner' : 'advisor'}
-      >
-        <!-- Top Accent Rule by Role -->
-        {person.role.includes('Founding Partner') ? (
-          <div class="h-0.5 w-full bg-spades-accent"></div>
-        ) : (
-          <div class="h-0.5 w-full bg-blue-500"></div>
-        )}
-
-        <!-- Photo Frame with Premium Treatment -->
-        <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
-          <!-- Image -->
-          <img
-            src={`${base}${person.headshot.replace(/^\//, '')}`}
-            alt={`${person.name} headshot`}
-            loading="lazy"
-            decoding="async"
-            class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-            style="object-position: center 20%;" 
-          />
+<div class="space-y-12">
+  <!-- Founding Partners Section -->
+  {foundingPartners.length > 0 && (
+    <div>
+      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-6 text-center md:text-left">
+        Founding Partners
+      </h2>
+      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
+        {foundingPartners.map((person, i) => {
+          const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
           
-          <!-- Premium Editorial Overlays -->
-          <!-- Dark navy gradient from bottom (35% opacity at bottom, 0% at 60% height) -->
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/35 via-transparent to-transparent" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.35) 0%, rgba(30, 58, 95, 0.2) 40%, transparent 60%);" aria-hidden="true"></div>
-          
-          <!-- Subtle inner border -->
-          <div class="absolute inset-0 border border-white/20 pointer-events-none" aria-hidden="true"></div>
-          
-          <!-- Optional: Very subtle noise texture (using CSS pattern) -->
-          <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
-          
-          <!-- Role Badge (Smaller, Top Left) -->
-          <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] font-semibold text-spades-ink tracking-wide shadow-sm">
-            {person.role.includes('Founding Partner') ? 'Founding Partner' : 'Advisor'}
-          </div>
-
-          <!-- LinkedIn Icon (Top Right, Hover Only on Desktop, Always Visible on Mobile) -->
-          {person.linkedin && (
-            <a
-              href={person.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-spades-muted hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-sm z-10 opacity-100 md:opacity-0 md:group-hover:opacity-100"
-              aria-label={`${person.name} on LinkedIn`}
+          return (
+            <article
+              class="group relative bg-white border border-spades-border/40 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-spades-accent/50 hover:shadow-[0_8px_24px_rgba(30,58,95,0.12)] flex flex-col cursor-pointer"
+              style={`animation-delay: ${i * 100}ms`}
+              id={cardId}
+              data-role="founding-partner"
             >
-              <LinkedInIcon class="w-4 h-4" />
-            </a>
-          )}
-        </div>
+              <!-- Top Accent Rule -->
+              <div class="h-0.5 w-full bg-spades-accent"></div>
 
-        <!-- Content -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <h3 class="text-2xl font-bold text-spades-text leading-tight mb-3">{person.name}</h3>
-            
-            <!-- Bio line (2-line clamp, consistent style) -->
-            {person.tagline && (
-              <p class="text-sm text-spades-text-secondary/80 leading-relaxed line-clamp-2 font-light">
-                {person.tagline}
-              </p>
-            )}
-          </div>
-        </div>
-      </article>
-    );
-  })}
+              <!-- Photo Frame with Premium Treatment -->
+              <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+                <!-- Image with unified quality treatment -->
+                <img
+                  src={`${base}${person.headshot.replace(/^\//, '')}`}
+                  alt={`${person.name} headshot`}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                />
+                
+                <!-- Premium Editorial Overlays -->
+                <!-- Subtle top-to-bottom navy tint (6%) -->
+                <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                
+                <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                
+                <!-- 1px inner border -->
+                <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                
+                <!-- Low-opacity noise texture layer -->
+                <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                
+                <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
+                <div class="absolute top-4 left-4 bg-white/85 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase">
+                  Founding Partner
+                </div>
+
+                <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
+                {person.linkedin && (
+                  <a
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hidden md:flex absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full items-center gap-1.5 text-[11px] font-medium text-spades-ink hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-md z-10 opacity-0 group-hover:opacity-100"
+                    aria-label={`${person.name} on LinkedIn`}
+                  >
+                    <LinkedInIcon class="w-3.5 h-3.5" />
+                    <span>Profile</span>
+                  </a>
+                )}
+              </div>
+
+              <!-- Content (Tightened) -->
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+                  
+                  <!-- Bio line (2-line clamp, smaller + lighter) -->
+                  {person.tagline && (
+                    <p class="text-xs text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
+                      {person.tagline}
+                    </p>
+                  )}
+                </div>
+                
+                <!-- Mobile LinkedIn Link (Always visible on mobile, in footer) -->
+                {person.linkedin && (
+                  <a
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="mt-4 md:hidden inline-flex items-center gap-1.5 text-[10px] font-medium text-spades-accent hover:text-[#0077b5] transition-colors"
+                    aria-label={`${person.name} on LinkedIn`}
+                  >
+                    <LinkedInIcon class="w-3 h-3" />
+                    <span>View Profile</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  )}
+
+  <!-- Advisors Section -->
+  {advisors.length > 0 && (
+    <div>
+      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-6 text-center md:text-left">
+        Advisors
+      </h2>
+      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
+        {advisors.map((person, i) => {
+          const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
+          
+          return (
+            <article
+              class="group relative bg-white border border-spades-border/40 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-spades-accent/50 hover:shadow-[0_8px_24px_rgba(30,58,95,0.12)] flex flex-col cursor-pointer"
+              style={`animation-delay: ${i * 100}ms`}
+              id={cardId}
+              data-role="advisor"
+            >
+              <!-- Top Accent Rule -->
+              <div class="h-0.5 w-full bg-blue-500"></div>
+
+              <!-- Photo Frame with Premium Treatment -->
+              <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+                <!-- Image with unified quality treatment -->
+                <img
+                  src={`${base}${person.headshot.replace(/^\//, '')}`}
+                  alt={`${person.name} headshot`}
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                />
+                
+                <!-- Premium Editorial Overlays -->
+                <!-- Subtle top-to-bottom navy tint (6%) -->
+                <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                
+                <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                
+                <!-- 1px inner border -->
+                <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                
+                <!-- Low-opacity noise texture layer -->
+                <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                
+                <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
+                <div class="absolute top-4 left-4 bg-white/85 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase">
+                  Advisor
+                </div>
+
+                <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
+                {person.linkedin && (
+                  <a
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hidden md:flex absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full items-center gap-1.5 text-[11px] font-medium text-spades-ink hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-md z-10 opacity-0 group-hover:opacity-100"
+                    aria-label={`${person.name} on LinkedIn`}
+                  >
+                    <LinkedInIcon class="w-3.5 h-3.5" />
+                    <span>Profile</span>
+                  </a>
+                )}
+              </div>
+
+              <!-- Content (Tightened) -->
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+                  
+                  <!-- Bio line (2-line clamp, smaller + lighter) -->
+                  {person.tagline && (
+                    <p class="text-xs text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
+                      {person.tagline}
+                    </p>
+                  )}
+                </div>
+                
+                <!-- Mobile LinkedIn Link (Always visible on mobile, in footer) -->
+                {person.linkedin && (
+                  <a
+                    href={person.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="mt-4 md:hidden inline-flex items-center gap-1.5 text-[10px] font-medium text-spades-accent hover:text-[#0077b5] transition-colors"
+                    aria-label={`${person.name} on LinkedIn`}
+                  >
+                    <LinkedInIcon class="w-3 h-3" />
+                    <span>View Profile</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  )}
 </div>

@@ -17,8 +17,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   
   <!-- Breadcrumbs removed for cleaner look on small site -->
 
-  <!-- Hero (Reduced Height) -->
-  <section class="bg-spades-ink-deep py-10 md:py-12 relative overflow-hidden">
+  <!-- Hero (Reduced Height by 20%) -->
+  <section class="bg-spades-ink-deep py-8 md:py-10 relative overflow-hidden">
     <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
     
     <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
@@ -30,8 +30,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
     </div>
   </section>
 
-  <!-- People Grid -->
-  <section class="bg-spades-paper section-padding">
+  <!-- People Grid (Pulled up slightly) -->
+  <section class="bg-spades-paper pt-12 pb-16 md:pt-16 md:pb-20">
     <div class="max-w-5xl mx-auto px-6">
       <div id="people-container">
         <PeopleGrid people={people} />
