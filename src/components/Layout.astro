@@ -28,6 +28,9 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     
+    <!-- Givebutter Donate Widget -->
+    <script async src="https://widgets.givebutter.com/latest.umd.cjs?acct=9sAUFnebueNrekhW&p=other"></script>
+    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={`${siteUrl}${base}${Astro.url.pathname}`} />
