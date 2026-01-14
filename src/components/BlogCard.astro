@@ -21,11 +21,11 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
 <a 
   href={`${base}/blog/${post.slug}`} 
   class:list={[
-    "group block card card-hover overflow-hidden h-full",
+    "group block card card-hover overflow-hidden h-full bg-white",
     featured && "md:flex md:flex-row"
   ]}
 >
-  {post.data.featuredImage && (
+  {post.data.featuredImage ? (
     <div class:list={[
       "overflow-hidden bg-spades-paper",
       featured ? "md:w-2/5 aspect-video" : "aspect-video"
@@ -39,6 +39,16 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
         loading="lazy"
         decoding="async"
       />
+    </div>
+  ) : (
+    <!-- Placeholder gradient when no image -->
+    <div class:list={[
+      "overflow-hidden bg-gradient-to-br from-spades-accent/10 to-spades-accent/5",
+      featured ? "md:w-2/5 aspect-video" : "aspect-video"
+    ]}>
+      <div class="w-full h-full flex items-center justify-center">
+        <div class="text-4xl text-spades-accent/30">♠︎</div>
+      </div>
     </div>
   )}
   
