@@ -18,42 +18,46 @@ const valueProps = [
   { label: 'Ethics First', desc: 'Operating with integrity, transparency, and commitment to democratic values' }
 ];
 ---
-<section class="relative bg-spades-paper border-b border-spades-border">
-  <!-- Subtle pattern background -->
-  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle at 1px 1px, rgba(17,24,39,1) 1px, transparent 0); background-size: 24px 24px;" aria-hidden="true"></div>
+<section class="relative bg-spades-paper border-b border-spades-border overflow-hidden">
+  <!-- Animated background pattern -->
+  <div class="absolute inset-0 bg-hex-pattern opacity-60" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-grid-animated opacity-40" aria-hidden="true"></div>
   
-  <div class="max-w-5xl mx-auto px-6 py-16 md:py-20 relative">
-    <div class="text-center motion-safe:animate-fadeUp">
-      <!-- Flag and eyebrow -->
-      <div class="mb-6 flex items-center justify-center gap-4">
+  <!-- Depth gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-spades-paper/80" aria-hidden="true"></div>
+  
+  <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 relative">
+    <div class="text-center">
+      <!-- Flag and eyebrow with reveal animation -->
+      <div class="mb-8 flex items-center justify-center gap-4 blur-reveal">
         <img
           src={`${base}flag-us.png`}
           alt="United States flag"
           width="64"
           height="34"
           loading="eager"
-          class="h-8 w-auto rounded-sm border border-spades-border shadow-sm"
+          class="h-9 w-auto rounded-sm border border-spades-border shadow-md transition-transform duration-300 hover:scale-105"
         />
-        <span class="text-xs tracking-[0.3em] uppercase text-spades-muted">{eyebrow}</span>
+        <span class="text-xs tracking-[0.3em] uppercase text-spades-muted font-medium">{eyebrow}</span>
       </div>
 
-      <!-- Main heading -->
-      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-spades-text max-w-4xl mx-auto">
+      <!-- Main heading with blur reveal effect -->
+      <h1 class="font-display text-3xl md:text-4xl lg:text-5xl leading-tight text-spades-text max-w-4xl mx-auto blur-reveal">
         {title}
       </h1>
 
-      <!-- Description -->
-      <p class="mt-4 text-lg md:text-xl text-spades-text-secondary max-w-2xl mx-auto leading-relaxed">
+      <!-- Description with staggered reveal -->
+      <p class="mt-5 text-lg md:text-xl text-spades-text-secondary max-w-2xl mx-auto leading-relaxed reveal-up">
         {description}
       </p>
 
-      <!-- CTAs -->
-      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+      <!-- CTAs with enhanced styling -->
+      <div class="mt-10 flex flex-wrap gap-4 justify-center reveal-up">
         <a
           href={primaryCta.href}
           target={primaryCta.href.startsWith('http') ? '_blank' : undefined}
           rel={primaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
-          class="btn btn-primary"
+          class="btn btn-primary btn-shimmer btn-glow"
         >
           {primaryCta.label}
         </a>
@@ -70,12 +74,12 @@ const valueProps = [
       </div>
     </div>
 
-    <!-- Value propositions -->
+    <!-- Value propositions with alternating reveal animations -->
     {showMission && (
-      <div class="mt-12 pt-10 border-t border-spades-border">
-        <div class="grid md:grid-cols-3 gap-8">
+      <div class="mt-16 pt-12 border-t border-spades-border">
+        <div class="grid md:grid-cols-3 gap-8 stagger-children">
           {valueProps.map((prop, i) => (
-            <div class="text-center md:text-left motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+            <div class={`text-center md:text-left reveal-up`}>
               <h3 class="text-base font-semibold text-spades-text mb-2">{prop.label}</h3>
               <p class="text-sm text-spades-text-secondary leading-relaxed">{prop.desc}</p>
             </div>
@@ -84,4 +88,8 @@ const valueProps = [
       </div>
     )}
   </div>
+  
+  <!-- Bottom glow accent -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-spades-accent/20 to-transparent" aria-hidden="true"></div>
 </section>
+

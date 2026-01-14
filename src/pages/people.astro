@@ -32,82 +32,86 @@ const sections = [
   ]} />
 
   <!-- Hero -->
-  <section class="bg-spades-ink-deep section-padding-sm">
-    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+  <section class="bg-spades-ink-deep py-12 md:py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
       <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">People</p>
-      <h1 class="text-heading-xl md:text-heading-2xl text-white">Our Team</h1>
-      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
-        Leaders and advisors committed to advancing democracy, freedom, and ethics through trusted, nonpartisan collaboration.
+      <h1 class="text-heading-xl md:text-heading-2xl text-white not-italic">Our Team</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-xl mx-auto leading-relaxed">
+        Leaders and advisors advancing nonpartisan, outcomes-driven collaboration.
       </p>
       
-      <!-- Jump Links -->
-      {sections.length > 1 && (
-        <nav class="mt-8 flex flex-wrap justify-center gap-3" aria-label="Jump to section">
-          {sections.map((section) => (
-            <a 
-              href={`#${section.id}`}
-              class="nav-link inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-sm text-white/80 hover:bg-white/10 hover:text-white hover:border-white/40 transition-colors focus-white"
-            >
-              {section.label}
-              <span class="text-xs text-white/60">({section.count})</span>
-            </a>
-          ))}
-        </nav>
-      )}
+      <!-- Filter Pills -->
+      <div class="mt-8 flex flex-wrap justify-center gap-3" role="group" aria-label="Filter by role">
+        <button 
+          type="button"
+          data-filter="all"
+          class="filter-pill active px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+        >
+          All
+        </button>
+        <button 
+          type="button"
+          data-filter="founding-partner"
+          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+        >
+          Founding Partners
+        </button>
+        <button 
+          type="button"
+          data-filter="advisor"
+          class="filter-pill px-4 py-2 rounded-full border text-sm font-medium transition-colors"
+        >
+          Advisors
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- People List -->
+  <!-- People Grid -->
   <section class="bg-spades-paper section-padding">
-    <div class="max-w-4xl mx-auto px-6">
-      {foundingPartners.length > 0 && (
-        <div id="founding-partners" class="mb-12 scroll-mt-24">
-          <div class="flex items-center gap-4 mb-6">
-            <h2 class="text-heading-md text-spades-text">Founding Partners</h2>
-            <div class="flex-1 h-px bg-spades-border"></div>
-          </div>
-          <PeopleGrid people={foundingPartners} />
-        </div>
-      )}
-
-      {advisors.length > 0 && (
-        <div id="advisors" class="mb-12 scroll-mt-24">
-          <div class="flex items-center gap-4 mb-6">
-            <h2 class="text-heading-md text-spades-text">Advisors</h2>
-            <div class="flex-1 h-px bg-spades-border"></div>
-          </div>
-          <PeopleGrid people={advisors} />
-        </div>
-      )}
-
-      {others.length > 0 && (
-        <div id="team" class="scroll-mt-24">
-          <div class="flex items-center gap-4 mb-6">
-            <h2 class="text-heading-md text-spades-text">Team</h2>
-            <div class="flex-1 h-px bg-spades-border"></div>
-          </div>
-          <PeopleGrid people={others} />
-        </div>
-      )}
+    <div class="max-w-5xl mx-auto px-6">
+      <PeopleGrid people={people} />
     </div>
   </section>
 
-  <!-- Join Section -->
+  <!-- Get Involved Section -->
   <section class="bg-white section-padding border-t border-spades-border">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-heading-lg text-spades-text mb-4">Join Our Team</h2>
+      <h2 class="text-heading-lg text-spades-text mb-4 not-italic">Get Involved</h2>
       <p class="text-body-lg text-spades-text-secondary mb-8">
-        We're always looking for passionate leaders committed to advancing ethics, democracy, and freedom through trusted collaboration.
+        Interested in advising, partnering, or collaborating with us?
       </p>
-      <a href={`${base}/connect`} class="btn btn-primary">
-        Get in touch
-      </a>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`${base}/partner`} class="btn btn-primary">
+          Partner with us
+        </a>
+        <a href={`${base}/connect`} class="btn btn-secondary">
+          Get in touch
+        </a>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .scroll-mt-24 {
-    scroll-margin-top: 6rem;
+  .filter-pill {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .filter-pill:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+  }
+  
+  .filter-pill.active {
+    background-color: white;
+    border-color: white;
+    color: #0f172a;
   }
 </style>
+

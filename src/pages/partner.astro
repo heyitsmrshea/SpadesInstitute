@@ -1,0 +1,144 @@
+---
+import Layout from '../components/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
+
+const partnershipTypes = [
+  {
+    icon: '🎤',
+    title: 'Sponsor a Program',
+    description: 'Support our Speaker Series, Fellowship, or Veteran Mentoring programs.',
+    examples: ['Underwrite a quarterly convening', 'Fund fellowship placement', 'Support veteran transitions'],
+    cta: { label: 'Discuss sponsorship', href: `${base}/connect?topic=sponsorship` }
+  },
+  {
+    icon: '🤝',
+    title: 'Host a Convening',
+    description: 'Propose a closed-door discussion on a priority national security topic.',
+    examples: ['Define the challenge', 'Curate participants', 'Shape actionable outputs'],
+    cta: { label: 'Propose a topic', href: `${base}/connect?topic=convening` }
+  },
+  {
+    icon: '🏢',
+    title: 'Corporate Partnership',
+    description: 'Ongoing engagement for industry partners committed to ethical collaboration.',
+    examples: ['Access to convenings', 'Fellowship placement priority', 'Thought leadership'],
+    cta: { label: 'Explore partnership', href: `${base}/connect?topic=partnership` }
+  },
+  {
+    icon: '💝',
+    title: 'Individual Support',
+    description: 'Donate to sustain nonpartisan, ethics-first collaboration.',
+    examples: ['Tax-deductible giving', 'Support our mission', 'Enable independent work'],
+    cta: { label: 'Make a gift', href: 'https://givebutter.com/spadesinstitute', external: true }
+  }
+];
+---
+<Layout 
+  title="Partner With Us | Spades Institute" 
+  description="Partner with Spades Institute. Sponsor programs, host convenings, or support our mission to connect government, industry, and academia."
+>
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/partner`} />
+  </head>
+  
+  <Breadcrumbs items={[
+    { label: 'Home', href: `${base}/` },
+    { label: 'Partner With Us', href: `${base}/partner` }
+  ]} />
+
+  <!-- Hero -->
+  <section class="bg-spades-ink-deep section-padding-sm relative overflow-hidden">
+    <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
+      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">Partner</p>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white not-italic">Partner With Spades Institute</h1>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
+        Support mission-critical collaboration between government, industry, and academia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Trust Band -->
+  <section class="bg-spades-ink-deep border-t border-white/10 py-4">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70">
+        <span class="font-medium text-white/90">501(c)(3) Nonprofit</span>
+        <span class="text-white/30">·</span>
+        <span>All partnerships are ethics-reviewed</span>
+        <span class="text-white/30">·</span>
+        <span>Nonpartisan commitment</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Types -->
+  <section class="bg-spades-paper section-padding">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12 reveal-up">
+        <h2 class="text-heading-lg md:text-heading-xl text-spades-text not-italic">Ways to Partner</h2>
+        <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
+          Choose the partnership model that aligns with your organization's goals.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 stagger-children">
+        {partnershipTypes.map((type, idx) => (
+          <article class="depth-card p-6 md:p-8 reveal-up flex flex-col">
+            <!-- Icon + Title -->
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-12 h-12 rounded-lg bg-spades-accent/10 flex items-center justify-center text-2xl flex-shrink-0">
+                {type.icon}
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-spades-text">{type.title}</h3>
+                <p class="text-sm text-spades-text-secondary mt-1">{type.description}</p>
+              </div>
+            </div>
+
+            <!-- Examples -->
+            <ul class="space-y-2 mb-6 flex-grow">
+              {type.examples.map(example => (
+                <li class="flex items-start gap-2 text-sm text-spades-text-secondary">
+                  <span class="text-spades-accent mt-0.5">✓</span>
+                  <span>{example}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <a 
+              href={type.cta.href}
+              target={type.cta.external ? '_blank' : undefined}
+              rel={type.cta.external ? 'noopener noreferrer' : undefined}
+              class="inline-flex items-center gap-2 text-sm font-semibold text-spades-accent hover:gap-3 transition-all group"
+            >
+              {type.cta.label}
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- General Partnership CTA -->
+  <section class="bg-white section-padding border-t border-spades-border">
+    <div class="max-w-3xl mx-auto px-6 text-center reveal-up">
+      <h2 class="text-heading-lg text-spades-text mb-4 not-italic">Not sure where to start?</h2>
+      <p class="text-body-lg text-spades-text-secondary mb-8">
+        Tell us about your organization and goals. We'll find the right way to collaborate.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={`${base}/connect`} class="btn btn-primary btn-shimmer">
+          Start a conversation
+        </a>
+        <a href="https://givebutter.com/spadesinstitute" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Donate
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

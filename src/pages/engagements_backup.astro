@@ -46,10 +46,10 @@ const faqSchema = {
   title="Engage | Spades Institute" 
   description="Explore our speaker series and fellowships that bring together mission leaders, technologists, and practitioners to solve national security challenges."
 >
-  <!-- <head slot="head">
+  <head slot="head">
     <link rel="canonical" href={`${siteUrl}${base}/engagements`} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  </head> -->
+  </head>
   
   <Breadcrumbs items={[
     { label: 'Home', href: `${base}/` },
@@ -207,12 +207,10 @@ const faqSchema = {
               </div>
               
               <div class="flex flex-wrap items-center gap-4">
-                <button class="btn btn-secondary opacity-60 cursor-not-allowed" disabled>
-                  Applications Closed
-                </button>
-                <a href={`${base}/connect`} class="text-sm text-spades-accent hover:underline font-medium">
-                  Join the waitlist <span aria-hidden="true">&rarr;</span>
+                <a href={`${base}/connect`} class="btn btn-primary btn-shimmer">
+                  Apply for the fellowship
                 </a>
+                <span class="text-sm text-spades-muted">Applications reviewed monthly</span>
               </div>
             </div>
           </div>

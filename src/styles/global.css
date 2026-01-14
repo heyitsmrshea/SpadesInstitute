@@ -67,14 +67,18 @@
     text-decoration-skip-ink: auto;
   }
 
-  a:not(.btn):not(.nav-link) {
+  /* Underlines ONLY for inline body links (inside prose/paragraphs) */
+  /* Exclude: buttons, nav, cards, articles, groups, and any link with explicit no-underline */
+  .prose a:not(.btn):not(.nav-link),
+  p a:not(.btn):not(.nav-link) {
     text-decoration: underline;
     text-decoration-color: rgba(30, 58, 95, 0.3);
     text-underline-offset: 2px;
     transition: text-decoration-color 0.2s ease;
   }
 
-  a:not(.btn):not(.nav-link):hover {
+  .prose a:not(.btn):not(.nav-link):hover,
+  p a:not(.btn):not(.nav-link):hover {
     text-decoration-color: var(--color-accent);
   }
 
@@ -107,7 +111,7 @@
 
   /* Primary - Main action, high emphasis */
   .btn-primary {
-    @apply bg-spades-accent text-white shadow-card hover:bg-spades-accent-hover hover:shadow-[0_8px_30px_rgba(30,58,95,0.25)] hover:-translate-y-0.5 focus-visible:ring-spades-accent;
+    @apply bg-spades-accent text-white shadow-card hover:bg-spades-accent-hover hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-spades-accent;
   }
 
   /* Secondary - Alternative action, medium emphasis */
@@ -228,7 +232,7 @@
   }
 
   .hover-glow {
-    @apply transition-shadow duration-200 hover:shadow-[0_0_30px_rgba(30,58,95,0.15)];
+    @apply transition-shadow duration-200 hover:shadow-lg;
   }
 
   /* Focus utilities */
@@ -297,12 +301,10 @@ button {
 
 /* Loading Skeletons */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    #f3f4f6 0%,
-    #e5e7eb 50%,
-    #f3f4f6 100%
-  );
+  background: linear-gradient(90deg,
+      #f3f4f6 0%,
+      #e5e7eb 50%,
+      #f3f4f6 100%);
   background-size: 200% 100%;
   animation: skeleton-loading 1.5s ease-in-out infinite;
 }
@@ -311,6 +313,7 @@ button {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -381,12 +384,355 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .fade-in-on-scroll,
   .slide-in-left,
   .slide-in-right,
-  .scale-in {
+  .scale-in,
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .blur-reveal {
     opacity: 1;
     transform: none;
+    filter: none;
   }
+}
+
+/* ============================================
+   SCROLL-TRIGGERED REVEAL ANIMATIONS
+   Modern, diverse animations triggered by scroll
+   ============================================ */
+
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.blur-reveal {
+  opacity: 0;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out, filter 0.7s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.blur-reveal {
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+/* Revealed state */
+.reveal-up.revealed,
+.reveal-left.revealed,
+.reveal-right.revealed,
+.reveal-scale.revealed,
+.blur-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+  filter: blur(0);
+}
+
+/* Stagger delays for children */
+.stagger-children>*:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.stagger-children>*:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.stagger-children>*:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+.stagger-children>*:nth-child(4) {
+  transition-delay: 300ms;
+}
+
+.stagger-children>*:nth-child(5) {
+  transition-delay: 400ms;
+}
+
+.stagger-children>*:nth-child(6) {
+  transition-delay: 500ms;
+}
+
+/* ============================================
+   ENHANCED DEPTH CARDS
+   Government-grade professionalism with subtle depth
+   ============================================ */
+
+.depth-card {
+  @apply bg-white border border-spades-border rounded-xl transition-all duration-300;
+  box-shadow:
+    0 4px 6px -1px rgba(15, 23, 42, 0.05),
+    0 2px 4px -2px rgba(15, 23, 42, 0.05);
+}
+
+.depth-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 40px -10px rgba(15, 23, 42, 0.12),
+    0 8px 16px -8px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(30, 58, 95, 0.05);
+}
+
+.depth-card-dark {
+  @apply bg-white/5 border-white/10;
+}
+
+.depth-card-dark:hover {
+  @apply bg-white/10 border-white/20;
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   ENHANCED BUTTONS WITH SHIMMER
+   Professional micro-interactions
+   ============================================ */
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow:
+    0 0 20px rgba(30, 58, 95, 0.3),
+    0 4px 12px rgba(30, 58, 95, 0.15);
+}
+
+/* ============================================
+   ANIMATED BACKGROUND PATTERNS
+   Subtle tech-inspired backgrounds
+   ============================================ */
+
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-grid-animated {
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.bg-hex-pattern {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%231e3a5f' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(30, 58, 95, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* ============================================
+   HEADER SCROLL EFFECTS
+   Professional scroll-based enhancements
+   ============================================ */
+
+.nav-scrolled {
+  background-color: rgba(15, 23, 42, 0.98) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-color: transparent !important;
+}
+
+/* ============================================
+   SECTION DIVIDERS
+   Visual breaks between content areas
+   ============================================ */
+
+.section-divider {
+  @apply relative h-px bg-spades-border my-12;
+}
+
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scaleX(0);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  border-radius: 2px;
+  transition: transform 0.8s ease-out;
+}
+
+.section-divider.revealed::before {
+  transform: translate(-50%, -50%) scaleX(1);
+}
+
+/* ============================================
+   ENHANCED ACCORDIONS
+   Smooth open/close animations
+   ============================================ */
+
+details summary {
+  transition: background-color 0.2s ease;
+}
+
+details[open] summary {
+  @apply bg-spades-paper/50;
+}
+
+details>div {
+  animation: accordionOpen 0.3s ease-out;
+}
+
+@keyframes accordionOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   FORM FOCUS ANIMATIONS
+   Professional input interactions
+   ============================================ */
+
+.input-focus-glow {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.input-focus-glow:focus {
+  box-shadow:
+    0 0 0 3px rgba(30, 58, 95, 0.1),
+    0 0 20px rgba(30, 58, 95, 0.05);
+}
+
+/* ============================================
+   PEOPLE/TEAM CARD EFFECTS
+   Professional photo interactions
+   ============================================ */
+
+.team-card {
+  @apply transition-all duration-300;
+}
+
+.team-card:hover {
+  @apply -translate-y-1;
+}
+
+.team-card:hover .team-photo {
+  @apply scale-105;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+
+.team-photo {
+  @apply transition-all duration-300;
+}
+
+/* ============================================
+   ANIMATED LINE CONNECTORS
+   For step flows and timelines
+   ============================================ */
+
+.line-connector {
+  @apply relative;
+}
+
+.line-connector::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s ease-out;
+}
+
+.line-connector.revealed::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   GLOW EFFECTS
+   Subtle ambient lighting
+   ============================================ */
+
+.glow-accent {
+  box-shadow: 0 0 40px rgba(30, 58, 95, 0.15);
+}
+
+.glow-white {
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   COUNTER ANIMATION SUPPORT
+   For animated statistics
+   ============================================ */
+
+.counter-value {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
 }

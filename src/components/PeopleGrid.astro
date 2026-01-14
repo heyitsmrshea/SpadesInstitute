@@ -1,58 +1,69 @@
 ---
 import LinkedInIcon from './icons/LinkedInIcon.astro';
-const { people = [], variant = 'card' } = Astro.props;
-const isDark = variant === 'dark';
+const { people = [] } = Astro.props;
 const baseRaw = import.meta.env.BASE_URL || '/';
 const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
 ---
-<div class="space-y-6">
+<!-- Editorial 3-column grid with centered last item support -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 [&>*:last-child]:lg:col-start-2 [&>*:last-child]:lg:col-end-3 has-[>:nth-child(4)]:lg:[&>*:last-child]:col-auto has-[>:nth-child(4)]:lg:[&>*:nth-child(4)]:col-start-2 has-[>:nth-child(4)]:lg:[&>*:nth-child(4)]:col-end-3">
   {people.map((person, i) => {
     const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
     
     return (
       <article
-        class="card card-hover p-6 md:p-8 motion-safe:animate-fadeIn"
+        class="group relative bg-white border border-stone-200 rounded-lg overflow-hidden transition-all duration-300 hover:border-spades-accent/40 hover:shadow-lg flex flex-col"
         style={`animation-delay: ${i * 100}ms`}
         id={cardId}
       >
-        <div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-          <!-- Photo -->
-          <div class="flex-shrink-0 group">
-            <img
-              src={`${base}${person.headshot.replace(/^\//, '')}`}
-              alt={`${person.name} headshot`}
-              width="128"
-              height="128"
-              loading="lazy"
-              decoding="async"
-              class="w-24 h-24 md:w-32 md:h-32 rounded-xl object-cover border border-spades-border transition-all duration-300 group-hover:scale-105 group-hover:brightness-105 group-hover:border-spades-accent/50"
-            />
+        <!-- Top Accent Rule -->
+        <div class="h-1 w-full bg-spades-accent"></div>
+
+        <!-- Photo Frame -->
+        <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+          <!-- Image with fixed container logic -->
+          <img
+            src={`${base}${person.headshot.replace(/^\//, '')}`}
+            alt={`${person.name} headshot`}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            style="object-position: center 20%;" 
+          />
+          
+          <!-- Consistent Editorial Overlays -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80 mix-blend-multiply pointer-events-none"></div>
+          <div class="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] pointer-events-none"></div>
+          
+          <!-- Role Chip (Top Left) -->
+          <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded text-xs font-bold text-spades-ink uppercase tracking-wider shadow-sm">
+            {person.role}
           </div>
 
-          <!-- Content -->
-          <div class="flex-1 min-w-0 text-center sm:text-left">
-            <!-- Header -->
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-              <div>
-                <h3 class="text-xl font-semibold text-spades-text">{person.name}</h3>
-                <p class="text-sm text-spades-accent font-medium">{person.role}</p>
-                {person.tagline && (
-                  <p class="text-sm text-spades-text-secondary mt-2 italic">{person.tagline}</p>
-                )}
-              </div>
-              {person.linkedin && (
-                <a
-                  href={person.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="tooltip group inline-flex items-center justify-center w-10 h-10 rounded-lg border border-spades-border text-spades-text hover:border-spades-accent hover:text-spades-accent transition-all focus-accent mx-auto sm:mx-0"
-                  aria-label={`${person.name} on LinkedIn`}
-                  data-tooltip="View LinkedIn Profile"
-                >
-                  <LinkedInIcon class="w-5 h-5 transition-transform group-hover:scale-110" />
-                </a>
-              )}
-            </div>
+          <!-- LinkedIn Icon (Top Right) -->
+          {person.linkedin && (
+            <a
+              href={person.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded flex items-center justify-center text-spades-muted hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-sm z-10"
+              aria-label={`${person.name} on LinkedIn`}
+            >
+              <LinkedInIcon class="w-4 h-4" />
+            </a>
+          )}
+        </div>
+
+        <!-- Content -->
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+            
+            <!-- One-line signal (tagline) -->
+            {person.tagline && (
+              <p class="text-sm text-spades-text-secondary leading-relaxed line-clamp-2">
+                {person.tagline}
+              </p>
+            )}
           </div>
         </div>
       </article>

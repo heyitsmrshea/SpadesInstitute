@@ -102,6 +102,43 @@ module.exports = {
           '50%': { transform: 'scale(1.05)' },
           '70%': { transform: 'scale(0.9)' },
           '100%': { opacity: 1, transform: 'scale(1)' }
+        },
+        // New animations for redesign
+        blurReveal: {
+          '0%': { opacity: 0, filter: 'blur(12px)', transform: 'translateY(20px)' },
+          '100%': { opacity: 1, filter: 'blur(0)', transform: 'translateY(0)' }
+        },
+        revealUp: {
+          '0%': { opacity: 0, transform: 'translateY(40px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' }
+        },
+        revealLeft: {
+          '0%': { opacity: 0, transform: 'translateX(-40px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' }
+        },
+        revealRight: {
+          '0%': { opacity: 0, transform: 'translateX(40px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' }
+        },
+        revealScale: {
+          '0%': { opacity: 0, transform: 'scale(0.9)' },
+          '100%': { opacity: 1, transform: 'scale(1)' }
+        },
+        gridPulse: {
+          '0%, 100%': { opacity: '0.03' },
+          '50%': { opacity: '0.07' }
+        },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 0 rgba(30, 58, 95, 0)' },
+          '50%': { boxShadow: '0 0 40px rgba(30, 58, 95, 0.15)' }
+        },
+        lineGrow: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' }
+        },
+        shimmerSlide: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
         }
       },
       animation: {
@@ -115,7 +152,17 @@ module.exports = {
         shimmer: 'shimmer 2s linear infinite',
         flagWave: 'flagWave 6s ease-in-out infinite',
         slideDown: 'slideDown 400ms ease-out both',
-        bounceIn: 'bounceIn 600ms ease-out both'
+        bounceIn: 'bounceIn 600ms ease-out both',
+        // New animations for redesign
+        blurReveal: 'blurReveal 800ms ease-out both',
+        revealUp: 'revealUp 700ms ease-out both',
+        revealLeft: 'revealLeft 700ms ease-out both',
+        revealRight: 'revealRight 700ms ease-out both',
+        revealScale: 'revealScale 600ms ease-out both',
+        gridPulse: 'gridPulse 4s ease-in-out infinite',
+        glowPulse: 'glowPulse 3s ease-in-out infinite',
+        lineGrow: 'lineGrow 800ms ease-out both',
+        shimmerSlide: 'shimmerSlide 600ms ease-out'
       }
     }
   },

@@ -18,8 +18,11 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   ]} />
 
   <!-- Hero -->
-  <section class="bg-spades-ink-deep section-padding-sm">
-    <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
+  <section class="bg-spades-ink-deep section-padding-sm relative overflow-hidden">
+    <!-- Subtle pattern -->
+    <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
       <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">About</p>
       <h1 class="text-heading-xl md:text-heading-2xl text-white">Why Spades Institute</h1>
       <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
@@ -31,25 +34,25 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   <!-- Our Story - Left aligned narrative -->
   <section class="bg-white section-padding border-b border-spades-border">
     <div class="max-w-3xl mx-auto px-6">
-      <div class="motion-safe:animate-fadeUp">
+      <div class="reveal-up">
         <h2 class="text-heading-lg text-spades-text mb-8">Our Story</h2>
         
-        <div class="space-y-8">
-          <div>
+        <div class="space-y-8 stagger-children">
+          <div class="reveal-left">
             <h3 class="text-lg font-semibold text-spades-text mb-3">The Problem</h3>
             <p class="text-body-lg text-spades-text-secondary">
               In an era of complex security challenges, effective solutions require collaboration across sectors. Yet too often, government, industry, and academia operate in silos, missing opportunities to leverage collective expertise and leaving critical gaps in our national security frameworks.
             </p>
           </div>
 
-          <div>
+          <div class="reveal-right">
             <h3 class="text-lg font-semibold text-spades-text mb-3">What We Do Differently</h3>
             <p class="text-body-lg text-spades-text-secondary">
               Spades Institute serves as a trusted convener, bringing together the right voices at the right time. We don't just connect people; we align incentives, build relationships, and focus every engagement on practical, measurable outcomes. Our programs are designed for action, not just discussion.
             </p>
           </div>
 
-          <div>
+          <div class="reveal-left">
             <h3 class="text-lg font-semibold text-spades-text mb-3">What Success Looks Like</h3>
             <p class="text-body-lg text-spades-text-secondary">
               When government leaders understand industry constraints, when technologists appreciate mission requirements, when researchers connect with operators: that's when real progress happens. Our success is measured in strengthened partnerships, accelerated solutions, and enhanced resilience across the national security ecosystem.
@@ -63,20 +66,20 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   <!-- How We Work -->
   <section class="bg-spades-paper section-padding border-b border-spades-border">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
+      <div class="text-center mb-10 reveal-up">
         <h2 class="text-heading-lg text-spades-text">How We Work</h2>
         <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
           We connect the right voices, align incentives, and keep the focus on practical outcomes.
         </p>
       </div>
-      <div class="grid gap-6 md:grid-cols-2">
-        <article class="card card-hover p-8 motion-safe:animate-fadeIn" style="animation-delay: 100ms">
+      <div class="grid gap-6 md:grid-cols-2 stagger-children">
+        <article class="depth-card p-8 reveal-scale">
           <h3 class="text-xl font-semibold text-spades-text mb-3">Our Promise</h3>
           <p class="text-body text-spades-text-secondary">
             Every engagement we facilitate is designed to accelerate deployment, sharpen decision-making, and guard democratic values. No noise, just purposeful collaboration.
           </p>
         </article>
-        <article class="card card-hover p-8 motion-safe:animate-fadeIn" style="animation-delay: 200ms">
+        <article class="depth-card p-8 reveal-scale">
           <h3 class="text-xl font-semibold text-spades-text mb-3">How We Operate</h3>
           <p class="text-body text-spades-text-secondary">
             We work with mission leadership, technologists, and scholars to connect perspective with execution. Our programs are research-informed, delivery focused, and built to last.
@@ -87,66 +90,106 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   </section>
 
   <!-- How We Connect Sectors - Flow Diagram -->
-  <section class="bg-white section-padding border-b border-spades-border">
+  <section class="bg-spades-paper section-padding border-b border-spades-border">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
+      <!-- Header -->
+      <div class="text-center mb-12 reveal-up">
         <h2 class="text-heading-lg text-spades-text">How We Connect Sectors</h2>
-        <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
-          A structured approach to cross-sector collaboration.
+        <p class="mt-3 text-spades-text-secondary max-w-lg mx-auto">
+          From challenge to solution in four focused steps.
         </p>
       </div>
 
-      <!-- Flow diagram -->
-      <div class="relative">
-        <div class="grid md:grid-cols-4 gap-4 md:gap-6 items-start">
+      <!-- Horizontal Stepper (Desktop) / Vertical Timeline (Mobile) -->
+      <div class="relative reveal-up">
+        <!-- Desktop: Thicker horizontal connecting line with gradient -->
+        <div class="hidden md:block absolute top-7 left-[10%] right-[10%] h-1 bg-gradient-to-r from-spades-accent via-spades-accent to-spades-accent/40 rounded-full" aria-hidden="true"></div>
+        
+        <!-- Steps Container - Tighter spacing -->
+        <div class="grid md:grid-cols-4 gap-6 md:gap-2 relative">
           <!-- Step 1 -->
-          <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 0ms">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">1</div>
-            <h3 class="font-semibold text-spades-text mb-2">Identify Need</h3>
-            <p class="text-sm text-spades-text-secondary">Government or industry surfaces a challenge requiring cross-sector expertise</p>
+          <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-0 reveal-up">
+            <!-- Mobile timeline connector -->
+            <div class="md:hidden flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-spades-accent text-white flex items-center justify-center text-sm font-bold shadow-md">1</div>
+              <div class="w-0.5 h-full bg-spades-accent/40 mt-2 min-h-[50px]"></div>
+            </div>
+            <!-- Desktop badge - No white ring, more solid -->
+            <div class="hidden md:flex w-14 h-14 rounded-full bg-spades-accent text-white items-center justify-center text-lg font-bold shadow-lg mb-3">1</div>
+            <div class="flex-1 md:text-center">
+              <h3 class="text-xl font-bold text-spades-text mb-1">Identify</h3>
+              <p class="text-sm text-spades-text-secondary">Surface the need.</p>
+            </div>
           </div>
-
-          <!-- Arrow -->
-          <div class="hidden md:flex items-center justify-center text-spades-border text-2xl pt-4">→</div>
 
           <!-- Step 2 -->
-          <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 100ms">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">2</div>
-            <h3 class="font-semibold text-spades-text mb-2">Convene</h3>
-            <p class="text-sm text-spades-text-secondary">Spades Institute brings together the right voices in a trusted environment</p>
+          <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-0 reveal-up">
+            <div class="md:hidden flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-spades-accent text-white flex items-center justify-center text-sm font-bold shadow-md">2</div>
+              <div class="w-0.5 h-full bg-spades-accent/40 mt-2 min-h-[50px]"></div>
+            </div>
+            <div class="hidden md:flex w-14 h-14 rounded-full bg-spades-accent text-white items-center justify-center text-lg font-bold shadow-lg mb-3">2</div>
+            <div class="flex-1 md:text-center">
+              <h3 class="text-xl font-bold text-spades-text mb-1">Convene</h3>
+              <p class="text-sm text-spades-text-secondary">Bring the right voices.</p>
+            </div>
           </div>
-
-          <!-- Arrow -->
-          <div class="hidden md:flex items-center justify-center text-spades-border text-2xl pt-4">→</div>
-        </div>
-
-        <div class="grid md:grid-cols-4 gap-4 md:gap-6 items-start mt-8 md:mt-4">
-          <!-- Empty spacer -->
-          <div class="hidden md:block"></div>
 
           <!-- Step 3 -->
-          <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 200ms">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">3</div>
-            <h3 class="font-semibold text-spades-text mb-2">Collaborate</h3>
-            <p class="text-sm text-spades-text-secondary">Industry and academia contribute solutions, research, and innovation</p>
+          <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-0 reveal-up">
+            <div class="md:hidden flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-spades-accent text-white flex items-center justify-center text-sm font-bold shadow-md">3</div>
+              <div class="w-0.5 h-full bg-spades-accent/40 mt-2 min-h-[50px]"></div>
+            </div>
+            <div class="hidden md:flex w-14 h-14 rounded-full bg-spades-accent text-white items-center justify-center text-lg font-bold shadow-lg mb-3">3</div>
+            <div class="flex-1 md:text-center">
+              <h3 class="text-xl font-bold text-spades-text mb-1">Collaborate</h3>
+              <p class="text-sm text-spades-text-secondary">Work the problem.</p>
+            </div>
           </div>
 
-          <!-- Arrow -->
-          <div class="hidden md:flex items-center justify-center text-spades-border text-2xl pt-4">→</div>
-
           <!-- Step 4 -->
-          <div class="text-center motion-safe:animate-fadeIn" style="animation-delay: 300ms">
-            <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-spades-accent text-white flex items-center justify-center text-lg font-semibold">4</div>
-            <h3 class="font-semibold text-spades-text mb-2">Deliver</h3>
-            <p class="text-sm text-spades-text-secondary">Practical outcomes that strengthen national security and resilience</p>
+          <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-0 reveal-up">
+            <div class="md:hidden flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-spades-accent text-white flex items-center justify-center text-sm font-bold shadow-md">4</div>
+            </div>
+            <div class="hidden md:flex w-14 h-14 rounded-full bg-spades-accent text-white items-center justify-center text-lg font-bold shadow-lg mb-3">4</div>
+            <div class="flex-1 md:text-center">
+              <h3 class="text-xl font-bold text-spades-text mb-1">Deliver</h3>
+              <p class="text-sm text-spades-text-secondary">Usable outputs, fast.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-10 p-6 bg-spades-paper rounded-xl border border-spades-border">
-        <p class="text-center text-spades-text-secondary">
-          <strong class="text-spades-text">Example:</strong> A federal agency needs to understand emerging AI security risks. We convene technologists, policy experts, and operators for a closed-door session, resulting in actionable guidance the agency can implement immediately.
-        </p>
+      <!-- Example Card with Input/Output - More distinct split -->
+      <div class="mt-10 depth-card p-0 overflow-hidden reveal-up">
+        <!-- Header -->
+        <div class="flex items-center gap-3 px-6 py-4 bg-spades-paper border-b border-spades-border">
+          <div class="w-2 h-2 rounded-full bg-spades-accent" aria-hidden="true"></div>
+          <span class="text-sm font-bold uppercase tracking-wide text-spades-text">Example Scenario</span>
+        </div>
+        <!-- Content with divider -->
+        <div class="p-6">
+          <div class="grid md:grid-cols-2 gap-6 md:gap-0">
+            <div class="md:pr-6 md:border-r md:border-spades-border">
+              <p class="text-xs uppercase tracking-widest text-spades-accent font-bold mb-2">Challenge</p>
+              <p class="text-spades-text leading-relaxed">A federal agency needs to understand emerging AI security risks.</p>
+            </div>
+            <div class="md:pl-6">
+              <p class="text-xs uppercase tracking-widest text-spades-accent font-bold mb-2">Outcome</p>
+              <p class="text-spades-text leading-relaxed">Closed-door session delivers actionable guidance for immediate implementation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Implied CTA -->
+      <div class="mt-8 text-center reveal-up">
+        <a href={`${base}/engagements`} class="inline-flex items-center gap-2 text-spades-accent font-semibold hover:gap-3 transition-all group">
+          See how this works in practice
+          <span class="text-lg group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -154,19 +197,19 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   <!-- Guiding Principles -->
   <section class="bg-spades-paper section-padding border-b border-spades-border">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
+      <div class="text-center mb-10 reveal-up">
         <h2 class="text-heading-lg text-spades-text">Guiding Principles</h2>
         <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
           Democracy, freedom, and ethics define how we convene, design, and deliver.
         </p>
       </div>
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-3 stagger-children">
         {[
           { name: 'Democracy', desc: 'We ensure all voices are heard and democratic processes are respected. Our work strengthens the institutions that protect civic participation.' },
           { name: 'Freedom', desc: 'We safeguard individual liberties and free expression. Our convenings encourage open dialogue and the free exchange of ideas.' },
           { name: 'Ethics', desc: 'We operate with integrity, transparency, and accountability. Every engagement is guided by a commitment to ethical conduct.' }
         ].map((principle, i) => (
-          <article class="card card-hover p-8 motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
+          <article class="depth-card p-8 reveal-scale">
             <h3 class="text-2xl font-semibold text-spades-text mb-3">{principle.name}</h3>
             <p class="text-body text-spades-text-secondary">{principle.desc}</p>
           </article>
@@ -176,14 +219,16 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.
   </section>
 
   <!-- CTA Section -->
-  <section class="bg-spades-ink-deep section-padding">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-heading-lg md:text-heading-xl text-white motion-safe:animate-fadeUp">Work With Us</h2>
-      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto motion-safe:animate-fadeIn" style="animation-delay: 100ms">
+  <section class="bg-spades-ink-deep section-padding relative overflow-hidden">
+    <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 text-center relative">
+      <h2 class="text-heading-lg md:text-heading-xl text-white blur-reveal">Work With Us</h2>
+      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto reveal-up">
         Whether you're in government, industry, or academia, we'd love to explore how we can collaborate.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 justify-center motion-safe:animate-fadeUp" style="animation-delay: 200ms">
-        <a href={`${base}/connect`} class="btn btn-invert">Partner with us</a>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center reveal-up">
+        <a href={`${base}/connect`} class="btn btn-invert btn-shimmer btn-glow">Partner with us</a>
         <a href={`${base}/engagements`} class="btn btn-invert-outline">View programs</a>
         <a href={`${base}/people`} class="btn btn-invert-outline">Meet the team</a>
       </div>

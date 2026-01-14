@@ -4,6 +4,7 @@ import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import BlogCard from '../components/BlogCard.astro';
 import engagements from '../data/engagements.json';
+import people from '../data/people.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://HeyItsMrShea.github.io';
@@ -24,8 +25,8 @@ const latestPosts = allPosts
   <Hero
     title="We connect government, industry, and academia to solve national security priorities."
     description="Through trusted, nonpartisan collaboration."
-    primaryCta={{ href: `${base}/connect`, label: 'Partner with us' }}
-    secondaryCta={{ href: `${base}/engagements`, label: 'View programs' }}
+    primaryCta={{ href: `${base}/partner`, label: 'Partner with us' }}
+    secondaryCta={{ href: `${base}/engagements`, label: 'Explore engagements' }}
     showMission={true}
   />
 
@@ -45,119 +46,241 @@ const latestPosts = allPosts
   </section>
 
   <!-- What We Do Section -->
-  <section class="bg-spades-ink-deep section-padding">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-12 motion-safe:animate-fadeUp">
+  <section class="bg-spades-ink-deep section-padding relative overflow-hidden">
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 bg-grid-subtle opacity-20" aria-hidden="true"></div>
+    
+    <div class="max-w-5xl mx-auto px-6 relative">
+      <div class="text-center mb-12 blur-reveal">
         <h2 class="text-heading-xl md:text-heading-2xl text-white">What We Do</h2>
         <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
           Our work takes three forms: speaker series, fellowships, and strategic convenings that bridge sectors and deliver measurable outcomes.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <div class="grid md:grid-cols-3 gap-6 stagger-children">
         {engagements.map((engagement, i) => (
           <a
             href={`${base}/engagements`}
-            class="group block bg-white/10 border border-white/20 rounded-xl p-6 hover:bg-white/15 hover:border-white/30 transition-all duration-200 motion-safe:animate-fadeIn"
-            style={`animation-delay: ${i * 100}ms`}
+            class="group flex flex-col h-full bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-xl p-6 reveal-scale transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:-translate-y-1"
           >
-            <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-3">{engagement.meta[0]}</p>
-            <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-white/90 transition-colors">
+            <!-- Accent top border -->
+            <div class="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true"></div>
+            
+            <!-- Icon -->
+            <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center mb-4 group-hover:bg-white/15 transition-colors">
+              {i === 0 && (
+                <svg class="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+              )}
+              {i === 1 && (
+                <svg class="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                </svg>
+              )}
+              {i === 2 && (
+                <svg class="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              )}
+            </div>
+            
+            <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-2">{engagement.meta[0]}</p>
+            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-white transition-colors">
               {engagement.title}
             </h3>
-            <p class="text-dark-secondary text-sm leading-relaxed mb-4">{engagement.description}</p>
-            <span class="inline-flex items-center gap-2 text-sm text-white font-medium group-hover:gap-3 transition-all">
-              Learn more
-              <span aria-hidden="true">→</span>
-            </span>
+            <p class="text-dark-secondary text-sm leading-relaxed flex-grow">{engagement.description}</p>
+            
+            <!-- Learn more - pushed to bottom -->
+            <div class="mt-6 pt-4 border-t border-white/10">
+              <span class="inline-flex items-center gap-2 text-sm text-white font-medium group-hover:gap-3 transition-all">
+                Learn more
+                <span class="text-white/60 group-hover:text-white group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
+              </span>
+            </div>
           </a>
         ))}
       </div>
 
-      <div class="mt-10 text-center">
-        <a href={`${base}/engagements`} class="btn btn-invert">
+      <div class="mt-10 text-center reveal-up">
+        <a href={`${base}/engagements`} class="btn btn-invert btn-shimmer">
           View all programs
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Latest Articles Section -->
+  <!-- Briefings Section (Option A: Publication Layout) -->
   {latestPosts.length > 0 && (
-    <section class="bg-white section-padding border-b border-spades-border">
-      <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center mb-10 motion-safe:animate-fadeUp">
-          <p class="text-xs uppercase tracking-widest text-spades-muted mb-3">Insights & Perspectives</p>
-          <h2 class="text-heading-lg md:text-heading-xl text-spades-text">Latest Articles</h2>
-          <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
-            Thoughts on national security, ethics, and cross-sector collaboration from our team.
+    <section class="bg-white py-20 md:py-24 border-b border-spades-border">
+      <div class="max-w-[1150px] mx-auto px-6">
+        
+        <!-- 1. Section Header (Constrained width) -->
+        <div class="max-w-[70ch] mx-auto text-center mb-16 reveal-up">
+          <span class="text-[11px] uppercase tracking-[0.2em] text-spades-muted font-bold mb-3 block">Insights & Perspectives</span>
+          <h2 class="text-4xl md:text-5xl font-serif text-spades-text mb-4">Briefings</h2>
+          <p class="text-lg text-spades-text-secondary leading-relaxed">
+            Actionable writing on national security, ethics, and cross-sector execution.
           </p>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestPosts.map((post, i) => (
-            <div class="motion-safe:animate-fadeIn" style={`animation-delay: ${i * 100}ms`}>
-              <BlogCard post={post} />
+
+        <div class="flex flex-col gap-10">
+          <!-- 2. Featured Briefing Card (Full Width) -->
+          {(() => {
+            const featured = latestPosts[0];
+            const authorName = featured.data.author || 'Spades Institute';
+            const authorData = people.find(p => p.name === authorName);
+            const category = featured.data.tags?.[0] || 'Insight';
+
+            return (
+              <article class="group relative bg-white border border-stone-200 rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 reveal-up">
+                <!-- Left Accent Bar -->
+                <div class="absolute left-0 top-0 bottom-0 w-[8px] bg-spades-accent group-hover:bg-spades-accent-dark transition-colors"></div>
+                
+                <!-- Subtle Texture/Highlight -->
+                <div class="absolute inset-0 bg-stone-50/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+                <div class="relative p-8 md:p-10 pl-10 md:pl-14 flex flex-col gap-8">
+                  <!-- Top Row -->
+                  <div class="flex items-center gap-3">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-spades-accent">Featured Briefing</span>
+                    <span class="text-stone-300 text-xs">|</span>
+                    <span class="px-2 py-0.5 rounded-full bg-stone-100 text-[10px] font-semibold text-stone-600 uppercase tracking-wide">
+                      {category}
+                    </span>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="max-w-4xl">
+                    <a href={`${base}/blog/${featured.slug}`} class="block group/title">
+                      <h3 class="text-3xl md:text-4xl font-bold text-spades-text mb-4 leading-[1.1] group-hover/title:text-spades-accent transition-colors line-clamp-3">
+                        {featured.data.title}
+                      </h3>
+                    </a>
+                    
+                    {featured.data.excerpt && (
+                      <p class="text-xl text-spades-text-secondary leading-[1.6] mb-4 line-clamp-2 max-w-[65ch]">
+                        {featured.data.excerpt}
+                      </p>
+                    )}
+
+                    <p class="text-sm text-stone-500 font-medium">
+                      <span class="text-spades-text font-bold">Why it matters:</span> This analysis provides critical context for understanding cross-sector dynamics.
+                    </p>
+                  </div>
+
+                  <!-- Bottom Meta Row -->
+                  <div class="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-stone-100 mt-auto">
+                    <!-- Author -->
+                    <div class="flex items-center gap-3">
+                      {authorData ? (
+                        <img 
+                          src={`${base}${authorData.headshot.replace(/^\//, '')}`} 
+                          alt={authorName}
+                          class="w-10 h-10 rounded-full object-cover border border-stone-200"
+                        />
+                      ) : (
+                        <div class="w-10 h-10 rounded-full bg-spades-accent text-white flex items-center justify-center text-xs font-bold">
+                          {authorName.slice(0, 2)}
+                        </div>
+                      )}
+                      <div>
+                        <div class="text-sm font-bold text-spades-text">{authorName}</div>
+                        <div class="text-xs text-stone-500">{authorData?.role || 'Contributor'}</div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center gap-6">
+                      <span class="text-xs text-stone-400 font-medium uppercase tracking-wide">
+                        {new Date(featured.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} · {featured.data.readTime || '5 min read'}
+                      </span>
+                      
+                      <a href={`${base}/blog/${featured.slug}`} class="btn-text text-spades-accent font-bold text-sm group/btn">
+                        Read briefing
+                        <span class="group-hover/btn:translate-x-1 transition-transform inline-block ml-1">→</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })()}
+
+          <!-- 3. More Briefings List -->
+          {latestPosts.length > 1 && (
+            <div class="reveal-up">
+              <h4 class="text-[11px] uppercase tracking-[0.2em] text-stone-400 font-bold mb-6 pl-2">More Briefings</h4>
+              <div class="flex flex-col border-t border-stone-200">
+                {latestPosts.slice(1).map((post) => {
+                  const category = post.data.tags?.[0] || 'Insight';
+                  // Color coding
+                  const dotColor = category.toLowerCase().includes('partner') ? 'bg-blue-500' 
+                    : category.toLowerCase().includes('tech') ? 'bg-indigo-500'
+                    : 'bg-spades-accent';
+                  
+                  return (
+                    <a href={`${base}/blog/${post.slug}`} class="group flex items-center gap-6 py-5 px-4 border-b border-stone-200 hover:bg-stone-50 transition-all relative overflow-hidden">
+                      <!-- Left Hover Accent -->
+                      <div class="absolute left-0 top-0 bottom-0 w-[3px] bg-spades-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+                      <!-- Category -->
+                      <div class="hidden sm:flex items-center gap-2 w-32 shrink-0">
+                        <div class={`w-2 h-2 rounded-full ${dotColor}`}></div>
+                        <span class="text-xs font-bold text-stone-500 uppercase tracking-wide truncate">{category}</span>
+                      </div>
+                      
+                      <!-- Type Label -->
+                      <div class="hidden md:block w-24 shrink-0">
+                        <span class="text-[10px] font-bold text-stone-400 uppercase tracking-widest border border-stone-200 px-2 py-1 rounded">Brief</span>
+                      </div>
+
+                      <!-- Title -->
+                      <h4 class="flex-grow text-lg font-bold text-spades-text group-hover:text-spades-accent transition-colors truncate pr-4">
+                        {post.data.title}
+                      </h4>
+
+                      <!-- Right Meta -->
+                      <div class="flex items-center gap-4 text-xs text-stone-400 shrink-0">
+                        <span class="hidden sm:inline">{new Date(post.data.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                        <span class="w-1 h-1 rounded-full bg-stone-300 hidden sm:inline"></span>
+                        <span class="hidden sm:inline">{post.data.readTime || '3 min'}</span>
+                        <span class="text-lg text-spades-accent opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">→</span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
-          ))}
+          )}
         </div>
-        <div class="mt-10 text-center">
-          <a href={`${base}/blog`} class="btn btn-secondary">
-            View all articles
-          </a>
+
+        <!-- 4. Browse & 5. Conversion Bar (Integrated) -->
+        <div class="mt-10 flex flex-col gap-8 reveal-up">
+          
+          <!-- Browse Link -->
+          <div class="pl-2">
+            <a href={`${base}/blog`} class="text-sm font-bold text-spades-text hover:text-spades-accent transition-colors inline-flex items-center gap-2 group">
+              Browse all briefings 
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+          <!-- Conversion Bar -->
+          <div class="bg-stone-50 rounded-lg border border-stone-200 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+              <h3 class="text-xl font-bold text-spades-text mb-1">Explore engagements or propose a convening.</h3>
+              <p class="text-xs text-stone-500 uppercase tracking-wider font-medium">Nonpartisan 501(c)(3) · Washington, DC + San Diego</p>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+              <a href={`${base}/engagements`} class="btn btn-primary flex-1 md:flex-none text-center justify-center">Explore engagements</a>
+              <a href={`${base}/partner`} class="btn btn-secondary flex-1 md:flex-none text-center justify-center">Partner with us</a>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
   )}
-
-  <!-- Start Here Section -->
-  <section class="bg-spades-paper section-padding">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <h2 class="text-heading-lg md:text-heading-xl text-spades-text">Start Here</h2>
-        <p class="mt-3 text-spades-text-secondary max-w-xl mx-auto">
-          Find the right path based on your sector and goals.
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <a href={`${base}/connect`} class="group card card-hover text-center p-6">
-          <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-spades-accent/10 text-spades-accent flex items-center justify-center text-xl font-semibold">G</div>
-          <h3 class="font-semibold text-spades-text mb-2">Government</h3>
-          <p class="text-sm text-spades-text-secondary">Propose an engagement or explore partnership opportunities.</p>
-        </a>
-        <a href={`${base}/connect`} class="group card card-hover text-center p-6">
-          <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-spades-accent/10 text-spades-accent flex items-center justify-center text-xl font-semibold">I</div>
-          <h3 class="font-semibold text-spades-text mb-2">Industry</h3>
-          <p class="text-sm text-spades-text-secondary">Connect with mission leadership and government partners.</p>
-        </a>
-        <a href={`${base}/connect`} class="group card card-hover text-center p-6">
-          <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-spades-accent/10 text-spades-accent flex items-center justify-center text-xl font-semibold">A</div>
-          <h3 class="font-semibold text-spades-text mb-2">Academia</h3>
-          <p class="text-sm text-spades-text-secondary">Contribute research and insights to national security challenges.</p>
-        </a>
-        <a href={`${base}/engagements`} class="group card card-hover text-center p-6">
-          <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-spades-accent/10 text-spades-accent flex items-center justify-center text-xl font-semibold">V</div>
-          <h3 class="font-semibold text-spades-text mb-2">Veterans</h3>
-          <p class="text-sm text-spades-text-secondary">Explore fellowships and translate your experience.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="bg-spades-ink-deep section-padding">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-heading-xl md:text-heading-2xl text-white motion-safe:animate-fadeUp">Ready to collaborate?</h2>
-      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto motion-safe:animate-fadeIn" style="animation-delay: 100ms">
-        Connect with us to explore partnership opportunities, propose an engagement, or learn more about our programs.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4 justify-center motion-safe:animate-fadeUp" style="animation-delay: 200ms">
-        <a href={`${base}/connect`} class="btn btn-invert">
-          Partner with us
-        </a>
-        <a href={`${base}/engagements`} class="btn btn-invert-outline">
-          View programs
-        </a>
-      </div>
-    </div>
-  </section>
 </Layout>

@@ -24,7 +24,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 const isLowVolume = sortedPosts.length <= 3;
 
 // Page metadata
-const title = "Blog | Spades Institute";
+const title = "Briefings | Spades Institute";
 const description = "Insights and perspectives on national security, ethics, and cross-sector collaboration from the Spades Institute team.";
 ---
 
@@ -42,16 +42,16 @@ const description = "Insights and perspectives on national security, ethics, and
 
   <Breadcrumbs items={[
     { label: 'Home', href: `${base}/` },
-    { label: 'Blog', href: `${base}/blog` }
+    { label: 'Briefings', href: `${base}/blog` }
   ]} />
 
   <!-- Hero Section -->
   <section class="bg-spades-ink-deep section-padding-sm">
     <div class="max-w-4xl mx-auto px-6 text-center motion-safe:animate-fadeUp">
       <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">Insights & Perspectives</p>
-      <h1 class="text-heading-xl md:text-heading-2xl text-white">Our Blog</h1>
+      <h1 class="text-heading-xl md:text-heading-2xl text-white not-italic">Briefings</h1>
       <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
-        Thoughts on national security, ethics, democracy, and building bridges across sectors.
+        Actionable writing on national security, ethics, and cross-sector execution.
       </p>
     </div>
   </section>
@@ -89,7 +89,7 @@ const description = "Insights and perspectives on national security, ethics, and
   {featuredPost && (
     <section class="bg-spades-paper section-padding-sm border-b border-spades-border">
       <div class="max-w-5xl mx-auto px-6">
-        <p class="text-xs uppercase tracking-widest text-spades-muted mb-4">Featured Article</p>
+        <p class="text-xs uppercase tracking-widest text-spades-muted mb-4">Featured Briefing</p>
         <div data-tags={JSON.stringify(featuredPost.data.tags)}>
           <BlogCard post={featuredPost} featured={true} />
         </div>
@@ -102,7 +102,7 @@ const description = "Insights and perspectives on national security, ethics, and
     <div class="max-w-5xl mx-auto px-6">
       {remainingPosts.length > 0 ? (
         <>
-          <h2 class="text-heading-md text-spades-text mb-6">More Articles</h2>
+          <h2 class="text-heading-md text-spades-text mb-6">More Briefings</h2>
           
           {isLowVolume ? (
             <!-- Compact list layout for low volume -->

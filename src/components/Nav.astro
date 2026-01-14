@@ -6,9 +6,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const navLinks = [
   { label: 'Home', href: `${base}/` },
   { label: 'About', href: `${base}/about` },
-  { label: 'Programs', href: `${base}/engagements` },
+  { label: 'Engage', href: `${base}/engagements` },
   { label: 'People', href: `${base}/people` },
-  { label: 'Blog', href: `${base}/blog` }
+  { label: 'Briefings', href: `${base}/blog` }
 ];
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -23,12 +23,11 @@ const isActive = (href) => {
   <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
     <!-- Logo -->
     <a 
-      class="nav-link flex items-center gap-2 text-white hover:text-white/90 transition-colors focus-white rounded group" 
+      class="nav-link flex items-center text-white hover:text-white/90 transition-colors focus-white rounded group" 
       href={`${base}/`}
       aria-label="Spades Institute Home"
     >
-      <span aria-hidden="true" class="text-2xl leading-none transition-transform group-hover:scale-110">♠︎</span>
-      <span class="font-semibold text-lg tracking-tight">Spades Institute</span>
+      <img src={`${base}/logo.jpg`} alt="Spades Institute" class="h-14 w-auto mix-blend-screen object-contain" />
     </a>
 
     <!-- Desktop Nav -->
@@ -53,9 +52,9 @@ const isActive = (href) => {
     <div class="flex items-center gap-2">
       <a
         class="hidden sm:inline-flex nav-link px-3 py-2 rounded-md text-sm font-medium text-white/75 hover:text-white hover:bg-white/5 transition-colors focus-white"
-        href={`${base}/connect`}
+        href={`${base}/partner`}
       >
-        Partner
+        Partner With Us
       </a>
       <a
         class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-white text-spades-ink-deep hover:bg-white/90 transition-colors focus-accent"
@@ -90,9 +89,9 @@ const isActive = (href) => {
           <hr class="my-2 border-white/10" />
           <a
             class="block px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/5 hover:text-white transition-colors"
-            href={`${base}/connect`}
+            href={`${base}/partner`}
           >
-            Partner with us
+            Partner With Us
           </a>
         </div>
       </details>
