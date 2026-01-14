@@ -2,7 +2,7 @@
 import LinkedInIcon from './icons/LinkedInIcon.astro';
 const { people = [] } = Astro.props;
 const baseRaw = import.meta.env.BASE_URL || '/';
-const base = baseRaw.endsWith('/') ? baseRaw : `${baseRaw}/`;
+const base = baseRaw.endsWith('/') ? baseRaw.slice(0, -1) : baseRaw;
 
 // Separate people by role
 const foundingPartners = people.filter(p => p.role.includes('Founding Partner'));
