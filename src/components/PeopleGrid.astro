@@ -45,7 +45,7 @@ const useTwoColumn = people.length < 6;
                 >
                   <!-- Image with unified quality treatment -->
                   <img
-                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
@@ -83,7 +83,7 @@ const useTwoColumn = people.length < 6;
                 >
                   <!-- Image with unified quality treatment -->
                   <img
-                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
@@ -170,7 +170,7 @@ const useTwoColumn = people.length < 6;
                 >
                   <!-- Image with unified quality treatment -->
                   <img
-                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
@@ -208,7 +208,7 @@ const useTwoColumn = people.length < 6;
                 >
                   <!-- Image with unified quality treatment -->
                   <img
-                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
                     alt={`${person.name} headshot`}
                     loading="lazy"
                     decoding="async"
