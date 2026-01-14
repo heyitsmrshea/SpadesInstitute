@@ -16,10 +16,10 @@ const useTwoColumn = people.length < 6;
   <!-- Founding Partners Section -->
   {foundingPartners.length > 0 && (
     <div>
-      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-6 text-center md:text-left">
+      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-4 text-center md:text-left">
         Founding Partners
       </h2>
-      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
+      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-6`}>
         {foundingPartners.map((person, i) => {
           const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
           
@@ -33,59 +33,82 @@ const useTwoColumn = people.length < 6;
               <!-- Top Accent Rule -->
               <div class="h-0.5 w-full bg-spades-accent"></div>
 
-              <!-- Photo Frame with Premium Treatment -->
-              <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
-                <!-- Image with unified quality treatment -->
-                <img
-                  src={`${base}${person.headshot.replace(/^\//, '')}`}
-                  alt={`${person.name} headshot`}
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                  style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
-                />
-                
-                <!-- Premium Editorial Overlays -->
-                <!-- Subtle top-to-bottom navy tint (6%) -->
-                <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
-                
-                <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
-                
-                <!-- 1px inner border -->
-                <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
-                
-                <!-- Low-opacity noise texture layer -->
-                <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
-                
-                <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
-                <div class="absolute top-4 left-4 bg-white/85 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase">
-                  Founding Partner
-                </div>
+              <!-- Photo Frame with Premium Treatment - Entire area clickable to LinkedIn -->
+              {person.linkedin ? (
+                <a
+                  href={person.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden block"
+                  aria-label={`${person.name} on LinkedIn`}
+                >
+                  <!-- Image with unified quality treatment -->
+                  <img
+                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    alt={`${person.name} headshot`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                  />
+                  
+                  <!-- Premium Editorial Overlays -->
+                  <!-- Subtle top-to-bottom navy tint (6%) -->
+                  <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                  
+                  <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                  
+                  <!-- 1px inner border -->
+                  <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                  
+                  <!-- Low-opacity noise texture layer -->
+                  <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                  
+                  <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
+                  <div class="absolute top-3 left-3 bg-white/85 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase pointer-events-none">
+                    Founding Partner
+                  </div>
 
-                <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
-                {person.linkedin && (
-                  <a
-                    href={person.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="hidden md:flex absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full items-center gap-1.5 text-[11px] font-medium text-spades-ink hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-md z-10 opacity-0 group-hover:opacity-100"
-                    aria-label={`${person.name} on LinkedIn`}
-                  >
-                    <LinkedInIcon class="w-3.5 h-3.5" />
+                  <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
+                  <div class="hidden md:flex absolute bottom-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full items-center gap-1.5 text-[10px] font-medium text-spades-ink shadow-md z-10 opacity-0 group-hover:opacity-100 pointer-events-none">
+                    <LinkedInIcon class="w-3 h-3" />
                     <span>Profile</span>
-                  </a>
-                )}
-              </div>
+                  </div>
+                </a>
+              ) : (
+                <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+                  <!-- Image with unified quality treatment -->
+                  <img
+                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    alt={`${person.name} headshot`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                  />
+                  
+                  <!-- Premium Editorial Overlays -->
+                  <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                  <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                  <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                  
+                  <!-- Role Badge -->
+                  <div class="absolute top-3 left-3 bg-white/85 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase pointer-events-none">
+                    Founding Partner
+                  </div>
+                </div>
+              )}
 
-              <!-- Content (Tightened) -->
-              <div class="p-5 flex-1 flex flex-col justify-between">
+              <!-- Content (Tightened - 30% smaller) -->
+              <div class="p-3.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-2xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+                  <h3 class="text-xl font-bold text-spades-text leading-tight mb-1.5">{person.name}</h3>
                   
                   <!-- Bio line (2-line clamp, smaller + lighter) -->
                   {person.tagline && (
-                    <p class="text-xs text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
+                    <p class="text-[10px] text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
                       {person.tagline}
                     </p>
                   )}
@@ -115,10 +138,10 @@ const useTwoColumn = people.length < 6;
   <!-- Advisors Section -->
   {advisors.length > 0 && (
     <div>
-      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-6 text-center md:text-left">
+      <h2 class="text-sm uppercase tracking-widest text-spades-muted font-semibold mb-4 text-center md:text-left">
         Advisors
       </h2>
-      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-8`}>
+      <div class={`grid grid-cols-1 md:grid-cols-2 ${useTwoColumn ? '' : 'lg:grid-cols-3'} gap-6`}>
         {advisors.map((person, i) => {
           const cardId = `person-${person.name.toLowerCase().replace(/\s+/g, '-')}`;
           
@@ -132,59 +155,82 @@ const useTwoColumn = people.length < 6;
               <!-- Top Accent Rule -->
               <div class="h-0.5 w-full bg-blue-500"></div>
 
-              <!-- Photo Frame with Premium Treatment -->
-              <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
-                <!-- Image with unified quality treatment -->
-                <img
-                  src={`${base}${person.headshot.replace(/^\//, '')}`}
-                  alt={`${person.name} headshot`}
-                  loading="lazy"
-                  decoding="async"
-                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-                  style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
-                />
-                
-                <!-- Premium Editorial Overlays -->
-                <!-- Subtle top-to-bottom navy tint (6%) -->
-                <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
-                
-                <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
-                
-                <!-- 1px inner border -->
-                <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
-                
-                <!-- Low-opacity noise texture layer -->
-                <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
-                
-                <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
-                <div class="absolute top-4 left-4 bg-white/85 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase">
-                  Advisor
-                </div>
+              <!-- Photo Frame with Premium Treatment - Entire area clickable to LinkedIn -->
+              {person.linkedin ? (
+                <a
+                  href={person.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden block"
+                  aria-label={`${person.name} on LinkedIn`}
+                >
+                  <!-- Image with unified quality treatment -->
+                  <img
+                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    alt={`${person.name} headshot`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                  />
+                  
+                  <!-- Premium Editorial Overlays -->
+                  <!-- Subtle top-to-bottom navy tint (6%) -->
+                  <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                  
+                  <!-- Bottom gradient overlay: 0% at 50% height → 30% at bottom -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                  
+                  <!-- 1px inner border -->
+                  <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                  
+                  <!-- Low-opacity noise texture layer -->
+                  <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                  
+                  <!-- Role Badge (Smaller, Top Left, Editorial Style) -->
+                  <div class="absolute top-3 left-3 bg-white/85 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase pointer-events-none">
+                    Advisor
+                  </div>
 
-                <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
-                {person.linkedin && (
-                  <a
-                    href={person.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="hidden md:flex absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full items-center gap-1.5 text-[11px] font-medium text-spades-ink hover:text-[#0077b5] hover:bg-white transition-all duration-200 shadow-md z-10 opacity-0 group-hover:opacity-100"
-                    aria-label={`${person.name} on LinkedIn`}
-                  >
-                    <LinkedInIcon class="w-3.5 h-3.5" />
+                  <!-- LinkedIn Profile Pill (Bottom Right, Hover Only on Desktop, Hidden on Mobile) -->
+                  <div class="hidden md:flex absolute bottom-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full items-center gap-1.5 text-[10px] font-medium text-spades-ink shadow-md z-10 opacity-0 group-hover:opacity-100 pointer-events-none">
+                    <LinkedInIcon class="w-3 h-3" />
                     <span>Profile</span>
-                  </a>
-                )}
-              </div>
+                  </div>
+                </a>
+              ) : (
+                <div class="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+                  <!-- Image with unified quality treatment -->
+                  <img
+                    src={`${base}${person.headshot.replace(/^\//, '')}`}
+                    alt={`${person.name} headshot`}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    style="object-position: center 20%; filter: contrast(1.05) saturate(0.95);" 
+                  />
+                  
+                  <!-- Premium Editorial Overlays -->
+                  <div class="absolute inset-0 bg-[#1e3a5f]/6 pointer-events-none" aria-hidden="true"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/30 via-transparent to-transparent pointer-events-none" style="background: linear-gradient(to top, rgba(30, 58, 95, 0.30) 0%, rgba(30, 58, 95, 0.15) 40%, transparent 50%);" aria-hidden="true"></div>
+                  <div class="absolute inset-0 border border-white/15 pointer-events-none" aria-hidden="true"></div>
+                  <div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cdefs%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3C/defs%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E');" aria-hidden="true"></div>
+                  
+                  <!-- Role Badge -->
+                  <div class="absolute top-3 left-3 bg-white/85 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] font-semibold text-spades-ink tracking-wide shadow-sm uppercase pointer-events-none">
+                    Advisor
+                  </div>
+                </div>
+              )}
 
-              <!-- Content (Tightened) -->
-              <div class="p-5 flex-1 flex flex-col justify-between">
+              <!-- Content (Tightened - 30% smaller) -->
+              <div class="p-3.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 class="text-2xl font-bold text-spades-text leading-tight mb-2">{person.name}</h3>
+                  <h3 class="text-xl font-bold text-spades-text leading-tight mb-1.5">{person.name}</h3>
                   
                   <!-- Bio line (2-line clamp, smaller + lighter) -->
                   {person.tagline && (
-                    <p class="text-xs text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
+                    <p class="text-[10px] text-spades-text-secondary/75 leading-relaxed line-clamp-2 font-light">
                       {person.tagline}
                     </p>
                   )}
