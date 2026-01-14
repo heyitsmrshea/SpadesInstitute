@@ -16,5 +16,6 @@ export default defineConfig({
   integrations: [
     tailwind()
     // sitemap() // TODO: Re-enable after fixing compatibility
-  ]
+  ],
+  trailingSlash: 'always'
 });
