@@ -27,8 +27,8 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   )}
   <div>
     <p class="font-semibold text-spades-ink">
-      {author ? (
-        <a href={`${base}/people`} class="hover:underline">
+      {author?.linkedin ? (
+        <a href={author.linkedin} target="_blank" rel="noreferrer" class="hover:underline">
           {authorName}
         </a>
       ) : (
