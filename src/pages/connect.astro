@@ -352,6 +352,7 @@ ${payload.message}
               subject: `Spades Institute Contact Form - ${payload.topic}`,
               from_name: payload.name,
               email: payload.email,
+              replyto: payload.email,
               message: formattedMessage,
             }),
           });
