@@ -1,12 +1,12 @@
-import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethicsForm");if(!t)return;const c=t.cloneNode(!0);t.parentNode?.replaceChild(c,t);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(s){s.preventDefault(),s.stopPropagation();const i=new FormData(o),e=String(i.get("fullName")||"").trim(),l=String(i.get("agency")||"").trim(),d=String(i.get("position")||"").trim(),n=String(i.get("email")||"").trim();if(!e||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),g=`
+import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethicsForm");if(!t)return;const c=t.cloneNode(!0);t.parentNode?.replaceChild(c,t);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(s){s.preventDefault(),s.stopPropagation();const e=new FormData(o),i=String(e.get("fullName")||"").trim(),l=String(e.get("agency")||"").trim(),d=String(e.get("position")||"").trim(),n=String(e.get("email")||"").trim();if(!i||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),g=`
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ethics Disclosure - ${e}</title>
+  <title>Ethics Disclosure - ${i}</title>
   <meta charset="UTF-8">
   <style>
     @page {
-      margin: 0.75in 1in;
+      margin: 0.6in;
       size: letter;
     }
     * {
@@ -18,7 +18,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       font-family: 'Georgia', 'Times New Roman', serif;
       width: 100%;
       margin: 0;
-      padding: 40px 60px;
+      padding: 40px 50px;
       line-height: 1.5;
       color: #1a1a1a;
       background: #ffffff;
@@ -162,7 +162,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
     @media print {
       body {
         margin: 0;
-        padding: 0.75in 1in;
+        padding: 0.6in;
       }
       .no-print {
         display: none !important;
@@ -220,7 +220,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
   <h2>Employee Information</h2>
   <div class="info-grid">
     <div class="info-label">Name:</div>
-    <div class="info-value">${e}</div>
+    <div class="info-value">${i}</div>
 
     <div class="info-label">Agency/Department:</div>
     <div class="info-value">${l}</div>
@@ -250,7 +250,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       <div class="signature-label">Signature</div>
     </div>
     <div class="signature-block">
-      <div class="signature-line" style="border-bottom-style: dotted;">${e}</div>
+      <div class="signature-line" style="border-bottom-style: dotted;">${i}</div>
       <div class="signature-label">Printed Name</div>
     </div>
     <div class="signature-block" style="max-width: 140px;">
