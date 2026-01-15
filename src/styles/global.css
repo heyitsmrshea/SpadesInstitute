@@ -30,6 +30,8 @@
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
   }
 
   body {
@@ -41,6 +43,10 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Improve tap highlight on mobile */
+    -webkit-tap-highlight-color: rgba(30, 58, 95, 0.1);
   }
 
   /* Headings - serif for H1/H2 only, sans for rest */
@@ -104,9 +110,17 @@
      ============================================ */
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold tracking-wide transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
     text-transform: none;
     letter-spacing: 0.02em;
+    /* Ensure minimum touch target size (44x44px) */
+    min-height: 44px;
+    /* Improve button text on mobile */
+    @media (max-width: 640px) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 0.875rem;
+    }
   }
 
   /* Primary - Main action, high emphasis */
@@ -164,15 +178,15 @@
      ============================================ */
 
   .section-padding {
-    @apply py-16 md:py-20;
+    @apply py-12 md:py-16 lg:py-20;
   }
 
   .section-padding-sm {
-    @apply py-12 md:py-16;
+    @apply py-8 md:py-12 lg:py-16;
   }
 
   .section-padding-lg {
-    @apply py-20 md:py-28;
+    @apply py-16 md:py-20 lg:py-28;
   }
 
   /* Content width for optimal reading */
@@ -242,6 +256,34 @@
 
   .focus-white {
     @apply focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-spades-ink;
+  }
+
+  /* Mobile-specific utilities */
+  .mobile-container {
+    @apply px-4 sm:px-6;
+  }
+
+  .mobile-text-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-text-base {
+    @apply text-base sm:text-lg;
+  }
+
+  /* Ensure links and buttons have proper touch targets on mobile */
+  a, button, summary {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Override for inline text links */
+  p a, .prose a {
+    min-height: auto;
+    min-width: auto;
+    display: inline;
   }
 }
 
