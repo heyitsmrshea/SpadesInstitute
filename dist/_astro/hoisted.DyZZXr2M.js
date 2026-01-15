@@ -1,8 +1,8 @@
-import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethicsForm");if(!t)return;const c=t.cloneNode(!0);t.parentNode?.replaceChild(c,t);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(s){s.preventDefault(),s.stopPropagation();const e=new FormData(o),i=String(e.get("fullName")||"").trim(),l=String(e.get("agency")||"").trim(),d=String(e.get("position")||"").trim(),n=String(e.get("email")||"").trim();if(!i||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),g=`
+import"./hoisted.Dp3RlRfs.js";function m(){const i=document.getElementById("ethicsForm");if(!i)return;const g=i.cloneNode(!0);i.parentNode?.replaceChild(g,i);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(s){s.preventDefault(),s.stopPropagation();const t=new FormData(o),e=String(t.get("fullName")||"").trim(),l=String(t.get("agency")||"").trim(),d=String(t.get("position")||"").trim(),n=String(t.get("email")||"").trim(),c=String(t.get("activity")||"").trim();if(!e||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),f=`
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ethics Disclosure - ${i}</title>
+  <title>Ethics Disclosure - ${e}</title>
   <meta charset="UTF-8">
   <style>
     @page {
@@ -220,7 +220,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
   <h2>Employee Information</h2>
   <div class="info-grid">
     <div class="info-label">Name:</div>
-    <div class="info-value">${i}</div>
+    <div class="info-value">${e}</div>
 
     <div class="info-label">Agency/Department:</div>
     <div class="info-value">${l}</div>
@@ -231,7 +231,10 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
     <div class="info-label">Official Email:</div>
     <div class="info-value">${n}</div>
   </div>
-  
+  ${c?`
+  <h2>Description of Activity</h2>
+  <p class="cert-intro">${c}</p>
+  `:""}
   <h2>Ethics Certification</h2>
   <p class="cert-intro">By signing below, I certify that:</p>
   <ol class="cert-list">
@@ -250,7 +253,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       <div class="signature-label">Signature</div>
     </div>
     <div class="signature-block">
-      <div class="signature-line" style="border-bottom-style: dotted;">${i}</div>
+      <div class="signature-line" style="border-bottom-style: dotted;">${e}</div>
       <div class="signature-label">Printed Name</div>
     </div>
     <div class="signature-block" style="max-width: 140px;">
@@ -273,4 +276,4 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
     </p>
   </div>
 </body>
-</html>`,a=window.open("","_blank");return a?(a.document.write(g),a.document.close()):alert("Please allow pop-ups for this site to generate the ethics letter."),!1})}function r(){f()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();document.addEventListener("astro:page-load",r);
+</html>`,a=window.open("","_blank");return a?(a.document.write(f),a.document.close()):alert("Please allow pop-ups for this site to generate the ethics letter."),!1})}function r(){m()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();document.addEventListener("astro:page-load",r);

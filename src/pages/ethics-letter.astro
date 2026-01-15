@@ -72,7 +72,18 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
               class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text placeholder-spades-muted focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow" 
             />
           </label>
-          
+
+          <label class="block">
+            <span class="text-sm font-medium text-spades-text mb-2 block">Description of Activity <span class="text-spades-muted font-normal">(optional)</span></span>
+            <textarea
+              name="activity"
+              rows="4"
+              placeholder="Briefly describe your intended activity or role with Spades Institute (e.g., attending a speaker series, serving as a subject matter expert, participating in a working group)"
+              class="w-full rounded-lg border border-spades-border px-4 py-3 bg-white text-spades-text placeholder-spades-muted focus:outline-none focus:ring-2 focus:ring-spades-accent focus:border-transparent transition-shadow resize-y"
+            ></textarea>
+            <p class="text-xs text-spades-muted mt-1">This will be included in your ethics letter if provided.</p>
+          </label>
+
           <div class="pt-4">
             <button type="submit" class="btn btn-primary w-full">
               Generate Ethics Letter
@@ -144,6 +155,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         const agency = String(formData.get('agency') || '').trim();
         const position = String(formData.get('position') || '').trim();
         const email = String(formData.get('email') || '').trim();
+        const activity = String(formData.get('activity') || '').trim();
         
         // Validation
         if (!fullName || !agency || !position || !email) {
@@ -393,7 +405,10 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     <div class="info-label">Official Email:</div>
     <div class="info-value">${email}</div>
   </div>
-  
+  ${activity ? `
+  <h2>Description of Activity</h2>
+  <p class="cert-intro">${activity}</p>
+  ` : ''}
   <h2>Ethics Certification</h2>
   <p class="cert-intro">By signing below, I certify that:</p>
   <ol class="cert-list">
