@@ -92,7 +92,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
     }
     .info-grid {
       display: grid;
-      grid-template-columns: 120px 1fr 120px 1fr;
+      grid-template-columns: 120px 1fr;
       gap: 8px 16px;
       font-size: 11px;
       margin-bottom: 8px;
@@ -221,12 +221,14 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
   <div class="info-grid">
     <div class="info-label">Name:</div>
     <div class="info-value">${e}</div>
-    <div class="info-label">Agency:</div>
+
+    <div class="info-label">Agency/Department:</div>
     <div class="info-value">${l}</div>
-    
-    <div class="info-label">Position:</div>
+
+    <div class="info-label">Position/Title:</div>
     <div class="info-value">${d}</div>
-    <div class="info-label">Email:</div>
+
+    <div class="info-label">Official Email:</div>
     <div class="info-value">${n}</div>
   </div>
   
@@ -256,16 +258,15 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       <div class="signature-label">Date</div>
     </div>
   </div>
-  
-  <div class="note">
-    <strong>Next Steps:</strong> Print and submit this form to your agency's ethics official for approval before participating in Spades Institute activities. When submitting, include a brief description of your proposed activity. Questions? Contact info@spadesinstitute.org.
-  </div>
-  
+
   <div class="footer">
     This form was generated at www.spadesinstitute.org/ethics-letter on ${p}
   </div>
-  
+
   <div class="no-print">
+    <div class="note" style="margin-bottom: 16px;">
+      <strong>Next Steps:</strong> Print and submit this form to your agency's ethics official for approval before participating in Spades Institute activities. When submitting, include a brief description of your proposed activity. Questions? Contact info@spadesinstitute.org.
+    </div>
     <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
     <p style="margin-top: 12px; font-size: 13px; color: #6b7280;">
       Use your browser's print dialog to save as PDF or print directly.
