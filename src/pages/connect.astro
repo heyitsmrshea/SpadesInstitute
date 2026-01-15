@@ -333,10 +333,27 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         if (submitSpinner) submitSpinner.classList.remove('hidden');
 
         try {
-          const response = await fetch(`${base}/api/contact`, {
+          // Format message for Web3Forms
+          const formattedMessage = `
+Name: ${payload.name}
+Email: ${payload.email}
+Organization: ${payload.org || 'Not provided'}
+Topic: ${payload.topic}
+
+Message:
+${payload.message}
+          `.trim();
+
+          const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({
+              access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
+              subject: `Spades Institute Contact Form - ${payload.topic}`,
+              from_name: payload.name,
+              email: payload.email,
+              message: formattedMessage,
+            }),
           });
 
           const result = await response.json();
@@ -345,20 +362,20 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
             // Show success
             if (formSuccess) formSuccess.classList.remove('hidden');
             form.reset();
-            
+
             // Reset character count
             if (charCount) charCount.textContent = '(0 characters)';
             if (charCount) {
               charCount.classList.remove('text-orange-600');
               charCount.classList.add('text-spades-muted');
             }
-            
+
             // Scroll to success message
             formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           } else {
             // Show error
             if (formError && errorMessage) {
-              errorMessage.textContent = result.error || 'Failed to send message. Please try again or email us directly.';
+              errorMessage.textContent = result.message || 'Failed to send message. Please try again or email us directly.';
               formError.classList.remove('hidden');
             }
           }
