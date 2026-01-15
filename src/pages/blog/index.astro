@@ -63,71 +63,79 @@ const description = "Insights and perspectives on national security, ethics, and
     </section>
   )}
 
-  <!-- Posts Grid/List -->
+  <!-- Posts Cascade -->
   <section class="bg-white section-padding">
     <div class="max-w-5xl mx-auto px-6">
       {remainingPosts.length > 0 ? (
         <>
-          <h2 class="text-heading-md text-spades-text mb-6">More Briefings</h2>
-          
-          {isLowVolume ? (
-            <!-- Compact list layout for low volume -->
-            <div id="posts-container" class="space-y-4">
-              {remainingPosts.map((post, i) => {
-                const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric'
-                });
-                const author = people.find(p => p.name === post.data.author);
-                return (
-                  <a 
-                    href={`${base}/blog/${post.slug}`}
-                    class="post-item group card p-4 flex flex-col sm:flex-row sm:items-center gap-4 motion-safe:animate-fadeIn"
-                    style={`animation-delay: ${i * 50}ms`}
-                  >
-                    <div class="flex-1 min-w-0">
-                      <h3 class="font-semibold text-spades-text group-hover:text-spades-accent transition-colors truncate">
-                        {post.data.title}
-                      </h3>
-                      <p class="text-sm text-spades-text-secondary mt-1 clamp-2">{post.data.excerpt}</p>
-                    </div>
-                    <div class="flex items-center gap-3 text-sm text-spades-muted flex-shrink-0">
-                      {author?.headshot && (
+          <h2 class="text-2xl md:text-heading-md text-spades-text mb-8">More Briefings</h2>
+
+          <!-- Cascading list layout with small images -->
+          <div id="posts-container" class="space-y-3">
+            {remainingPosts.map((post, i) => {
+              const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              });
+              const author = people.find(p => p.name === post.data.author);
+              return (
+                <a
+                  href={`${base}/blog/${post.slug}`}
+                  class="post-item group block border border-spades-border rounded-lg p-4 hover:border-spades-accent hover:shadow-md transition-all motion-safe:animate-fadeIn bg-white"
+                  style={`animation-delay: ${i * 50}ms`}
+                >
+                  <div class="flex gap-4 items-start">
+                    {/* Small thumbnail image */}
+                    {post.data.featuredImage ? (
+                      <div class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded overflow-hidden bg-spades-paper">
                         <img
-                          src={`${base}${author.headshot.startsWith('/') ? author.headshot : '/' + author.headshot}`}
-                          alt={`${post.data.author} headshot`}
-                          class="w-8 h-8 rounded-full object-cover border border-spades-border"
-                          width="32"
-                          height="32"
+                          src={`${base}${post.data.featuredImage.startsWith('/') ? post.data.featuredImage : '/' + post.data.featuredImage}`}
+                          alt={post.data.title}
+                          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                           loading="lazy"
                           decoding="async"
                         />
-                      )}
-                      <div class="flex items-center gap-4">
-                        <span>{post.data.author}</span>
+                      </div>
+                    ) : (
+                      <div class="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded bg-gradient-to-br from-spades-accent/10 to-spades-accent/5 flex items-center justify-center">
+                        <span class="text-2xl text-spades-accent/30">♠︎</span>
+                      </div>
+                    )}
+
+                    {/* Content */}
+                    <div class="flex-1 min-w-0">
+                      <h3 class="font-bold text-base md:text-lg text-spades-text group-hover:text-spades-accent transition-colors line-clamp-2 leading-snug mb-2">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm text-spades-text-secondary line-clamp-2 mb-3 hidden sm:block">
+                        {post.data.excerpt}
+                      </p>
+
+                      {/* Meta info */}
+                      <div class="flex items-center gap-3 text-xs text-spades-muted">
+                        {author?.headshot && (
+                          <img
+                            src={`${base}${author.headshot.startsWith('/') ? author.headshot : '/' + author.headshot}`}
+                            alt={`${post.data.author} headshot`}
+                            class="w-6 h-6 rounded-full object-cover border border-spades-border"
+                            width="24"
+                            height="24"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        )}
+                        <span class="font-medium">{post.data.author}</span>
+                        <span class="text-spades-border">•</span>
                         <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
                       </div>
                     </div>
-                  </a>
-                );
-              })}
-            </div>
-          ) : (
-            <!-- Grid layout for higher volume -->
-            <div id="posts-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {remainingPosts.map((post, i) => (
-                <div 
-                  data-tags={JSON.stringify(post.data.tags)}
-                  class="post-item motion-safe:animate-fadeIn" 
-                  style={`animation-delay: ${i * 50}ms`}
-                >
-                  <BlogCard post={post} />
-                </div>
-              ))}
-            </div>
-          )}
-          
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
         </>
       ) : (
         <div class="text-center py-12">
