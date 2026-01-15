@@ -1,12 +1,12 @@
-import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethicsForm");if(!t)return;const c=t.cloneNode(!0);t.parentNode?.replaceChild(c,t);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(r){r.preventDefault(),r.stopPropagation();const e=new FormData(o),i=String(e.get("fullName")||"").trim(),l=String(e.get("agency")||"").trim(),d=String(e.get("position")||"").trim(),n=String(e.get("email")||"").trim();if(!i||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),g=`
+import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethicsForm");if(!t)return;const c=t.cloneNode(!0);t.parentNode?.replaceChild(c,t);const o=document.getElementById("ethicsForm");o&&o.addEventListener("submit",function(s){s.preventDefault(),s.stopPropagation();const i=new FormData(o),e=String(i.get("fullName")||"").trim(),l=String(i.get("agency")||"").trim(),d=String(i.get("position")||"").trim(),n=String(i.get("email")||"").trim();if(!e||!l||!d||!n)return alert("Please fill in all required fields."),!1;if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(n))return alert("Please enter a valid email address."),!1;const p=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),g=`
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ethics Disclosure - ${i}</title>
+  <title>Ethics Disclosure - ${e}</title>
   <meta charset="UTF-8">
   <style>
     @page {
-      margin: 0.5in;
+      margin: 0.75in 1in;
       size: letter;
     }
     * {
@@ -14,146 +14,159 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       padding: 0;
       box-sizing: border-box;
     }
-    body { 
-      font-family: 'Georgia', 'Times New Roman', serif; 
-      max-width: 8.5in; 
-      margin: 0 auto; 
-      padding: 32px 48px; 
-      line-height: 1.4; 
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      width: 100%;
+      margin: 0;
+      padding: 40px 60px;
+      line-height: 1.5;
       color: #1a1a1a;
       background: #ffffff;
-      font-size: 11px;
+      font-size: 12px;
     }
     .header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #1e3a5f;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #1e3a5f;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
     .logo {
-      font-size: 32px;
+      font-size: 48px;
       color: #1e3a5f;
     }
     .header-text {
       text-align: left;
     }
     .org-name {
-      font-size: 18px;
+      font-size: 24px;
       font-weight: bold;
       color: #1e3a5f;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
     }
     .org-subtitle {
-      font-size: 9px;
+      font-size: 11px;
       color: #4b5563;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    h1 { 
-      font-size: 14px; 
-      text-align: center; 
-      margin: 14px 0 10px 0; 
+    .header-right {
+      text-align: right;
+      font-size: 10px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: 18px;
+      text-align: center;
+      margin: 20px 0 16px 0;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: #0f172a;
     }
     .intro {
-      font-size: 10px;
+      font-size: 11px;
       text-align: center;
       color: #374151;
-      margin-bottom: 14px;
-      line-height: 1.5;
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
-    h2 { 
-      font-size: 10px; 
-      margin-top: 12px; 
-      margin-bottom: 6px; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px;
+    h2 {
+      font-size: 12px;
+      margin-top: 18px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       font-weight: bold;
       color: #1e3a5f;
       border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 3px;
+      padding-bottom: 4px;
     }
     .info-grid {
       display: grid;
-      grid-template-columns: 110px 1fr 110px 1fr;
-      gap: 4px 12px;
-      font-size: 10px;
+      grid-template-columns: 120px 1fr 120px 1fr;
+      gap: 8px 16px;
+      font-size: 11px;
+      margin-bottom: 8px;
     }
-    .info-label { 
-      font-weight: bold; 
+    .info-label {
+      font-weight: bold;
       color: #374151;
     }
     .info-value {
       color: #111827;
     }
     .cert-intro {
-      font-size: 10px;
-      margin-bottom: 4px;
+      font-size: 11px;
+      margin-bottom: 8px;
     }
-    .cert-list { 
-      margin-left: 18px; 
-      margin-top: 4px;
+    .cert-list {
+      margin-left: 24px;
+      margin-top: 8px;
     }
-    .cert-list li { 
-      margin-bottom: 2px; 
-      font-size: 10px;
-      line-height: 1.4;
+    .cert-list li {
+      margin-bottom: 6px;
+      font-size: 11px;
+      line-height: 1.5;
       color: #374151;
     }
 
-    .signature-section { 
-      margin-top: 20px;
+    .signature-section {
+      margin-top: 30px;
       display: flex;
-      gap: 40px;
+      gap: 50px;
     }
     .signature-block {
       flex: 1;
     }
-    .signature-line { 
-      border-bottom: 1px solid #1a1a1a; 
-      height: 28px; 
-      margin-bottom: 2px;
+    .signature-line {
+      border-bottom: 1px solid #1a1a1a;
+      height: 35px;
+      margin-bottom: 4px;
     }
     .signature-label {
-      font-size: 9px;
+      font-size: 10px;
       color: #6b7280;
     }
-    .note { 
-      margin-top: 16px; 
-      padding: 10px 12px; 
-      background: #f3f4f6; 
-      border-left: 3px solid #1e3a5f; 
-      font-size: 9px;
-      line-height: 1.5;
+    .note {
+      margin-top: 24px;
+      padding: 12px 16px;
+      background: #f3f4f6;
+      border-left: 3px solid #1e3a5f;
+      font-size: 10px;
+      line-height: 1.6;
       color: #374151;
     }
     .note strong {
       color: #1e3a5f;
     }
     .footer {
-      margin-top: 12px;
-      padding-top: 8px;
+      margin-top: 16px;
+      padding-top: 10px;
       border-top: 1px solid #e5e7eb;
       text-align: center;
-      font-size: 8px;
+      font-size: 9px;
       color: #9ca3af;
     }
-    .no-print { 
-      display: none;
+    .no-print {
+      display: none !important;
     }
-    @media print { 
-      body { 
-        margin: 0; 
-        padding: 0.5in;
-      } 
-      .no-print { 
-        display: none; 
+    @media print {
+      body {
+        margin: 0;
+        padding: 0.75in 1in;
+      }
+      .no-print {
+        display: none !important;
+        visibility: hidden !important;
       }
     }
     @media screen {
@@ -184,10 +197,17 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
 </head>
 <body>
   <div class="header">
-    <div class="logo">♠︎</div>
-    <div class="header-text">
-      <div class="org-name">Spades Institute</div>
-      <div class="org-subtitle">501(c)(3) Nonprofit · EIN 99-2763425</div>
+    <div class="header-left">
+      <div class="logo">♠︎</div>
+      <div class="header-text">
+        <div class="org-name">Spades Institute</div>
+        <div class="org-subtitle">501(c)(3) Nonprofit · EIN 99-2763425</div>
+      </div>
+    </div>
+    <div class="header-right">
+      Washington DC<br>
+      www.spadesinstitute.org<br>
+      info@spadesinstitute.org
     </div>
   </div>
   
@@ -200,7 +220,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
   <h2>Employee Information</h2>
   <div class="info-grid">
     <div class="info-label">Name:</div>
-    <div class="info-value">${i}</div>
+    <div class="info-value">${e}</div>
     <div class="info-label">Agency:</div>
     <div class="info-value">${l}</div>
     
@@ -228,7 +248,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
       <div class="signature-label">Signature</div>
     </div>
     <div class="signature-block">
-      <div class="signature-line" style="border-bottom-style: dotted;">${i}</div>
+      <div class="signature-line" style="border-bottom-style: dotted;">${e}</div>
       <div class="signature-label">Printed Name</div>
     </div>
     <div class="signature-block" style="max-width: 140px;">
@@ -242,7 +262,7 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
   </div>
   
   <div class="footer">
-    Spades Institute · Washington DC · www.spadesinstitute.org · info@spadesinstitute.org
+    This form was generated at www.spadesinstitute.org/ethics-letter on ${p}
   </div>
   
   <div class="no-print">
@@ -252,4 +272,4 @@ import"./hoisted.Dp3RlRfs.js";function f(){const t=document.getElementById("ethi
     </p>
   </div>
 </body>
-</html>`,a=window.open("","_blank");return a?(a.document.write(g),a.document.close()):alert("Please allow pop-ups for this site to generate the ethics letter."),!1})}function s(){f()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",s):s();document.addEventListener("astro:page-load",s);
+</html>`,a=window.open("","_blank");return a?(a.document.write(g),a.document.close()):alert("Please allow pop-ups for this site to generate the ethics letter."),!1})}function r(){f()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();document.addEventListener("astro:page-load",r);
