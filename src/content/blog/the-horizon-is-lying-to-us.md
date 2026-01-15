@@ -4,7 +4,7 @@ author: "Vishal Amin"
 date: 2026-01-14
 excerpt: "Why the next front line of American power doesn't show up on any map. The conflicts shaping our future arrive quietly, through financial systems, cloud infrastructure, and influence campaigns that move faster than any army."
 tags: ["national-security", "geopolitics", "strategy"]
-featuredImage: "/blog/fighter-jet.jpg"
+featuredImage: "/blog/horizon-sunset.jpg"
 draft: false
 ---
 
