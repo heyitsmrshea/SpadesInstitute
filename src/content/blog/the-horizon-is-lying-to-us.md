@@ -14,7 +14,7 @@ There is the jet. The mission. The horizon. A clean, hard line that tells you wh
 
 That horizon does not exist anymore.
 
-The conflicts shaping our future do not begin with troop movements or missile launches. They arrive quietly—through financial systems, cloud infrastructure, sanctions loopholes, influence campaigns, and shell companies that move faster than any army. The battlefield is no longer a place. It is a system.
+The conflicts shaping our future do not begin with troop movements or missile launches. They arrive quietly, through financial systems, cloud infrastructure, sanctions loopholes, influence campaigns, and shell companies that move faster than any army. The battlefield is no longer a place. It is a system.
 
 If you still believe borders alone will protect us, you are already behind.
 
@@ -32,7 +32,7 @@ For decades, Western strategy rested on an assumption that felt orderly, even co
 
 In much of the world, that separation never existed.
 
-In places like Tehran and Caracas, money is not just money—it is legitimacy. Power is not ideological—it is existential. The private sector is not private. It is an extension of the state and a mechanism for survival.
+In places like Tehran and Caracas, money is not just money. It is legitimacy. Power is not ideological. It is existential. The private sector is not private. It is an extension of the state and a mechanism for survival.
 
 Revenue becomes belief. Politics becomes oxygen.
 
@@ -46,11 +46,11 @@ For a long time, American strategy relied on restraint and called it stability. 
 
 That era is over.
 
-What we are seeing now is a shift—uneven but real—from passive deterrence to active shaping. Instead of just drawing red lines, the United States is beginning to contest the systems that allow authoritarian regimes to operate with impunity: financial networks, sanctions evasion, digital infrastructure, and influence pipelines that move faster than diplomats ever could.
+What we are seeing now is a shift, uneven but real, from passive deterrence to active shaping. Instead of just drawing red lines, the United States is beginning to contest the systems that allow authoritarian regimes to operate with impunity: financial networks, sanctions evasion, digital infrastructure, and influence pipelines that move faster than diplomats ever could.
 
 This is not about punishment. It is about interference. It is about denying adversaries the ability to weaponize modern connectivity against open societies while hiding behind technicalities and deniability.
 
-There is value in this approach. It sends a clear signal that cyber-enabled coercion, economic manipulation, and digital influence operations are not side issues—they are core national security threats.
+There is value in this approach. It sends a clear signal that cyber-enabled coercion, economic manipulation, and digital influence operations are not side issues. They are core national security threats.
 
 There is also a cost.
 
@@ -60,7 +60,7 @@ The uncomfortable truth is that pretending the old model still works does not ma
 
 ## Security Now Lives in Systems
 
-I have seen what happens when missions stay undefined for too long. In aviation and special operations, ambiguity does not preserve safety—it gives the adversary time. The same is true in statecraft. Delay does not maintain stability. It quietly erodes it until the system breaks.
+I have seen what happens when missions stay undefined for too long. In aviation and special operations, ambiguity does not preserve safety. It gives the adversary time. The same is true in statecraft. Delay does not maintain stability. It quietly erodes it until the system breaks.
 
 As we move deeper into this decade, national security cannot be reduced to geography. You cannot intercept corruption with a missile. You cannot patrol influence operations with a carrier strike group. You cannot deter coercive finance with walls.
 
