@@ -18,7 +18,16 @@ const footerLinks = [
       <!-- Brand -->
       <div class="md:col-span-2">
         <a href={`${base}/`} class="nav-link inline-block mb-4 group" aria-label="Spades Institute Home">
-          <img src={`${base}/logo-dark.png`} alt="Spades Institute" class="h-20 md:h-24 w-auto" />
+          <div class="flex items-center gap-2">
+            <svg class="h-10 w-10 text-white" viewBox="0 0 100 120" fill="currentColor" aria-hidden="true">
+              <path d="M50 0C50 0 0 45 0 70C0 87 14 100 32 100C40 100 47 96 50 90C53 96 60 100 68 100C86 100 100 87 100 70C100 45 50 0 50 0Z"/>
+              <path d="M45 85L50 120L55 85C52 88 48 88 45 85Z"/>
+            </svg>
+            <div class="flex flex-col">
+              <span class="text-lg font-bold tracking-wide text-white">SPADES</span>
+              <span class="text-[10px] uppercase tracking-widest text-white/70">Institute</span>
+            </div>
+          </div>
         </a>
         <p class="text-sm text-dark-secondary max-w-xs">
           Connecting government, industry, and academia to solve national security priorities through trusted, nonpartisan collaboration.

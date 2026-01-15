@@ -187,14 +187,32 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       font-size: 11px;
     }
     .header {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       margin-bottom: 16px;
       padding-bottom: 12px;
       border-bottom: 2px solid #1e3a5f;
     }
-    .logo-img {
-      height: 60px;
+    .logo-svg {
+      height: 40px;
       width: auto;
+    }
+    .header-text {
+      text-align: left;
+    }
+    .org-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e3a5f;
+      letter-spacing: 2px;
+    }
+    .org-subtitle {
+      font-size: 9px;
+      color: #4b5563;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     h1 { 
       font-size: 14px; 
@@ -328,7 +346,14 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 </head>
 <body>
   <div class="header">
-    <img src="https://www.spadesinstitute.org/logo-light.png" alt="Spades Institute" class="logo-img" />
+    <svg class="logo-svg" viewBox="0 0 100 120" fill="#1e3a5f" aria-hidden="true">
+      <path d="M50 0C50 0 0 45 0 70C0 87 14 100 32 100C40 100 47 96 50 90C53 96 60 100 68 100C86 100 100 87 100 70C100 45 50 0 50 0Z"/>
+      <path d="M45 85L50 120L55 85C52 88 48 88 45 85Z"/>
+    </svg>
+    <div class="header-text">
+      <div class="org-name">SPADES</div>
+      <div class="org-subtitle">Institute · 501(c)(3) · EIN 99-2763425</div>
+    </div>
   </div>
   
   <h1>Ethics Disclosure and Conflict of Interest Statement</h1>
