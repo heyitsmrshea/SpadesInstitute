@@ -187,32 +187,14 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       font-size: 11px;
     }
     .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      text-align: center;
       margin-bottom: 16px;
       padding-bottom: 12px;
       border-bottom: 2px solid #1e3a5f;
     }
-    .logo {
-      font-size: 28px;
-      color: #1e3a5f;
-      font-weight: bold;
-    }
-    .header-text {
-      flex: 1;
-    }
-    .org-name {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1e3a5f;
-      letter-spacing: 0.5px;
-    }
-    .org-subtitle {
-      font-size: 9px;
-      color: #4b5563;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
+    .logo-img {
+      height: 60px;
+      width: auto;
     }
     h1 { 
       font-size: 14px; 
@@ -346,11 +328,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 </head>
 <body>
   <div class="header">
-    <div class="logo">♠︎</div>
-    <div class="header-text">
-      <div class="org-name">Spades Institute</div>
-      <div class="org-subtitle">501(c)(3) Nonprofit Organization · EIN 99-2763425</div>
-    </div>
+    <img src="https://www.spadesinstitute.org/logo-light.png" alt="Spades Institute" class="logo-img" />
   </div>
   
   <h1>Ethics Disclosure and Conflict of Interest Statement</h1>
