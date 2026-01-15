@@ -2,7 +2,7 @@
 title: "The Horizon Never Disappears"
 author: "Dan Goodwin"
 date: 2026-01-15
-excerpt: "A friendly disagreement with my fellow Marine aviator on the horizon analogy. The horizon doesn't disappear—it's just obscured. And with the right instruments and clear communication, we can pierce the fog."
+excerpt: "A friendly disagreement with my fellow Marine aviator on the horizon analogy. The horizon doesn't disappear - it's just obscured. And with the right instruments and clear communication, we can pierce the fog."
 tags: ["national-security", "collaboration", "aviation"]
 featuredImage: "/blog/flight-instruments.jpg"
 draft: false
@@ -14,7 +14,7 @@ I thoroughly enjoyed Vishal's piece on national security and geopolitics using o
 
 Which is where I take umbrage.
 
-The horizon never disappears. It simply isn't visible. Whether because it's too dark, too cloudy, or too obscured, the physics of flight in relation to the ground don't change. Your perception does—because of imperfect or distorted information.
+The horizon never disappears. It simply isn't visible. Whether because it's too dark, too cloudy, or too obscured, the physics of flight in relation to the ground don't change. Your perception does, because of imperfect or distorted information.
 
 ## Flying in the Clouds
 
@@ -28,17 +28,17 @@ What if a non-partisan non-profit could enable communication, increase awareness
 
 Like a radio or a datalink, detailed communication sorts through the clouds and the darkness. It establishes connections beyond visual sight lines. By partnering with industry, academia, and government, the Institute offers opportunities to convene trusted conversations in an environment intended to reduce the typical barriers that prevent open and honest dialogue between stakeholders interested in solving our thorniest national security and defense problems.
 
-There are a variety of programs being developed by the Institute to increase the connections between agencies and industries, between employers and employees, between veterans and government employees and commercial industry—with the overarching belief that the secret is in the conversations and not in requirements documents or statements of work.
+There are a variety of programs being developed by the Institute to increase the connections between agencies and industries, between employers and employees, between veterans and government employees and commercial industry, with the overarching belief that the secret is in the conversations and not in requirements documents or statements of work.
 
 ## Decision Vertigo
 
 Back to my friendly disagreement with Vishal and his earlier article. The horizon doesn't ever disappear, but when it is obscured, the crew lacks the most easily reliable reference to the world.
 
-Vertigo is that uncomfortable, and sometimes dangerous, condition that occurs when the horizon is clouded and your brain and body can't figure out which end is up. Like a government agency trying to find the solution to a problem, confusing and conflicting information leads to a decision vertigo—an uncomfortable feeling that you are not getting the solution that you need. Instead you're getting the solution that an arcane system provides.
+Vertigo is that uncomfortable, and sometimes dangerous, condition that occurs when the horizon is clouded and your brain and body can't figure out which end is up. Like a government agency trying to find the solution to a problem, confusing and conflicting information leads to a decision vertigo - an uncomfortable feeling that you are not getting the solution that you need. Instead you're getting the solution that an arcane system provides.
 
-Sadly, if you had the right instruments and clear communication, one can pierce the fog and the darkness and re-orient themselves back to the horizon—even if it's not 100% visible to the naked eye.
+Sadly, if you had the right instruments and clear communication, one can pierce the fog and the darkness and re-orient themselves back to the horizon - even if it's not 100% visible to the naked eye.
 
-That's our vision—creating a national 360-degree datalink that clears the clouds and brightens the night—producing decisions that serve the best interests of our defense and security environment.
+That's our vision: creating a national 360-degree datalink that clears the clouds and brightens the night, producing decisions that serve the best interests of our defense and security environment.
 
 ---
 
