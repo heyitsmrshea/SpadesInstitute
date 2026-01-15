@@ -13,11 +13,7 @@ const readingTime = Math.ceil(wordCount / 200);
 // Format date for structured data
 const isoDate = new Date(post.data.date).toISOString();
 ---
-<Breadcrumbs items={[
-  { label: 'Home', href: `${base}/` },
-  { label: 'Blog', href: `${base}/blog` },
-  { label: post.data.title, href: `${base}/blog/${post.slug}` }
-]} />
+<!-- Breadcrumbs removed for cleaner look -->
 
 <ReadingProgress />
 
