@@ -4,6 +4,7 @@ author: "Dan Goodwin"
 date: 2026-01-15
 excerpt: "A friendly disagreement with my fellow Marine aviator on the horizon analogy. The horizon doesn't disappear—it's just obscured. And with the right instruments and clear communication, we can pierce the fog."
 tags: ["national-security", "collaboration", "aviation"]
+featuredImage: "/blog/flight-instruments.jpg"
 draft: false
 ---
 
