@@ -155,6 +155,24 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       background-color: #0a0f18;
     }
 
+    /* Mobile: reposition background to show jet, adjust padding */
+    @media (max-width: 820px) {
+      .page {
+        padding: 1rem;
+        background-position: 25% 15%;
+        align-items: flex-start;
+        padding-top: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 0.75rem;
+        padding-top: 1.5rem;
+        background-position: 20% 10%;
+      }
+    }
+
     /* === TEXTURE SOFTENER (reduces grain/dust, softens circuit) === */
     .texture-softener {
       position: absolute;
@@ -212,7 +230,17 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     @media (max-width: 820px) {
-      .main-card { grid-template-columns: 1fr; }
+      .main-card {
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-card {
+        border-radius: 14px;
+      }
     }
 
     /* === 3) LEFT PANEL (INVITE SIDE) === */
@@ -426,6 +454,36 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       line-height: 1.5;
     }
 
+    .calendar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #5a7a9a;
+      text-decoration: none;
+      margin-top: 8px;
+      padding: 4px 8px;
+      background: rgba(26, 48, 80, 0.06);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .calendar-link:hover {
+      color: #1a3050;
+      background: rgba(26, 48, 80, 0.12);
+    }
+
+    .calendar-link:focus-visible {
+      outline: 2px solid #1a3050;
+      outline-offset: 2px;
+    }
+
+    .calendar-link svg {
+      width: 12px;
+      height: 12px;
+    }
+
     /* Footer note */
     .invite-footer {
       margin-top: auto;
@@ -523,6 +581,39 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       animation: focusGlow 2s ease-in-out infinite;
     }
 
+    .input-field:focus-visible {
+      outline: 2px solid rgba(120, 180, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    /* Validation states */
+    .input-field.invalid {
+      border-color: rgba(239, 68, 68, 0.6);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .input-field.invalid:focus {
+      border-color: rgba(239, 68, 68, 0.8);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      animation: none;
+    }
+
+    .input-field.valid {
+      border-color: rgba(34, 197, 94, 0.5);
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #f87171;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+      animation: fadeInUp 0.3s ease;
+    }
+
     .field-hint {
       font-size: 12px;
       color: #98a8b8;
@@ -598,6 +689,17 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       color: #c8d8e8;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .checkbox-tile:focus {
+      outline: none;
+      border-color: rgba(120, 180, 255, 0.6);
+      box-shadow: 0 0 0 3px rgba(120, 180, 255, 0.25);
+    }
+
+    .checkbox-tile:focus-visible {
+      outline: 2px solid #78b4ff;
+      outline-offset: 2px;
     }
 
     /* Strong selected state - much more visible */
@@ -704,9 +806,48 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       transform: translateY(-1px);
     }
 
+    .submit-btn:focus-visible {
+      outline: 2px solid #78b4ff;
+      outline-offset: 2px;
+    }
+
     /* Pulse animation when ready to submit */
     .submit-btn.ready {
       animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-btn:disabled:hover {
+      transform: none;
+      box-shadow: 0 4px 16px rgba(48, 144, 224, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .submit-btn.loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* Trust microcopy */
@@ -762,6 +903,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       pointer-events: none;
     }
 
+    @media (max-width: 820px) {
+      .card-fog {
+        top: 45%;
+        width: 120%;
+        height: 100%;
+        background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(12, 18, 28, 0.9) 0%, rgba(12, 18, 28, 0.6) 40%, transparent 75%);
+      }
+    }
+
     /* === SPOTLIGHT BEHIND CARD === */
     .card-spotlight {
       position: absolute;
@@ -773,6 +923,14 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       background: radial-gradient(ellipse 50% 45% at 50% 45%, rgba(180, 200, 220, 0.12) 0%, rgba(140, 170, 200, 0.05) 30%, transparent 60%);
       z-index: 5;
       pointer-events: none;
+    }
+
+    @media (max-width: 820px) {
+      .card-spotlight {
+        top: 40%;
+        width: 100%;
+        height: 80%;
+      }
     }
 
     /* === CURSOR GLOW EFFECT === */
@@ -872,6 +1030,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
               <div class="event-datetime">Monday, April 28 · 6:30 PM PT</div>
               <div class="event-venue">Private venue near Moscone (details after approval)</div>
               <div class="event-description">Off-the-record conversation with senior security and national security leaders.</div>
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Spades%20Institute%20Dinner%20-%20RSA%202025&dates=20250429T013000Z/20250429T043000Z&details=Invitation-only%20dinner%20with%20senior%20security%20and%20national%20security%20leaders.&location=San%20Francisco%2C%20CA" target="_blank" rel="noopener" class="calendar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Add to Calendar
+              </a>
             </div>
           </div>
 
@@ -897,6 +1064,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
               <div class="event-datetime">Tuesday, April 29 · 7:30 AM PT</div>
               <div class="event-venue">Walking distance from Moscone (details after approval)</div>
               <div class="event-description">Small-group briefing and networking before the show floor opens.</div>
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Spades%20Institute%20Breakfast%20-%20RSA%202025&dates=20250429T143000Z/20250429T160000Z&details=Small-group%20briefing%20and%20networking%20before%20the%20show%20floor%20opens.&location=San%20Francisco%2C%20CA" target="_blank" rel="noopener" class="calendar-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Add to Calendar
+              </a>
             </div>
           </div>
         </div>
@@ -915,40 +1091,43 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
           <p class="review-note">Requests reviewed within 24 hours</p>
         </div>
 
-        <div id="success-msg" class="msg success hidden">Your request has been submitted. You'll receive confirmation if approved.</div>
-        <div id="error-msg" class="msg error hidden">Something went wrong. Please try again.</div>
+        <div id="success-msg" class="msg success hidden" role="status" aria-live="polite">Your request has been submitted. You'll receive confirmation if approved.</div>
+        <div id="error-msg" class="msg error hidden" role="alert" aria-live="assertive">Something went wrong. Please try again.</div>
 
         <form id="rsaForm">
           <div class="field-group">
             <label class="field-label" for="name">Full name</label>
-            <input type="text" id="name" name="name" required class="input-field" placeholder="Jane Smith" />
+            <input type="text" id="name" name="name" required class="input-field" placeholder="Jane Smith" aria-describedby="name-error" autocomplete="name" />
+            <p class="field-error" id="name-error" role="alert" aria-live="polite">Please enter your name</p>
           </div>
 
           <div class="field-group">
             <label class="field-label" for="company">Organization</label>
-            <input type="text" id="company" name="company" required class="input-field" placeholder="Acme Corp" />
+            <input type="text" id="company" name="company" required class="input-field" placeholder="Acme Corp" aria-describedby="company-error" autocomplete="organization" />
+            <p class="field-error" id="company-error" role="alert" aria-live="polite">Please enter your organization</p>
           </div>
 
           <div class="field-group">
             <label class="field-label" for="email">Work email</label>
-            <input type="email" id="email" name="email" required class="input-field" placeholder="jane@acme.com" />
-            <p class="field-hint">Work email recommended for faster approval</p>
+            <input type="email" id="email" name="email" required class="input-field" placeholder="jane@acme.com" aria-describedby="email-error email-hint" autocomplete="email" />
+            <p class="field-error" id="email-error" role="alert" aria-live="polite">Please enter a valid email address</p>
+            <p class="field-hint" id="email-hint">Work email recommended for faster approval</p>
           </div>
 
           <div class="selection-group">
             <label class="selection-label">Events</label>
             <p class="selection-helper">Select one or both events</p>
-            <div class="checkbox-tiles">
-              <button type="button" class="checkbox-tile" data-event="dinner">
-                <span class="check-icon">
+            <div class="checkbox-tiles" role="group" aria-label="Select events to attend">
+              <button type="button" class="checkbox-tile" data-event="dinner" role="checkbox" aria-checked="false" aria-label="Dinner event on Monday, April 28">
+                <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </span>
                 Dinner
               </button>
-              <button type="button" class="checkbox-tile" data-event="breakfast">
-                <span class="check-icon">
+              <button type="button" class="checkbox-tile" data-event="breakfast" role="checkbox" aria-checked="false" aria-label="Breakfast event on Tuesday, April 29">
+                <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
@@ -1013,9 +1192,11 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         if (selected.has(id)) {
           selected.delete(id);
           tile.classList.remove('active');
+          tile.setAttribute('aria-checked', 'false');
         } else {
           selected.add(id);
           tile.classList.add('active');
+          tile.setAttribute('aria-checked', 'true');
         }
         updateButtonState();
       });
@@ -1025,17 +1206,92 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     const successEl = document.getElementById('success-msg');
     const errorEl = document.getElementById('error-msg');
 
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      successEl?.classList.add('hidden');
-      errorEl?.classList.add('hidden');
+    // Field references
+    const nameInput = document.getElementById('name');
+    const companyInput = document.getElementById('company');
+    const emailInput = document.getElementById('email');
+    const nameError = document.getElementById('name-error');
+    const companyError = document.getElementById('company-error');
+    const emailError = document.getElementById('email-error');
+
+    // Clear validation on input
+    function clearFieldError(input, errorEl) {
+      input?.classList.remove('invalid');
+      input?.classList.remove('valid');
+      errorEl?.classList.remove('show');
+    }
+
+    function setFieldValid(input) {
+      input?.classList.remove('invalid');
+      input?.classList.add('valid');
+    }
+
+    function setFieldInvalid(input, errorEl) {
+      input?.classList.remove('valid');
+      input?.classList.add('invalid');
+      errorEl?.classList.add('show');
+    }
+
+    // Real-time validation
+    nameInput?.addEventListener('input', () => {
+      clearFieldError(nameInput, nameError);
+      if (nameInput.value.trim().length > 0) setFieldValid(nameInput);
+    });
+
+    companyInput?.addEventListener('input', () => {
+      clearFieldError(companyInput, companyError);
+      if (companyInput.value.trim().length > 0) setFieldValid(companyInput);
+    });
+
+    emailInput?.addEventListener('input', () => {
+      clearFieldError(emailInput, emailError);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(emailInput.value)) setFieldValid(emailInput);
+    });
+
+    // Validate all fields
+    function validateForm() {
+      let isValid = true;
+
+      if (!nameInput?.value.trim()) {
+        setFieldInvalid(nameInput, nameError);
+        isValid = false;
+      }
+
+      if (!companyInput?.value.trim()) {
+        setFieldInvalid(companyInput, companyError);
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput?.value || !emailRegex.test(emailInput.value)) {
+        setFieldInvalid(emailInput, emailError);
+        isValid = false;
+      }
 
       if (selected.size === 0) {
         if (errorEl) {
           errorEl.textContent = 'Please select at least one event';
           errorEl.classList.remove('hidden');
         }
-        return;
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successEl?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+
+      if (!validateForm()) return;
+
+      // Show loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.classList.remove('ready');
       }
 
       const data = new FormData(form);
@@ -1056,11 +1312,20 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
           form.reset();
           tiles.forEach(t => t.classList.remove('active'));
           selected.clear();
+          // Clear valid states
+          [nameInput, companyInput, emailInput].forEach(input => input?.classList.remove('valid'));
         } else {
           errorEl?.classList.remove('hidden');
         }
       } catch {
         errorEl?.classList.remove('hidden');
+      }
+
+      // Reset button state
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        updateButtonState();
       }
     });
   </script>
