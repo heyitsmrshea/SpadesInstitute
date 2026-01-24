@@ -13,16 +13,16 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
   <style is:global>
     /* Hide nav and footer on this landing page */
     header, footer, .back-to-top { display: none !important; }
-    body { background: #0a0f1c !important; }
+    body { background: #060a12 !important; }
     main { padding: 0 !important; margin: 0 !important; }
     .min-h-screen { min-height: 100vh; }
   </style>
 
   <style>
-    /* ===== RSA10: PREMIUM INVITE REDESIGN ===== */
+    /* ===== RSA10: CINEMATIC PREMIUM INVITE ===== */
     * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* === LAYER A: BASE MESH GRADIENT + VIGNETTE === */
+    /* === 1) BACKGROUND: CONTROLLED GRADIENT BASE === */
     .page {
       min-height: 100vh;
       padding: 2rem;
@@ -31,103 +31,100 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       justify-content: center;
       position: relative;
       overflow: hidden;
-      /* Mesh-style gradient: deep navy to steel blue with bloom */
+      /* Deep navy to steel-blue mesh gradient */
       background:
-        radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30, 58, 95, 0.4) 0%, transparent 60%),
-        radial-gradient(ellipse 100% 80% at 20% 20%, rgba(15, 40, 70, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse 100% 80% at 80% 80%, rgba(20, 50, 85, 0.25) 0%, transparent 50%),
-        linear-gradient(135deg, #070c14 0%, #0d1525 30%, #142238 60%, #1a2d4a 100%);
+        linear-gradient(135deg, #050810 0%, #0a1220 25%, #0f1a2e 50%, #142540 75%, #1a2d4a 100%);
     }
 
-    /* Vignette around edges */
-    .vignette {
+    /* === RADIAL BLOOM BEHIND CARD (offset 10% right, slightly above) === */
+    .bloom {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 40%, rgba(5, 8, 15, 0.8) 100%);
+      top: 42%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      width: 140%;
+      height: 120%;
       z-index: 1;
       pointer-events: none;
+      background: radial-gradient(ellipse 45% 35% at 52% 45%, rgba(35, 65, 105, 0.45) 0%, rgba(25, 50, 85, 0.2) 40%, transparent 70%);
     }
 
-    /* === LAYER B: CIRCUIT/NETWORK TEXTURE === */
-    .circuit-layer {
+    /* === ARCHITECTURAL GRID (barely-there, large scale) === */
+    .grid-layer {
       position: absolute;
       inset: 0;
       z-index: 2;
-      opacity: 0.07;
+      opacity: 0.04;
       pointer-events: none;
-      /* CSS circuit pattern */
       background-image:
-        linear-gradient(rgba(100, 150, 200, 0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100, 150, 200, 0.3) 1px, transparent 1px),
-        linear-gradient(rgba(100, 150, 200, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100, 150, 200, 0.15) 1px, transparent 1px);
-      background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-      background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
-      filter: blur(0.5px);
+        linear-gradient(rgba(120, 160, 200, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 160, 200, 0.5) 1px, transparent 1px);
+      background-size: 120px 120px;
+      filter: blur(1px);
     }
 
-    /* === LAYER C: F-18 SILHOUETTE WATERMARK === */
-    .jet-watermark {
+    /* === HANGAR LIGHT BEAM (upper right to center-left) === */
+    .hangar-beam {
       position: absolute;
-      top: -10%;
-      right: -15%;
-      width: 70%;
-      height: 80%;
-      z-index: 2;
-      opacity: 0.05;
-      pointer-events: none;
-      background: url('/blog/fighter-jet.jpg') center center / contain no-repeat;
-      filter: blur(40px) grayscale(100%) brightness(1.5);
-      transform: rotate(-5deg);
-    }
-
-    /* === CINEMATIC LIGHT BEAM === */
-    .light-beam {
-      position: absolute;
-      top: 0;
-      left: 20%;
-      width: 60%;
-      height: 100%;
+      top: -20%;
+      right: -10%;
+      width: 100%;
+      height: 140%;
       z-index: 2;
       opacity: 0.08;
       pointer-events: none;
       background: linear-gradient(
-        135deg,
-        transparent 0%,
-        transparent 40%,
-        rgba(100, 150, 200, 0.3) 50%,
-        transparent 60%,
-        transparent 100%
+        225deg,
+        rgba(140, 180, 220, 0.6) 0%,
+        rgba(100, 150, 200, 0.3) 15%,
+        rgba(80, 130, 180, 0.1) 30%,
+        transparent 50%
       );
-      filter: blur(30px);
+      filter: blur(60px);
+      transform: skewY(-15deg);
     }
 
-    /* === SPOTLIGHT BEHIND CARD === */
-    .spotlight {
+    /* === F-18 WATERMARK (far right, very large, heavily blurred) === */
+    .jet-watermark {
       position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120%;
+      top: -25%;
+      right: -30%;
+      width: 90%;
       height: 100%;
+      z-index: 2;
+      opacity: 0.05;
+      pointer-events: none;
+      background: url('/blog/fighter-jet.jpg') center center / contain no-repeat;
+      filter: blur(55px) grayscale(100%) brightness(1.8);
+      transform: rotate(-8deg);
+    }
+
+    /* === VIGNETTE (darkens edges) === */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 52% 45%, transparent 30%, rgba(5, 8, 15, 0.85) 100%);
       z-index: 3;
       pointer-events: none;
-      background: radial-gradient(ellipse 50% 40% at 50% 48%, rgba(40, 70, 110, 0.35) 0%, transparent 70%);
     }
 
-    /* === CARD LAYOUT === */
+    /* === 2) CARD WITH DEPTH === */
     .main-card {
       background: white;
-      border-radius: 24px;
+      border-radius: 22px;
       overflow: hidden;
       display: grid;
       grid-template-columns: 55% 45%;
-      max-width: 940px;
+      max-width: 920px;
       width: 100%;
+      /* Layered shadow for depth + ambient glow */
       box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.4),
-        0 10px 30px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 15px 50px rgba(0, 0, 0, 0.35),
+        0 30px 80px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      /* Subtle border for silhouette definition */
+      border: 1px solid rgba(255, 255, 255, 0.1);
       position: relative;
       z-index: 10;
     }
@@ -136,12 +133,12 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       .main-card { grid-template-columns: 1fr; }
     }
 
-    /* === LEFT PANEL (INVITE SIDE) === */
+    /* === 3) LEFT PANEL (INVITE SIDE) === */
     .invite-side {
       padding: 44px;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(180deg, #fafbfc 0%, #f5f7f9 100%);
+      background: linear-gradient(180deg, #fafbfc 0%, #f6f8fa 100%);
       position: relative;
     }
 
@@ -157,7 +154,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #1e3a5f, #3b6491, #1e3a5f);
+      background: linear-gradient(90deg, #1a3050, #2a5080, #1a3050);
     }
 
     /* Brand row */
@@ -171,41 +168,41 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .brand-logo {
       width: 38px;
       height: 38px;
-      background: linear-gradient(135deg, #1e3a5f, #0f1f35);
+      background: linear-gradient(135deg, #1a3050, #0f1f30);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       font-size: 18px;
-      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.3);
+      box-shadow: 0 2px 8px rgba(26, 48, 80, 0.35);
     }
 
     .brand-name {
       font-size: 12px;
       font-weight: 700;
-      color: #1e3a5f;
+      color: #1a3050;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
     }
 
-    .classified-stamp {
+    .invite-pill {
       margin-left: auto;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 600;
-      color: #64748b;
+      color: #5a7090;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 4px 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 3px;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      background: #e8edf3;
+      border-radius: 4px;
     }
 
     /* Headline */
     .headline {
-      font-size: 1.9rem;
+      font-size: 1.85rem;
       font-weight: 700;
-      color: #0f172a;
+      color: #0f1a28;
       margin-bottom: 6px;
       line-height: 1.15;
       letter-spacing: -0.02em;
@@ -214,8 +211,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     /* Location line */
     .location-line {
       font-size: 13px;
-      color: #64748b;
-      margin-bottom: 16px;
+      color: #5a6a7a;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -224,50 +221,53 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .location-line svg {
       width: 14px;
       height: 14px;
+      color: #7a8a9a;
     }
 
-    /* Subhead */
+    /* Subhead - tightened width */
     .subhead {
       font-size: 15px;
-      color: #475569;
+      color: #4a5a6a;
       line-height: 1.6;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
+      max-width: 44ch;
     }
 
     /* Event blocks - premium ticket style */
     .events-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 22px;
     }
 
     .event-block {
       display: flex;
       gap: 14px;
-      padding: 16px;
-      background: white;
-      border: 1.5px solid #e2e8f0;
+      padding: 18px;
+      /* Subtle top highlight gradient */
+      background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+      border: 1px solid #dce4ec;
       border-radius: 14px;
       position: relative;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .event-block:hover {
-      border-color: #cbd5e1;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-color: #c5d0dc;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
     }
 
     .event-icon {
       width: 46px;
       height: 46px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%);
+      background: linear-gradient(135deg, #1a3050 0%, #2a4a70 100%);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 2px 6px rgba(30, 58, 95, 0.25);
+      box-shadow: 0 3px 8px rgba(26, 48, 80, 0.3);
     }
 
     .event-icon svg {
@@ -284,59 +284,63 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .event-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 2px;
+      gap: 10px;
+      margin-bottom: 4px;
     }
 
     .event-name {
       font-size: 16px;
       font-weight: 600;
-      color: #0f172a;
+      color: #0f1a28;
     }
 
+    /* Muted limited tag - closer to palette */
     .limited-tag {
       font-size: 9px;
       font-weight: 600;
-      color: #92400e;
+      color: #6a7a8a;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 2px 6px;
-      background: #fef3c7;
+      padding: 3px 7px;
+      background: #e8edf3;
       border-radius: 3px;
     }
 
+    /* Date/time - clearer hierarchy, darker */
     .event-datetime {
       font-size: 13px;
-      color: #64748b;
-      margin-bottom: 3px;
+      color: #3a4a5a;
+      font-weight: 500;
+      margin-bottom: 4px;
     }
 
+    /* Venue - lighter but readable */
     .event-venue {
       font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 6px;
+      color: #7a8a9a;
+      margin-bottom: 8px;
       font-style: italic;
     }
 
     .event-description {
       font-size: 13px;
-      color: #475569;
-      line-height: 1.45;
+      color: #4a5a6a;
+      line-height: 1.5;
     }
 
     /* Footer note */
     .invite-footer {
       margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid #e2e8f0;
+      padding-top: 18px;
+      border-top: 1px solid #e4eaf0;
       font-size: 12px;
-      color: #94a3b8;
+      color: #8a9aaa;
       line-height: 1.5;
     }
 
-    /* === RIGHT PANEL (FORM SIDE) === */
+    /* === 4) RIGHT PANEL (FORM SIDE) === */
     .form-side {
-      background: linear-gradient(180deg, #151d2b 0%, #1a2435 100%);
+      background: linear-gradient(180deg, #141c28 0%, #1a2435 100%);
       padding: 40px 36px;
       display: flex;
       flex-direction: column;
@@ -348,7 +352,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
     /* Form header */
     .form-header {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .form-title {
@@ -362,41 +366,42 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       display: inline-block;
       font-size: 10px;
       font-weight: 500;
-      color: #94a3b8;
+      color: #8a9aaa;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       padding: 5px 10px;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 4px;
     }
 
+    /* Review note - more visible */
     .review-note {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 10px;
+      font-size: 13px;
+      color: #9aaabc;
+      margin-top: 12px;
     }
 
-    /* Form fields */
+    /* Form fields - improved label readability */
     .field-group {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .field-label {
       display: block;
       font-size: 12px;
-      font-weight: 500;
-      color: #94a3b8;
-      margin-bottom: 5px;
+      font-weight: 600;
+      color: #a0b0c0;
+      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
     .input-field {
       width: 100%;
-      padding: 12px 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      padding: 13px 15px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
       border-radius: 8px;
       font-size: 14px;
       color: white;
@@ -404,55 +409,56 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     .input-field::placeholder {
-      color: #4b5563;
+      color: #5a6a7a;
     }
 
     .input-field:focus {
       outline: none;
-      border-color: rgba(100, 150, 200, 0.5);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 0 3px rgba(100, 150, 200, 0.15);
+      border-color: rgba(120, 160, 200, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 3px rgba(120, 160, 200, 0.15);
     }
 
     .field-hint {
       font-size: 11px;
-      color: #64748b;
-      margin-top: 4px;
+      color: #7a8a9a;
+      margin-top: 5px;
     }
 
-    /* Event selection */
+    /* Event selection - improved contrast */
     .selection-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .selection-label {
       font-size: 12px;
-      font-weight: 500;
-      color: #94a3b8;
+      font-weight: 600;
+      color: #a0b0c0;
       margin-bottom: 6px;
       display: block;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
     .selection-helper {
       font-size: 12px;
-      color: #64748b;
-      margin-bottom: 10px;
+      color: #7a8a9a;
+      margin-bottom: 12px;
     }
 
     .checkbox-tiles {
       display: flex;
-      gap: 10px;
+      gap: 12px;
     }
 
+    /* Checkbox tiles - increased contrast and click target */
     .checkbox-tile {
       flex: 1;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.15);
       border-radius: 10px;
-      color: #94a3b8;
+      color: #9aaabc;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
@@ -461,34 +467,37 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .checkbox-tile:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: #bccce0;
     }
 
+    /* Strong selected state */
     .checkbox-tile.active {
-      border-color: #3b82f6;
-      background: rgba(59, 130, 246, 0.15);
-      color: #93c5fd;
+      border-color: #4a90d0;
+      background: rgba(74, 144, 208, 0.2);
+      color: #a0d0ff;
     }
 
     .checkbox-tile .check-icon {
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s;
+      flex-shrink: 0;
     }
 
     .checkbox-tile.active .check-icon {
-      background: #3b82f6;
-      border-color: #3b82f6;
+      background: #4a90d0;
+      border-color: #4a90d0;
     }
 
     .checkbox-tile .check-icon svg {
@@ -505,15 +514,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
     .capacity-note {
       font-size: 11px;
-      color: #64748b;
-      margin-top: 8px;
+      color: #7a8a9a;
+      margin-top: 10px;
     }
 
     /* CTA button */
     .submit-btn {
       width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      padding: 15px;
+      background: linear-gradient(135deg, #3080d0, #2060a0);
       color: white;
       border: none;
       border-radius: 10px;
@@ -521,12 +530,12 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .submit-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 8px 28px rgba(48, 128, 208, 0.4);
     }
 
     .submit-btn:active {
@@ -535,14 +544,14 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
     /* Trust microcopy */
     .trust-copy {
-      margin-top: 14px;
+      margin-top: 16px;
       text-align: center;
     }
 
     .trust-copy p {
       font-size: 11px;
-      color: #64748b;
-      line-height: 1.5;
+      color: #6a7a8a;
+      line-height: 1.6;
       margin-bottom: 3px;
     }
 
@@ -552,19 +561,19 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       border-radius: 8px;
       font-size: 13px;
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .success {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: rgba(34, 180, 100, 0.15);
+      color: #50d090;
+      border: 1px solid rgba(34, 180, 100, 0.25);
     }
 
     .error {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.2);
+      background: rgba(220, 80, 80, 0.15);
+      color: #f08080;
+      border: 1px solid rgba(220, 80, 80, 0.25);
     }
 
     .hidden { display: none; }
@@ -577,27 +586,27 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       transform: translateX(-50%);
       z-index: 20;
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.25);
     }
 
     .minimal-footer a {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.35);
       text-decoration: none;
       transition: color 0.2s;
     }
 
     .minimal-footer a:hover {
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.6);
     }
   </style>
 
   <div class="page">
     <!-- Background layers -->
-    <div class="vignette"></div>
-    <div class="circuit-layer"></div>
+    <div class="bloom"></div>
+    <div class="grid-layer"></div>
+    <div class="hangar-beam"></div>
     <div class="jet-watermark"></div>
-    <div class="light-beam"></div>
-    <div class="spotlight"></div>
+    <div class="vignette"></div>
 
     <div class="main-card">
       <!-- LEFT PANEL: INVITE SIDE -->
@@ -606,7 +615,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         <div class="brand-row">
           <div class="brand-logo">♠</div>
           <span class="brand-name">Spades Institute</span>
-          <span class="classified-stamp">RSA 2025</span>
+          <span class="invite-pill">Invitation Only</span>
         </div>
 
         <!-- Headline -->
@@ -638,7 +647,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
                 <span class="event-name">Dinner</span>
                 <span class="limited-tag">Limited seating</span>
               </div>
-              <div class="event-datetime">Mon, Apr 28 · 6:30 PM PT</div>
+              <div class="event-datetime">Monday, April 28 · 6:30 PM PT</div>
               <div class="event-venue">Private venue near Moscone (details after approval)</div>
               <div class="event-description">Off-the-record conversation with senior security and national security leaders.</div>
             </div>
@@ -663,7 +672,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
               <div class="event-header">
                 <span class="event-name">Breakfast</span>
               </div>
-              <div class="event-datetime">Tue, Apr 29 · 7:30 AM PT</div>
+              <div class="event-datetime">Tuesday, April 29 · 7:30 AM PT</div>
               <div class="event-venue">Walking distance from Moscone (details after approval)</div>
               <div class="event-description">Small-group briefing and networking before the show floor opens.</div>
             </div>
@@ -680,7 +689,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       <div class="form-side">
         <div class="form-header">
           <h2 class="form-title">Request an invitation</h2>
-          <span class="form-badge">Invitation-only · Approval required</span>
+          <span class="form-badge">Approval required</span>
           <p class="review-note">Requests reviewed within 24 hours</p>
         </div>
 
