@@ -13,5 +13,11 @@ export default defineConfig({
     tailwind()
     // sitemap() // TODO: Re-enable after fixing compatibility
   ],
-  trailingSlash: 'always'
+  trailingSlash: 'always',
+  redirects: {
+    '/RSA': '/rsa/',
+    '/RSA/': '/rsa/',
+    '/Rsa': '/rsa/',
+    '/Rsa/': '/rsa/'
+  }
 });
