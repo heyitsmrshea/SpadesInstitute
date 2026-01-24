@@ -1,0 +1,786 @@
+---
+import Layout from '../components/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.org';
+
+const events = [
+  {
+    id: 'dinner',
+    name: 'Mission Brief: Dinner',
+    tagline: 'An evening of trusted conversation',
+    date: 'Monday, April 28, 2025',
+    time: '6:30 PM - 9:30 PM PT',
+    location: 'San Francisco, CA',
+    locationDetail: 'Venue details shared upon confirmation',
+    description: 'Join fellow operators, innovators, and government leaders for an intimate dinner conversation on the intersection of cybersecurity and national security.',
+    calendarStart: '20250428T183000',
+    calendarEnd: '20250428T213000',
+  },
+  {
+    id: 'breakfast',
+    name: 'Mission Brief: Breakfast',
+    tagline: 'Start the day with purpose',
+    date: 'Tuesday, April 29, 2025',
+    time: '7:30 AM - 9:00 AM PT',
+    location: 'San Francisco, CA',
+    locationDetail: 'Venue details shared upon confirmation',
+    description: 'A working breakfast bringing together senior leaders to discuss emerging threats, opportunities, and collaborative solutions.',
+    calendarStart: '20250429T073000',
+    calendarEnd: '20250429T090000',
+  }
+];
+
+function getGoogleCalendarUrl(event: typeof events[0]) {
+  const title = encodeURIComponent(`Spades Institute: ${event.name}`);
+  const details = encodeURIComponent(`${event.description}\n\nHosted by Spades Institute at RSA Conference 2025`);
+  const location = encodeURIComponent(`${event.location}`);
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${event.calendarStart}/${event.calendarEnd}&details=${details}&location=${location}&ctz=America/Los_Angeles`;
+}
+
+function getICSContent(event: typeof events[0]) {
+  return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Spades Institute//RSA Events//EN
+BEGIN:VEVENT
+DTSTART;TZID=America/Los_Angeles:${event.calendarStart}
+DTEND;TZID=America/Los_Angeles:${event.calendarEnd}
+SUMMARY:Spades Institute: ${event.name}
+DESCRIPTION:${event.description}\\n\\nHosted by Spades Institute at RSA Conference 2025
+LOCATION:${event.location}
+END:VEVENT
+END:VCALENDAR`;
+}
+---
+
+<Layout
+  title="RSA Conference 2025 | Spades Institute - Design 4"
+  description="Join Spades Institute at RSA Conference 2025 for exclusive dinner and breakfast events."
+>
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/rsa4`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Saira+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+    /* ===== V4: AIRCRAFT CARRIER OPS - NAVAL COMMAND ===== */
+    
+    .font-naval {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.05em;
+    }
+    
+    .font-deck {
+      font-family: 'Saira Condensed', sans-serif;
+    }
+
+    /* Deep ocean gradient */
+    .ocean-gradient {
+      background: linear-gradient(180deg, 
+        #0a1628 0%, 
+        #0d2847 30%,
+        #133a5c 50%,
+        #0d2847 70%,
+        #0a1628 100%);
+      position: relative;
+    }
+
+    /* Wave pattern overlay */
+    .wave-pattern::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 100px,
+          rgba(255,255,255,0.01) 100px,
+          rgba(255,255,255,0.01) 102px
+        );
+      animation: waveShift 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes waveShift {
+      from { transform: translateX(0); }
+      to { transform: translateX(100px); }
+    }
+
+    /* Carrier silhouette */
+    .carrier-bg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1000px;
+      height: 150px;
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.8) 100%);
+      opacity: 0.3;
+    }
+
+    /* Deck lights animation */
+    .deck-lights {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 80px;
+    }
+
+    .deck-light {
+      width: 8px;
+      height: 8px;
+      background: #fbbf24;
+      border-radius: 50%;
+      animation: deckBlink 2s ease-in-out infinite;
+    }
+
+    .deck-light:nth-child(2) { animation-delay: 0.3s; }
+    .deck-light:nth-child(3) { animation-delay: 0.6s; }
+    .deck-light:nth-child(4) { animation-delay: 0.9s; }
+    .deck-light:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes deckBlink {
+      0%, 100% { opacity: 0.3; box-shadow: 0 0 5px #fbbf24; }
+      50% { opacity: 1; box-shadow: 0 0 20px #fbbf24, 0 0 40px rgba(251,191,36,0.5); }
+    }
+
+    /* Compass rose decoration */
+    .compass-rose {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      opacity: 0.08;
+      animation: compassSpin 120s linear infinite;
+    }
+
+    @keyframes compassSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Naval stripe accent */
+    .naval-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, 
+        #1e3a5f 0%, 
+        #2563eb 25%, 
+        #fbbf24 50%, 
+        #2563eb 75%, 
+        #1e3a5f 100%);
+    }
+
+    /* Hero text styling */
+    .naval-title {
+      color: white;
+      text-shadow: 
+        0 2px 4px rgba(0,0,0,0.5),
+        0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Ship panel styling */
+    .ship-panel {
+      background: linear-gradient(180deg, rgba(13, 40, 71, 0.9) 0%, rgba(10, 22, 40, 0.95) 100%);
+      border: 2px solid #1e3a5f;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ship-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1e3a5f, #2563eb, #1e3a5f);
+    }
+
+    .ship-panel:hover {
+      border-color: #2563eb;
+      box-shadow: 0 0 40px rgba(37, 99, 235, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    /* Warning stripe decoration */
+    .warning-stripe {
+      height: 8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #fbbf24,
+        #fbbf24 10px,
+        #1a1a1a 10px,
+        #1a1a1a 20px
+      );
+    }
+
+    /* Battle station badge */
+    .station-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(37, 99, 235, 0.2);
+      border: 2px solid #2563eb;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: #60a5fa;
+    }
+
+    /* Anchor icon */
+    .anchor-icon {
+      position: relative;
+    }
+
+    .anchor-icon::before {
+      content: '⚓';
+      margin-right: 0.5rem;
+    }
+
+    /* Naval buttons */
+    .btn-naval {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 2px solid #2563eb;
+      font-family: 'Saira Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #60a5fa;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-naval:hover {
+      background: rgba(37, 99, 235, 0.2);
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-naval-primary {
+      background: linear-gradient(180deg, #2563eb, #1d4ed8);
+      border-color: #3b82f6;
+      color: white;
+    }
+
+    .btn-naval-primary:hover {
+      background: linear-gradient(180deg, #3b82f6, #2563eb);
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+
+    /* Input styling */
+    .input-naval {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(10, 22, 40, 0.8);
+      border: 2px solid #1e3a5f;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size: 15px;
+      color: #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .input-naval:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    .input-naval::placeholder {
+      color: rgba(148, 163, 184, 0.5);
+    }
+
+    /* Checkbox styling */
+    .checkbox-naval {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #1e3a5f;
+      background: rgba(10, 22, 40, 0.8);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .checkbox-naval:checked {
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+
+    .checkbox-naval:checked::after {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: white;
+      height: 100%;
+    }
+
+    /* Data display */
+    .ship-data {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(30, 58, 95, 0.5);
+    }
+
+    .ship-data:last-child {
+      border-bottom: none;
+    }
+
+    .data-icon {
+      width: 20px;
+      height: 20px;
+      color: #60a5fa;
+    }
+
+    /* Heading bar */
+    .heading-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: rgba(96, 165, 250, 0.6);
+      text-transform: uppercase;
+    }
+
+    .heading-bar span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Reveal animations */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 0.8s ease-out forwards;
+    }
+
+    .reveal-delay-1 { animation-delay: 0.15s; }
+    .reveal-delay-2 { animation-delay: 0.3s; }
+    .reveal-delay-3 { animation-delay: 0.45s; }
+
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section divider */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      height: 2px;
+      width: 100px;
+      background: linear-gradient(90deg, transparent, #1e3a5f);
+    }
+
+    .section-divider::after {
+      background: linear-gradient(-90deg, transparent, #1e3a5f);
+    }
+
+    /* Form label */
+    .form-label {
+      display: block;
+      font-family: 'Saira Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .compass-rose { display: none; }
+      .deck-lights { display: none; }
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="ocean-gradient wave-pattern min-h-[75vh] flex items-center justify-center relative overflow-hidden">
+    <!-- Compass rose decoration -->
+    <svg class="compass-rose" style="top: 10%; right: 10%;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
+      <circle cx="50" cy="50" r="45" class="text-blue-400"/>
+      <circle cx="50" cy="50" r="35" class="text-blue-400"/>
+      <path d="M50 5 L50 95 M5 50 L95 50" class="text-blue-400"/>
+      <path d="M50 5 L55 20 L50 15 L45 20 Z" fill="currentColor" class="text-blue-400"/>
+      <text x="50" y="3" text-anchor="middle" font-size="6" fill="currentColor" class="text-blue-400">N</text>
+    </svg>
+
+    <!-- Deck lights -->
+    <div class="deck-lights">
+      <div class="deck-light"></div>
+      <div class="deck-light"></div>
+      <div class="deck-light"></div>
+      <div class="deck-light"></div>
+      <div class="deck-light"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="max-w-4xl mx-auto px-6 py-24 text-center relative z-10">
+      <div class="mb-6 reveal-up">
+        <span class="anchor-icon font-deck text-sm uppercase tracking-[0.25em] text-blue-300">
+          RSA Conference 2025 — San Francisco
+        </span>
+      </div>
+
+      <h1 class="font-naval text-6xl md:text-7xl lg:text-8xl naval-title mb-4 reveal-up reveal-delay-1">
+        MISSION BRIEF
+      </h1>
+
+      <div class="naval-stripe max-w-md mx-auto mb-6 reveal-up reveal-delay-1"></div>
+
+      <p class="font-deck text-xl text-blue-200/90 tracking-wider mb-2 reveal-up reveal-delay-2">
+        SPADES INSTITUTE // NAVAL OPERATIONS DIVISION
+      </p>
+
+      <p class="font-deck text-lg text-slate-300 max-w-xl mx-auto leading-relaxed reveal-up reveal-delay-2">
+        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation.
+      </p>
+
+      <div class="mt-10 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-3">
+        <a href="#events" class="btn-naval">
+          ↓ Operations Deck
+        </a>
+        <a href="#signup" class="btn-naval-primary">
+          ⚓ Request Boarding
+        </a>
+      </div>
+
+      <!-- Heading bar -->
+      <div class="heading-bar mt-12 reveal-up reveal-delay-3">
+        <span>HDG: 285°</span>
+        <span>|</span>
+        <span>SPD: 30 KTS</span>
+        <span>|</span>
+        <span>POS: 37.7°N 122.4°W</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Warning stripe -->
+  <div class="warning-stripe"></div>
+
+  <!-- Events Section -->
+  <section id="events" class="ocean-gradient py-20 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="font-deck text-sm uppercase tracking-[0.3em] text-blue-400/60 mb-2">Flight Deck Operations</p>
+        <h2 class="font-naval text-4xl md:text-5xl text-white">
+          SELECT YOUR STATION
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {events.map((event, index) => (
+          <div class="ship-panel p-8">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <span class="station-badge">
+                  Station {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 class="font-naval text-3xl text-white mt-3">
+                  {event.name}
+                </h3>
+                <p class="font-deck text-blue-300/70 mt-1">{event.tagline}</p>
+              </div>
+              <div class="w-14 h-14 rounded-sm border-2 border-blue-500/40 flex items-center justify-center bg-blue-500/10">
+                {index === 0 ? (
+                  <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                ) : (
+                  <svg class="w-7 h-7 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="ship-data">
+                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="font-deck text-slate-200">{event.date}</span>
+              </div>
+              <div class="ship-data">
+                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="font-deck text-slate-200">{event.time}</span>
+              </div>
+              <div class="ship-data">
+                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span class="font-deck text-slate-200">{event.location}</span>
+              </div>
+            </div>
+
+            <p class="font-deck text-slate-400 text-sm leading-relaxed mb-6">
+              {event.description}
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href={getGoogleCalendarUrl(event)} target="_blank" rel="noreferrer" class="btn-naval text-sm">
+                📅 Add to Calendar
+              </a>
+              <button class="btn-naval text-sm download-ics" data-event-id={event.id} data-ics-content={getICSContent(event)}>
+                ⬇ Download .ICS
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="ocean-gradient">
+    <div class="section-divider">
+      <span class="text-blue-400/40">⚓</span>
+    </div>
+  </div>
+
+  <!-- Signup Form Section -->
+  <section id="signup" class="ocean-gradient py-20 relative">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="ship-panel p-8 md:p-10">
+        <div class="text-center mb-8">
+          <p class="font-deck text-sm uppercase tracking-[0.3em] text-amber-400 mb-2">Boarding Request</p>
+          <h2 class="font-naval text-3xl md:text-4xl text-white">
+            REQUEST CLEARANCE
+          </h2>
+          <p class="font-deck text-slate-400 mt-3 text-sm">
+            Submit credentials for boarding authorization. Venue coordinates released upon approval.
+          </p>
+        </div>
+
+        <div id="form-success" class="hidden mb-6 p-4 bg-green-500/10 border-2 border-green-500/40">
+          <p class="font-naval text-green-400 text-lg">REQUEST TRANSMITTED</p>
+          <p class="font-deck text-green-400/70 text-sm mt-1">Stand by for confirmation signal.</p>
+        </div>
+
+        <div id="form-error" class="hidden mb-6 p-4 bg-red-500/10 border-2 border-red-500/40">
+          <p class="font-naval text-red-400" id="error-message">TRANSMISSION FAILED</p>
+        </div>
+
+        <form id="rsaSignupForm" class="space-y-5">
+          <div>
+            <label for="signup-name" class="form-label">Name <span class="text-red-400">*</span></label>
+            <input id="signup-name" name="name" type="text" required placeholder="Your full name" class="input-naval" />
+          </div>
+
+          <div>
+            <label for="signup-company" class="form-label">Organization <span class="text-red-400">*</span></label>
+            <input id="signup-company" name="company" type="text" required placeholder="Your company or agency" class="input-naval" />
+          </div>
+
+          <div>
+            <label for="signup-email" class="form-label">Email <span class="text-red-400">*</span></label>
+            <input id="signup-email" name="email" type="email" required placeholder="your.email@organization.com" class="input-naval" />
+          </div>
+
+          <div>
+            <label class="form-label">Select Station(s) <span class="text-red-400">*</span></label>
+            <div class="space-y-3 mt-3">
+              {events.map((event) => (
+                <label class="flex items-start gap-3 cursor-pointer group p-3 border border-transparent hover:border-blue-500/30 hover:bg-blue-500/5 transition-all">
+                  <input type="checkbox" name="events" value={event.id} class="checkbox-naval mt-0.5" />
+                  <div>
+                    <span class="font-deck text-slate-200 font-semibold group-hover:text-blue-400 transition-colors">{event.name}</span>
+                    <span class="block text-xs text-slate-500 mt-0.5">{event.date} // {event.time}</span>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" id="submit-btn" class="btn-naval-primary w-full justify-center py-4 text-base">
+              <span id="submit-text">Submit Boarding Request</span>
+              <span id="submit-spinner" class="hidden">Transmitting...</span>
+              <span id="submit-arrow">→</span>
+            </button>
+          </div>
+
+          <p class="font-deck text-xs text-slate-500 text-center">
+            All communications secured. Information used for event coordination only.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Warning stripe -->
+  <div class="warning-stripe"></div>
+
+  <!-- Footer -->
+  <section class="ocean-gradient py-12">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="flex items-center justify-center gap-4 text-blue-400/40 font-deck text-sm mb-6">
+        <span>—</span>
+        <span class="uppercase tracking-widest">All Hands Dismissed</span>
+        <span>—</span>
+      </div>
+
+      <p class="font-deck text-slate-500 text-sm mb-6">
+        Questions? Contact <a href="mailto:info@spadesinstitute.org" class="text-blue-400 hover:text-blue-300 transition-colors">info@spadesinstitute.org</a>
+      </p>
+
+      <div class="flex items-center justify-center gap-6 text-xs text-slate-600 font-deck uppercase tracking-wider">
+        <a href={`${base}/`} class="hover:text-blue-400 transition-colors">Home</a>
+        <span class="text-blue-500/30">|</span>
+        <a href={`${base}/about/`} class="hover:text-blue-400 transition-colors">About</a>
+        <span class="text-blue-500/30">|</span>
+        <a href={`${base}/connect/`} class="hover:text-blue-400 transition-colors">Connect</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.download-ics').forEach(button => {
+      button.addEventListener('click', () => {
+        const icsContent = button.getAttribute('data-ics-content');
+        const eventId = button.getAttribute('data-event-id');
+        if (icsContent) {
+          const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `spades-rsa-${eventId}.ics`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+      });
+    });
+
+    const form = document.getElementById('rsaSignupForm');
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = document.getElementById('submit-text');
+    const submitSpinner = document.getElementById('submit-spinner');
+    const submitArrow = document.getElementById('submit-arrow');
+    const formSuccess = document.getElementById('form-success');
+    const formError = document.getElementById('form-error');
+    const errorMessage = document.getElementById('error-message');
+
+    if (form) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (formSuccess) formSuccess.classList.add('hidden');
+        if (formError) formError.classList.add('hidden');
+
+        const data = new FormData(form);
+        const selectedEvents = data.getAll('events');
+        const payload = {
+          name: String(data.get('name') || ''),
+          company: String(data.get('company') || ''),
+          email: String(data.get('email') || ''),
+          events: selectedEvents,
+        };
+
+        if (!payload.name || !payload.company || !payload.email) {
+          if (formError && errorMessage) {
+            errorMessage.textContent = 'Please fill in all required fields.';
+            formError.classList.remove('hidden');
+          }
+          return;
+        }
+
+        if (selectedEvents.length === 0) {
+          if (formError && errorMessage) {
+            errorMessage.textContent = 'Please select at least one station.';
+            formError.classList.remove('hidden');
+          }
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(payload.email)) {
+          if (formError && errorMessage) {
+            errorMessage.textContent = 'Please enter a valid email address.';
+            formError.classList.remove('hidden');
+          }
+          return;
+        }
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Transmitting...';
+        if (submitSpinner) submitSpinner.classList.remove('hidden');
+        if (submitArrow) submitArrow.classList.add('hidden');
+
+        try {
+          const eventNames = selectedEvents.map(id => {
+            if (id === 'dinner') return 'Mission Brief: Dinner (April 28)';
+            if (id === 'breakfast') return 'Mission Brief: Breakfast (April 29)';
+            return id;
+          }).join(', ');
+
+          const formattedMessage = `RSA Conference 2025 Event Signup\n\nName: ${payload.name}\nOrganization: ${payload.company}\nEmail: ${payload.email}\nSelected Events: ${eventNames}\n\nSubmitted via RSA signup page`;
+
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
+              subject: `RSA 2025 Event Signup - ${payload.name} (${payload.company})`,
+              from_name: payload.name,
+              email: payload.email,
+              replyto: payload.email,
+              message: formattedMessage,
+            }),
+          });
+
+          const result = await response.json();
+          if (response.ok && result.success) {
+            if (formSuccess) formSuccess.classList.remove('hidden');
+            form.reset();
+            formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            if (formError && errorMessage) {
+              errorMessage.textContent = result.message || 'Transmission failed. Please try again.';
+              formError.classList.remove('hidden');
+            }
+          }
+        } catch (error) {
+          if (formError && errorMessage) {
+            errorMessage.textContent = 'Network error. Please check your connection.';
+            formError.classList.remove('hidden');
+          }
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Submit Boarding Request';
+          if (submitSpinner) submitSpinner.classList.add('hidden');
+          if (submitArrow) submitArrow.classList.remove('hidden');
+        }
+      });
+    }
+  </script>
+</Layout>

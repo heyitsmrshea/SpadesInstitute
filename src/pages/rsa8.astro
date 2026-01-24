@@ -1,0 +1,216 @@
+---
+import Layout from '../components/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.org';
+
+const events = [
+  { id: 'dinner', name: 'Dinner Event', date: 'Monday, April 28', time: '6:30 PM PT', desc: 'Evening conversation with leaders' },
+  { id: 'breakfast', name: 'Breakfast Event', date: 'Tuesday, April 29', time: '7:30 AM PT', desc: 'Working breakfast session' }
+];
+---
+
+<Layout title="RSA 2025 | Spades Institute" description="Join Spades Institute at RSA Conference 2025">
+  <head slot="head">
+    <link rel="canonical" href={`${siteUrl}${base}/rsa8`} />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+    /* ===== RSA8: HORIZONTAL CARDS + INLINE FORM ===== */
+    * { font-family: 'Plus Jakarta Sans', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+    
+    .page { background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%); min-height: 100vh; padding: 2rem; }
+    
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .logo { font-size: 13px; font-weight: 600; color: #1e40af; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .title { font-size: 2rem; font-weight: 800; color: #18181b; margin-bottom: 0.5rem; }
+    .subtitle { font-size: 15px; color: #71717a; }
+    
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 600px) { .cards-row { grid-template-columns: 1fr; } }
+    
+    .event-card {
+      background: white;
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .event-card:hover { border-color: #1e40af; box-shadow: 0 4px 12px rgba(30,64,175,0.1); }
+    .event-card.selected { border-color: #1e40af; background: #eff6ff; }
+    
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+    .card-name { font-weight: 700; font-size: 16px; color: #18181b; }
+    .card-check { width: 22px; height: 22px; border: 2px solid #d4d4d8; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .event-card.selected .card-check { background: #1e40af; border-color: #1e40af; color: white; }
+    
+    .card-time { font-size: 13px; color: #71717a; margin-bottom: 0.25rem; }
+    .card-desc { font-size: 13px; color: #a1a1aa; }
+    
+    .form-section {
+      background: white;
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    
+    .form-title { font-weight: 700; font-size: 18px; color: #18181b; margin-bottom: 1rem; }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 700px) { .form-row { grid-template-columns: 1fr; } }
+    
+    .input-field {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      font-size: 14px;
+      width: 100%;
+    }
+    .input-field:focus { outline: none; border-color: #1e40af; }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 0.875rem;
+      background: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #1e3a8a; }
+    .submit-btn:disabled { background: #93c5fd; cursor: not-allowed; }
+    
+    .msg { padding: 0.75rem; border-radius: 8px; text-align: center; font-size: 14px; margin-bottom: 1rem; }
+    .success { background: #dcfce7; color: #166534; }
+    .error { background: #fee2e2; color: #991b1b; }
+    .hidden { display: none; }
+    
+    .footer { text-align: center; margin-top: 1.5rem; font-size: 13px; color: #a1a1aa; }
+    .footer a { color: #71717a; text-decoration: none; }
+    .footer a:hover { color: #1e40af; }
+  </style>
+
+  <div class="page">
+    <div class="container">
+      <div class="header">
+        <p class="logo">Spades Institute</p>
+        <h1 class="title">RSA Conference 2025</h1>
+        <p class="subtitle">Select your event(s) and request an invitation</p>
+      </div>
+      
+      <div class="cards-row" id="event-cards">
+        {events.map(e => (
+          <div class="event-card" data-event={e.id}>
+            <div class="card-header">
+              <span class="card-name">{e.name}</span>
+              <span class="card-check">✓</span>
+            </div>
+            <div class="card-time">{e.date} • {e.time}</div>
+            <div class="card-desc">{e.desc}</div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="form-section">
+        <h2 class="form-title">Your Information</h2>
+        
+        <div id="success-msg" class="msg success hidden">✓ Request submitted successfully!</div>
+        <div id="error-msg" class="msg error hidden">Please try again.</div>
+        
+        <form id="rsaForm">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Full name" required class="input-field" />
+            <input type="text" name="company" placeholder="Organization" required class="input-field" />
+            <input type="email" name="email" placeholder="Email address" required class="input-field" />
+          </div>
+          <button type="submit" id="submit-btn" class="submit-btn">Request Invitation</button>
+        </form>
+      </div>
+      
+      <div class="footer">
+        <a href="mailto:info@spadesinstitute.org">Contact</a> · <a href={`${base}/`}>Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.event-card');
+    const selectedEvents = new Set();
+    
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const eventId = card.getAttribute('data-event');
+        if (selectedEvents.has(eventId)) {
+          selectedEvents.delete(eventId);
+          card.classList.remove('selected');
+        } else {
+          selectedEvents.add(eventId);
+          card.classList.add('selected');
+        }
+      });
+    });
+    
+    const form = document.getElementById('rsaForm');
+    const successEl = document.getElementById('success-msg');
+    const errorEl = document.getElementById('error-msg');
+    const submitBtn = document.getElementById('submit-btn');
+    
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successEl?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+      
+      if (selectedEvents.size === 0) {
+        if (errorEl) { errorEl.textContent = 'Please select at least one event above'; errorEl.classList.remove('hidden'); }
+        return;
+      }
+      
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Submitting...'; }
+      
+      const data = new FormData(form);
+      
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
+            subject: `RSA 2025 - ${data.get('name')}`,
+            email: data.get('email'),
+            message: `Name: ${data.get('name')}\nOrg: ${data.get('company')}\nEmail: ${data.get('email')}\nEvents: ${Array.from(selectedEvents).join(', ')}`
+          })
+        });
+        if ((await res.json()).success) {
+          successEl?.classList.remove('hidden');
+          form.reset();
+          cards.forEach(c => c.classList.remove('selected'));
+          selectedEvents.clear();
+        } else { errorEl?.classList.remove('hidden'); }
+      } catch { errorEl?.classList.remove('hidden'); }
+      
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Invitation'; }
+    });
+  </script>
+</Layout>
