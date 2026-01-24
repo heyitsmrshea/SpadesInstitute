@@ -1279,9 +1279,11 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
-            subject: `RSA 2025 Invitation Request - ${data.get('name')}`,
+            subject: `RSA 2026 Invitation Request - ${data.get('name')}`,
+            name: data.get('name'),
+            organization: data.get('company'),
             email: data.get('email'),
-            message: `Name: ${data.get('name')}\nOrganization: ${data.get('company')}\nEmail: ${data.get('email')}\nEvents: ${Array.from(selected).join(', ')}`
+            events: Array.from(selected).join(', ')
           })
         });
         if ((await res.json()).success) {
