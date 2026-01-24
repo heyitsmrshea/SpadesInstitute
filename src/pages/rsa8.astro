@@ -110,14 +110,117 @@ const events = [
     .footer { text-align: center; margin-top: 1.5rem; font-size: 13px; color: #a1a1aa; }
     .footer a { color: #71717a; text-decoration: none; }
     .footer a:hover { color: #1e40af; }
+
+    /* Spades Logo Header */
+    .logo-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #1e40af, #1e3a8a);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+    }
+
+    /* Selection Counter */
+    .selection-counter {
+      text-align: center;
+      padding: 0.75rem;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 14px;
+      color: #1e40af;
+      font-weight: 500;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      height: 4px;
+      background: #e4e4e7;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Card checkmark animation */
+    .event-card.selected .card-check::after {
+      content: '✓';
+      animation: checkBounce 0.3s ease-out;
+    }
+
+    @keyframes checkBounce {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Both events benefit */
+    .both-events-benefit {
+      text-align: center;
+      padding: 0.5rem;
+      background: linear-gradient(90deg, #fef3c7, #fde68a);
+      border-radius: 6px;
+      font-size: 12px;
+      color: #92400e;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    /* Venue teaser */
+    .venue-teaser {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 11px;
+      color: #a1a1aa;
+      margin-top: 0.5rem;
+    }
+
+    .venue-teaser svg {
+      width: 14px;
+      height: 14px;
+    }
   </style>
 
   <div class="page">
     <div class="container">
       <div class="header">
-        <p class="logo">Spades Institute</p>
+        <!-- Logo Header -->
+        <div class="logo-header">
+          <div class="logo-icon">♠</div>
+          <p class="logo">Spades Institute</p>
+        </div>
         <h1 class="title">RSA Conference 2025</h1>
         <p class="subtitle">Select your event(s) and request an invitation</p>
+      </div>
+
+      <!-- Both Events Benefit -->
+      <div class="both-events-benefit">
+        Select both events for the complete experience
+      </div>
+
+      <!-- Selection Counter -->
+      <div class="selection-counter" id="selection-counter">
+        0 events selected
       </div>
       
       <div class="cards-row" id="event-cards">
@@ -135,6 +238,11 @@ const events = [
       
       <div class="form-section">
         <h2 class="form-title">Your Information</h2>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
         
         <div id="success-msg" class="msg success hidden">✓ Request submitted successfully!</div>
         <div id="error-msg" class="msg error hidden">Please try again.</div>
@@ -159,6 +267,14 @@ const events = [
     const cards = document.querySelectorAll('.event-card');
     const selectedEvents = new Set();
     
+    const selectionCounter = document.getElementById('selection-counter');
+
+    function updateCounter() {
+      if (selectionCounter) {
+        selectionCounter.textContent = `${selectedEvents.size} event${selectedEvents.size !== 1 ? 's' : ''} selected`;
+      }
+    }
+
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const eventId = card.getAttribute('data-event');
@@ -169,6 +285,7 @@ const events = [
           selectedEvents.add(eventId);
           card.classList.add('selected');
         }
+        updateCounter();
       });
     });
     

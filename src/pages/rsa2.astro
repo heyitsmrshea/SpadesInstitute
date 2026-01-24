@@ -115,23 +115,38 @@ END:VCALENDAR`;
       width: 280px;
       top: 25%;
       left: -300px;
-      animation: flyAcross 12s ease-in-out infinite;
+      animation: flyAcross 8s ease-in-out infinite;
     }
 
     .jet-wingman-1 {
       width: 200px;
       top: 35%;
       left: -400px;
-      animation: flyAcross 12s ease-in-out infinite;
-      animation-delay: 0.5s;
+      animation: flyAcross 8s ease-in-out infinite;
+      animation-delay: 0.3s;
     }
 
     .jet-wingman-2 {
       width: 200px;
       top: 18%;
       left: -400px;
-      animation: flyAcross 12s ease-in-out infinite;
-      animation-delay: 0.8s;
+      animation: flyAcross 8s ease-in-out infinite;
+      animation-delay: 0.6s;
+    }
+
+    /* Contrails */
+    .jet-leader::after,
+    .jet-wingman-1::after,
+    .jet-wingman-2::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: 400px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+      transform: translateY(-50%);
+      animation: contrailFade 2s ease-out infinite;
     }
 
     @keyframes flyAcross {
@@ -482,13 +497,233 @@ END:VCALENDAR`;
     @media (max-width: 768px) {
       .f18-jet { display: none; }
       .altitude-bar, .speed-indicator { display: none; }
+      .sticky-header { display: none; }
+      .mobile-jet-silhouette { display: block !important; }
+    }
+
+    /* Sticky Header */
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(12, 25, 41, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .sticky-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sticky-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sticky-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+    }
+
+    .sticky-logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+
+    .sticky-cta {
+      padding: 0.5rem 1.25rem;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      border-radius: 6px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .sticky-cta:hover {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Spades Wing Logo */
+    .spades-wing-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    .wing-left, .wing-right {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6));
+    }
+
+    .wing-right {
+      background: linear-gradient(-90deg, transparent, rgba(59, 130, 246, 0.6));
+    }
+
+    .spades-wing-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Attendee Preview */
+    .attendee-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+    }
+
+    .attendee-orgs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .attendee-org {
+      padding: 0.25rem 0.75rem;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 4px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #60a5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .attendee-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .attendee-text strong {
+      color: #60a5fa;
+    }
+
+    /* Real Metrics */
+    .real-metrics {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .metric-item {
+      text-align: center;
+    }
+
+    .metric-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #60a5fa;
+    }
+
+    .metric-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Squadron Context */
+    .squadron-context {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 10px;
+      color: rgba(96, 165, 250, 0.5);
+      margin-top: 0.25rem;
+    }
+
+    /* Afterburner button glow */
+    .btn-aviation-primary:hover::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(90deg, #ff6b35, #ffcc00, #ff6b35);
+      border-radius: 10px;
+      z-index: -1;
+      opacity: 0.3;
+      filter: blur(8px);
+      animation: afterburnerGlow 0.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes afterburnerGlow {
+      0% { opacity: 0.2; }
+      100% { opacity: 0.4; }
+    }
+
+    /* Mobile jet silhouette */
+    .mobile-jet-silhouette {
+      display: none;
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      width: 150px;
+      opacity: 0.15;
     }
   </style>
 
+  <!-- Sticky Header -->
+  <header class="sticky-header">
+    <div class="sticky-header-inner">
+      <div class="sticky-logo">
+        <span class="sticky-logo-icon">♠</span>
+        <span class="sticky-logo-text">Spades Institute</span>
+      </div>
+      <a href="#signup" class="sticky-cta">Request Access</a>
+    </div>
+  </header>
+
   <!-- Hero Section -->
-  <section class="sky-gradient min-h-[80vh] flex items-center justify-center relative">
+  <section class="sky-gradient min-h-[65vh] flex items-center justify-center relative pt-16">
     <div class="cloud-layer"></div>
-    
+
+    <!-- Mobile Static Jet -->
+    <svg class="mobile-jet-silhouette" viewBox="0 0 200 60" fill="none">
+      <path d="M180 30L160 20V25H100L80 15H70L85 25H40L20 20L10 25L30 30L10 35L20 40L40 35H85L70 45H80L100 35H160V40L180 30Z" fill="rgba(96,165,250,0.3)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+    </svg>
+
     <!-- F-18 Formation -->
     <div class="jet-formation">
       <!-- Lead Jet -->
@@ -526,20 +761,27 @@ END:VCALENDAR`;
       </svg>
     </div>
 
-    <!-- Altitude indicator -->
+    <!-- Altitude indicator - Real Metrics -->
     <div class="altitude-bar hidden md:flex">
-      <span>40K</span>
-      <span>35K</span>
-      <span>30K</span>
-      <span>25K</span>
+      <span>75+</span>
+      <span>GOVT</span>
+      <span>INDUSTRY</span>
+      <span>LEADERS</span>
     </div>
 
-    <!-- Speed indicator -->
-    <div class="speed-indicator hidden md:block">MACH 0.85</div>
+    <!-- Speed indicator - Real Stats -->
+    <div class="speed-indicator hidden md:block">APR 28-29 2025</div>
 
     <!-- Hero Content -->
-    <div class="max-w-4xl mx-auto px-6 py-24 text-center relative z-10">
-      <div class="mb-8 reveal-up">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center relative z-10">
+      <!-- Spades Wing Logo -->
+      <div class="spades-wing-logo reveal-up">
+        <div class="wing-left"></div>
+        <div class="spades-wing-icon">♠</div>
+        <div class="wing-right"></div>
+      </div>
+
+      <div class="mb-6 reveal-up">
         <span class="status-light font-tech text-sm uppercase tracking-[0.2em] text-blue-300">
           RSA Conference 2025 // San Francisco
         </span>
@@ -555,18 +797,45 @@ END:VCALENDAR`;
         </p>
       </div>
 
-      <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed reveal-up reveal-delay-3">
-        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation. Select your mission below.
+      <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed reveal-up reveal-delay-2">
+        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation.
       </p>
 
-      <div class="mt-12 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-4">
+      <!-- Attendee Preview -->
+      <div class="attendee-preview reveal-up reveal-delay-3">
+        <div class="attendee-orgs">
+          <span class="attendee-org">DoD</span>
+          <span class="attendee-org">NSA</span>
+          <span class="attendee-org">CISA</span>
+          <span class="attendee-org">Fortune 500</span>
+        </div>
+        <span class="attendee-text">Join <strong>75+ leaders</strong> from government & industry</span>
+      </div>
+
+      <!-- Real Metrics -->
+      <div class="real-metrics reveal-up reveal-delay-3">
+        <div class="metric-item">
+          <div class="metric-value">75+</div>
+          <div class="metric-label">Leaders</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">2</div>
+          <div class="metric-label">Events</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">1</div>
+          <div class="metric-label">Mission</div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-4">
         <a href="#events" class="btn-aviation">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
           View Missions
         </a>
-        <a href="#signup" class="btn-aviation-primary">
+        <a href="#signup" class="btn-aviation-primary relative">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
@@ -599,7 +868,8 @@ END:VCALENDAR`;
                 <span class="squadron-badge">
                   Squadron {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 class="font-aviation font-bold text-2xl text-white mt-3">
+                <div class="squadron-context">{index === 0 ? 'Evening Operations' : 'Dawn Patrol'}</div>
+                <h3 class="font-aviation font-bold text-2xl text-white mt-2">
                   {event.name}
                 </h3>
                 <p class="text-blue-300/70 text-sm mt-1 font-tech">{event.tagline}</p>

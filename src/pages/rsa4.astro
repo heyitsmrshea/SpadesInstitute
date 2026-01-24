@@ -417,10 +417,145 @@ END:VCALENDAR`;
       .compass-rose { display: none; }
       .deck-lights { display: none; }
     }
+
+    /* Ship Silhouette */
+    .ship-silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 800px;
+      height: 100px;
+      opacity: 0.15;
+    }
+
+    /* Wave Animation */
+    .wave-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      overflow: hidden;
+    }
+
+    .wave-bottom::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 300%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(37, 99, 235, 0.1) 25%,
+        transparent 50%
+      );
+      animation: waveMove 8s linear infinite;
+    }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(33.33%); }
+    }
+
+    /* Anchor Logo */
+    .anchor-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .anchor-icon-large {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Attendee Counter */
+    .attendee-counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      font-family: 'Saira Condensed', sans-serif;
+      font-size: 14px;
+      color: #60a5fa;
+    }
+
+    .attendee-counter::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Nautical Flags */
+    .nautical-flags {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .nautical-flag {
+      width: 24px;
+      height: 32px;
+      border-radius: 2px;
+    }
+
+    .flag-alpha {
+      background: linear-gradient(90deg, white 50%, #2563eb 50%);
+    }
+
+    .flag-bravo {
+      background: #dc2626;
+    }
+
+    /* Warning Stripe - Reduced usage */
+    .warning-stripe-subtle {
+      height: 4px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #fbbf24,
+        #fbbf24 8px,
+        #1a1a1a 8px,
+        #1a1a1a 16px
+      );
+      opacity: 0.6;
+    }
   </style>
 
   <!-- Hero Section -->
-  <section class="ocean-gradient wave-pattern min-h-[75vh] flex items-center justify-center relative overflow-hidden">
+  <section class="ocean-gradient wave-pattern min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+    <!-- Ship Silhouette -->
+    <svg class="ship-silhouette" viewBox="0 0 400 50" fill="none">
+      <path d="M0 50 L50 40 L100 35 L150 30 L180 25 L200 20 L220 25 L250 30 L300 35 L350 40 L400 50 Z" fill="rgba(37, 99, 235, 0.3)"/>
+      <rect x="180" y="10" width="40" height="15" fill="rgba(37, 99, 235, 0.4)"/>
+      <rect x="190" y="0" width="20" height="12" fill="rgba(37, 99, 235, 0.5)"/>
+    </svg>
+
+    <!-- Wave Animation -->
+    <div class="wave-bottom"></div>
     <!-- Compass rose decoration -->
     <svg class="compass-rose" style="top: 10%; right: 10%;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.5">
       <circle cx="50" cy="50" r="45" class="text-blue-400"/>
@@ -440,7 +575,12 @@ END:VCALENDAR`;
     </div>
 
     <!-- Hero Content -->
-    <div class="max-w-4xl mx-auto px-6 py-24 text-center relative z-10">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center relative z-10">
+      <!-- Anchor Logo -->
+      <div class="anchor-logo reveal-up">
+        <div class="anchor-icon-large">⚓</div>
+      </div>
+
       <div class="mb-6 reveal-up">
         <span class="anchor-icon font-deck text-sm uppercase tracking-[0.25em] text-blue-300">
           RSA Conference 2025 — San Francisco
@@ -461,7 +601,18 @@ END:VCALENDAR`;
         Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation.
       </p>
 
-      <div class="mt-10 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-3">
+      <!-- Attendee Counter -->
+      <div class="attendee-counter reveal-up reveal-delay-2">
+        <span>127 operators standing by</span>
+      </div>
+
+      <!-- Nautical Flags -->
+      <div class="nautical-flags reveal-up reveal-delay-2">
+        <div class="nautical-flag flag-alpha" title="Dinner Event"></div>
+        <div class="nautical-flag flag-bravo" title="Breakfast Event"></div>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-3">
         <a href="#events" class="btn-naval">
           ↓ Operations Deck
         </a>

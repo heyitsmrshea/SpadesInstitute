@@ -98,6 +98,161 @@ END:VCALENDAR`;
       opacity: 0.5;
     }
 
+    /* Particle Animation */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: particleFloat 15s linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 50%; animation-delay: 1s; }
+    .particle:nth-child(5) { left: 70%; animation-delay: 3s; }
+    .particle:nth-child(6) { left: 80%; animation-delay: 5s; }
+    .particle:nth-child(7) { left: 90%; animation-delay: 2.5s; }
+
+    @keyframes particleFloat {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+
+    /* Geometric Accents */
+    .geometric-accent {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .geometric-accent.top-left {
+      top: -100px;
+      left: -100px;
+    }
+
+    .geometric-accent.bottom-right {
+      bottom: -100px;
+      right: -100px;
+    }
+
+    /* Monogram Logo */
+    .monogram-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .monogram-icon {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Enhanced Micro-interactions */
+    .glass-card {
+      position: relative;
+    }
+
+    .glass-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid transparent;
+      border-radius: inherit;
+      transition: border-color 0.4s ease;
+    }
+
+    .glass-card:hover::after {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Button micro-interactions */
+    .btn-stealth {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-stealth::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-stealth:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Gradient text on title */
+    .gradient-title {
+      background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Testimonial/Stats */
+    .trust-stat {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .trust-stat strong {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Success animation */
+    .success-pulse {
+      animation: successPulse 0.5s ease-out;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Focus animations */
+    .input-stealth:focus {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+    }
+
+    .input-stealth:focus + label,
+    .input-stealth:not(:placeholder-shown) + label {
+      transform: translateY(-20px) scale(0.85);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
     /* Accent line */
     .accent-line {
       height: 1px;
@@ -374,14 +529,34 @@ END:VCALENDAR`;
 
   <!-- Hero Section -->
   <section class="stealth-bg stealth-grid min-h-[85vh] flex items-center justify-center relative overflow-hidden">
-    <div class="max-w-4xl mx-auto px-6 py-32 text-center relative z-10">
-      <div class="mb-10 reveal-fade">
+    <!-- Particles -->
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+
+    <!-- Geometric Accents -->
+    <div class="geometric-accent top-left"></div>
+    <div class="geometric-accent bottom-right"></div>
+
+    <div class="max-w-4xl mx-auto px-6 py-28 text-center relative z-10">
+      <!-- Monogram Logo -->
+      <div class="monogram-logo reveal-fade">
+        <div class="monogram-icon">♠</div>
+      </div>
+
+      <div class="mb-8 reveal-fade">
         <span class="status-dot font-clean text-xs uppercase tracking-[0.25em] text-white/50">
           RSA Conference 2025
         </span>
       </div>
 
-      <h1 class="font-clean stealth-title text-4xl md:text-5xl lg:text-6xl mb-4 subtle-glow reveal-fade reveal-delay-1">
+      <h1 class="font-clean stealth-title gradient-title text-4xl md:text-5xl lg:text-6xl mb-4 subtle-glow reveal-fade reveal-delay-1">
         MISSION BRIEF
       </h1>
 
@@ -395,7 +570,12 @@ END:VCALENDAR`;
         Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation.
       </p>
 
-      <div class="mt-14 flex justify-center gap-4 flex-wrap reveal-fade reveal-delay-3">
+      <!-- Trust Stat -->
+      <div class="trust-stat reveal-fade reveal-delay-2">
+        Trusted by <strong>75+ leaders</strong> from government & Fortune 500
+      </div>
+
+      <div class="mt-10 flex justify-center gap-4 flex-wrap reveal-fade reveal-delay-3">
         <a href="#events" class="btn-stealth">
           View Events
         </a>

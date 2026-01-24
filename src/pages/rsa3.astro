@@ -104,20 +104,21 @@ END:VCALENDAR`;
       pointer-events: none;
     }
 
-    /* Coffee ring stain */
+    /* Coffee ring stain - More subtle */
     .coffee-stain {
       position: absolute;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       background: radial-gradient(circle at center,
         transparent 40%,
-        rgba(139, 90, 43, 0.08) 45%,
-        rgba(139, 90, 43, 0.12) 50%,
-        rgba(139, 90, 43, 0.08) 55%,
+        rgba(139, 90, 43, 0.04) 45%,
+        rgba(139, 90, 43, 0.06) 50%,
+        rgba(139, 90, 43, 0.04) 55%,
         transparent 60%
       );
       pointer-events: none;
+      opacity: 0.6;
     }
 
     /* TOP SECRET stamp */
@@ -135,12 +136,163 @@ END:VCALENDAR`;
       pointer-events: none;
     }
 
-    /* Redacted text effect */
+    /* Redacted text effect - Interactive */
     .redacted {
       background: #1a1a1a;
       color: #1a1a1a;
       padding: 0 4px;
       user-select: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .redacted:hover {
+      background: transparent;
+      color: #c41e3a;
+    }
+
+    .redacted::after {
+      content: 'HOVER FOR DETAILS';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px;
+      color: #c41e3a;
+      opacity: 0;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .redacted:hover::after {
+      opacity: 1;
+    }
+
+    /* Official Seal */
+    .official-seal {
+      width: 80px;
+      height: 80px;
+      border: 3px solid rgba(180, 30, 30, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Special Elite', monospace;
+      font-size: 24px;
+      color: rgba(180, 30, 30, 0.6);
+      position: relative;
+      margin: 0 auto 1rem;
+    }
+
+    .official-seal::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 2px solid rgba(180, 30, 30, 0.3);
+      border-radius: 50%;
+    }
+
+    .official-seal::after {
+      content: 'SPADES INSTITUTE';
+      position: absolute;
+      font-size: 6px;
+      bottom: -8px;
+      letter-spacing: 0.1em;
+    }
+
+    /* Document Number Header */
+    .doc-number-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 39, 68, 0.95);
+      padding: 0.5rem 1rem;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      color: #faf6eb;
+      text-align: center;
+      letter-spacing: 0.15em;
+      z-index: 100;
+      border-bottom: 2px solid #c41e3a;
+    }
+
+    /* Paper fold shadow */
+    .paper-fold {
+      position: relative;
+    }
+
+    .paper-fold::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.05) 50%);
+    }
+
+    /* Approval stamp animation */
+    .approval-stamp {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg) scale(0);
+      font-family: 'Special Elite', monospace;
+      font-size: 48px;
+      color: #22c55e;
+      border: 6px solid #22c55e;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .approval-stamp.show {
+      animation: stampApproval 0.5s ease-out forwards;
+    }
+
+    @keyframes stampApproval {
+      0% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(2);
+        opacity: 0;
+      }
+      50% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Folder tabs */
+    .folder-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .folder-tab {
+      padding: 0.5rem 1rem;
+      background: #d4c4a8;
+      border: 2px solid #b8a888;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1a2744;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .folder-tab:hover, .folder-tab.active {
+      background: #faf6eb;
     }
 
     /* Document folder styling */
@@ -389,17 +541,27 @@ END:VCALENDAR`;
     }
   </style>
 
+  <!-- Document Number Header -->
+  <div class="doc-number-header">
+    DOCUMENT NO. SI-RSA-2025-0428 // CLASSIFICATION: RESTRICTED // SPADES INSTITUTE
+  </div>
+
+  <!-- Approval Stamp (hidden until form submit) -->
+  <div class="approval-stamp" id="approvalStamp">APPROVED</div>
+
   <!-- Hero Section -->
-  <section class="paper-bg min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+  <section class="paper-bg min-h-[70vh] flex items-center justify-center relative overflow-hidden pt-12">
     <div class="paper-texture"></div>
-    
-    <!-- Decorative elements -->
-    <div class="coffee-stain" style="top: 10%; right: 15%;"></div>
-    <div class="classified-stamp" style="top: 15%; left: 8%;">Top Secret</div>
-    <div class="classified-stamp" style="bottom: 20%; right: 10%; transform: rotate(12deg);">Eyes Only</div>
+
+    <!-- Decorative elements - More subtle -->
+    <div class="coffee-stain" style="top: 15%; right: 20%;"></div>
+    <div class="classified-stamp" style="top: 20%; left: 5%;">Top Secret</div>
 
     <!-- Hero Content -->
-    <div class="max-w-3xl mx-auto px-6 py-24 text-center relative z-10">
+    <div class="max-w-3xl mx-auto px-6 py-20 text-center relative z-10">
+      <!-- Official Seal -->
+      <div class="official-seal reveal-up">♠</div>
+
       <div class="mb-6 reveal-up">
         <span class="font-document text-sm uppercase tracking-[0.3em] ink-light">
           // Document Classification: <span class="text-red-700">Restricted</span> //
@@ -415,7 +577,7 @@ END:VCALENDAR`;
       </p>
 
       <p class="font-document text-base ink-light max-w-xl mx-auto leading-relaxed reveal-up reveal-delay-3">
-        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation. <span class="redacted">XXXX</span> Select your mission below.
+        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation. <span class="redacted" data-reveal="75+ Leaders Attending">CLASSIFIED</span> Select your mission below.
       </p>
 
       <div class="mt-10 flex justify-center gap-4 flex-wrap reveal-up reveal-delay-3">
@@ -688,6 +850,14 @@ END:VCALENDAR`;
 
           const result = await response.json();
           if (response.ok && result.success) {
+            // Show approval stamp animation
+            const approvalStamp = document.getElementById('approvalStamp');
+            if (approvalStamp) {
+              approvalStamp.classList.add('show');
+              setTimeout(() => {
+                approvalStamp.classList.remove('show');
+              }, 2000);
+            }
             if (formSuccess) formSuccess.classList.remove('hidden');
             form.reset();
             formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

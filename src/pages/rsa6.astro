@@ -116,25 +116,202 @@ const events = [
     
     .footer-link { color: #64748b; font-size: 13px; text-decoration: none; }
     .footer-link:hover { color: #3b82f6; }
+
+    /* Spades Logo */
+    .spades-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spades-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+    }
+
+    .spades-logo-text {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #93c5fd;
+    }
+
+    /* Event icons */
+    .event-icon {
+      margin-right: 0.5rem;
+    }
+
+    /* Panel divider */
+    .panel-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, #3b82f6, transparent);
+    }
+
+    /* Attendee avatars */
+    .attendee-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1e3a5f;
+      border: 2px solid #0f172a;
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #93c5fd;
+    }
+
+    .avatar:first-child { margin-left: 0; }
+
+    .attendee-text {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* Why attend bullets */
+    .why-attend {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .why-attend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .why-attend-item::before {
+      content: '✓';
+      color: #22c55e;
+      font-size: 12px;
+    }
+
+    /* Form progress */
+    .form-progress {
+      height: 3px;
+      background: #e2e8f0;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .form-progress-bar {
+      height: 100%;
+      background: #3b82f6;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile sticky CTA */
+    @media (max-width: 900px) {
+      .mobile-sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        z-index: 100;
+        display: block !important;
+      }
+
+      .mobile-sticky-cta .submit-btn {
+        margin: 0;
+      }
+
+      .panel-divider { display: none; }
+    }
+
+    @media (min-width: 901px) {
+      .mobile-sticky-cta { display: none; }
+    }
+
+    /* Event pill hover */
+    .event-pill:hover {
+      background: rgba(59,130,246,0.25);
+      transform: translateY(-2px);
+      transition: all 0.2s ease;
+    }
+
+    /* Gradient on dark panel */
+    .left-panel {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    }
   </style>
 
   <div class="split-container">
     <!-- Left: Info -->
     <div class="left-panel">
+      <!-- Spades Logo -->
+      <div class="spades-logo">
+        <div class="spades-logo-icon">♠</div>
+        <span class="spades-logo-text">Spades Institute</span>
+      </div>
+
       <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #64748b; margin-bottom: 1rem;">RSA Conference 2025 • San Francisco</p>
-      
+
       <h1 class="title">Mission Brief</h1>
       <p class="subtitle">Join Spades Institute for exclusive dinner and breakfast gatherings with government, industry, and academia leaders.</p>
-      
-      <div style="margin-bottom: 2rem;">
+
+      <div style="margin-bottom: 1.5rem;">
         {events.map(e => (
           <span class="event-pill">
+            <span class="event-icon">{e.id === 'dinner' ? '🌙' : '☀️'}</span>
             <strong>{e.name}</strong> — {e.date}, {e.time}
           </span>
         ))}
       </div>
-      
-      <p style="font-size: 14px; color: #64748b;">
+
+      <!-- Attendee Row -->
+      <div class="attendee-row">
+        <div class="avatar-stack">
+          <div class="avatar">DoD</div>
+          <div class="avatar">NSA</div>
+          <div class="avatar">+75</div>
+        </div>
+        <span class="attendee-text">Leaders confirmed</span>
+      </div>
+
+      <!-- Why Attend -->
+      <div class="why-attend">
+        <div class="why-attend-item">Network with government leaders</div>
+        <div class="why-attend-item">Exclusive venue access</div>
+        <div class="why-attend-item">Intimate conversations</div>
+      </div>
+
+      <p style="font-size: 14px; color: #64748b; margin-top: 1.5rem;">
         Venue details shared upon confirmation.<br/>
         Questions? <a href="mailto:info@spadesinstitute.org" style="color: #93c5fd;">info@spadesinstitute.org</a>
       </p>
