@@ -2,1287 +2,1308 @@
 import Layout from '../components/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.org';
-
-// Event Details - Update these for your specific events
-const events = [
-  {
-    id: 'dinner',
-    name: 'Mission Brief: Dinner',
-    tagline: 'An evening of trusted conversation',
-    date: 'Monday, April 28, 2025',
-    time: '6:30 PM - 9:30 PM PT',
-    location: 'San Francisco, CA',
-    locationDetail: 'Venue details shared upon confirmation',
-    description: 'Join fellow operators, innovators, and government leaders for an intimate dinner conversation on the intersection of cybersecurity and national security.',
-    calendarStart: '20250428T183000',
-    calendarEnd: '20250428T213000',
-  },
-  {
-    id: 'breakfast',
-    name: 'Mission Brief: Breakfast',
-    tagline: 'Start the day with purpose',
-    date: 'Tuesday, April 29, 2025',
-    time: '7:30 AM - 9:00 AM PT',
-    location: 'San Francisco, CA',
-    locationDetail: 'Venue details shared upon confirmation',
-    description: 'A working breakfast bringing together senior leaders to discuss emerging threats, opportunities, and collaborative solutions.',
-    calendarStart: '20250429T073000',
-    calendarEnd: '20250429T090000',
-  }
-];
-
-// Generate Google Calendar URLs
-function getGoogleCalendarUrl(event: typeof events[0]) {
-  const title = encodeURIComponent(`Spades Institute: ${event.name}`);
-  const details = encodeURIComponent(`${event.description}\n\nHosted by Spades Institute at RSA Conference 2025`);
-  const location = encodeURIComponent(`${event.location}`);
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${event.calendarStart}/${event.calendarEnd}&details=${details}&location=${location}&ctz=America/Los_Angeles`;
-}
-
-// Generate ICS content
-function getICSContent(event: typeof events[0]) {
-  return `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Spades Institute//RSA Events//EN
-BEGIN:VEVENT
-DTSTART;TZID=America/Los_Angeles:${event.calendarStart}
-DTEND;TZID=America/Los_Angeles:${event.calendarEnd}
-SUMMARY:Spades Institute: ${event.name}
-DESCRIPTION:${event.description}\\n\\nHosted by Spades Institute at RSA Conference 2025
-LOCATION:${event.location}
-END:VEVENT
-END:VCALENDAR`;
-}
 ---
 
-<Layout
-  title="RSA Conference 2025 | Spades Institute"
-  description="Join Spades Institute at RSA Conference 2025 for exclusive dinner and breakfast events bringing together government, industry, and academia leaders."
->
+<Layout title="RSA 2026 | Spades Institute" description="Join Spades Institute at RSA Conference 2026">
   <head slot="head">
     <link rel="canonical" href={`${siteUrl}${base}/rsa`} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
 
+  <style is:global>
+    /* Hide nav and footer on this landing page */
+    header, footer, .back-to-top { display: none !important; }
+    body { background: #060a12 !important; }
+    main { padding: 0 !important; margin: 0 !important; }
+    .min-h-screen { min-height: 100vh; }
+  </style>
+
   <style>
-    /* ===== FIGHTER JET / VETERAN COMMAND CENTER THEME ===== */
-    
-    /* Custom Fonts */
-    .font-stencil {
-      font-family: 'Black Ops One', 'Impact', sans-serif;
-      letter-spacing: 0.02em;
-    }
-    
-    .font-mono-tech {
-      font-family: 'Share Tech Mono', 'Monaco', 'Consolas', monospace;
+    /* ===== RSA10: CINEMATIC PREMIUM INVITE ===== */
+    * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* === PHD LEVEL ANIMATIONS === */
+
+    /* Card entrance */
+    @keyframes cardEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
     }
 
-    /* Main Background - Night Vision / Cockpit Display */
-    .command-center {
-      background: linear-gradient(180deg, #020508 0%, #0a1628 30%, #091420 70%, #020508 100%);
+    /* Staggered fade in */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Shimmer effect for button */
+    @keyframes shimmer {
+      0% {
+        background-position: -200% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    /* Pulse glow */
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 8px 28px rgba(48, 128, 208, 0.3);
+      }
+      50% {
+        box-shadow: 0 8px 40px rgba(48, 128, 208, 0.5);
+      }
+    }
+
+    /* Check pop */
+    @keyframes checkPop {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Success celebration */
+    @keyframes successPop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Ripple effect */
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Input focus glow */
+    @keyframes focusGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 3px rgba(120, 160, 200, 0.15);
+      }
+      50% {
+        box-shadow: 0 0 0 5px rgba(120, 160, 200, 0.1);
+      }
+    }
+
+    /* Accent line draw */
+    @keyframes lineDraw {
+      0% {
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      100% {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    /* Text reveal */
+    @keyframes textReveal {
+      0% {
+        clip-path: inset(0 100% 0 0);
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    /* === 1) BACKGROUND: CUSTOM IMAGE === */
+    .page {
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
+      overflow: hidden;
+      background: url('/rsa10-bg-desktop.png') center center / cover no-repeat;
+      background-color: #0a0f18;
     }
 
-    /* Animated Grid Overlay */
-    .command-center::before {
-      content: '';
+    /* Mobile: reposition background to show jet, adjust padding */
+    @media (max-width: 820px) {
+      .page {
+        padding: 1rem;
+        background-position: 25% 15%;
+        align-items: flex-start;
+        padding-top: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 0.75rem;
+        padding-top: 1.5rem;
+        background-position: 20% 10%;
+      }
+    }
+
+    /* === TEXTURE SOFTENER (reduces grain/dust, softens circuit) === */
+    .texture-softener {
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(34, 211, 180, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34, 211, 180, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background: linear-gradient(180deg, rgba(12, 18, 28, 0.15) 0%, rgba(12, 18, 28, 0.1) 50%, rgba(12, 18, 28, 0.2) 100%);
+      z-index: 2;
       pointer-events: none;
-      animation: gridPulse 8s ease-in-out infinite;
     }
 
-    @keyframes gridPulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    /* CRT Scanline Effect */
-    .crt-lines::after {
-      content: '';
+    /* === RIGHT-SIDE CIRCUIT FADE (pushes circuit into texture) === */
+    .circuit-fade {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.15) 2px,
-        rgba(0, 0, 0, 0.15) 4px
-      );
+      background: linear-gradient(270deg, rgba(10, 15, 24, 0.35) 0%, rgba(10, 15, 24, 0.2) 25%, transparent 50%);
+      z-index: 2;
       pointer-events: none;
-      opacity: 0.4;
     }
 
-    /* Radar Sweep Animation */
-    .radar-container {
+    /* === JET CONTRAST REDUCER (softens jet to let card be hero) === */
+    .jet-soften {
       position: absolute;
-      width: 600px;
-      height: 600px;
-      opacity: 0.15;
-    }
-
-    .radar-sweep {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 1px solid rgba(34, 211, 180, 0.3);
-    }
-
-    .radar-sweep::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(34, 211, 180, 0.8), transparent);
-      transform-origin: left center;
-      animation: radarSpin 4s linear infinite;
-    }
-
-    .radar-sweep::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
+      top: 0;
+      left: 0;
+      width: 45%;
       height: 50%;
-      background: conic-gradient(from 0deg, transparent, rgba(34, 211, 180, 0.2) 30deg, transparent 60deg);
-      transform-origin: left top;
-      animation: radarSpin 4s linear infinite;
-    }
-
-    @keyframes radarSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Radar Rings */
-    .radar-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(34, 211, 180, 0.15);
-    }
-
-    /* Fighter Jet Silhouettes */
-    .jet-silhouette {
-      position: absolute;
-      opacity: 0.06;
+      background: radial-gradient(ellipse 80% 80% at 20% 25%, rgba(10, 15, 24, 0.15) 0%, transparent 60%);
+      z-index: 2;
       pointer-events: none;
     }
 
-    .jet-1 {
-      top: 15%;
-      right: 5%;
-      width: 200px;
-      animation: jetFly1 25s linear infinite;
-    }
-
-    .jet-2 {
-      bottom: 20%;
-      left: 3%;
-      width: 150px;
-      animation: jetFly2 30s linear infinite;
-      animation-delay: -10s;
-    }
-
-    @keyframes jetFly1 {
-      0% { transform: translateX(0) translateY(0) rotate(-8deg); opacity: 0.06; }
-      50% { transform: translateX(-100px) translateY(50px) rotate(-5deg); opacity: 0.08; }
-      100% { transform: translateX(0) translateY(0) rotate(-8deg); opacity: 0.06; }
-    }
-
-    @keyframes jetFly2 {
-      0% { transform: translateX(0) translateY(0) rotate(12deg) scaleX(-1); opacity: 0.05; }
-      50% { transform: translateX(80px) translateY(-30px) rotate(10deg) scaleX(-1); opacity: 0.07; }
-      100% { transform: translateX(0) translateY(0) rotate(12deg) scaleX(-1); opacity: 0.05; }
-    }
-
-    /* HUD Corner Brackets */
-    .hud-bracket {
+    /* === VIGNETTE (darkens edges for card focus) === */
+    .vignette {
       position: absolute;
-      width: 80px;
-      height: 80px;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 52% 45%, transparent 30%, rgba(5, 8, 15, 0.6) 100%);
+      z-index: 3;
       pointer-events: none;
     }
 
-    .hud-bracket::before,
-    .hud-bracket::after {
-      content: '';
-      position: absolute;
-      background: linear-gradient(90deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-
-    .hud-bracket.top-left::before {
-      top: 0; left: 0; width: 40px; height: 2px;
-    }
-    .hud-bracket.top-left::after {
-      top: 0; left: 0; width: 2px; height: 40px;
-      background: linear-gradient(180deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-
-    .hud-bracket.top-right::before {
-      top: 0; right: 0; width: 40px; height: 2px;
-      background: linear-gradient(-90deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-    .hud-bracket.top-right::after {
-      top: 0; right: 0; width: 2px; height: 40px;
-      background: linear-gradient(180deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-
-    .hud-bracket.bottom-left::before {
-      bottom: 0; left: 0; width: 40px; height: 2px;
-    }
-    .hud-bracket.bottom-left::after {
-      bottom: 0; left: 0; width: 2px; height: 40px;
-      background: linear-gradient(0deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-
-    .hud-bracket.bottom-right::before {
-      bottom: 0; right: 0; width: 40px; height: 2px;
-      background: linear-gradient(-90deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-    .hud-bracket.bottom-right::after {
-      bottom: 0; right: 0; width: 2px; height: 40px;
-      background: linear-gradient(0deg, rgba(34, 211, 180, 0.6), transparent);
-    }
-
-    /* Targeting Reticle */
-    .targeting-reticle {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      opacity: 0.15;
-      animation: reticlePulse 3s ease-in-out infinite;
-    }
-
-    .targeting-reticle::before {
-      content: '';
-      position: absolute;
-      inset: 20px;
-      border: 1px solid rgba(34, 211, 180, 0.6);
-      border-radius: 50%;
-    }
-
-    .targeting-reticle::after {
-      content: '+';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 30px;
-      color: rgba(34, 211, 180, 0.4);
-      font-weight: 100;
-    }
-
-    @keyframes reticlePulse {
-      0%, 100% { opacity: 0.15; transform: scale(1); }
-      50% { opacity: 0.25; transform: scale(1.05); }
-    }
-
-    /* Telemetry Data Strip */
-    .telemetry-bar {
-      position: absolute;
-      display: flex;
-      gap: 3rem;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: rgba(34, 211, 180, 0.5);
-      text-transform: uppercase;
-    }
-
-    .telemetry-bar.top {
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .telemetry-bar.bottom {
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .telemetry-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .telemetry-label {
-      color: rgba(255, 255, 255, 0.3);
-    }
-
-    .telemetry-value {
-      color: rgba(34, 211, 180, 0.7);
-    }
-
-    /* Hero Title Glow */
-    .hero-glow {
-      text-shadow: 
-        0 0 20px rgba(34, 211, 180, 0.4),
-        0 0 40px rgba(34, 211, 180, 0.2),
-        0 0 60px rgba(34, 211, 180, 0.1);
-      animation: textGlow 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes textGlow {
-      from { text-shadow: 0 0 20px rgba(34, 211, 180, 0.4), 0 0 40px rgba(34, 211, 180, 0.2); }
-      to { text-shadow: 0 0 30px rgba(34, 211, 180, 0.6), 0 0 60px rgba(34, 211, 180, 0.3); }
-    }
-
-    /* Status Indicator with LED Effect */
-    .status-led {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .status-led::before {
-      content: '';
-      width: 10px;
-      height: 10px;
-      background: #22d3b4;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #22d3b4, 0 0 20px rgba(34, 211, 180, 0.5);
-      animation: ledPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes ledPulse {
-      0%, 100% { box-shadow: 0 0 10px #22d3b4, 0 0 20px rgba(34, 211, 180, 0.5); }
-      50% { box-shadow: 0 0 15px #22d3b4, 0 0 30px rgba(34, 211, 180, 0.7), 0 0 40px rgba(34, 211, 180, 0.3); }
-    }
-
-    /* Mission Card - Glassmorphism Cockpit Panel */
-    .mission-panel {
-      background: rgba(10, 22, 40, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(34, 211, 180, 0.15);
-      position: relative;
+    /* === 2) CARD WITH DEPTH === */
+    .main-card {
+      background: white;
+      border-radius: 22px;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: grid;
+      grid-template-columns: 55% 45%;
+      max-width: 920px;
+      width: 100%;
+      /* Premium layered shadow - soft ambient + sharper contact */
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        0 8px 30px rgba(0, 0, 0, 0.2),
+        0 25px 60px rgba(0, 0, 0, 0.25),
+        0 50px 100px rgba(0, 0, 0, 0.15);
+      /* Subtle border - visible but not attention-grabbing */
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      z-index: 10;
+      /* Card entrance animation */
+      animation: cardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .mission-panel::before {
+    /* Soft inner glow for glassy finish - fades toward right */
+    .main-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(34, 211, 180, 0.05) 0%, transparent 50%);
+      border-radius: 22px;
+      padding: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
       pointer-events: none;
+      z-index: 100;
     }
 
-    /* Notched Corners */
-    .mission-panel::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 30px 30px 0;
-      border-color: transparent #091420 transparent transparent;
+    @media (max-width: 820px) {
+      .main-card {
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+        max-width: 100%;
+      }
     }
 
-    .mission-panel:hover {
-      border-color: rgba(34, 211, 180, 0.4);
-      box-shadow: 
-        0 0 40px rgba(34, 211, 180, 0.1),
-        inset 0 0 60px rgba(34, 211, 180, 0.02);
-      transform: translateY(-4px);
+    @media (max-width: 480px) {
+      .main-card {
+        border-radius: 14px;
+      }
     }
 
-    /* Panel Header Strip */
-    .panel-header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 30px;
-      height: 4px;
-      background: linear-gradient(90deg, #22d3b4, rgba(34, 211, 180, 0.2));
-    }
-
-    /* Mission Number Badge */
-    .mission-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(251, 191, 36, 0.15);
-      border: 1px solid rgba(251, 191, 36, 0.4);
-      border-radius: 2px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: #fbbf24;
-      text-transform: uppercase;
-    }
-
-    /* Amber Warning Glow */
-    .glow-amber {
-      text-shadow: 0 0 10px rgba(251, 191, 36, 0.5), 0 0 20px rgba(251, 191, 36, 0.2);
-    }
-
-    /* Icon Container with Ring */
-    .icon-ring {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 2px solid rgba(34, 211, 180, 0.3);
+    /* === 3) LEFT PANEL (INVITE SIDE) === */
+    .invite-side {
+      padding: 44px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background: rgba(34, 211, 180, 0.05);
-    }
-
-    .icon-ring::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1px dashed rgba(34, 211, 180, 0.2);
-      animation: iconSpin 20s linear infinite;
-    }
-
-    @keyframes iconSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Data Row */
-    .data-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(34, 211, 180, 0.05);
-    }
-
-    .data-row:last-child {
-      border-bottom: none;
-    }
-
-    .data-icon {
-      width: 20px;
-      height: 20px;
-      color: rgba(34, 211, 180, 0.6);
-    }
-
-    .data-label {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 13px;
-      color: #e2e8f0;
-      letter-spacing: 0.02em;
-    }
-
-    /* Tactical Buttons */
-    .btn-tactical {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.625rem 1.25rem;
-      background: rgba(34, 211, 180, 0.08);
-      border: 1px solid rgba(34, 211, 180, 0.3);
-      border-radius: 4px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #22d3b4;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-tactical::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 180, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn-tactical:hover {
-      background: rgba(34, 211, 180, 0.15);
-      border-color: #22d3b4;
-      box-shadow: 0 0 20px rgba(34, 211, 180, 0.2);
-    }
-
-    .btn-tactical:hover::before {
-      left: 100%;
-    }
-
-    /* Primary Button - "Armed" Style */
-    .btn-primary-armed {
-      background: linear-gradient(135deg, #22d3b4, #14b89e);
-      border: 2px solid #22d3b4;
-      color: #0a1628;
-      font-weight: 600;
-      padding: 0.875rem 2rem;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary-armed::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .btn-primary-armed:hover {
-      box-shadow: 
-        0 0 30px rgba(34, 211, 180, 0.5),
-        0 0 60px rgba(34, 211, 180, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .btn-primary-armed:hover::before {
-      transform: translateX(100%);
-    }
-
-    /* Form Inputs - Terminal Style */
-    .input-terminal {
-      width: 100%;
-      padding: 0.875rem 1rem;
-      background: rgba(10, 22, 40, 0.6);
-      border: 1px solid rgba(34, 211, 180, 0.2);
-      border-radius: 4px;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 14px;
-      color: #e2e8f0;
-      transition: all 0.3s ease;
-    }
-
-    .input-terminal:focus {
-      outline: none;
-      border-color: #22d3b4;
-      box-shadow: 0 0 0 3px rgba(34, 211, 180, 0.1), 0 0 20px rgba(34, 211, 180, 0.1);
-      background: rgba(10, 22, 40, 0.8);
-    }
-
-    .input-terminal::placeholder {
-      color: rgba(148, 163, 184, 0.5);
-      font-style: italic;
-    }
-
-    /* Checkbox - Toggle Switch Style */
-    .checkbox-military {
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      border: 2px solid rgba(34, 211, 180, 0.4);
-      border-radius: 3px;
-      background: rgba(10, 22, 40, 0.6);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .checkbox-military:checked {
-      background: #22d3b4;
-      border-color: #22d3b4;
-    }
-
-    .checkbox-military:checked::after {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 3px;
-      width: 5px;
-      height: 10px;
-      border: solid #0a1628;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
-
-    .checkbox-military:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(34, 211, 180, 0.2);
-    }
-
-    /* Section Divider with Flight Path */
-    .flight-path-divider {
-      position: relative;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .flight-path-divider::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 180, 0.3), transparent);
-    }
-
-    .flight-path-divider::after {
-      content: '▼';
-      color: rgba(34, 211, 180, 0.4);
-      font-size: 12px;
-      background: #091420;
-      padding: 0 1rem;
-      animation: chevronBounce 2s ease-in-out infinite;
-    }
-
-    @keyframes chevronBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(4px); }
-    }
-
-    /* Confidential Watermark */
-    .confidential-mark {
-      position: absolute;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: rgba(34, 211, 180, 0.08);
-      text-transform: uppercase;
-      transform: rotate(-90deg);
-      white-space: nowrap;
-    }
-
-    .confidential-mark.left {
-      left: 20px;
-      top: 50%;
-      transform-origin: left center;
-      transform: rotate(-90deg) translateX(-50%);
-    }
-
-    .confidential-mark.right {
-      right: 20px;
-      top: 50%;
-      transform-origin: right center;
-      transform: rotate(90deg) translateX(50%);
-    }
-
-    /* Footer - End of Briefing */
-    .briefing-footer {
-      background: linear-gradient(180deg, transparent, rgba(10, 22, 40, 0.5));
-      border-top: 1px solid rgba(34, 211, 180, 0.1);
-    }
-
-    .end-marker {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: rgba(34, 211, 180, 0.4);
-      text-transform: uppercase;
-    }
-
-    .end-marker::before,
-    .end-marker::after {
-      content: '';
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(34, 211, 180, 0.3));
-    }
-
-    .end-marker::after {
-      background: linear-gradient(-90deg, transparent, rgba(34, 211, 180, 0.3));
-    }
-
-    /* Form Container */
-    .form-panel {
-      background: rgba(10, 22, 40, 0.7);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(34, 211, 180, 0.15);
+      flex-direction: column;
+      background: linear-gradient(180deg, #fafbfc 0%, #f6f8fa 100%);
       position: relative;
     }
 
-    .form-panel::before {
+    @media (max-width: 820px) {
+      .invite-side { padding: 28px; }
+    }
+
+    /* Accent line at top - animated draw */
+    .invite-side::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #22d3b4, #fbbf24, #22d3b4);
+      background: linear-gradient(90deg, #1a3050, #2a5080, #1a3050);
+      animation: lineDraw 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
     }
 
-    /* Success/Error States */
-    .alert-success {
-      background: rgba(34, 211, 180, 0.1);
-      border: 1px solid rgba(34, 211, 180, 0.3);
-      border-radius: 4px;
-      padding: 1rem;
+    /* Brand row */
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
     }
 
-    .alert-error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 4px;
-      padding: 1rem;
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #1a3050, #0f1f30);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: 0 2px 8px rgba(26, 48, 80, 0.35);
     }
 
-    /* Entry Animations */
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: revealUp 0.8s ease-out forwards;
-    }
-
-    .reveal-up-delay-1 { animation-delay: 0.1s; }
-    .reveal-up-delay-2 { animation-delay: 0.2s; }
-    .reveal-up-delay-3 { animation-delay: 0.3s; }
-    .reveal-up-delay-4 { animation-delay: 0.4s; }
-
-    @keyframes revealUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Label styling */
-    .form-label {
-      display: block;
-      font-family: 'Share Tech Mono', monospace;
+    .brand-name {
       font-size: 12px;
-      letter-spacing: 0.15em;
+      font-weight: 700;
+      color: #1a3050;
       text-transform: uppercase;
-      color: #94a3b8;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0.12em;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .telemetry-bar {
-        display: none;
+    .invite-pill {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      color: #5a7090;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      background: #e8edf3;
+      border-radius: 4px;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #0f1a28;
+      margin-bottom: 6px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+    }
+
+    /* Location line */
+    .location-line {
+      font-size: 13px;
+      color: #5a6a7a;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s backwards;
+    }
+
+    .location-line svg {
+      width: 14px;
+      height: 14px;
+      color: #7a8a9a;
+    }
+
+    /* Subhead - tightened width */
+    .subhead {
+      font-size: 15px;
+      color: #4a5a6a;
+      line-height: 1.6;
+      margin-bottom: 26px;
+      max-width: 44ch;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
+    }
+
+    /* Event blocks - premium ticket style */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .event-block {
+      display: flex;
+      gap: 14px;
+      padding: 18px;
+      /* Subtle top highlight gradient */
+      background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+      border: 1px solid #dce4ec;
+      border-radius: 14px;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .event-block:first-child { animation-delay: 0.7s; }
+    .event-block:last-child { animation-delay: 0.8s; }
+
+    .event-block:hover {
+      border-color: #c5d0dc;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .event-block:hover .event-icon {
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(26, 48, 80, 0.4);
+    }
+
+    .event-icon {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, #1a3050 0%, #2a4a70 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 8px rgba(26, 48, 80, 0.3);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .event-icon svg {
+      width: 22px;
+      height: 22px;
+      color: white;
+    }
+
+    .event-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .event-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .event-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f1a28;
+    }
+
+    /* Muted limited tag - closer to palette */
+    .limited-tag {
+      font-size: 9px;
+      font-weight: 600;
+      color: #6a7a8a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 7px;
+      background: #e8edf3;
+      border-radius: 3px;
+    }
+
+    /* Date/time - clearer hierarchy, darker */
+    .event-datetime {
+      font-size: 13px;
+      color: #3a4a5a;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* Venue - lighter but readable */
+    .event-venue {
+      font-size: 12px;
+      color: #7a8a9a;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .event-description {
+      font-size: 13px;
+      color: #4a5a6a;
+      line-height: 1.5;
+    }
+
+
+    /* Footer note */
+    .invite-footer {
+      margin-top: auto;
+      padding-top: 18px;
+      border-top: 1px solid #e4eaf0;
+      font-size: 12px;
+      color: #8a9aaa;
+      line-height: 1.5;
+    }
+
+    /* === 4) RIGHT PANEL (FORM SIDE) === */
+    .form-side {
+      background: linear-gradient(180deg, #141c28 0%, #1a2435 100%);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 820px) {
+      .form-side { padding: 28px 24px; }
+    }
+
+    /* Form header */
+    .form-header {
+      margin-bottom: 22px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
+    }
+
+    .form-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .form-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      color: #8a9aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+    }
+
+    /* Review note - readable trust copy */
+    .review-note {
+      font-size: 14px;
+      color: #c0d0e0;
+      margin-top: 12px;
+    }
+
+    /* Form fields - improved label readability */
+    .field-group {
+      margin-bottom: 16px;
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    .field-group:nth-child(1) { animation-delay: 0.6s; }
+    .field-group:nth-child(2) { animation-delay: 0.7s; }
+    .field-group:nth-child(3) { animation-delay: 0.8s; }
+
+    .field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #b8c8d8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 13px 15px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      font-size: 14px;
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    .input-field::placeholder {
+      color: #5a6a7a;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: rgba(120, 160, 200, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+      animation: focusGlow 2s ease-in-out infinite;
+    }
+
+    .input-field:focus-visible {
+      outline: 2px solid rgba(120, 180, 255, 0.5);
+      outline-offset: 2px;
+    }
+
+    /* Validation states */
+    .input-field.invalid {
+      border-color: rgba(239, 68, 68, 0.6);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .input-field.invalid:focus {
+      border-color: rgba(239, 68, 68, 0.8);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      animation: none;
+    }
+
+    .input-field.valid {
+      border-color: rgba(34, 197, 94, 0.5);
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #f87171;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .field-hint {
+      font-size: 13px;
+      color: #b8c8d8;
+      margin-top: 6px;
+    }
+
+    /* Event selection - improved contrast */
+    .selection-group {
+      margin-bottom: 20px;
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s backwards;
+    }
+
+    .selection-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #b8c8d8;
+      margin-bottom: 6px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .selection-helper {
+      font-size: 13px;
+      color: #b8c8d8;
+      margin-bottom: 12px;
+    }
+
+    .checkbox-tiles {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Checkbox tiles - clearly interactive default state */
+    .checkbox-tile {
+      flex: 1;
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      border-radius: 10px;
+      color: #b0c0d0;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ripple container */
+    .checkbox-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(74, 144, 208, 0.4), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .checkbox-tile:active::after {
+      opacity: 1;
+    }
+
+    .checkbox-tile:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      color: #d0e0f0;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .checkbox-tile:focus {
+      outline: none;
+      border-color: rgba(120, 180, 255, 0.7);
+      box-shadow: 0 0 0 3px rgba(120, 180, 255, 0.3);
+    }
+
+    .checkbox-tile:focus-visible {
+      outline: 2px solid #78b4ff;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(120, 180, 255, 0.2);
+    }
+
+    /* Strong selected state - much more visible */
+    .checkbox-tile.active {
+      border-color: #5aa0e0;
+      background: rgba(74, 144, 208, 0.25);
+      color: #c0e0ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(74, 144, 208, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .checkbox-tile .check-icon {
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .checkbox-tile:hover .check-icon {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .checkbox-tile.active .check-icon {
+      background: linear-gradient(135deg, #4a90d0, #3080c0);
+      border-color: #5aa0e0;
+      box-shadow: 0 2px 8px rgba(74, 144, 208, 0.4);
+    }
+
+    .checkbox-tile .check-icon svg {
+      width: 14px;
+      height: 14px;
+      color: white;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .checkbox-tile.active .check-icon svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .capacity-note {
+      font-size: 13px;
+      color: #b8c8d8;
+      margin-top: 10px;
+    }
+
+    /* CTA button - saturated gradient, primary action */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #3090e0 0%, #2070c0 50%, #1860a8 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1s backwards;
+      box-shadow: 0 4px 16px rgba(48, 144, 224, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Shimmer effect */
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(48, 144, 224, 0.4), 0 16px 40px rgba(48, 144, 224, 0.25);
+      background: linear-gradient(135deg, #40a0f0 0%, #3080d0 50%, #2070b8 100%);
+    }
+
+    .submit-btn:hover::before {
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .submit-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:focus-visible {
+      outline: 2px solid #78b4ff;
+      outline-offset: 2px;
+    }
+
+    /* Pulse animation when ready to submit */
+    .submit-btn.ready {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-btn:disabled:hover {
+      transform: none;
+      box-shadow: 0 4px 16px rgba(48, 144, 224, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .submit-btn.loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .submit-btn.loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Trust microcopy */
+    .trust-copy {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .trust-copy p {
+      font-size: 12px;
+      color: #a0b0c0;
+      line-height: 1.6;
+      margin-bottom: 3px;
+    }
+
+    /* Messages */
+    .msg {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .success {
+      background: rgba(34, 180, 100, 0.15);
+      color: #50d090;
+      border: 1px solid rgba(34, 180, 100, 0.25);
+    }
+
+    .success:not(.hidden) {
+      animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .error {
+      background: rgba(220, 80, 80, 0.15);
+      color: #f08080;
+      border: 1px solid rgba(220, 80, 80, 0.25);
+    }
+
+    .hidden { display: none; }
+
+    /* === RADIAL FOG BEHIND CARD (pushes jet/circuit into background) === */
+    .card-fog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1100px;
+      height: 800px;
+      background: radial-gradient(ellipse 60% 55% at 50% 48%, rgba(12, 18, 28, 0.85) 0%, rgba(12, 18, 28, 0.5) 40%, transparent 70%);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    @media (max-width: 820px) {
+      .card-fog {
+        top: 45%;
+        width: 120%;
+        height: 100%;
+        background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(12, 18, 28, 0.9) 0%, rgba(12, 18, 28, 0.6) 40%, transparent 75%);
       }
-      
-      .jet-silhouette {
-        display: none;
+    }
+
+    /* === SPOTLIGHT BEHIND CARD === */
+    .card-spotlight {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse 50% 45% at 50% 45%, rgba(180, 200, 220, 0.12) 0%, rgba(140, 170, 200, 0.05) 30%, transparent 60%);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    @media (max-width: 820px) {
+      .card-spotlight {
+        top: 40%;
+        width: 100%;
+        height: 80%;
       }
-      
-      .confidential-mark {
-        display: none;
-      }
-      
-      .radar-container {
-        width: 300px;
-        height: 300px;
-      }
+    }
+
+    /* === CURSOR GLOW EFFECT === */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(74, 144, 208, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    .page:hover .cursor-glow {
+      opacity: 1;
+    }
+
+    /* === MINIMAL FOOTER === */
+    .minimal-footer {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .minimal-footer a {
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .minimal-footer a:hover {
+      color: rgba(255, 255, 255, 0.6);
     }
   </style>
 
-  <!-- Hero Section -->
-  <section class="command-center crt-lines min-h-[70vh] flex items-center justify-center relative overflow-hidden">
-    <!-- Radar Animation -->
-    <div class="radar-container" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-      <div class="radar-sweep"></div>
-      <div class="radar-ring" style="inset: 20%; border-width: 1px;"></div>
-      <div class="radar-ring" style="inset: 35%; border-width: 1px;"></div>
-      <div class="radar-ring" style="inset: 50%; border-width: 1px;"></div>
-    </div>
+  <div class="page">
+    <!-- Cursor glow follows mouse -->
+    <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Fighter Jet Silhouettes -->
-    <svg class="jet-silhouette jet-1" viewBox="0 0 100 40" fill="currentColor">
-      <path d="M95 20L80 15V18H50L40 12H35L45 18H20L10 15L5 18L15 20L5 22L10 25L20 22H45L35 28H40L50 22H80V25L95 20Z" fill="rgba(34, 211, 180, 0.6)"/>
-    </svg>
-    <svg class="jet-silhouette jet-2" viewBox="0 0 100 40" fill="currentColor">
-      <path d="M95 20L80 15V18H50L40 12H35L45 18H20L10 15L5 18L15 20L5 22L10 25L20 22H45L35 28H40L50 22H80V25L95 20Z" fill="rgba(34, 211, 180, 0.6)"/>
-    </svg>
+    <!-- Texture softener to reduce grain/dust -->
+    <div class="texture-softener"></div>
 
-    <!-- Targeting Reticle -->
-    <div class="targeting-reticle" style="top: 15%; right: 15%;"></div>
-    <div class="targeting-reticle" style="bottom: 20%; left: 10%;"></div>
+    <!-- Right-side circuit fade -->
+    <div class="circuit-fade"></div>
 
-    <!-- HUD Brackets -->
-    <div class="hud-bracket top-left" style="top: 40px; left: 40px;"></div>
-    <div class="hud-bracket top-right" style="top: 40px; right: 40px;"></div>
-    <div class="hud-bracket bottom-left" style="bottom: 40px; left: 40px;"></div>
-    <div class="hud-bracket bottom-right" style="bottom: 40px; right: 40px;"></div>
+    <!-- Jet contrast reducer -->
+    <div class="jet-soften"></div>
 
-    <!-- Telemetry Data Strips -->
-    <div class="telemetry-bar top">
-      <div class="telemetry-item">
-        <span class="telemetry-label">GRID:</span>
-        <span class="telemetry-value">37.7749°N 122.4194°W</span>
-      </div>
-      <div class="telemetry-item">
-        <span class="telemetry-label">ALT:</span>
-        <span class="telemetry-value">35,000 FT</span>
-      </div>
-      <div class="telemetry-item">
-        <span class="telemetry-label">HDG:</span>
-        <span class="telemetry-value">285°</span>
-      </div>
-    </div>
+    <!-- Vignette overlay -->
+    <div class="vignette"></div>
 
-    <!-- Confidential Watermarks -->
-    <span class="confidential-mark left">Spades Institute // Confidential</span>
-    <span class="confidential-mark right">RSA Conference 2025</span>
+    <!-- Radial fog to push background elements back -->
+    <div class="card-fog"></div>
 
-    <!-- Hero Content -->
-    <div class="max-w-4xl mx-auto px-6 py-24 text-center relative z-10">
-      <div class="mb-8 reveal-up">
-        <span class="status-led font-mono-tech text-xs uppercase tracking-[0.3em] text-emerald-400">
-          RSA Conference 2025 // San Francisco, CA
-        </span>
-      </div>
+    <!-- Spotlight behind card -->
+    <div class="card-spotlight"></div>
 
-      <h1 class="font-stencil text-5xl md:text-6xl lg:text-7xl text-white mb-6 hero-glow reveal-up reveal-up-delay-1">
-        MISSION BRIEF
-      </h1>
+    <div class="main-card">
+      <!-- LEFT PANEL: INVITE SIDE -->
+      <div class="invite-side">
+        <!-- Brand row -->
+        <div class="brand-row">
+          <div class="brand-logo">♠</div>
+          <span class="brand-name">Spades Institute</span>
+          <span class="invite-pill">RSA Week · San Francisco</span>
+        </div>
 
-      <p class="font-mono-tech text-lg md:text-xl text-emerald-400/90 mb-4 tracking-wider reveal-up reveal-up-delay-2">
-        SPADES INSTITUTE // EXCLUSIVE OPERATIONS
-      </p>
+        <!-- Headline -->
+        <h1 class="headline">RSA Conference 2026</h1>
 
-      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed reveal-up reveal-up-delay-3">
-        Two invitation-only gatherings for leaders at the intersection of national security, technology, and innovation. Select your mission below.
-      </p>
-
-      <div class="mt-12 flex justify-center gap-4 flex-wrap reveal-up reveal-up-delay-4">
-        <a href="#events" class="btn-tactical">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        <!-- Location -->
+        <div class="location-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
           </svg>
-          View Operations
-        </a>
-        <a href="#signup" class="btn-primary-armed inline-flex items-center gap-2 font-mono-tech text-sm uppercase tracking-wider">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-          </svg>
-          Request Access
-        </a>
-      </div>
-    </div>
+          <span>San Francisco, CA</span>
+        </div>
 
-    <!-- Bottom Telemetry -->
-    <div class="telemetry-bar bottom">
-      <div class="telemetry-item">
-        <span class="telemetry-label">STATUS:</span>
-        <span class="telemetry-value" style="color: #22d3b4;">ACTIVE</span>
-      </div>
-      <div class="telemetry-item">
-        <span class="telemetry-label">OP WINDOW:</span>
-        <span class="telemetry-value">APR 28-29 2025</span>
-      </div>
-      <div class="telemetry-item">
-        <span class="telemetry-label">CLEARANCE:</span>
-        <span class="telemetry-value" style="color: #fbbf24;">INVITE ONLY</span>
-      </div>
-    </div>
-  </section>
+        <!-- Subhead -->
+        <p class="subhead">Invitation-only gatherings for security leaders across government, industry, and academia during RSA week.</p>
 
-  <!-- Flight Path Divider -->
-  <div class="command-center">
-    <div class="flight-path-divider"></div>
-  </div>
+        <!-- Event blocks -->
+        <div class="events-list">
+          <!-- Briefing -->
+          <div class="event-block">
+            <div class="event-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <div class="event-details">
+              <div class="event-header">
+                <span class="event-name">Briefing</span>
+              </div>
+              <div class="event-datetime">Sunday, March 22, 2026 · 4:30 PM – 7:00 PM PT</div>
+              <div class="event-venue">Private venue near Fisherman's Wharf (details after approval)</div>
+              <div class="event-description">Join us for a live podcast on security and national security at RSA Conference.</div>
+            </div>
+          </div>
 
-  <!-- Events Section -->
-  <section id="events" class="command-center crt-lines py-20 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="font-mono-tech text-xs uppercase tracking-[0.3em] text-emerald-400/60 mb-4">Operations Schedule</p>
-        <h2 class="font-stencil text-3xl md:text-4xl text-white hero-glow">
-          SELECT YOUR MISSION
-        </h2>
+          <!-- Ready Room -->
+          <div class="event-block">
+            <div class="event-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                <line x1="6" y1="2" x2="6" y2="4"></line>
+                <line x1="10" y1="2" x2="10" y2="4"></line>
+                <line x1="14" y1="2" x2="14" y2="4"></line>
+              </svg>
+            </div>
+            <div class="event-details">
+              <div class="event-header">
+                <span class="event-name">The Ready Room at RSA Conference</span>
+              </div>
+              <div class="event-datetime">Wednesday, March 25, 2026 · 7:45 AM – 10:00 AM PT</div>
+              <div class="event-venue">Private venue near Moscone Center (details after approval)</div>
+              <div class="event-description">Join us for coffee and conversation with security professionals who have also served our nation.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer note -->
+        <div class="invite-footer">
+          Space is limited. Requests are reviewed within 24 hours.
+        </div>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        {events.map((event, index) => (
-          <div class="mission-panel rounded-xl p-8">
-            <div class="panel-header"></div>
-            
-            <div class="flex items-start justify-between mb-6 mt-2">
-              <div>
-                <span class="mission-badge glow-amber">
-                  Mission {String(index + 1).padStart(2, '0')}
+      <!-- RIGHT PANEL: FORM SIDE -->
+      <div class="form-side">
+        <div class="form-header">
+          <h2 class="form-title">Request an invitation</h2>
+          <span class="form-badge">Approval required</span>
+          <p class="review-note">Requests reviewed within 24 hours</p>
+        </div>
+
+        <div id="success-msg" class="msg success hidden" role="status" aria-live="polite">Request received. If approved, we'll email details and a calendar invite.</div>
+        <div id="error-msg" class="msg error hidden" role="alert" aria-live="assertive">Something went wrong. Please try again.</div>
+
+        <form id="rsaForm">
+          <div class="field-group">
+            <label class="field-label" for="name">Full name</label>
+            <input type="text" id="name" name="name" required class="input-field" placeholder="Jane Smith" aria-describedby="name-error" autocomplete="name" />
+            <p class="field-error" id="name-error" role="alert" aria-live="polite">Please enter your name</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="company">Organization</label>
+            <input type="text" id="company" name="company" required class="input-field" placeholder="Acme Corp" aria-describedby="company-error" autocomplete="organization" />
+            <p class="field-error" id="company-error" role="alert" aria-live="polite">Please enter your organization</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="email">Work email</label>
+            <input type="email" id="email" name="email" required class="input-field" placeholder="jane@acme.com" aria-describedby="email-error email-hint" autocomplete="email" />
+            <p class="field-error" id="email-error" role="alert" aria-live="polite">Please enter a valid email address</p>
+            <p class="field-hint" id="email-hint">Work email recommended for faster approval</p>
+          </div>
+
+          <div class="selection-group">
+            <label class="selection-label">Events</label>
+            <p class="selection-helper">Select one or both events</p>
+            <div class="checkbox-tiles" role="group" aria-label="Select events to attend">
+              <button type="button" class="checkbox-tile" data-event="briefing" role="checkbox" aria-checked="false" aria-label="Briefing event on Sunday, March 22">
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
                 </span>
-                <h3 class="font-stencil text-2xl text-white mt-3">
-                  {event.name}
-                </h3>
-                <p class="text-emerald-400/70 text-sm mt-1 font-mono-tech">{event.tagline}</p>
-              </div>
-              <div class="icon-ring">
-                {index === 0 ? (
-                  <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                Briefing
+              </button>
+              <button type="button" class="checkbox-tile" data-event="readyroom" role="checkbox" aria-checked="false" aria-label="Ready Room event on Wednesday, March 25">
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                ) : (
-                  <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                )}
-              </div>
-            </div>
-
-            <div class="space-y-1 mb-6">
-              <div class="data-row">
-                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span class="data-label">{event.date}</span>
-              </div>
-              <div class="data-row">
-                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span class="data-label">{event.time}</span>
-              </div>
-              <div class="data-row">
-                <svg class="data-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span class="data-label">{event.location}</span>
-              </div>
-            </div>
-
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              {event.description}
-            </p>
-
-            <div class="flex flex-wrap gap-3">
-              <a
-                href={getGoogleCalendarUrl(event)}
-                target="_blank"
-                rel="noreferrer"
-                class="btn-tactical"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Add to Calendar
-              </a>
-              <button
-                class="btn-tactical download-ics"
-                data-event-id={event.id}
-                data-ics-content={getICSContent(event)}
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download .ICS
+                </span>
+                Ready Room
               </button>
             </div>
+            <p class="capacity-note">Briefing capacity is smaller than Ready Room.</p>
           </div>
-        ))}
+
+          <button type="submit" class="submit-btn">Request invitation</button>
+        </form>
+
+        <div class="trust-copy">
+          <p>Your info is only used to confirm attendance. No marketing.</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Flight Path Divider -->
-  <div class="command-center">
-    <div class="flight-path-divider"></div>
+    <!-- Minimal footer -->
+    <div class="minimal-footer">
+      <a href={`${base}/`}>spadesinstitute.org</a>
+    </div>
   </div>
 
-  <!-- Signup Form Section -->
-  <section id="signup" class="command-center crt-lines py-20 relative">
-    <div class="max-w-2xl mx-auto px-6">
-      <div class="form-panel rounded-xl p-8 md:p-10">
-        <div class="text-center mb-8">
-          <p class="font-mono-tech text-xs uppercase tracking-[0.3em] text-amber-400 mb-4 glow-amber">Access Request</p>
-          <h2 class="font-stencil text-2xl md:text-3xl text-white hero-glow">
-            REQUEST YOUR BRIEFING
-          </h2>
-          <p class="text-slate-400 mt-4 text-sm">
-            Submit your credentials below. Venue details and confirmation will be sent to approved attendees.
-          </p>
-        </div>
-
-        <!-- Success Message -->
-        <div id="form-success" class="hidden mb-6 alert-success">
-          <p class="text-emerald-400 font-semibold font-mono-tech text-sm">ACCESS REQUEST TRANSMITTED</p>
-          <p class="text-emerald-400/70 text-sm mt-1">Stand by for confirmation. Check your inbox for next steps.</p>
-        </div>
-
-        <!-- Error Message -->
-        <div id="form-error" class="hidden mb-6 alert-error">
-          <p class="text-red-400 font-semibold font-mono-tech text-sm" id="error-message">TRANSMISSION FAILED</p>
-        </div>
-
-        <form id="rsaSignupForm" class="space-y-5">
-          <div>
-            <label for="signup-name" class="form-label">
-              Name <span class="text-red-400">*</span>
-            </label>
-            <input
-              id="signup-name"
-              name="name"
-              type="text"
-              required
-              placeholder="Your full name"
-              class="input-terminal"
-            />
-          </div>
-
-          <div>
-            <label for="signup-company" class="form-label">
-              Organization <span class="text-red-400">*</span>
-            </label>
-            <input
-              id="signup-company"
-              name="company"
-              type="text"
-              required
-              placeholder="Your company or agency"
-              class="input-terminal"
-            />
-          </div>
-
-          <div>
-            <label for="signup-email" class="form-label">
-              Email <span class="text-red-400">*</span>
-            </label>
-            <input
-              id="signup-email"
-              name="email"
-              type="email"
-              required
-              placeholder="your.email@organization.com"
-              class="input-terminal"
-            />
-          </div>
-
-          <div>
-            <label class="form-label">
-              Select Mission(s) <span class="text-red-400">*</span>
-            </label>
-            <div class="space-y-3 mt-3">
-              {events.map((event) => (
-                <label class="flex items-start gap-3 cursor-pointer group p-3 rounded-lg border border-transparent hover:border-emerald-500/20 hover:bg-emerald-500/5 transition-all">
-                  <input
-                    type="checkbox"
-                    name="events"
-                    value={event.id}
-                    class="checkbox-military mt-0.5"
-                  />
-                  <div>
-                    <span class="text-slate-200 font-medium group-hover:text-emerald-400 transition-colors">
-                      {event.name}
-                    </span>
-                    <span class="block text-xs text-slate-500 font-mono-tech mt-0.5">{event.date} // {event.time}</span>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div class="pt-4">
-            <button
-              type="submit"
-              id="submit-btn"
-              class="btn-primary-armed w-full font-mono-tech text-sm uppercase tracking-wider inline-flex items-center justify-center gap-2"
-            >
-              <span id="submit-text">Submit Access Request</span>
-              <span id="submit-spinner" class="hidden">
-                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </span>
-              <svg id="submit-arrow" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
-
-          <p class="text-xs text-slate-500 text-center font-mono-tech mt-4">
-            Your information is secure. We'll only use it to coordinate event logistics.
-          </p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <section class="command-center briefing-footer py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <!-- End of Briefing Marker -->
-      <div class="end-marker mb-8">
-        <span>End of Briefing</span>
-      </div>
-
-      <p class="text-slate-500 text-sm font-mono-tech text-center mb-6">
-        Questions? Contact <a href="mailto:info@spadesinstitute.org" class="text-emerald-400 hover:text-emerald-300 transition-colors">info@spadesinstitute.org</a>
-      </p>
-
-      <div class="flex items-center justify-center gap-6 text-xs text-slate-600 font-mono-tech uppercase tracking-wider">
-        <a href={`${base}/`} class="hover:text-emerald-400 transition-colors">Home</a>
-        <span class="text-emerald-500/30">|</span>
-        <a href={`${base}/about/`} class="hover:text-emerald-400 transition-colors">About</a>
-        <span class="text-emerald-500/30">|</span>
-        <a href={`${base}/connect/`} class="hover:text-emerald-400 transition-colors">Connect</a>
-      </div>
-
-      <!-- Technical Spec Bar -->
-      <div class="mt-8 pt-6 border-t border-emerald-500/10 flex items-center justify-center gap-8 text-[10px] text-slate-600 font-mono-tech uppercase tracking-widest">
-        <span>Doc: RSA-2025-001</span>
-        <span>Rev: 1.0</span>
-        <span>Classification: Invite Only</span>
-      </div>
-    </div>
-  </section>
-
   <script>
-    // ICS Download functionality
-    document.querySelectorAll('.download-ics').forEach(button => {
-      button.addEventListener('click', () => {
-        const icsContent = button.getAttribute('data-ics-content');
-        const eventId = button.getAttribute('data-event-id');
+    // Cursor glow effect
+    const cursorGlow = document.getElementById('cursorGlow');
+    const page = document.querySelector('.page');
 
-        if (icsContent) {
-          const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `spades-rsa-${eventId}.ics`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
+    page?.addEventListener('mousemove', (e) => {
+      if (cursorGlow) {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+      }
+    });
+
+    // Checkbox tiles with ripple effect
+    const tiles = document.querySelectorAll('.checkbox-tile');
+    const selected = new Set();
+    const submitBtn = document.querySelector('.submit-btn');
+
+    function updateButtonState() {
+      if (selected.size > 0) {
+        submitBtn?.classList.add('ready');
+      } else {
+        submitBtn?.classList.remove('ready');
+      }
+    }
+
+    tiles.forEach(tile => {
+      // Track click position for ripple
+      tile.addEventListener('click', (e) => {
+        const rect = tile.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        tile.style.setProperty('--x', x + '%');
+        tile.style.setProperty('--y', y + '%');
+
+        const id = tile.getAttribute('data-event') || '';
+        if (selected.has(id)) {
+          selected.delete(id);
+          tile.classList.remove('active');
+          tile.setAttribute('aria-checked', 'false');
+        } else {
+          selected.add(id);
+          tile.classList.add('active');
+          tile.setAttribute('aria-checked', 'true');
         }
+        updateButtonState();
       });
     });
 
-    // Form submission
-    const form = document.getElementById('rsaSignupForm');
-    const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const submitSpinner = document.getElementById('submit-spinner');
-    const submitArrow = document.getElementById('submit-arrow');
-    const formSuccess = document.getElementById('form-success');
-    const formError = document.getElementById('form-error');
-    const errorMessage = document.getElementById('error-message');
+    const form = document.getElementById('rsaForm');
+    const successEl = document.getElementById('success-msg');
+    const errorEl = document.getElementById('error-msg');
 
-    if (form) {
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    // Field references
+    const nameInput = document.getElementById('name');
+    const companyInput = document.getElementById('company');
+    const emailInput = document.getElementById('email');
+    const nameError = document.getElementById('name-error');
+    const companyError = document.getElementById('company-error');
+    const emailError = document.getElementById('email-error');
 
-        // Hide previous messages
-        if (formSuccess) formSuccess.classList.add('hidden');
-        if (formError) formError.classList.add('hidden');
-
-        // Get form data
-        const data = new FormData(form);
-        const selectedEvents = data.getAll('events');
-
-        const payload = {
-          name: String(data.get('name') || ''),
-          company: String(data.get('company') || ''),
-          email: String(data.get('email') || ''),
-          events: selectedEvents,
-        };
-
-        // Validate required fields
-        if (!payload.name || !payload.company || !payload.email) {
-          if (formError && errorMessage) {
-            errorMessage.textContent = 'Please fill in all required fields.';
-            formError.classList.remove('hidden');
-          }
-          return;
-        }
-
-        // Validate at least one event selected
-        if (selectedEvents.length === 0) {
-          if (formError && errorMessage) {
-            errorMessage.textContent = 'Please select at least one event.';
-            formError.classList.remove('hidden');
-          }
-          return;
-        }
-
-        // Validate email format
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(payload.email)) {
-          if (formError && errorMessage) {
-            errorMessage.textContent = 'Please enter a valid email address.';
-            formError.classList.remove('hidden');
-          }
-          return;
-        }
-
-        // Show loading state
-        if (submitBtn) submitBtn.disabled = true;
-        if (submitText) submitText.textContent = 'Transmitting...';
-        if (submitSpinner) submitSpinner.classList.remove('hidden');
-        if (submitArrow) submitArrow.classList.add('hidden');
-
-        try {
-          // Format event names for the message
-          const eventNames = selectedEvents.map(id => {
-            if (id === 'dinner') return 'Mission Brief: Dinner (April 28)';
-            if (id === 'breakfast') return 'Mission Brief: Breakfast (April 29)';
-            return id;
-          }).join(', ');
-
-          const formattedMessage = `
-RSA Conference 2025 Event Signup
-
-Name: ${payload.name}
-Organization: ${payload.company}
-Email: ${payload.email}
-Selected Events: ${eventNames}
-
-Submitted via RSA signup page
-          `.trim();
-
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
-              subject: `RSA 2025 Event Signup - ${payload.name} (${payload.company})`,
-              from_name: payload.name,
-              email: payload.email,
-              replyto: payload.email,
-              message: formattedMessage,
-            }),
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-            // Show success
-            if (formSuccess) formSuccess.classList.remove('hidden');
-            form.reset();
-            formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          } else {
-            if (formError && errorMessage) {
-              errorMessage.textContent = result.message || 'Transmission failed. Please try again.';
-              formError.classList.remove('hidden');
-            }
-          }
-        } catch (error) {
-          if (formError && errorMessage) {
-            errorMessage.textContent = 'Network error. Please check your connection and try again.';
-            formError.classList.remove('hidden');
-          }
-        } finally {
-          // Reset button
-          if (submitBtn) submitBtn.disabled = false;
-          if (submitText) submitText.textContent = 'Submit Access Request';
-          if (submitSpinner) submitSpinner.classList.add('hidden');
-          if (submitArrow) submitArrow.classList.remove('hidden');
-        }
-      });
+    // Clear validation on input
+    function clearFieldError(input, errorEl) {
+      input?.classList.remove('invalid');
+      input?.classList.remove('valid');
+      errorEl?.classList.remove('show');
     }
+
+    function setFieldValid(input) {
+      input?.classList.remove('invalid');
+      input?.classList.add('valid');
+    }
+
+    function setFieldInvalid(input, errorEl) {
+      input?.classList.remove('valid');
+      input?.classList.add('invalid');
+      errorEl?.classList.add('show');
+    }
+
+    // Real-time validation
+    nameInput?.addEventListener('input', () => {
+      clearFieldError(nameInput, nameError);
+      if (nameInput.value.trim().length > 0) setFieldValid(nameInput);
+    });
+
+    companyInput?.addEventListener('input', () => {
+      clearFieldError(companyInput, companyError);
+      if (companyInput.value.trim().length > 0) setFieldValid(companyInput);
+    });
+
+    emailInput?.addEventListener('input', () => {
+      clearFieldError(emailInput, emailError);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(emailInput.value)) setFieldValid(emailInput);
+    });
+
+    // Validate all fields
+    function validateForm() {
+      let isValid = true;
+
+      if (!nameInput?.value.trim()) {
+        setFieldInvalid(nameInput, nameError);
+        isValid = false;
+      }
+
+      if (!companyInput?.value.trim()) {
+        setFieldInvalid(companyInput, companyError);
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailInput?.value || !emailRegex.test(emailInput.value)) {
+        setFieldInvalid(emailInput, emailError);
+        isValid = false;
+      }
+
+      if (selected.size === 0) {
+        if (errorEl) {
+          errorEl.textContent = 'Please select at least one event';
+          errorEl.classList.remove('hidden');
+        }
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successEl?.classList.add('hidden');
+      errorEl?.classList.add('hidden');
+
+      if (!validateForm()) return;
+
+      // Show loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.classList.remove('ready');
+      }
+
+      const data = new FormData(form);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: '217a97ca-0557-4364-86f7-66e28fbd499f',
+            subject: `RSA 2025 Invitation Request - ${data.get('name')}`,
+            email: data.get('email'),
+            message: `Name: ${data.get('name')}\nOrganization: ${data.get('company')}\nEmail: ${data.get('email')}\nEvents: ${Array.from(selected).join(', ')}`
+          })
+        });
+        if ((await res.json()).success) {
+          successEl?.classList.remove('hidden');
+          form.reset();
+          tiles.forEach(t => t.classList.remove('active'));
+          selected.clear();
+          // Clear valid states
+          [nameInput, companyInput, emailInput].forEach(input => input?.classList.remove('valid'));
+        } else {
+          errorEl?.classList.remove('hidden');
+        }
+      } catch {
+        errorEl?.classList.remove('hidden');
+      }
+
+      // Reset button state
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        updateButtonState();
+      }
+    });
   </script>
 </Layout>
