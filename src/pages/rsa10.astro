@@ -1014,26 +1014,26 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
         <!-- Event blocks -->
         <div class="events-list">
-          <!-- Dinner -->
+          <!-- Briefing -->
           <div class="event-block">
             <div class="event-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                <path d="M7 2v20"></path>
-                <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"></path>
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
               </svg>
             </div>
             <div class="event-details">
               <div class="event-header">
-                <span class="event-name">Dinner</span>
+                <span class="event-name">Briefing</span>
               </div>
-              <div class="event-datetime">Monday, April 28 · 6:30 PM PT</div>
-              <div class="event-venue">Private venue near Moscone (details after approval)</div>
-              <div class="event-description">Off-the-record conversation with senior security and national security leaders.</div>
+              <div class="event-datetime">Sunday, April 27 · 6:30 PM PT</div>
+              <div class="event-venue">Private venue near Fisherman's Wharf (details after approval)</div>
+              <div class="event-description">Join us for a live podcast on security and national security at RSA Conference.</div>
             </div>
           </div>
 
-          <!-- Breakfast -->
+          <!-- Ready Room -->
           <div class="event-block">
             <div class="event-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1046,11 +1046,11 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
             </div>
             <div class="event-details">
               <div class="event-header">
-                <span class="event-name">Breakfast</span>
+                <span class="event-name">The Ready Room at RSA Conference</span>
               </div>
-              <div class="event-datetime">Tuesday, April 29 · 7:30 AM PT</div>
-              <div class="event-venue">Walking distance from Moscone (details after approval)</div>
-              <div class="event-description">Small-group briefing and networking before the show floor opens.</div>
+              <div class="event-datetime">Monday, April 28 · 7:30 AM PT</div>
+              <div class="event-venue">Private venue near Moscone Center (details after approval)</div>
+              <div class="event-description">Join us for coffee and conversation with security professionals who have also served our nation.</div>
             </div>
           </div>
         </div>
@@ -1096,24 +1096,24 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
             <label class="selection-label">Events</label>
             <p class="selection-helper">Select one or both events</p>
             <div class="checkbox-tiles" role="group" aria-label="Select events to attend">
-              <button type="button" class="checkbox-tile" data-event="dinner" role="checkbox" aria-checked="false" aria-label="Dinner event on Monday, April 28">
+              <button type="button" class="checkbox-tile" data-event="briefing" role="checkbox" aria-checked="false" aria-label="Briefing event on Sunday, April 27">
                 <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </span>
-                Dinner
+                Briefing
               </button>
-              <button type="button" class="checkbox-tile" data-event="breakfast" role="checkbox" aria-checked="false" aria-label="Breakfast event on Tuesday, April 29">
+              <button type="button" class="checkbox-tile" data-event="readyroom" role="checkbox" aria-checked="false" aria-label="Ready Room event on Monday, April 28">
                 <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </span>
-                Breakfast
+                Ready Room
               </button>
             </div>
-            <p class="capacity-note">Dinner capacity is smaller than breakfast.</p>
+            <p class="capacity-note">Briefing capacity is smaller than Ready Room.</p>
           </div>
 
           <button type="submit" class="submit-btn">Request invitation</button>
