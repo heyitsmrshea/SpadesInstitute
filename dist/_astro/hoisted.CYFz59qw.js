@@ -1,0 +1,4 @@
+import"./hoisted.Dp3RlRfs.js";const s=document.getElementById("rsaForm"),a=document.getElementById("form-success"),t=document.getElementById("form-error");s?.addEventListener("submit",async o=>{o.preventDefault(),a.style.display="none",t.style.display="none";const e=new FormData(s),n=e.getAll("events");if(n.length===0){t.textContent="Please select at least one event.",t.style.display="block";return}try{(await(await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({access_key:"217a97ca-0557-4364-86f7-66e28fbd499f",subject:`RSA 2025 - ${e.get("name")} (${e.get("company")})`,email:e.get("email"),message:`Name: ${e.get("name")}
+Org: ${e.get("company")}
+Email: ${e.get("email")}
+Events: ${n.join(", ")}`})})).json()).success?(a.style.display="block",s.reset()):t.style.display="block"}catch{t.style.display="block"}});

@@ -148,6 +148,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"the-horizon-never-disappears.md": {
+	id: "the-horizon-never-disappears.md";
+  slug: "the-horizon-never-disappears";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "why-i-built-operation-mos.md": {
 	id: "why-i-built-operation-mos.md";
   slug: "why-i-built-operation-mos";
