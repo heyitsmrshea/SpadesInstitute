@@ -155,6 +155,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       background-color: #0a0f18;
     }
 
+    /* === TEXTURE SOFTENER (reduces grain/dust, softens circuit) === */
+    .texture-softener {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12, 18, 28, 0.15) 0%, rgba(12, 18, 28, 0.1) 50%, rgba(12, 18, 28, 0.2) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
     /* === VIGNETTE (darkens edges for card focus) === */
     .vignette {
       position: absolute;
@@ -179,22 +188,22 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         0 8px 30px rgba(0, 0, 0, 0.2),
         0 25px 60px rgba(0, 0, 0, 0.25),
         0 50px 100px rgba(0, 0, 0, 0.15);
-      /* Clean white border for definition */
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      /* Subtle border - visible but not attention-grabbing */
+      border: 1px solid rgba(255, 255, 255, 0.06);
       position: relative;
       z-index: 10;
       /* Card entrance animation */
       animation: cardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Inner highlight for glassy finish */
+    /* Soft inner glow for glassy finish - fades toward right */
     .main-card::before {
       content: '';
       position: absolute;
       inset: 0;
       border-radius: 22px;
       padding: 1px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -465,10 +474,10 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       border-radius: 4px;
     }
 
-    /* Review note - more visible */
+    /* Review note - readable trust copy */
     .review-note {
-      font-size: 13px;
-      color: #9aaabc;
+      font-size: 14px;
+      color: #b0c0d0;
       margin-top: 12px;
     }
 
@@ -515,9 +524,9 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     .field-hint {
-      font-size: 11px;
-      color: #7a8a9a;
-      margin-top: 5px;
+      font-size: 12px;
+      color: #98a8b8;
+      margin-top: 6px;
     }
 
     /* Event selection - improved contrast */
@@ -537,8 +546,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     .selection-helper {
-      font-size: 12px;
-      color: #7a8a9a;
+      font-size: 13px;
+      color: #98a8b8;
       margin-bottom: 12px;
     }
 
@@ -547,19 +556,19 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       gap: 12px;
     }
 
-    /* Checkbox tiles - increased contrast and click target */
+    /* Checkbox tiles - clearly interactive default state */
     .checkbox-tile {
       flex: 1;
       padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: 10px;
-      color: #9aaabc;
+      color: #a8b8c8;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       text-align: center;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -584,10 +593,11 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     .checkbox-tile:hover {
-      border-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.4);
       background: rgba(255, 255, 255, 0.08);
-      color: #bccce0;
+      color: #c8d8e8;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     /* Strong selected state - much more visible */
@@ -602,14 +612,19 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .checkbox-tile .check-icon {
       width: 22px;
       height: 22px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.35);
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .checkbox-tile:hover .check-icon {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .checkbox-tile.active .check-icon {
@@ -633,8 +648,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     }
 
     .capacity-note {
-      font-size: 11px;
-      color: #7a8a9a;
+      font-size: 12px;
+      color: #98a8b8;
       margin-top: 10px;
     }
 
@@ -803,6 +818,9 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     <!-- Cursor glow follows mouse -->
     <div class="cursor-glow" id="cursorGlow"></div>
 
+    <!-- Texture softener to reduce grain/dust -->
+    <div class="texture-softener"></div>
+
     <!-- Vignette overlay -->
     <div class="vignette"></div>
 
@@ -819,7 +837,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
         <div class="brand-row">
           <div class="brand-logo">♠</div>
           <span class="brand-name">Spades Institute</span>
-          <span class="invite-pill">Invitation Only</span>
+          <span class="invite-pill">RSA Week · San Francisco</span>
         </div>
 
         <!-- Headline -->
