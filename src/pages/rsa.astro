@@ -301,14 +301,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .brand-logo {
       width: 38px;
       height: 38px;
-      background: linear-gradient(135deg, #1a3050, #0f1f30);
-      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 18px;
-      box-shadow: 0 2px 8px rgba(26, 48, 80, 0.35);
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .brand-name {
@@ -992,7 +993,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       <div class="invite-side">
         <!-- Brand row -->
         <div class="brand-row">
-          <div class="brand-logo">♠</div>
+          <div class="brand-logo"><img src="/logo-dark-transparent.png" alt="Spades Institute" /></div>
           <span class="brand-name">Spades Institute</span>
           <span class="invite-pill">RSA Week · San Francisco</span>
         </div>
