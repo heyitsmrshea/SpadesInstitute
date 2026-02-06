@@ -26,23 +26,23 @@ const valueProps = [
   <!-- Depth gradient overlay -->
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-spades-paper/80" aria-hidden="true"></div>
   
-  <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 relative">
+  <div class="max-w-5xl mx-auto mobile-gutter py-12 md:py-20 lg:py-24 relative">
     <div class="text-center">
       <!-- Flag and eyebrow with reveal animation -->
-      <div class="mb-8 flex items-center justify-center gap-4 blur-reveal">
+      <div class="mb-6 md:mb-8 flex items-center justify-center gap-3 md:gap-4 blur-reveal">
         <img
           src={`${base}flag-us.png`}
           alt="United States flag"
           width="96"
           height="51"
           loading="eager"
-          class="h-14 md:h-16 w-auto rounded-sm border border-spades-border shadow-md transition-transform duration-300 hover:scale-105"
+          class="h-10 sm:h-12 md:h-16 w-auto rounded-sm border border-spades-border shadow-md transition-transform duration-300 hover:scale-105"
         />
-        <span class="text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-spades-muted font-medium">{eyebrow}</span>
+        <span class="text-[9px] sm:text-[10px] md:text-xs tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-spades-muted font-medium">{eyebrow}</span>
       </div>
 
       <!-- Main heading with two-line staggered animation -->
-      <h1 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-spades-text max-w-6xl mx-auto px-4 text-center">
+      <h1 class="font-display text-[1.5rem] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-[1.2] sm:leading-tight text-spades-text max-w-6xl mx-auto text-center">
         <span class="block hero-line-1">We connect government, industry, and academia</span>
         <span class="block hero-line-2">to solve national security priorities.</span>
       </h1>
@@ -68,17 +68,17 @@ const valueProps = [
       </style>
 
       <!-- Description with staggered reveal -->
-      <p class="mt-5 text-base sm:text-lg md:text-xl text-spades-text-secondary max-w-2xl mx-auto leading-relaxed reveal-up">
+      <p class="mt-4 md:mt-5 text-sm sm:text-base md:text-lg lg:text-xl text-spades-text-secondary max-w-2xl mx-auto leading-relaxed reveal-up">
         {description}
       </p>
 
-      <!-- CTAs with enhanced styling -->
-      <div class="mt-10 flex flex-wrap gap-4 justify-center reveal-up">
+      <!-- CTAs - stack on mobile -->
+      <div class="mt-8 md:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center reveal-up">
         <a
           href={primaryCta.href}
           target={primaryCta.href.startsWith('http') ? '_blank' : undefined}
           rel={primaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
-          class="btn btn-primary btn-shimmer btn-glow"
+          class="btn btn-primary btn-shimmer btn-glow w-full sm:w-auto"
         >
           {primaryCta.label}
         </a>
@@ -87,7 +87,7 @@ const valueProps = [
             href={secondaryCta.href}
             target={secondaryCta.href.startsWith('http') ? '_blank' : undefined}
             rel={secondaryCta.href.startsWith('http') ? 'noreferrer' : undefined}
-            class="btn btn-secondary"
+            class="btn btn-secondary w-full sm:w-auto"
           >
             {secondaryCta.label}
           </a>
@@ -97,12 +97,12 @@ const valueProps = [
 
     <!-- Value propositions with alternating reveal animations -->
     {showMission && (
-      <div class="mt-16 pt-12 border-t border-spades-border">
-        <div class="grid md:grid-cols-3 gap-8 stagger-children">
+      <div class="mt-10 md:mt-16 pt-8 md:pt-12 border-t border-spades-border">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 stagger-children">
           {valueProps.map((prop, i) => (
-            <div class={`text-center md:text-left reveal-up`}>
-              <h3 class="text-base font-semibold text-spades-text mb-2">{prop.label}</h3>
-              <p class="text-sm text-spades-text-secondary leading-relaxed">{prop.desc}</p>
+            <div class={`text-center reveal-up`}>
+              <h3 class="text-sm md:text-base font-semibold text-spades-text mb-1.5 md:mb-2">{prop.label}</h3>
+              <p class="text-xs md:text-sm text-spades-text-secondary leading-relaxed">{prop.desc}</p>
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 import MenuIcon from './icons/MenuIcon.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// Main nav links (excluding Partner which is now a CTA)
+// Main nav links
 const navLinks = [
   { label: 'Home', href: `${base}/` },
   { label: 'About', href: `${base}/about` },
@@ -19,15 +19,15 @@ const isActive = (href) => {
          (normalizedHref !== '/' && normalizedPath.startsWith(normalizedHref));
 };
 ---
-<header class="w-full sticky top-0 z-40 border-b border-white/10" style="background-color: #0a0f1c;">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+<header class="mobile-header w-full sticky top-0 z-40 border-b border-white/10" style="background-color: #0a0f1c;">
+  <div class="max-w-5xl mx-auto mobile-gutter py-3 md:py-4 flex items-center justify-between gap-4">
     <!-- Logo -->
     <a 
       class="nav-link flex items-center text-white hover:text-white/90 transition-colors focus-white rounded group" 
       href={`${base}/`}
       aria-label="Spades Institute Home"
     >
-      <img src={`${base}/logo-light-transparent.png`} alt="Spades Institute" class="h-20 md:h-32 w-auto object-contain" />
+      <img src={`${base}/logo-light-transparent.png`} alt="Spades Institute" class="h-14 md:h-24 lg:h-32 w-auto object-contain" />
     </a>
 
     <!-- Desktop Nav -->
@@ -48,10 +48,10 @@ const isActive = (href) => {
       ))}
     </nav>
 
-    <!-- CTAs -->
-    <div class="flex items-center gap-2">
+    <!-- Desktop CTAs -->
+    <div class="hidden md:flex items-center gap-2">
       <a
-        class="hidden sm:inline-flex nav-link px-3 py-2 rounded-md text-sm font-medium text-white/75 hover:text-white hover:bg-white/5 transition-colors focus-white"
+        class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white/75 hover:text-white hover:bg-white/5 transition-colors focus-white"
         href={`${base}/connect`}
         aria-label="Partner with Spades Institute"
       >
@@ -65,38 +65,191 @@ const isActive = (href) => {
       >
         Donate
       </a>
-
-      <!-- Mobile Menu Button -->
-      <details class="md:hidden relative">
-        <summary class="list-none cursor-pointer select-none p-2 rounded-md hover:bg-white/10 focus-white">
-          <span class="sr-only">Open menu</span>
-          <MenuIcon class="w-6 h-6 text-white" />
-        </summary>
-        <div class="absolute right-0 mt-2 w-56 rounded-xl border border-white/10 shadow-lg p-2 motion-safe:animate-slideDown" style="background-color: #0a0f1c;">
-          {navLinks.map((link) => (
-            <a
-              class:list={[
-                'block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors',
-                isActive(link.href) 
-                  ? 'bg-white/10 text-white' 
-                  : 'text-white/80 hover:bg-white/5 hover:text-white'
-              ]}
-              href={link.href}
-              aria-current={isActive(link.href) ? 'page' : undefined}
-            >
-              {link.label}
-            </a>
-          ))}
-          <hr class="my-2 border-white/10" />
-          <a
-            class="block px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/5 hover:text-white transition-colors"
-            href={`${base}/connect`}
-            aria-label="Partner with Spades Institute"
-          >
-            Partner With Us
-          </a>
-        </div>
-      </details>
     </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      id="mobile-menu-btn"
+      class="md:hidden p-3 -mr-2 rounded-lg hover:bg-white/10 focus-white touch-manipulation"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <MenuIcon class="w-6 h-6 text-white" />
+    </button>
   </div>
 </header>
+
+<!-- Full-screen Mobile Menu Overlay -->
+<div 
+  id="mobile-menu" 
+  class="mobile-menu-overlay"
+  aria-hidden="true"
+>
+  <div class="mobile-menu-content">
+    <!-- Close Button -->
+    <button 
+      id="mobile-menu-close"
+      class="absolute top-4 right-4 p-3 rounded-lg hover:bg-white/10 focus-white"
+      aria-label="Close menu"
+    >
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Mobile Nav Links -->
+    <nav class="flex flex-col items-center justify-center h-full gap-2" aria-label="Mobile navigation">
+      {navLinks.map((link, index) => (
+        <a
+          class:list={[
+            'mobile-nav-link w-full text-center py-4 text-xl font-medium transition-all',
+            isActive(link.href) 
+              ? 'text-white bg-white/10' 
+              : 'text-white/80 hover:text-white hover:bg-white/5'
+          ]}
+          href={link.href}
+          aria-current={isActive(link.href) ? 'page' : undefined}
+          style={`animation-delay: ${index * 50}ms`}
+        >
+          {link.label}
+        </a>
+      ))}
+      
+      <hr class="w-16 my-4 border-white/20" />
+      
+      <a
+        class="mobile-nav-link w-full text-center py-4 text-xl font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all"
+        href={`${base}/connect`}
+        style="animation-delay: 250ms"
+      >
+        Partner With Us
+      </a>
+      
+      <a
+        class="mobile-nav-link mt-4 inline-flex items-center justify-center px-8 py-4 rounded-xl text-lg font-semibold bg-white text-spades-ink-deep hover:bg-white/90 transition-colors"
+        href="https://givebutter.com/spades-institute"
+        target="_blank"
+        rel="noreferrer"
+        style="animation-delay: 300ms"
+      >
+        Donate →
+      </a>
+    </nav>
+  </div>
+</div>
+
+<style>
+  /* Mobile Header Improvements */
+  .mobile-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-gutter {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  /* Full-screen Mobile Menu */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(10, 15, 28, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .mobile-menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  /* Mobile nav link animations */
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateY(20px);
+    border-radius: 0.75rem;
+  }
+
+  .mobile-menu-overlay.open .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* Touch improvements */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+</style>
+
+<script>
+  function initMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const menu = document.getElementById('mobile-menu');
+    
+    if (!menuBtn || !closeBtn || !menu) return;
+    
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMenu() {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    
+    menuBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+    
+    // Close when clicking a link
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Close on backdrop click
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu) {
+        closeMenu();
+      }
+    });
+  }
+  
+  // Initialize on page load and after view transitions
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

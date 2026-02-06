@@ -25,6 +25,14 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${base}${imag
     <meta name="theme-color" content="#0a0f1c" />
     <title>{title}</title>
     
+    <!-- Preconnect to external origins for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://widgets.givebutter.com" />
+    
+    <!-- DNS prefetch for image CDN if used -->
+    <link rel="dns-prefetch" href="https://www.spadesinstitute.org" />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     

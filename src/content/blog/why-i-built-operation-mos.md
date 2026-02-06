@@ -40,7 +40,7 @@ Every year, 200,000+ service members transition out. They bring leadership, disc
 
 **What Veterans Say** → **What Employers Hear**
 
-- *"Supervised 15-person fire team during 6-month OEF rotation"* → "…what's OEF?"
+- *"Supervised 15-person platoon during 6-month OEF rotation"* → "…what's OEF?"
 - *"Managed $2.3M MTOE property book with 100% accountability"* → "…MTOE?"
 - *"E-7 with 18 years TIS, MOS 11B"* → "…is that good?"
 

@@ -5,12 +5,64 @@
 @layer base {
   :root {
     color-scheme: light;
-    /* Design tokens as CSS custom properties */
+
+    /* ============================================
+       MOBILE-FIRST DESIGN TOKENS
+       ============================================ */
+
+    /* Colors */
     --color-accent: #1e3a5f;
     --color-accent-hover: #0f2a4a;
     --color-focus: rgba(30, 58, 95, 0.4);
-    --section-padding: 4rem;
-    --section-padding-md: 5rem;
+
+    /* Mobile spacing (base) */
+    --mobile-gutter: 1rem;
+    /* 16px horizontal padding */
+    --mobile-section-gap: 3rem;
+    /* 48px between sections */
+    --mobile-card-padding: 1rem;
+    /* 16px inside cards */
+    --mobile-stack-gap: 1.5rem;
+    /* 24px between stacked items */
+
+    /* Desktop spacing overrides applied via media query */
+    --gutter: var(--mobile-gutter);
+    --section-gap: var(--mobile-section-gap);
+    --card-padding: var(--mobile-card-padding);
+
+    /* Touch targets - minimum 44px */
+    --touch-target-min: 44px;
+    --touch-target-comfortable: 48px;
+
+    /* Typography scale - mobile first */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px - minimum for body */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+
+    /* Heading sizes - mobile */
+    --h1-size: 2rem;
+    /* 32px on mobile */
+    --h2-size: 1.5rem;
+    /* 24px on mobile */
+    --h3-size: 1.25rem;
+    /* 20px on mobile */
+
+    /* Section padding */
+    --section-padding: 3rem;
+    --section-padding-md: 4rem;
 
     /* Animation timing system */
     --duration-fast: 200ms;
@@ -25,6 +77,48 @@
     --lift-small: -2px;
     --lift-medium: -4px;
     --lift-large: -8px;
+  }
+
+  /* Desktop spacing overrides */
+  @media (min-width: 640px) {
+    :root {
+      --gutter: 1.5rem;
+      /* 24px */
+      --section-gap: 4rem;
+      /* 64px */
+      --card-padding: 1.5rem;
+      /* 24px */
+      --h1-size: 2.5rem;
+      /* 40px */
+      --h2-size: 1.875rem;
+      /* 30px */
+      --h3-size: 1.5rem;
+      /* 24px */
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --section-padding: 4rem;
+      --h1-size: 3rem;
+      /* 48px */
+      --h2-size: 2.25rem;
+      /* 36px */
+      --h3-size: 1.75rem;
+      /* 28px */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --gutter: 1.5rem;
+      --section-gap: 5rem;
+      --section-padding: 5rem;
+      --h1-size: 3.5rem;
+      /* 56px */
+      --h2-size: 2.5rem;
+      /* 40px */
+    }
   }
 
   html {
@@ -115,6 +209,7 @@
     letter-spacing: 0.02em;
     /* Ensure minimum touch target size (44x44px) */
     min-height: 44px;
+
     /* Improve button text on mobile */
     @media (max-width: 640px) {
       padding-left: 1rem;
@@ -259,6 +354,18 @@
   }
 
   /* Mobile-specific utilities */
+  .mobile-gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-gutter {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
   .mobile-container {
     @apply px-4 sm:px-6;
   }
@@ -272,7 +379,9 @@
   }
 
   /* Ensure links and buttons have proper touch targets on mobile */
-  a, button, summary {
+  a,
+  button,
+  summary {
     min-height: 44px;
     min-width: 44px;
     display: inline-flex;
@@ -280,7 +389,8 @@
   }
 
   /* Override for inline text links */
-  p a, .prose a {
+  p a,
+  .prose a {
     min-height: auto;
     min-width: auto;
     display: inline;
@@ -795,4 +905,113 @@ details>div {
 .counter-value {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum';
+}
+
+/* ============================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   Speed and responsiveness enhancements
+   ============================================ */
+
+/* Faster tap response - removes 300ms delay on touchscreens */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* GPU acceleration for smoother animations */
+.nav-link,
+.btn,
+.card,
+.mobile-menu-overlay {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize image rendering */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+
+/* Native lazy loading support */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([data-src]) {
+  opacity: 1;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .blur-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .hero-line-1,
+  .hero-line-2 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Print optimization */
+@media print {
+
+  .back-to-top,
+  .mobile-menu-overlay,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 2px;
+  }
+
+  a:focus,
+  button:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Dark mode preparation (if added later) */
+@media (prefers-color-scheme: dark) {
+  /* Placeholder for future dark mode */
 }

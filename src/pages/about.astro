@@ -15,22 +15,22 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
   <!-- Breadcrumbs removed for cleaner look -->
 
   <!-- Hero -->
-  <section class="bg-spades-ink-deep section-padding-sm relative overflow-hidden">
+  <section class="bg-spades-ink-deep py-8 md:py-12 lg:py-16 relative overflow-hidden">
     <!-- Subtle pattern -->
     <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
     
-    <div class="max-w-4xl mx-auto px-6 text-center relative blur-reveal">
-      <p class="text-xs uppercase tracking-widest text-spades-muted-light mb-4">About</p>
-      <h1 class="text-3xl md:text-heading-xl lg:text-heading-2xl text-white">Why Spades Institute</h1>
-      <p class="mt-4 text-base md:text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
+    <div class="max-w-4xl mx-auto mobile-gutter text-center relative blur-reveal">
+      <p class="text-[10px] md:text-xs uppercase tracking-widest text-spades-muted-light mb-3 md:mb-4">About</p>
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white">Why Spades Institute</h1>
+      <p class="mt-3 md:mt-4 text-sm md:text-base lg:text-lg text-dark-secondary max-w-2xl mx-auto leading-relaxed">
         The best national security solutions don't start with an RFP. They start with a conversation between people who trust each other.
       </p>
     </div>
   </section>
 
   <!-- Our Story - Left aligned narrative -->
-  <section class="bg-white section-padding border-b border-spades-border">
-    <div class="max-w-3xl mx-auto px-6">
+  <section class="bg-white py-10 md:py-16 lg:py-20 border-b border-spades-border">
+    <div class="max-w-3xl mx-auto mobile-gutter">
       <div class="reveal-up">
         <h2 class="text-2xl md:text-heading-lg text-spades-text mb-6 md:mb-8">Our Story</h2>
         
@@ -61,8 +61,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
   </section>
 
   <!-- Who We Are -->
-  <section class="bg-spades-paper section-padding border-b border-spades-border">
-    <div class="max-w-3xl mx-auto px-6">
+  <section class="bg-spades-paper py-10 md:py-16 lg:py-20 border-b border-spades-border">
+    <div class="max-w-3xl mx-auto mobile-gutter">
       <div class="text-center mb-10 reveal-up">
         <h2 class="text-2xl md:text-heading-lg text-spades-text">Who We Are</h2>
       </div>
@@ -75,12 +75,12 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
   </section>
 
   <!-- How We Connect Sectors - Flow Diagram -->
-  <section class="bg-spades-paper section-padding border-b border-spades-border">
-    <div class="max-w-5xl mx-auto px-6">
+  <section class="bg-spades-paper py-10 md:py-16 lg:py-20 border-b border-spades-border">
+    <div class="max-w-5xl mx-auto mobile-gutter">
       <!-- Header -->
-      <div class="text-center mb-12 reveal-up">
-        <h2 class="text-heading-lg text-spades-text">How We Connect Sectors</h2>
-        <p class="mt-3 text-spades-text-secondary max-w-lg mx-auto">
+      <div class="text-center mb-8 md:mb-12 reveal-up">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-serif italic text-spades-text">How We Connect Sectors</h2>
+        <p class="mt-2 md:mt-3 text-sm md:text-base text-spades-text-secondary max-w-lg mx-auto">
           From challenge to solution in four focused steps.
         </p>
       </div>
@@ -180,18 +180,18 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
   </section>
 
 <!-- CTA Section -->
-  <section class="bg-spades-ink-deep section-padding relative overflow-hidden">
+  <section class="bg-spades-ink-deep py-12 md:py-16 lg:py-20 relative overflow-hidden">
     <div class="absolute inset-0 bg-hex-pattern opacity-30" aria-hidden="true"></div>
     
-    <div class="max-w-4xl mx-auto px-6 text-center relative">
-      <h2 class="text-heading-lg md:text-heading-xl text-white blur-reveal">Work With Us</h2>
-      <p class="mt-4 text-lg text-dark-secondary max-w-2xl mx-auto reveal-up">
+    <div class="max-w-4xl mx-auto mobile-gutter text-center relative">
+      <h2 class="text-xl md:text-2xl lg:text-3xl font-serif italic text-white blur-reveal">Work With Us</h2>
+      <p class="mt-3 md:mt-4 text-sm md:text-base lg:text-lg text-dark-secondary max-w-2xl mx-auto reveal-up">
         Whether you're in government, industry, or academia, we'd love to explore how we can collaborate.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 justify-center reveal-up">
-        <a href={`${base}/connect`} class="btn btn-invert btn-shimmer btn-glow">Partner with us</a>
-        <a href={`${base}/engagements`} class="btn btn-invert-outline">View programs</a>
-        <a href={`${base}/people`} class="btn btn-invert-outline">Meet the team</a>
+      <div class="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center reveal-up">
+        <a href={`${base}/connect`} class="btn btn-invert btn-shimmer btn-glow w-full sm:w-auto">Partner with us</a>
+        <a href={`${base}/engagements`} class="btn btn-invert-outline w-full sm:w-auto">View programs</a>
+        <a href={`${base}/people`} class="btn btn-invert-outline w-full sm:w-auto">Meet the team</a>
       </div>
     </div>
   </section>
