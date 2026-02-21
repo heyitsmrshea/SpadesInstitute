@@ -118,30 +118,58 @@ function getPhotoPos(name: string) {
       padding: 5px 12px;
       border-radius: 8px;
     }
-    /* Bio expand/collapse */
+    /* Bio expand/collapse — smooth max-height transition */
     .bio-text {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      transition: all 0.3s ease;
+      max-height: 4.5em;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     }
     .bio-text.expanded {
       -webkit-line-clamp: unset;
       display: block;
+      overflow: visible;
+      max-height: 40em;
     }
     .bio-toggle {
       cursor: pointer;
       color: #1e3a5f;
       font-weight: 600;
       font-size: 11px;
-      margin-top: 6px;
-      display: inline-block;
-      transition: color 0.2s;
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s, gap 0.2s;
+      user-select: none;
     }
     .bio-toggle:hover {
       color: #2a5080;
+      gap: 6px;
     }
+    .bio-toggle::after {
+      content: '\2193';
+      font-size: 10px;
+      transition: transform 0.3s ease;
+    }
+    .bio-toggle.open::after {
+      transform: rotate(180deg);
+    }
+    /* Cascading card reveal — each card in a grid staggers */
+    .cascade-grid > .reveal-up:nth-child(1) { transition-delay: 0ms; }
+    .cascade-grid > .reveal-up:nth-child(2) { transition-delay: 80ms; }
+    .cascade-grid > .reveal-up:nth-child(3) { transition-delay: 160ms; }
+    .cascade-grid > .reveal-up:nth-child(4) { transition-delay: 240ms; }
+    .cascade-grid > .reveal-up:nth-child(5) { transition-delay: 320ms; }
+    .cascade-grid > .reveal-up:nth-child(6) { transition-delay: 400ms; }
+    .cascade-grid > .reveal-up:nth-child(7) { transition-delay: 480ms; }
+    .cascade-grid > .reveal-up:nth-child(8) { transition-delay: 560ms; }
+    .cascade-grid > .reveal-up:nth-child(9) { transition-delay: 640ms; }
+    .cascade-grid > .reveal-up:nth-child(10) { transition-delay: 720ms; }
+    .cascade-grid > .reveal-up:nth-child(11) { transition-delay: 800ms; }
+    .cascade-grid > .reveal-up:nth-child(12) { transition-delay: 880ms; }
     /* Initials fallback for broken images */
     .img-fallback {
       display: none;
@@ -167,11 +195,10 @@ function getPhotoPos(name: string) {
           <div class="w-8 h-px bg-spades-accent/40"></div>
           <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Leadership</h2>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14 cascade-grid">
           {leadership.map((person, i) => (
             <article
               class="group flex flex-col gap-5 reveal-up"
-              style={`animation-delay: ${i * 150}ms`}
             >
               <div class="photo-container relative w-full aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ring-1 ring-black/5 group-hover:ring-spades-accent/40 group-hover:shadow-[0_8px_30px_rgba(30,58,95,0.18)]"
                    data-initials={person.name.split(' ').map(n => n[0]).join('')}>
@@ -262,11 +289,10 @@ function getPhotoPos(name: string) {
           <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Senior Advisors</h2>
           <div class="flex-1 h-px bg-spades-border"></div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {advisors.map((person, i) => (
             <article
               class="group depth-card rounded-xl overflow-hidden reveal-up"
-              style={`animation-delay: ${i * 100}ms`}
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
                    data-initials={person.name.split(' ').map(n => n[0]).join('')}>
@@ -353,11 +379,10 @@ function getPhotoPos(name: string) {
           <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Council</h2>
           <div class="flex-1 h-px bg-spades-border"></div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {council.map((person, i) => (
             <article
               class="group depth-card rounded-xl overflow-hidden reveal-up"
-              style={`animation-delay: ${i * 80}ms`}
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
                    data-initials={person.name.split(' ').map(n => n[0]).join('')}>
@@ -447,11 +472,10 @@ function getPhotoPos(name: string) {
           Industry leaders and practitioners advancing national security through our fellowship programs.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {fellows.map((fellow, i) => (
             <article
               class="group depth-card rounded-xl overflow-hidden reveal-up"
-              style={`animation-delay: ${i * 60}ms`}
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden bg-stone-100"
                    data-initials={fellow.name.split(' ').map(n => n[0]).join('')}>
@@ -566,10 +590,12 @@ function getPhotoPos(name: string) {
       var isExpanded = bio.classList.contains('expanded');
       if (isExpanded) {
         bio.classList.remove('expanded');
-        toggle.textContent = toggle.getAttribute('data-more');
+        toggle.classList.remove('open');
+        toggle.childNodes[0].textContent = toggle.getAttribute('data-more');
       } else {
         bio.classList.add('expanded');
-        toggle.textContent = toggle.getAttribute('data-less');
+        toggle.classList.add('open');
+        toggle.childNodes[0].textContent = toggle.getAttribute('data-less');
       }
     });
 
