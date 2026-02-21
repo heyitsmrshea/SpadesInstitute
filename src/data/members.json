@@ -1,0 +1,444 @@
+[
+  {
+    "name": "Vishal Amin",
+    "section": "leadership",
+    "role": "Founding Partner",
+    "title": "Co-Founder, Spades Institute",
+    "tagline": "From fighter pilot to cybersecurity executive to nonprofit founder.",
+    "bio": "",
+    "credentials": [
+      "USMC",
+      "Cybersecurity"
+    ],
+    "headshot": "/people/vishal.avif",
+    "linkedin": "https://www.linkedin.com/in/vishaljamin/",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Lili Davoudian",
+    "section": "leadership",
+    "role": "Founding Partner",
+    "title": "Co-Founder, Spades Institute",
+    "tagline": "Cloud security leader bridging policy, technology, and operations.",
+    "bio": "",
+    "credentials": [
+      "Cloud Security",
+      "Policy"
+    ],
+    "headshot": "/people/Lili.avif",
+    "linkedin": "https://www.linkedin.com/in/lilidavoudian/",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Tim Kosiba",
+    "section": "council",
+    "role": "Council Member",
+    "title": "President & CEO, Mountaincrest Consulting",
+    "tagline": "",
+    "bio": "Timothy Kosiba is the CEO of Bracket f, Inc., where he leads the growth of cybersecurity solutions across federal, state, local, and healthcare sectors. He retired from the National Security Agency in 2021 after 33 years of federal service, holding some of the most senior technical leadership positions in the U.S. government. Tim began his career with NCIS and later joined the FBI, where he was a founding member of the Computer Analysis Response Team and led digital forensics efforts critical to counterterrorism after 9/11. At NSA, he held senior roles including Technical Director for Network Warfare, Chief of Computer Network Operations, Deputy Commander of NSA Georgia, and Chief of the Special U.S. Liaison Office in Canberra, Australia.",
+    "credentials": [
+      "NSA",
+      "FBI"
+    ],
+    "headshot": "/people/extracted/tim-kosiba.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Chad Raduege",
+    "section": "council",
+    "role": "Council Member",
+    "title": "President & CEO, The Raduege Group",
+    "tagline": "",
+    "bio": "Chad Raduege is a retired U.S. Air Force general officer whose 29-year career spanned senior leadership in cyber operations, communications, and IT. He commanded the White House Communications Agency and led cyber strategy at U.S. European Command, shaping capabilities at the highest levels of government and defense. Today, Chad serves as President and CEO of The Raduege Group, Partner at Elara Nova, and Chairman of the Air Force Cyberspace and Air Traffic Control Association.",
+    "credentials": [
+      "USAF General",
+      "White House Comms"
+    ],
+    "headshot": "/people/extracted/chad-raduege.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Russ Andersson",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Co-Founder & COO, RapidFort",
+    "tagline": "",
+    "bio": "Russ Andersson is Co-Founder and COO of RapidFort, where he leads efforts to advance secure containerization and DevSecOps adoption across national security and enterprise sectors. With decades of experience guiding early-stage startups, Russ specializes in helping companies secure capital, achieve market traction, and scale from inception to multimillion-dollar revenues. He has made fundamental contributions to information theory, decision analysis, and collaborative intelligence.",
+    "credentials": [
+      "DevSecOps",
+      "National Security"
+    ],
+    "headshot": "/people/extracted/russ-andersson.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Greg Oslan",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Strategic Advisor, Board Director, Investor",
+    "tagline": "",
+    "bio": "Greg Oslan is a seasoned executive, strategic advisor, and investor with decades of leadership across cybersecurity, artificial intelligence, and national defense innovation. He has built and led multiple companies through growth and successful exits. Greg's experience includes serving as Executive Chairman of the National Cybersecurity Center and working with the Defense Innovation Unit (DIU) and the DoD Joint Artificial Intelligence Center.",
+    "credentials": [
+      "Cybersecurity Center",
+      "DIU"
+    ],
+    "headshot": "/people/extracted/greg-oslan.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Ellen McCarthy",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Chairwoman & CEO, Trust in Media Cooperative",
+    "tagline": "",
+    "bio": "Ellen E. McCarthy has more than 30 years of service across the U.S. intelligence community and private sector, including roles as COO of the National Geospatial-Intelligence Agency and Assistant Secretary of State for Intelligence and Research (INR). Earlier in her career, Ellen directed intelligence operations for the U.S. Coast Guard and served in senior leadership at the Office of the Under Secretary of Defense for Intelligence. She also serves as a Senior Fellow at Harvard's Belfer Center.",
+    "credentials": [
+      "State Dept",
+      "Harvard Belfer"
+    ],
+    "headshot": "/people/extracted/ellen-mccarthy.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Robyn Klein",
+    "section": "council",
+    "role": "Council Member",
+    "title": "National Security Leader & Cyber Policy Expert",
+    "tagline": "",
+    "bio": "Robyn is a national security leader with more than 20 years of experience at the intersection of technology, geopolitics, and policy. Recognized as a trailblazer in cyber policy and emerging technologies, including artificial intelligence, she has built a reputation as a trusted advisor to senior leaders across government and industry. Her career reflects a consistent record of thought leadership, consensus building, and advancing U.S. national security priorities in the digital domain.",
+    "credentials": [
+      "Cyber Policy",
+      "AI Governance"
+    ],
+    "headshot": "/people/extracted/robyn-klein.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "DJ Rosenthal",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Founder & CEO, 77 Meridian Law & Policy",
+    "tagline": "",
+    "bio": "DJ is a national security lawyer with deep experience across the U.S. Intelligence Community, the Department of Justice, and the National Security Council at the White House. His career includes senior service in the Obama Administration at DOJ and the NSC. Today, DJ is a trusted advisor to defense and intelligence companies and a published voice in The New York Times, The Washington Post, and Politico.",
+    "credentials": [
+      "NSC",
+      "DOJ"
+    ],
+    "headshot": "/people/extracted/dj-rosenthal.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Jamil Jaffer",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Venture Partner, Paladin Capital Group",
+    "tagline": "",
+    "bio": "Jamil Jaffer is a Venture Partner at Paladin Capital Group, where he invests in innovative companies addressing critical cyber and advanced technology needs. He founded the National Security Institute at George Mason University and has served on the DHS Cyber Safety Review Board. Earlier, Jamil held senior roles in all three branches of government, including Associate Counsel to President George W. Bush and senior staff on the House Intelligence and Senate Foreign Relations Committees.",
+    "credentials": [
+      "Paladin Capital",
+      "White House"
+    ],
+    "headshot": "/people/extracted/jamil-jaffer.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Brad Levine",
+    "section": "council",
+    "role": "Council Member",
+    "title": "Founder & CEO, Synergist Technology",
+    "tagline": "",
+    "bio": "Bradley M. Levine is the founder of Synergist Technology, an AI compliance and governance SaaS platform serving government and private-sector clients. Over a 25+ year career, he has built and sold four software companies specializing in compliance management, generating more than $250M in shareholder value. Brad has served on the Florida Atlantic University Board of Trustees and the Florida Blockchain Task Force.",
+    "credentials": [
+      "AI Compliance",
+      "GovTech"
+    ],
+    "headshot": "/people/extracted/brad-levine.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Dan Goodwin",
+    "section": "advisor",
+    "role": "Senior Advisor",
+    "title": "Senior Business Development Executive, Micron Technology",
+    "tagline": "",
+    "bio": "Dan Goodwin is a senior business development and strategic marketing executive at Micron Technology, where he supports aerospace, defense, and national security projects worldwide. Drawing on experience in both military service and the commercial sector, he works with customers and partners to deliver next-generation solid-state memory and storage technologies for defense and aerospace applications.",
+    "credentials": [
+      "Micron Technology",
+      "Defense"
+    ],
+    "headshot": "/people/extracted/dan-goodwin.jpg",
+    "linkedin": "https://www.linkedin.com/in/goodwindan/",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Andrew Shea",
+    "section": "advisor",
+    "role": "Senior Advisor",
+    "title": "Security Leader",
+    "tagline": "",
+    "bio": "Andrew Shea was Senior Security Lead at Microsoft, where he directed cybersecurity strategy for the U.S. Department of Defense and the Department of Homeland Security. Previously, Andrew was a senior leader on Microsoft's Detection and Response Team (DART), conducting global incident response and breach investigations for Fortune 500 companies and allied governments across 16 countries. He is a graduate of the U.S. Naval Academy and holds a master's degree in Cybersecurity Risk Management from Georgetown.",
+    "credentials": [
+      "Microsoft",
+      "USNA"
+    ],
+    "headshot": "/people/extracted/andrew-shea.jpg",
+    "linkedin": "https://www.linkedin.com/in/awillshea/",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Tanya Loh",
+    "section": "advisor",
+    "role": "Senior Advisor",
+    "title": "Advisor & Brand Builder",
+    "tagline": "",
+    "bio": "Tanya Loh is an advisor, mentor, and brand and company builder who partners with mission-driven founders and investors advancing innovation across AI, cybersecurity, and nonprofit organizations. She has held leadership roles at M12 (Microsoft's Venture Fund), Forgepoint Capital, Yammer, and 20th Century Fox International. She holds an MBA from Chicago Booth and a BA from Yale.",
+    "credentials": [
+      "Forgepoint Capital",
+      "Yale"
+    ],
+    "headshot": "/people/extracted/tanya-loh.jpeg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Ken Kurz",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "CIO, COPT Defense Properties",
+    "tagline": "",
+    "bio": "Ken Kurz has over 20 years of leadership in cybersecurity and network technologies. He previously held senior roles as CISO at the University of Delaware and the University of Oklahoma, CIO at the US Naval Academy Alumni Association, and led the National Cryptographic Solutions Management Office for the Department of Defense.",
+    "credentials": [
+      "CISO",
+      "DoD"
+    ],
+    "headshot": "/people/extracted/ken-kurz.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Macy Dennis",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "CSO, Ember Echo",
+    "tagline": "",
+    "bio": "Macy Dennis is Partner and Chief Security Officer at Ember Echo, a security and intelligence firm supporting national security, critical infrastructure, and commercial clients. With more than 30 years of experience spanning cybersecurity, law enforcement, DoD, intelligence, and IT, he has defended organizations against nation-state threats for decades.",
+    "credentials": [
+      "Intelligence",
+      "Critical Infrastructure"
+    ],
+    "headshot": "/people/extracted/macy-dennis.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Jason Christman",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "CPO, Cyber Eagle Project",
+    "tagline": "",
+    "bio": "Jason Christman is Chief Product Officer at Cyber Eagle Project, leading product strategy and innovation to deliver scalable AI cybersecurity solutions. He previously served as Chief Product Security Officer at Johnson Controls and Honeywell. He also serves as a Brigadier General in the Delaware Air National Guard.",
+    "credentials": [
+      "Brigadier General",
+      "AI Cybersecurity"
+    ],
+    "headshot": "/people/extracted/jason-christman.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Robert Christafore",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Business Development Director, Verizon",
+    "tagline": "",
+    "bio": "Robert Christafore is Business Development Director at Verizon, managing a $2B portfolio supporting the Department of Defense and Intelligence Community. A former U.S. Marine Corps officer, Robert served as Battalion Commander and led combat units in Iraq and Afghanistan.",
+    "credentials": [
+      "Verizon",
+      "USMC"
+    ],
+    "headshot": "/people/extracted/robert-christafore.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Sa\u0161a Zdjelar",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Operating Partner, Crosspoint Capital",
+    "tagline": "",
+    "bio": "Sa\u0161a is an Operating Partner at Crosspoint Capital and Chief Trust Officer at ReversingLabs, bringing more than 20 years of Fortune 10 executive leadership. He previously served as SVP of Security at Salesforce and spent nearly two decades at ExxonMobil in enterprise security.",
+    "credentials": [
+      "Salesforce",
+      "Crosspoint Capital"
+    ],
+    "headshot": "/people/extracted/sasa-zdjelar.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Justin Zeefe",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Founding GP, Green Flag Ventures",
+    "tagline": "",
+    "bio": "Justin Zeefe is Founding General Partner of Green Flag Ventures, investing in dual-use, AI, and cyber startups. He co-founded Nisos, a managed intelligence company protecting Fortune 500 enterprises, scaling it to a $150M valuation. He previously spent a decade in the U.S. Government countering state-backed digital adversaries.",
+    "credentials": [
+      "Nisos Founder",
+      "Intel Community"
+    ],
+    "headshot": "/people/extracted/justin-zeefe.png",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Everett Stern",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Founder, Tactical Rabbit & Stern Cybersecurity",
+    "tagline": "",
+    "bio": "Everett Stern is best known as the HSBC whistleblower, whose disclosures led to a $1.92 billion U.S. penalty and disrupted terrorist and cartel financing. He founded Tactical Rabbit for public- and private-sector investigations and Stern Cybersecurity for critical infrastructure protection. Featured in NYT, The Guardian, Rolling Stone, and Netflix's Dirty Money.",
+    "credentials": [
+      "HSBC Whistleblower",
+      "Corporate Intel"
+    ],
+    "headshot": "/people/extracted/everett-stern.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Hala Nelson",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Professor of Mathematics; Co-Founder, MI2MR",
+    "tagline": "",
+    "bio": "Hala Nelson is a Professor of Mathematics, co-founder of MI2MR, and international speaker specializing in AI, digital twins, and cybersecurity. Author of Essential Math for AI (O'Reilly, 2023) and the forthcoming AI Powered Digital Twins (Wiley, 2027). She has advised the U.S. Department of Defense and Department of State on AI adoption and cyber resilience.",
+    "credentials": [
+      "O'Reilly Author",
+      "DoD Advisor"
+    ],
+    "headshot": "/people/extracted/hala-nelson.png",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "David Mahdi",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Chief Identity Officer, Transmit Security",
+    "tagline": "",
+    "bio": "David Mahdi is a global cybersecurity and identity leader, and former Gartner Vice President and Analyst known for shaping emerging markets such as Machine Identity Management and Non-Human Identity Security. At Gartner, he authored foundational research used by thousands of CISOs to guide enterprise identity and trust strategies.",
+    "credentials": [
+      "Gartner VP",
+      "Identity Security"
+    ],
+    "headshot": "/people/extracted/david-mahdi.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Trevor Hull",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Security Leader, Microsoft Federal",
+    "tagline": "",
+    "bio": "Trevor Hull is a security leader, combat veteran, and former F/A-18 Hornet fighter pilot with over 11 years of active duty Marine Corps service. As a Senior Security Leader at Microsoft Federal, he spearheads initiatives for Department of the Army clients. His career spans leadership roles at Palo Alto Networks, Juniper Networks, and Qlik.",
+    "credentials": [
+      "Microsoft Federal",
+      "USMC Pilot"
+    ],
+    "headshot": "/people/extracted/trevor-hull.jpg",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Jansen Weaver",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "CBO, Peripheral; Marine Attach\u00e9, USMC Reserves",
+    "tagline": "",
+    "bio": "Jansen Weaver is CBO of Peripheral and serves as a Marine Attach\u00e9 in the U.S. Marine Corps Reserves. He previously served as an Active Duty Marine Corps Intelligence Officer with deployments to the Middle East and Asia. He built his corporate foundation at Lazard and Deloitte before executive roles at CHOP and Headspace. He is a Veteran Fellow at the Hoover Institution and Term Member on the Council on Foreign Relations.",
+    "credentials": [
+      "USMC Intel",
+      "Hoover Institution"
+    ],
+    "headshot": "/people/extracted/jansen-weaver.png",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  },
+  {
+    "name": "Alycia Farrell",
+    "section": "fellow",
+    "role": "Fellow",
+    "title": "Senior Analyst, Gray Tarian; Advisor, The Roosevelt Group",
+    "tagline": "",
+    "bio": "Alycia Farrell is a cybersecurity and national security professional with more than 14 years of federal experience. She previously served as a Professional Staff Member on the Senate Appropriations Committee, overseeing missile defense, weapons procurement, and Guard and Reserve equipping. Today, she advises federal clients on cybersecurity operations, AI, and emerging technologies.",
+    "credentials": [
+      "Senate Appropriations",
+      "Cyber Ops"
+    ],
+    "headshot": "",
+    "linkedin": "",
+    "organization": "",
+    "placement": "",
+    "cohort": ""
+  }
+]

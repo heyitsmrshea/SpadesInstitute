@@ -1,0 +1,599 @@
+---
+import Layout from '../components/Layout.astro';
+import LinkedInIcon from '../components/icons/LinkedInIcon.astro';
+import members from '../data/members.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Split by section — order: Leadership > Senior Advisors > Council > Fellows
+const leadership = members.filter(m => m.section === 'leadership');
+const advisors = members.filter(m => m.section === 'advisor');
+const council = members.filter(m => m.section === 'council');
+const fellows = members.filter(m => m.section === 'fellow');
+
+// Photo position overrides (default is object-top)
+const photoPos: Record<string, string> = {
+  'Saša Zdjelar': 'center',
+  'Hala Nelson': 'center',
+  'Trevor Hull': 'center',
+  'Jansen Weaver': 'center',
+  'Macy Dennis': 'center',
+  'Robert Christafore': 'center 30%',
+};
+function getPhotoPos(name: string) {
+  return photoPos[name] || 'top';
+}
+---
+<Layout
+  title="Spades Institute | Members Directory"
+  description="The complete directory of Spades Institute leaders, council members, advisors, and fellows."
+>
+
+  <!-- ============================================
+       HERO — Logo, layered patterns, staggered text
+       ============================================ -->
+  <section class="relative bg-spades-ink-deep overflow-hidden">
+    <div class="absolute inset-0 bg-hex-pattern opacity-20" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-dots-pattern opacity-10" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-spades-ink-deep/90" aria-hidden="true"></div>
+
+    <div class="max-w-5xl mx-auto mobile-gutter py-14 md:py-20 lg:py-24 relative">
+      <div class="text-center">
+        <div class="mb-6 md:mb-8 blur-reveal">
+          <img
+            src={`${base}/logo-light-transparent.png`}
+            alt="Spades Institute"
+            class="h-14 md:h-16 lg:h-20 w-auto mx-auto opacity-90"
+            loading="eager"
+          />
+        </div>
+
+        <p class="text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.3em] uppercase text-white/40 font-medium mb-4 md:mb-5 hero-line-1">
+          Members Directory
+        </p>
+
+        <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-white not-italic leading-tight max-w-3xl mx-auto">
+          <span class="block hero-line-1">The people behind</span>
+          <span class="block hero-line-2">the mission</span>
+        </h1>
+
+        <p class="mt-4 md:mt-5 text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed reveal-up">
+          Operators, strategists, and veterans from across government, industry, and academia — united by a commitment to nonpartisan, outcomes-driven collaboration.
+        </p>
+
+        <!-- Quick-nav pills -->
+        <div class="mt-8 md:mt-10 flex flex-wrap justify-center gap-2 reveal-up">
+          <a href="#leadership" class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20">
+            Leadership
+            <span class="ml-1.5 text-white/40">{leadership.length}</span>
+          </a>
+          <a href="#advisors" class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20">
+            Senior Advisors
+            <span class="ml-1.5 text-white/40">{advisors.length}</span>
+          </a>
+          <a href="#council" class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20">
+            Council
+            <span class="ml-1.5 text-white/40">{council.length}</span>
+          </a>
+          <a href="#fellows" class="inline-flex items-center px-4 py-2 rounded-full text-xs font-medium bg-white/10 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/10 hover:border-white/20">
+            Fellows
+            <span class="ml-1.5 text-white/40">{fellows.length}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-spades-accent/30 to-transparent" aria-hidden="true"></div>
+  </section>
+
+  <style>
+    .hero-line-1, .hero-line-2 {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroReveal 0.8s ease-out forwards;
+    }
+    .hero-line-1 { animation-delay: 0.2s; }
+    .hero-line-2 { animation-delay: 0.45s; }
+    @keyframes heroReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Role badge — solid dark pill that works on any photo background */
+    .role-badge {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.12);
+      pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .role-badge-lg {
+      font-size: 10px;
+      padding: 5px 12px;
+      border-radius: 8px;
+    }
+    /* Bio expand/collapse */
+    .bio-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .bio-text.expanded {
+      -webkit-line-clamp: unset;
+      display: block;
+    }
+    .bio-toggle {
+      cursor: pointer;
+      color: #1e3a5f;
+      font-weight: 600;
+      font-size: 11px;
+      margin-top: 6px;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+    .bio-toggle:hover {
+      color: #2a5080;
+    }
+    /* Initials fallback for broken images */
+    .img-fallback {
+      display: none;
+    }
+    .img-broken .img-fallback {
+      display: flex;
+    }
+    .img-broken img.member-photo {
+      display: none;
+    }
+  </style>
+
+
+  <!-- ============================================
+       LEADERSHIP — Founding Partners
+       2-col, large cards, full bios
+       ============================================ -->
+  {leadership.length > 0 && (
+    <section id="leadership" class="bg-spades-paper pt-14 pb-10 md:pt-20 md:pb-14 relative">
+      <div class="absolute inset-0 bg-grid-subtle opacity-30" aria-hidden="true"></div>
+      <div class="max-w-5xl mx-auto mobile-gutter relative">
+        <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
+          <div class="w-8 h-px bg-spades-accent/40"></div>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Leadership</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14">
+          {leadership.map((person, i) => (
+            <article
+              class="group flex flex-col gap-5 reveal-up"
+              style={`animation-delay: ${i * 150}ms`}
+            >
+              <div class="photo-container relative w-full aspect-[4/3] rounded-xl overflow-hidden transition-all duration-500 ring-1 ring-black/5 group-hover:ring-spades-accent/40 group-hover:shadow-[0_8px_30px_rgba(30,58,95,0.18)]"
+                   data-initials={person.name.split(' ').map(n => n[0]).join('')}>
+                {person.headshot ? (
+                  <a href={person.linkedin || '#'} target={person.linkedin ? '_blank' : '_self'} rel="noreferrer" class="block w-full h-full">
+                    <img
+                      src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
+                      alt={person.name}
+                      loading="eager"
+                      decoding="async"
+                      class="member-photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      style={`object-position: ${getPhotoPos(person.name)};`}
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-3 left-3 role-badge role-badge-lg">
+                      {person.role}
+                    </div>
+                    {person.linkedin && (
+                      <div class="absolute inset-0 bg-gradient-to-t from-spades-accent/25 via-spades-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end justify-start p-4">
+                        <div class="bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-2 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-400 shadow-lg ring-1 ring-black/5">
+                          <LinkedInIcon class="w-3.5 h-3.5 text-[#0077b5]" />
+                          <span class="text-xs font-semibold text-spades-text">View Profile</span>
+                        </div>
+                      </div>
+                    )}
+                    <div class="img-fallback absolute inset-0 bg-gradient-to-br from-stone-100 to-stone-200 items-center justify-center">
+                      <div class="w-20 h-20 rounded-full bg-white/80 flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                        <span class="text-3xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-stone-100 to-stone-200 flex items-center justify-center">
+                    <div class="w-20 h-20 rounded-full bg-white/80 flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                      <span class="text-3xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div class="px-1">
+                <h3 class="text-xl font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
+                  {person.name}
+                </h3>
+                {person.title && (
+                  <p class="text-xs text-spades-muted font-medium mb-2.5">{person.title}</p>
+                )}
+                {person.credentials && person.credentials.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mb-3">
+                    {person.credentials.map(cred => (
+                      <span class="inline-block text-[10px] font-semibold uppercase tracking-wider text-spades-accent bg-spades-accent/[0.07] px-2 py-0.5 rounded-md border border-spades-accent/10">
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {person.tagline && (
+                  <p class="text-sm text-spades-text-secondary leading-relaxed font-medium">
+                    {person.tagline}
+                  </p>
+                )}
+                {person.bio && (
+                  <div class="mt-2">
+                    <p class="bio-text text-sm text-spades-muted leading-relaxed">
+                      {person.bio}
+                    </p>
+                    <span class="bio-toggle" data-more="Read more" data-less="Read less">Read more</span>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
+  <!-- ============================================
+       SENIOR ADVISORS
+       ============================================ -->
+  {advisors.length > 0 && (
+    <section id="advisors" class="bg-white pt-10 pb-10 md:pt-16 md:pb-16 border-t border-spades-border relative">
+      <div class="absolute inset-0 bg-grid-subtle opacity-25" aria-hidden="true"></div>
+      <div class="max-w-5xl mx-auto mobile-gutter relative">
+        <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
+          <div class="w-8 h-px bg-spades-accent/40"></div>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Senior Advisors</h2>
+          <div class="flex-1 h-px bg-spades-border"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {advisors.map((person, i) => (
+            <article
+              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              style={`animation-delay: ${i * 100}ms`}
+            >
+              <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
+                   data-initials={person.name.split(' ').map(n => n[0]).join('')}>
+                {person.headshot ? (
+                  <a href={person.linkedin || '#'} target={person.linkedin ? '_blank' : '_self'} rel="noreferrer" class="block w-full h-full">
+                    <img
+                      src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
+                      alt={person.name}
+                      loading="lazy"
+                      decoding="async"
+                      class="member-photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      style={`object-position: ${getPhotoPos(person.name)};`}
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-3 left-3 role-badge">
+                      {person.role}
+                    </div>
+                    {person.linkedin && (
+                      <div class="absolute inset-0 bg-gradient-to-t from-spades-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-3">
+                        <div class="bg-white/95 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-lg ring-1 ring-black/5">
+                          <LinkedInIcon class="w-3 h-3 text-[#0077b5]" />
+                          <span class="text-[11px] font-semibold text-spades-text">Profile</span>
+                        </div>
+                      </div>
+                    )}
+                    <div class="img-fallback absolute inset-0 bg-gradient-to-br from-stone-50 to-stone-200 items-center justify-center">
+                      <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                        <span class="text-xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-stone-50 to-stone-200 flex items-center justify-center">
+                    <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                      <span class="text-xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div class="p-5">
+                <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
+                  {person.name}
+                </h3>
+                {person.title && (
+                  <p class="text-[11px] text-spades-muted font-medium mb-2.5">{person.title}</p>
+                )}
+                {person.credentials && person.credentials.length > 0 && (
+                  <div class="flex flex-wrap gap-1 mb-2.5">
+                    {person.credentials.map(cred => (
+                      <span class="inline-block text-[9px] font-semibold uppercase tracking-wider text-spades-accent bg-spades-accent/[0.06] px-1.5 py-0.5 rounded border border-spades-accent/10">
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {person.bio && (
+                  <div>
+                    <p class="bio-text text-xs text-spades-muted leading-relaxed">
+                      {person.bio}
+                    </p>
+                    <span class="bio-toggle" data-more="Read more" data-less="Read less">Read more</span>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
+  <!-- ============================================
+       COUNCIL MEMBERS
+       3-col grid, depth cards
+       ============================================ -->
+  {council.length > 0 && (
+    <section id="council" class="bg-spades-paper pt-10 pb-10 md:pt-16 md:pb-16 border-t border-spades-border relative">
+      <div class="absolute inset-0 bg-dots-pattern opacity-20" aria-hidden="true"></div>
+      <div class="max-w-5xl mx-auto mobile-gutter relative">
+        <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
+          <div class="w-8 h-px bg-spades-accent/40"></div>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Council</h2>
+          <div class="flex-1 h-px bg-spades-border"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {council.map((person, i) => (
+            <article
+              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              style={`animation-delay: ${i * 80}ms`}
+            >
+              <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
+                   data-initials={person.name.split(' ').map(n => n[0]).join('')}>
+                {person.headshot ? (
+                  <div class="w-full h-full">
+                    <img
+                      src={`${base}${person.headshot.startsWith('/') ? person.headshot : '/' + person.headshot}`}
+                      alt={person.name}
+                      loading="lazy"
+                      decoding="async"
+                      class="member-photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      style={`object-position: ${getPhotoPos(person.name)};`}
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
+                    <div class="absolute top-3 left-3 role-badge">
+                      {person.role}
+                    </div>
+                    {person.linkedin && (
+                      <a href={person.linkedin} target="_blank" rel="noreferrer" class="absolute inset-0 bg-gradient-to-t from-spades-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-3">
+                        <div class="bg-white/95 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-lg ring-1 ring-black/5">
+                          <LinkedInIcon class="w-3 h-3 text-[#0077b5]" />
+                          <span class="text-[11px] font-semibold text-spades-text">Profile</span>
+                        </div>
+                      </a>
+                    )}
+                    <div class="img-fallback absolute inset-0 bg-gradient-to-br from-stone-50 to-stone-200 items-center justify-center">
+                      <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                        <span class="text-xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-stone-50 to-stone-200 flex items-center justify-center">
+                    <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                      <span class="text-xl font-bold text-stone-400">{person.name.split(' ').map(n => n[0]).join('')}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div class="p-5">
+                <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
+                  {person.name}
+                </h3>
+                {person.title && (
+                  <p class="text-[11px] text-spades-muted font-medium mb-2.5">{person.title}</p>
+                )}
+                {person.credentials && person.credentials.length > 0 && (
+                  <div class="flex flex-wrap gap-1 mb-2.5">
+                    {person.credentials.map(cred => (
+                      <span class="inline-block text-[9px] font-semibold uppercase tracking-wider text-spades-accent bg-spades-accent/[0.06] px-1.5 py-0.5 rounded border border-spades-accent/10">
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {person.bio && (
+                  <div>
+                    <p class="bio-text text-xs text-spades-muted leading-relaxed">
+                      {person.bio}
+                    </p>
+                    <span class="bio-toggle" data-more="Read more" data-less="Read less">Read more</span>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
+  <!-- ============================================
+       FELLOWS
+       ============================================ -->
+  {fellows.length > 0 && (
+    <section id="fellows" class="bg-white pt-10 pb-14 md:pt-16 md:pb-20 border-t border-spades-border relative">
+      <div class="absolute inset-0 bg-hex-pattern opacity-15" aria-hidden="true"></div>
+      <div class="max-w-5xl mx-auto mobile-gutter relative">
+        <div class="flex items-center gap-3 mb-3 px-1 blur-reveal">
+          <div class="w-8 h-px bg-spades-accent/40"></div>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Fellows</h2>
+          <div class="flex-1 h-px bg-spades-border"></div>
+        </div>
+        <p class="text-sm text-spades-text-secondary px-1 max-w-xl mb-10 reveal-up">
+          Industry leaders and practitioners advancing national security through our fellowship programs.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {fellows.map((fellow, i) => (
+            <article
+              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              style={`animation-delay: ${i * 60}ms`}
+            >
+              <div class="photo-container relative w-full aspect-[4/3] overflow-hidden bg-stone-100"
+                   data-initials={fellow.name.split(' ').map(n => n[0]).join('')}>
+                {fellow.headshot ? (
+                  <div class="w-full h-full">
+                    <img
+                      src={`${base}${fellow.headshot.startsWith('/') ? fellow.headshot : '/' + fellow.headshot}`}
+                      alt={fellow.name}
+                      loading="lazy"
+                      decoding="async"
+                      class="member-photo w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      style={`object-position: ${getPhotoPos(fellow.name)};`}
+                    />
+                    <div class="img-fallback absolute inset-0 bg-gradient-to-br from-stone-50 to-stone-200 items-center justify-center">
+                      <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                        <span class="text-xl font-bold text-stone-400">{fellow.name.split(' ').map(n => n[0]).join('')}</span>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-50 to-stone-200">
+                    <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm ring-1 ring-black/5">
+                      <span class="text-xl font-bold text-stone-400">{fellow.name.split(' ').map(n => n[0]).join('')}</span>
+                    </div>
+                  </div>
+                )}
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
+                <div class="absolute top-3 left-3 role-badge">
+                  {fellow.role}
+                </div>
+
+                {fellow.linkedin && (
+                  <a href={fellow.linkedin} target="_blank" rel="noreferrer" class="absolute inset-0 bg-gradient-to-t from-spades-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-3">
+                    <div class="bg-white/95 backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-lg ring-1 ring-black/5">
+                      <LinkedInIcon class="w-3 h-3 text-[#0077b5]" />
+                      <span class="text-[11px] font-semibold text-spades-text">Profile</span>
+                    </div>
+                  </a>
+                )}
+              </div>
+
+              <div class="p-5">
+                <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
+                  {fellow.name}
+                </h3>
+                {fellow.title && (
+                  <p class="text-[11px] text-spades-muted font-medium mb-2.5">{fellow.title}</p>
+                )}
+                {fellow.credentials && fellow.credentials.length > 0 && (
+                  <div class="flex flex-wrap gap-1 mb-2.5">
+                    {fellow.credentials.map(cred => (
+                      <span class="inline-block text-[9px] font-semibold uppercase tracking-wider text-spades-accent bg-spades-accent/[0.06] px-1.5 py-0.5 rounded border border-spades-accent/10">
+                        {cred}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {fellow.bio && (
+                  <div>
+                    <p class="bio-text text-xs text-spades-muted leading-relaxed">
+                      {fellow.bio}
+                    </p>
+                    <span class="bio-toggle" data-more="Read more" data-less="Read less">Read more</span>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+
+  <!-- ============================================
+       CTA
+       ============================================ -->
+  <section class="bg-spades-paper py-14 md:py-20 relative">
+    <div class="absolute inset-0 bg-grid-subtle opacity-20" aria-hidden="true"></div>
+    <div class="max-w-3xl mx-auto mobile-gutter text-center relative">
+      <div class="blur-reveal">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-serif text-spades-text mb-3 md:mb-4 not-italic">
+          Join the mission
+        </h2>
+        <p class="text-sm md:text-base lg:text-lg text-spades-text-secondary mb-8 md:mb-10 max-w-xl mx-auto leading-relaxed">
+          Whether you're looking to advise, partner, or apply to our fellowship program — we'd like to hear from you.
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 reveal-up">
+        <a href={`${base}/connect`} class="btn btn-primary btn-shimmer btn-glow w-full sm:w-auto">
+          Partner with us
+        </a>
+        <a href={`${base}/connect`} class="btn btn-secondary w-full sm:w-auto">
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SCRIPTS: Bio toggle + Image fallback
+       ============================================ -->
+  <script is:inline>
+    // Use event delegation so it works regardless of timing
+    document.addEventListener('click', function(e) {
+      var toggle = e.target.closest('.bio-toggle');
+      if (!toggle) return;
+      var bio = toggle.previousElementSibling;
+      if (!bio) return;
+      var isExpanded = bio.classList.contains('expanded');
+      if (isExpanded) {
+        bio.classList.remove('expanded');
+        toggle.textContent = toggle.getAttribute('data-more');
+      } else {
+        bio.classList.add('expanded');
+        toggle.textContent = toggle.getAttribute('data-less');
+      }
+    });
+
+    // Image error fallback — show initials when photo fails to load
+    function initImageFallbacks() {
+      document.querySelectorAll('img.member-photo').forEach(function(img) {
+        function handleError() {
+          var container = img.closest('.photo-container');
+          if (container) container.classList.add('img-broken');
+        }
+        if (img.complete && img.naturalWidth === 0) {
+          handleError();
+        } else {
+          img.addEventListener('error', handleError);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initImageFallbacks);
+    } else {
+      initImageFallbacks();
+    }
+    document.addEventListener('astro:page-load', initImageFallbacks);
+  </script>
+
+</Layout>
