@@ -180,6 +180,57 @@ function getPhotoPos(name: string) {
     .img-broken img.member-photo {
       display: none;
     }
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      background: rgba(30, 58, 95, 0.95);
+    }
+    .back-to-top svg {
+      width: 16px;
+      height: 16px;
+    }
+    /* Section member count badge */
+    .section-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background: rgba(30, 58, 95, 0.08);
+      color: #6b7c93;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0 6px;
+      margin-left: 8px;
+    }
   </style>
 
 
@@ -193,7 +244,7 @@ function getPhotoPos(name: string) {
       <div class="max-w-5xl mx-auto mobile-gutter relative">
         <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
           <div class="w-8 h-px bg-spades-accent/40"></div>
-          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Leadership</h2>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Leadership<span class="section-count">{leadership.length}</span></h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-14 cascade-grid">
           {leadership.map((person, i) => (
@@ -286,13 +337,13 @@ function getPhotoPos(name: string) {
       <div class="max-w-5xl mx-auto mobile-gutter relative">
         <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
           <div class="w-8 h-px bg-spades-accent/40"></div>
-          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Senior Advisors</h2>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Senior Advisors<span class="section-count">{advisors.length}</span></h2>
           <div class="flex-1 h-px bg-spades-border"></div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {advisors.map((person, i) => (
             <article
-              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              class="group depth-card rounded-xl overflow-hidden reveal-up flex flex-col"
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
                    data-initials={person.name.split(' ').map(n => n[0]).join('')}>
@@ -333,7 +384,7 @@ function getPhotoPos(name: string) {
                 )}
               </div>
 
-              <div class="p-5">
+              <div class="p-5 flex flex-col flex-1">
                 <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
                   {person.name}
                 </h3>
@@ -350,7 +401,7 @@ function getPhotoPos(name: string) {
                   </div>
                 )}
                 {person.bio && (
-                  <div>
+                  <div class="mt-auto pt-1">
                     <p class="bio-text text-xs text-spades-muted leading-relaxed">
                       {person.bio}
                     </p>
@@ -376,13 +427,13 @@ function getPhotoPos(name: string) {
       <div class="max-w-5xl mx-auto mobile-gutter relative">
         <div class="flex items-center gap-3 mb-10 px-1 blur-reveal">
           <div class="w-8 h-px bg-spades-accent/40"></div>
-          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Council</h2>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Council<span class="section-count">{council.length}</span></h2>
           <div class="flex-1 h-px bg-spades-border"></div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {council.map((person, i) => (
             <article
-              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              class="group depth-card rounded-xl overflow-hidden reveal-up flex flex-col"
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden"
                    data-initials={person.name.split(' ').map(n => n[0]).join('')}>
@@ -423,7 +474,7 @@ function getPhotoPos(name: string) {
                 )}
               </div>
 
-              <div class="p-5">
+              <div class="p-5 flex flex-col flex-1">
                 <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
                   {person.name}
                 </h3>
@@ -440,7 +491,7 @@ function getPhotoPos(name: string) {
                   </div>
                 )}
                 {person.bio && (
-                  <div>
+                  <div class="mt-auto pt-1">
                     <p class="bio-text text-xs text-spades-muted leading-relaxed">
                       {person.bio}
                     </p>
@@ -465,7 +516,7 @@ function getPhotoPos(name: string) {
       <div class="max-w-5xl mx-auto mobile-gutter relative">
         <div class="flex items-center gap-3 mb-3 px-1 blur-reveal">
           <div class="w-8 h-px bg-spades-accent/40"></div>
-          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Fellows</h2>
+          <h2 class="text-xs uppercase tracking-[0.2em] text-spades-muted font-bold">Fellows<span class="section-count">{fellows.length}</span></h2>
           <div class="flex-1 h-px bg-spades-border"></div>
         </div>
         <p class="text-sm text-spades-text-secondary px-1 max-w-xl mb-10 reveal-up">
@@ -475,7 +526,7 @@ function getPhotoPos(name: string) {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cascade-grid">
           {fellows.map((fellow, i) => (
             <article
-              class="group depth-card rounded-xl overflow-hidden reveal-up"
+              class="group depth-card rounded-xl overflow-hidden reveal-up flex flex-col"
             >
               <div class="photo-container relative w-full aspect-[4/3] overflow-hidden bg-stone-100"
                    data-initials={fellow.name.split(' ').map(n => n[0]).join('')}>
@@ -518,7 +569,7 @@ function getPhotoPos(name: string) {
                 )}
               </div>
 
-              <div class="p-5">
+              <div class="p-5 flex flex-col flex-1">
                 <h3 class="text-base font-bold text-spades-text mb-0.5 group-hover:text-spades-accent transition-colors duration-300">
                   {fellow.name}
                 </h3>
@@ -535,7 +586,7 @@ function getPhotoPos(name: string) {
                   </div>
                 )}
                 {fellow.bio && (
-                  <div>
+                  <div class="mt-auto pt-1">
                     <p class="bio-text text-xs text-spades-muted leading-relaxed">
                       {fellow.bio}
                     </p>
@@ -577,8 +628,15 @@ function getPhotoPos(name: string) {
   </section>
 
 
+  <!-- Back to top button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  </button>
+
   <!-- ============================================
-       SCRIPTS: Bio toggle + Image fallback
+       SCRIPTS: Bio toggle + Image fallback + Back to top
        ============================================ -->
   <script is:inline>
     // Use event delegation so it works regardless of timing
@@ -620,6 +678,29 @@ function getPhotoPos(name: string) {
       initImageFallbacks();
     }
     document.addEventListener('astro:page-load', initImageFallbacks);
+
+    // Back to top button
+    var backBtn = document.getElementById('back-to-top');
+    if (backBtn) {
+      var scrollThreshold = 600;
+      var ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            if (window.scrollY > scrollThreshold) {
+              backBtn.classList.add('visible');
+            } else {
+              backBtn.classList.remove('visible');
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+      backBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   </script>
 
 </Layout>
