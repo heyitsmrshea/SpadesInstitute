@@ -743,6 +743,48 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       transform: scale(1);
     }
 
+    /* Waitlist / at-capacity tile */
+    .checkbox-tile.waitlist {
+      opacity: 0.55;
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .checkbox-tile.waitlist .tile-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .checkbox-tile.waitlist .waitlist-badge {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #f0a050;
+      opacity: 0.9;
+    }
+
+    .checkbox-tile.waitlist:hover {
+      opacity: 0.75;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .checkbox-tile.waitlist.active {
+      opacity: 0.8;
+      border-color: #d09040;
+      background: rgba(208, 144, 64, 0.15);
+    }
+
+    .checkbox-tile.waitlist.active .check-icon {
+      background: linear-gradient(135deg, #d09040, #b07830);
+      border-color: #d09040;
+      box-shadow: 0 2px 8px rgba(208, 144, 64, 0.4);
+    }
+
     .capacity-note {
       font-size: 13px;
       color: #b8c8d8;
@@ -1015,6 +1057,25 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
         <!-- Event blocks -->
         <div class="events-list">
+          <!-- Briefing -->
+          <div class="event-block">
+            <div class="event-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+              </svg>
+            </div>
+            <div class="event-details">
+              <div class="event-header">
+                <span class="event-name">Pre-RSAC with Spades</span>
+              </div>
+              <div class="event-datetime">Sunday, March 22, 2026 · 4:30 PM – 7:00 PM PT</div>
+              <div class="event-venue">Private venue near Fisherman's Wharf (details after approval)</div>
+              <div class="event-description">Join us for a live podcast on security and national security at RSA Conference.</div>
+            </div>
+          </div>
+
           <!-- Ready Room -->
           <div class="event-block">
             <div class="event-icon">
@@ -1076,8 +1137,19 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
           <div class="selection-group">
             <label class="selection-label">Events</label>
-            <p class="selection-helper">Confirm the event you'd like to attend</p>
+            <p class="selection-helper">Select one or both events</p>
             <div class="checkbox-tiles" role="group" aria-label="Select events to attend">
+              <button type="button" class="checkbox-tile waitlist" data-event="prersac" role="checkbox" aria-checked="false" aria-label="Pre-RSAC with Spades event on Sunday, March 22 — at capacity, select to join waiting list">
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span class="tile-content">
+                  Pre-RSAC
+                  <span class="waitlist-badge">At capacity — join waiting list</span>
+                </span>
+              </button>
               <button type="button" class="checkbox-tile" data-event="readyroom" role="checkbox" aria-checked="false" aria-label="Ready Room event on Wednesday, March 25">
                 <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
@@ -1087,6 +1159,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
                 Ready Room
               </button>
             </div>
+            <p class="capacity-note">Pre-RSAC is at capacity. Select to be added to the waiting list.</p>
           </div>
 
           <button type="submit" class="submit-btn">Request invitation</button>
