@@ -1,0 +1,430 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="RSA 2026 Events | Spades Institute" description="One-pager guide to Spades Institute events at RSA Conference 2026">
+  <style is:global>
+    /* Reset for one-pager specifics */
+    header, footer, .back-to-top { display: none !important; }
+    body { background-color: #0c1219 !important; }
+    main { padding: 0 !important; margin: 0 !important; width: 100%; }
+  </style>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
+
+    .flyer-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 50% 30%, #1a2433 0%, #0c1219 100%);
+    }
+
+    .flyer {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 1 / 1.4142; /* A4 aspect ratio approx */
+      background: #f0f2f5;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === BACKGROUND GRAPHICS === */
+    .bg-texture {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(240, 242, 245, 0.92), rgba(240, 242, 245, 0.96)),
+        url('/rsa10-bg-desktop.png'); /* Fallback to existing asset or noise */
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .accent-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: linear-gradient(90deg, #1a3050 0%, #2a5080 50%, #1a3050 100%);
+      z-index: 10;
+    }
+
+    /* === CONTENT LAYER === */
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 50px;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #1a3050;
+      padding-bottom: 20px;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-spades {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 30px;
+      background: #cbd5e1;
+    }
+
+    .logo-partner {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #1a3050;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
+    .header-text {
+      text-align: right;
+    }
+
+    .conf-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .conf-year {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1;
+      color: #1a3050;
+    }
+
+    /* HERO */
+    .hero-section {
+      margin-bottom: 40px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.1;
+      color: #0f172a;
+      text-transform: uppercase;
+      max-width: 80%;
+    }
+
+    .hero-title span {
+      color: #3b82f6;
+    }
+
+    /* EVENTS GRID */
+    .events-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      flex-grow: 1;
+    }
+
+    .event-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 6px solid #1a3050;
+      padding: 25px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 25px;
+    }
+
+    .event-card.featured {
+      background: #f8fafc;
+      border-left-color: #3b82f6;
+      border-top: 1px solid #cbd5e1;
+      border-right: 1px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .time-block {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .time-day {
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .time-date {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      color: #0f172a;
+    }
+
+    .time-month {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #3b82f6;
+    }
+
+    .details-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .event-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #3b82f6;
+      margin-bottom: 6px;
+    }
+
+    .event-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .event-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    /* AGENDA LIST (For Ready Room) */
+    .agenda-list {
+      margin-top: 15px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+    }
+
+    .agenda-item {
+      display: flex;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .agenda-time {
+      font-family: 'Oswald', sans-serif;
+      width: 70px;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    .agenda-content {
+      color: #334155;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a3050;
+      margin-left: -50px;
+      margin-right: -50px;
+      margin-bottom: -50px;
+      padding: 25px 50px;
+      color: white;
+    }
+
+    .cta-text {
+      max-width: 60%;
+    }
+
+    .cta-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    .url-block {
+      text-align: right;
+    }
+
+    .url-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 700;
+      display: block;
+    }
+
+    .url-sub {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    /* Print specific adjustments */
+    @media print {
+      body { background: none !important; }
+      .flyer-container { padding: 0; background: none; display: block; }
+      .flyer { box-shadow: none; aspect-ratio: auto; min-height: 100vh; }
+    }
+  </style>
+
+  <div class="flyer-container">
+    <div class="flyer">
+      <div class="accent-strip"></div>
+      <div class="bg-texture"></div>
+
+      <div class="content">
+        <!-- HEADER -->
+        <header class="header">
+          <div class="logos">
+            <!-- Spades Logo -->
+            <img src="/logo-dark-transparent.png" alt="Spades Institute" class="logo-spades" />
+            <div class="logo-divider"></div>
+            <!-- MCPA Text Placeholder -->
+            <div class="logo-partner">MCPA</div>
+          </div>
+          <div class="header-text">
+            <div class="conf-name">RSA Conference</div>
+            <div class="conf-year">2026</div>
+          </div>
+        </header>
+
+        <!-- HERO -->
+        <div class="hero-section">
+          <div class="hero-eyebrow">The Intersection of Mission & Security</div>
+          <h1 class="hero-title">Exclusive Events for the <span>Military Cyber Community</span></h1>
+        </div>
+
+        <!-- EVENTS -->
+        <div class="events-container">
+          
+          <!-- The Ready Room -->
+          <div class="event-card featured">
+            <div class="time-block">
+              <div class="time-day">Wednesday</div>
+              <div class="time-date">25</div>
+              <div class="time-month">March</div>
+            </div>
+            <div class="details-block">
+              <div class="event-label">Main Event</div>
+              <h2 class="event-title">The Ready Room</h2>
+              <div class="event-meta">
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  0745 - 1000
+                </div>
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-9 13-9 13s-9-7-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Marine Memorial Hotel
+                </div>
+              </div>
+              <p class="event-desc">
+                The authentic "clubroom" experience where mission meets community. Coffee, candid conversations, and the official Spades x MCPA partnership launch.
+              </p>
+              
+              <!-- Agenda -->
+              <div class="agenda-list">
+                <div class="agenda-item">
+                  <div class="agenda-time">0745</div>
+                  <div class="agenda-content">Manning the Ready Room (Coffee & Networking)</div>
+                </div>
+                <div class="agenda-item">
+                  <div class="agenda-time">0815</div>
+                  <div class="agenda-content">Mission Launch: Spades x MCPA & Operation MOS</div>
+                </div>
+                <div class="agenda-item">
+                  <div class="agenda-time">0845</div>
+                  <div class="agenda-content">Briefing: Live Interview with Chris Cleary</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <div class="cta-text">
+            <div class="cta-title">Request Your Invitation</div>
+            <div class="cta-subtitle">Space is limited. Priority given to MCPA members and combat veterans.</div>
+          </div>
+          <div class="url-block">
+            <a href="https://spadesinstitute.org/rsa" class="url-link">spadesinstitute.org/rsa</a>
+            <div class="url-sub">Use code: READYROOM26</div>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+</Layout>
