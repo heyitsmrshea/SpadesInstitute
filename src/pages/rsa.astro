@@ -638,6 +638,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     .checkbox-tiles {
       display: flex;
       gap: 12px;
+      align-items: stretch;
     }
 
     /* Checkbox tiles - clearly interactive default state */
@@ -748,15 +749,13 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       opacity: 0.55;
       border-color: rgba(255, 255, 255, 0.15);
       background: rgba(255, 255, 255, 0.03);
-      flex-direction: column;
-      gap: 6px;
     }
 
     .checkbox-tile.waitlist .tile-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
     }
 
     .checkbox-tile.waitlist .waitlist-badge {
