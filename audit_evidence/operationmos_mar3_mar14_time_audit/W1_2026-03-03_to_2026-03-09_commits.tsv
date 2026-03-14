@@ -1,0 +1,91 @@
+timestamp_utc	author	sha	subject
+2026-03-03T00:36:55+00:00	Andrew Shea <ashea951@gmail.com>	01fd756c1bc03a815b88191bfc5baf96e82001ac	Stabilize interview prep matrix auth flow and evidence grading
+2026-03-03T00:50:12+00:00	Andrew Shea <ashea951@gmail.com>	d07d3764dcd0113b8737e535eb584219465651b4	qa: capture DNS outage blocker for remaining DR criteria
+2026-03-03T00:52:17+00:00	Andrew Shea <ashea951@gmail.com>	c592bef73a5ffb32b0dea1d1f8d5eaea6dcac65d	Harden interview prep 403 test and record post-merge staging runs
+2026-03-03T01:00:52+00:00	Andrew Shea <ashea951@gmail.com>	28599c0cde06d85cdfc9254a6ad631f923a4cd3e	qa: extend DNS recovery watch for DR closure blocker
+2026-03-03T01:04:32+00:00	Andrew Shea <ashea951@gmail.com>	357c00cc1ad95a60be1481420bee0158d434c4fd	ops: add CI cross-region failover drill workflow
+2026-03-03T01:05:18+00:00	Andrew Shea <ashea951@gmail.com>	1c124370fee12e27c8259fa66e8e4bf76e62c023	ops: add failover drill mode to staging backend workflow
+2026-03-03T01:21:08+00:00	Andrew Shea <ashea951@gmail.com>	4e784875a43dbafa39b573f4e95647885ad1dd37	qa: revalidate DR failover blockers with controlled CI drill
+2026-03-03T01:21:50+00:00	Andrew Shea <ashea951@gmail.com>	7b1fac86c4298f5f9785aea572e684b86586e35b	ops: deploy DR backend before failover drill
+2026-03-03T01:29:39+00:00	Andrew Shea <ashea951@gmail.com>	8b665d4c1882bcad326c6ed5c3ff2c7aa4658108	ops: harden DR deploy gate and log failed remediation run
+2026-03-03T01:33:58+00:00	Andrew Shea <ashea951@gmail.com>	665b2742437d1f41d0a36af393333514a2a1eb6b	Improve interview prep long-processing UX and state recovery
+2026-03-03T01:45:55+00:00	Andrew Shea <ashea951@gmail.com>	d9ff21bcd9806289f9fd745e75086952f19b672c	qa: capture third DR deploy failure and add diagnostics mode
+2026-03-03T01:49:13+00:00	Andrew Shea <ashea951@gmail.com>	ea3f8a306cd79cfe047539fcb288c4cf884a7762	ops: fix DR diagnostics mode and log failed diagnostic attempt
+2026-03-03T01:56:09+00:00	Andrew Shea <ashea951@gmail.com>	39d711aff693ef4814a1ce4cb6562dffbc3b07ac	ops: print DR diagnostics summary in workflow logs
+2026-03-03T01:59:08+00:00	Andrew Shea <ashea951@gmail.com>	a96ba2bbb0deb08543ed1c623ac322eb26cdfe20	ops: auto-commit DR diagnostics artifact from workflow
+2026-03-03T02:07:09+00:00	Andrew Shea <ashea951@gmail.com>	d93ddd65fc98670bce8fe81ddfbf978eafa5384f	ops: harden DR deploy workflow with runtime enforcement and fallback
+2026-03-03T02:18:05+00:00	Andrew Shea <ashea951@gmail.com>	70373f803726787f6473875aaa05e90d34bcbcaa	ops: autorun DR failover workflow on branch push with evidence persistence
+2026-03-03T02:34:53+00:00	Andrew Shea <ashea951@gmail.com>	36b3f531a2ed348307606b7bbaba2e070880d0ba	Harden interview matrix render retry and finalize 10-case GO evidence
+2026-03-03T02:37:12+00:00	Andrew Shea <ashea951@gmail.com>	5d6683877df795e2ed24eea0ebe10359f1636f59	qa: capture local DR remediation DNS blocker evidence and refresh ops ledger
+2026-03-03T02:37:42+00:00	Andrew Shea <ashea951@gmail.com>	5d3d161d4e4afe28275e863963b83e9b211635b5	Add regression tests for interview value grader cert-context handling
+2026-03-03T02:41:38+00:00	Andrew Shea <ashea951@gmail.com>	1ba91ad18ca76d239de73b136c823183d647a5c4	Record post-commit interview prep browser regression sweep
+2026-03-03T02:43:15+00:00	Andrew Shea <ashea951@gmail.com>	26abf872b58ffb4eec7d87b268e016b983ba0c7f	Add post-commit real-user interview chain evidence
+2026-03-03T02:45:59+00:00	Andrew Shea <ashea951@gmail.com>	9a3b3eff13a0d38214e9dd04fc0a649a5a865d57	Harden interview prep section-content validation and verify on staging
+2026-03-03T02:51:12+00:00	Andrew Shea <ashea951@gmail.com>	3dd51a8f6861ac134458cd1e981e2cc7e2fa804b	qa: add 20-cycle DR recovery watch evidence and refresh blocker adjudication
+2026-03-03T02:55:03+00:00	Andrew Shea <ashea951@gmail.com>	b80d9cd785390d9bc281f3a5b47b6763510e4a3c	ops: enable DR push-trigger on canonical qa-evidence branch
+2026-03-03T03:00:05+00:00	Andrew Shea <ashea951@gmail.com>	f3185e6893659f40613f412707339a9420dda62f	Align interview prep validation tests with section-quality errors
+2026-03-03T03:09:03+00:00	Andrew Shea <ashea951@gmail.com>	36dde6e321e004970753d1ba0e5a854d7dea7ecf	Document staging deploy gate blocker for interview prep hardening branch
+2026-03-03T03:14:48+00:00	Andrew Shea <ashea951@gmail.com>	e7e30199be3681a91b4647848fdc622ea7aa7c23	qa: run autonomous DR closure loop and refresh OPS blocker evidence
+2026-03-03T03:15:18+00:00	Andrew Shea <ashea951@gmail.com>	73802a54f58e322fa0379abd141f69fd44011616	ops: trigger fresh CI DR failover drill run
+2026-03-03T03:25:50+00:00	Andrew Shea <ashea951@gmail.com>	16aa535b6d09574abd28d9f5e89588b6b096783d	qa: add dns-gated DR autoloop evidence and refresh OPS closure state
+2026-03-03T03:26:37+00:00	Andrew Shea <ashea951@gmail.com>	a692ae8ae0be75b6d9327b0a02f1f9dfe152bcef	ops: retrigger CI DR failover drill workflow
+2026-03-03T03:41:19+00:00	Andrew Shea <ashea951@gmail.com>	f0cac9b2e11c26d2ea5ceac089319fafebb18baa	qa: log github fetch outage after CI failover retrigger
+2026-03-03T03:42:54+00:00	Andrew Shea <ashea951@gmail.com>	180e2d799d6e5626badea10dbd2c71cee6c599e2	Add deterministic interview role-match brief in preflight flow
+2026-03-03T03:46:00+00:00	Andrew Shea <ashea951@gmail.com>	033c37c5ee97353f83f89b64a889ce7ce826c7fd	ops: adjudicate DR closure rows directly from CI drill evidence
+2026-03-03T03:46:30+00:00	Andrew Shea <ashea951@gmail.com>	2736738a7fabe81a055aa5e1a034712e171548a8	ops: trigger CI DR drill with workflow-side adjudicator
+2026-03-03T14:52:39+00:00	Andrew Shea <ashea951@gmail.com>	d5bfb9df7507e0385df4fa43a970dfe58b9ecc3d	qa: close final DR failover criteria with real drill evidence
+2026-03-03T14:52:39+00:00	Andrew Shea <ashea951@gmail.com>	91e38acadadeefb9c6f480b1c6d7073ac8a21402	qa: close final DR failover criteria with real drill evidence
+2026-03-03T15:14:10+00:00	Andrew Shea <ashea951@gmail.com>	f0fb2b3a9dd5ee148303bc1a37d017ac9e223ab9	archive: snapshot local dirty QA evidence tree
+2026-03-03T15:21:56+00:00	Andrew Shea <ashea951@gmail.com>	822699c2fb9f717ed948c9a1c075b13a6ccf1f5b	release: gate interview prep in prod and add launch command center
+2026-03-03T15:26:10+00:00	Andrew Shea <ashea951@gmail.com>	7464b3603d96f25cd8238d88b7f7d6ea8c23f823	release: enforce interview prep gate for prod and production env aliases
+2026-03-03T15:39:01+00:00	Andrew Shea <ashea951@gmail.com>	9e982478549b0a978211d625de48f15fb71aecc5	test: stabilize dashboard start-new-resume navigation assertion
+2026-03-03T17:30:54+00:00	Andrew Shea <ashea951@gmail.com>	1df44d2e2bcf0839681392c704bc23c84a51bc60	Fix interview prep background DB session isolation and test props
+2026-03-03T17:31:46+00:00	Andrew Shea <ashea951@gmail.com>	29ffde6a86d8ef2a62d369c06427db770cb28161	Merge staging sync into production with admin hard-delete conflict resolution
+2026-03-03T18:06:15+00:00	Andrew Shea <ashea951@gmail.com>	a798721fe18449291f0519e0da3b0f69e10b9912	Add Alembic revision alias bridge for legacy workhistory migration id
+2026-03-03T19:07:09+00:00	Andrew Shea <ashea951@gmail.com>	81ac1c64b2127d73ff4daacee6afd38b1989a59a	Harden startup migration normalization and restore canonical workhistory revision
+2026-03-03T19:31:54+00:00	Andrew Shea <ashea951@gmail.com>	db8b9680dc1516cafc6ec1cadd2afd0253a788a1	Return 200 on root path for App Service warmup probes
+2026-03-03T20:17:23+00:00	Andrew Shea <ashea951@gmail.com>	7083e17ae400e8137572a76bd7f7ea1eb4293791	Polish auth page footer and cookie consent styling
+2026-03-03T20:17:23+00:00	Andrew Shea <ashea951@gmail.com>	9a4519de9b0ad1d9bcea967913e834edee02369c	Polish auth page footer and cookie consent styling
+2026-03-03T20:46:00+00:00	Andrew Shea <ashea951@gmail.com>	bd1660f97dac6f4957dd0663a3e4d48405e619a7	Refine dashboard flow, block interview prep, and fix ATS load banner
+2026-03-03T21:02:23+00:00	Andrew Shea <ashea951@gmail.com>	fb0dde6b33bd0793882c92e86a1143140a04858f	Document March 3 post-deploy smoke checklist
+2026-03-04T00:40:18+00:00	Andrew Shea <ashea951@gmail.com>	9f565598651840dd88682c9f873ecab70db8a150	Surface ATS preview failures and map Not Found errors
+2026-03-04T04:28:14+00:00	Andrew Shea <ashea951@gmail.com>	e4566fb488c36284e22b4b538a99d85f395ee82e	fix(ats): improve review flow and sanitize fragment outputs
+2026-03-04T04:55:28+00:00	Andrew Shea <ashea951@gmail.com>	017d46cc09a8decbf1b9a832834851a7b53e998e	fix(ats): handle null jd metadata in export filenames
+2026-03-04T12:55:47+00:00	Andrew Shea <ashea951@gmail.com>	41f126f306b24c2b66ab9b9a72f3099e47ff6648	fix(ats): handle null jd metadata in export filenames (prod)
+2026-03-05T02:03:15+00:00	Andrew Shea <ashea951@gmail.com>	8be922c30f4c5298d73d7fe28ff67ec08537cdf8	chore(ci): skip frontend gates for backend-only prod hotfix
+2026-03-05T02:21:58+00:00	Andrew Shea <ashea951@gmail.com>	588f898f26850f270adfcb2a170d8d8c90c03a5c	fix(ci): deploy backend as root zip artifact for prod hotfix
+2026-03-05T03:51:59+00:00	Andrew Shea <ashea951@gmail.com>	304c7faa74166392450dc7a89813360886edb34f	fix(email): force https in verification and reset links
+2026-03-05T05:17:07+00:00	Andrew Shea <ashea951@gmail.com>	e2ec121a2beb9489c19e89b26c40b5c9940b4613	Polish dashboard UX and add release-gate user journey test
+2026-03-05T13:35:47+00:00	Andrew Shea <ashea951@gmail.com>	442adfc1ccdc011175cf8c455ead17a7eed0758a	Fix user login redirect fallback to dashboard
+2026-03-05T13:48:03+00:00	Andrew Shea <ashea951@gmail.com>	e1eadd6339eb56529af3900e41a43a9a265c978a	test: add Go-Live Test workflow with intentional browser evidence
+2026-03-05T13:48:03+00:00	Andrew Shea <ashea951@gmail.com>	3995bac4dac1b8102fae781e14ca334a41f1b69d	test: add Go-Live Test workflow with intentional browser evidence
+2026-03-05T14:39:29+00:00	Andrew Shea <ashea951@gmail.com>	7f5e7c5da38ebf90c6fd5168fa05ac2408df6840	ci: enforce go-live gate for deploy workflows
+2026-03-05T15:07:00+00:00	Andrew Shea <ashea951@gmail.com>	1edab1c70922c19078957bb4b2e18fb705ad126f	ui(dashboard): remove autosave banner and condense resume card actions
+2026-03-05T15:07:00+00:00	Andrew Shea <ashea951@gmail.com>	271fed6788aa9c29ad09f0b10076aff755cae1d3	ui(dashboard): remove autosave banner and condense resume card actions
+2026-03-05T15:25:51+00:00	Andrew Shea <ashea951@gmail.com>	fea93c3dbd589695b0eea9f0c747534c04b1cdbe	fix(dashboard): remove gear action and restore card preview open
+2026-03-05T21:28:52+00:00	Andrew Shea <ashea951@gmail.com>	98e04d51139c9fbc63b02b2ec9c2f09ef4dac8b8	fix(dashboard): blue LinkedIn CTA and unclipped More action
+2026-03-06T02:02:08+00:00	Andrew Shea <ashea951@gmail.com>	e8f5fed3293228bbbb677faf2fec252d8d181d18	feat(eval-import): add mapped review, provenance, and go-live gate
+2026-03-06T15:44:53+00:00	Andrew Shea <ashea951@gmail.com>	415d0a9be6ce1e2003dab6f5bee006a02aa07de7	fix(eval): harden scanned pdf extraction
+2026-03-07T05:18:58+00:00	Andrew Shea <ashea951@gmail.com>	aa12a22d6ae00788cedaa81d776dc3bfca55073a	fix(eval-upload): keep pdf import visible
+2026-03-07T05:35:56+00:00	Andrew Shea <ashea951@gmail.com>	cd0b1899cf0e81f6fd2a4fa6297340ddeaf8b882	test(e2e): stabilize fitrep before-after flow
+2026-03-07T06:14:22+00:00	Andrew Shea <ashea951@gmail.com>	b06b9b8aef16b432167713347fc8b8340b08b654	test(e2e): harden fitrep release gate
+2026-03-07T06:54:19+00:00	Andrew Shea <ashea951@gmail.com>	e5f7abe1f3f78290f36beb8d0cbda72510d66a93	test(e2e): harden fitrep go-live gate
+2026-03-08T02:08:39+00:00	Andrew Shea <ashea951@gmail.com>	12b16fe8eaac75af87a59b1f788a89bc1e61f439	fix(ats): avoid double-starting generation
+2026-03-08T02:31:31+00:00	Andrew Shea <ashea951@gmail.com>	3250d7bdf3debff5965fa9631935be874ceaa1ed	test(e2e): harden ats linkedin release gate
+2026-03-08T05:44:28+00:00	Andrew Shea <ashea951@gmail.com>	035d5838d87cab9f2c48862acaf9edfa2be621c1	fix(prod): harden ats eval release gates
+2026-03-08T05:54:21+00:00	Andrew Shea <ashea951@gmail.com>	9de8b64046eb5d2b1b3cfee16b45374954c3f742	test(ats): update iteration timeout assertion
+2026-03-08T06:17:42+00:00	Andrew Shea <ashea951@gmail.com>	f4ecbebaf73e9491f184b5f500a62a8fccba09e4	fix(backend): skip duplicate gunicorn migrations
+2026-03-08T18:18:07+00:00	Andrew Shea <ashea951@gmail.com>	99e56b62ed283ac904236074bf014a727d4139b6	test(deploy): verify live eval provenance schema
+2026-03-08T18:44:25+00:00	Andrew Shea <ashea951@gmail.com>	760f80673e69ed4a54b974dc87c7add222ff133d	fix(ci): default staging go-live credentials
+2026-03-09T03:11:30+00:00	Andrew Shea <ashea951@gmail.com>	53dd029da591ce94ba4ec8912f0cc8c43b7ccb32	test: make release gate admin optional
+2026-03-09T03:15:11+00:00	Andrew Shea <ashea951@gmail.com>	c2c0e4eabb2cc531a8aa5bd5b8fd40270a22bdd5	test: add release gate fallback lane
+2026-03-09T04:30:33+00:00	Andrew Shea <ashea951@gmail.com>	87253bcf1e5d2c9b61be1e4cb7d2f6ee7c82ccdf	test: align interview prep dashboard assertions
+2026-03-09T05:56:56+00:00	Andrew Shea <ashea951@gmail.com>	37e71952b7649a555e2c825b3f32829b7ec351f5	fix: disable Oryx in production backend deploy
+2026-03-09T14:18:23+00:00	Andrew Shea <ashea951@gmail.com>	9890c804304e3a49507a10796c05139d18cd23f4	fix(prod-deploy): package python deps and use slot-safe async deploy
+2026-03-09T16:58:05+00:00	Andrew Shea <ashea951@gmail.com>	3f4c2c3405ee62844e413b39a9964760b2b1031a	fix(prod-deploy): time-box webapp deploy handoff
+2026-03-09T19:02:02+00:00	Andrew Shea <ashea951@gmail.com>	63aa1d90351fe3bb777c515e4e8c22b94e22e597	fix(prod-deploy): tolerate empty async deploy output
+2026-03-09T19:06:48+00:00	Andrew Shea <ashea951@gmail.com>	aa3085c06511c02a142c878400fb5c60d8d257bb	ops: add emergency production backend restart workflow
+2026-03-09T19:07:59+00:00	Andrew Shea <ashea951@gmail.com>	3b4fe8aa75721d7e77456ebf737bb92909ec2990	ops: add restart-only mode to production backend workflow
+2026-03-09T20:21:50+00:00	Andrew Shea <ashea951@gmail.com>	24efbe0b05904e3453d4d0ddf94915aa943aad1f	fix(prod-rollback): bundle python deps for hotfix recovery
+2026-03-09T21:21:07+00:00	Andrew Shea <ashea951@gmail.com>	2ae2a7d11c6bf11a0853e38cd037c92dc34086c6	fix(prod-recovery): restore appservice-native startup
+2026-03-09T21:49:20+00:00	Andrew Shea <ashea951@gmail.com>	7d0605369d153bcbb1cf0332e231f1367e84285a	fix(prod-recovery): skip runtime bootstrap work

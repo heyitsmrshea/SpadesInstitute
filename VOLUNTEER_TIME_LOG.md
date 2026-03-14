@@ -272,8 +272,8 @@ Hours are estimated conservatively, accounting for:
 ---
 
 **Prepared by:** Andrew Shea  
-**Document Version:** 1.1  
-**Last Updated:** February 10, 2026
+**Document Version:** 1.2  
+**Last Updated:** March 14, 2026
 
 ---
 
@@ -388,7 +388,77 @@ git -C /Users/andrewshea/Desktop/CURSOR/OperationMOS_2026 log --all \
   --pretty='%aI|%an <%ae>|%H|%s'
 ```
 
-**ALL HOURS UP UNTIL MARCH 2ND HAVE BEEN ADDED.**
+**Historical checkpoint:** All hours through March 2, 2026 were previously added.
+
+---
+
+## ADDENDUM C: OPERATIONMOS INCREMENTAL HOURS ADDED THROUGH MARCH 14, 2026
+
+**Scope:** OperationMOS work performed as part of Spades Institute support  
+**Incremental Window (UTC):** 2026-03-03 00:00:00 through 2026-03-14 14:04:13  
+**Source Repo:** `/Users/andrewshea/Desktop/CURSOR/OperationMOS_2026`  
+**No overlap with Addendum B:** This addendum starts immediately after the March 2, 2026 cutoff already logged above.
+
+### Incremental Hours Added in This Update
+
+- **Conservative reportable increment (30-minute model): 38.1 hours**
+- Central estimate (45-minute session model): 45.5 hours
+- Upper sensitivity estimate (60-minute model): 53.25 hours
+
+### Updated Cumulative Total Through March 14, 2026
+
+- **Conservative cumulative total (Addendum B + Addendum C): 118.1 hours**
+- Central cumulative total: 139.84 hours
+- Upper cumulative total: 160.36 hours
+
+### Core Evidence Files
+
+- Summary (machine-readable):
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/summary.json`
+- Summary (human-readable):
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/summary_human_readable.txt`
+- Raw Andrew commit export (window-scoped):
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/raw_git_log_mar3_mar14_andrew_only.tsv`
+- Session exports:
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/sessions_timeout_30m.tsv`
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/sessions_timeout_45m.tsv`
+  - `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/sessions_timeout_60m.tsv`
+
+### Evidence Summary
+
+- Commit count in window (Andrew identities): `244`
+- First commit (UTC): `2026-03-03T00:36:55+00:00`
+- Last commit (UTC): `2026-03-14T14:04:13+00:00`
+
+### Week-by-Week Evidence
+
+| Week | Date Range (UTC) | Commits | Hours (30m) | Hours (45m) | Hours (60m) | Evidence File |
+| :--- | :--- | ---: | ---: | ---: | ---: | :--- |
+| W1 | 2026-03-03 to 2026-03-09 | 90 | 13.42 | 14.32 | 16.63 | `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/W1_2026-03-03_to_2026-03-09_commits.tsv` |
+| W2 | 2026-03-10 to 2026-03-14 | 154 | 24.72 | 31.18 | 36.62 | `/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/W2_2026-03-10_to_2026-03-14_commits.tsv` |
+
+### SHA-256 Checksums of New Evidence Artifacts
+
+| File | SHA-256 |
+| :--- | :--- |
+| `summary.json` | `ab187299e6d1b0628c38545bb5e66e92d1b3b36afd34537cc5518f28b2d4669c` |
+| `summary_human_readable.txt` | `2483098edd3a6b2eb95a89134a7777ae4cf2c00c4d5ee9241ad46ce8b6b8a816` |
+| `raw_git_log_mar3_mar14_andrew_only.tsv` | `f1ceab4e3573a8dce046c695bca8bc9b07261960e6d5ae00e5e77777d7c2f8c0` |
+| `sessions_timeout_30m.tsv` | `42dc23a057b58965e381547bbd11e3c860b5c94f4e03bf9823f115c49f2470ab` |
+| `sessions_timeout_45m.tsv` | `9b9bb9198fd9d91dbd45cd188d715f88019f8d6e8df313df540df71a7db4d7a5` |
+| `sessions_timeout_60m.tsv` | `11972874a7602be3514f64d0e164ef14875a6933e63444a1d8745973d7cb6832` |
+| `W1_2026-03-03_to_2026-03-09_commits.tsv` | `c29072c092ceb6b36cbaad1665f039e0a7783b47a34ff0ffef14946feedb7fe4` |
+| `W2_2026-03-10_to_2026-03-14_commits.tsv` | `cc8d04c8e2986a722d43250c90c255bde96092ce7c45fe5a78302afd7fb991ae` |
+
+### Reproducibility Command (raw commit extraction)
+
+```bash
+git -C /Users/andrewshea/Desktop/CURSOR/OperationMOS_2026 log --all \
+  --since='2026-03-03T00:00:00Z' --until='2026-03-14T14:04:14Z' \
+  --pretty='%aI|%an <%ae>|%H|%s'
+```
+
+**ALL HOURS UP UNTIL MARCH 14, 2026 14:04:13 UTC HAVE BEEN ADDED.**
 
 ---
 
@@ -1162,7 +1232,7 @@ timestamp_utc	author	sha	subject
 2026-03-02T16:24:07+00:00	Andrew Shea <ashea951@gmail.com>	45158d20ad353c9ab9004620b8b4b92a021bb29e	Close delete-right browser parity and recovery rows
 ```
 
-**ALL HOURS UP UNTIL MARCH 2ND HAVE BEEN ADDED.**
+**Historical snapshot note:** All hours up until March 2, 2026 had been added at the time this embedded bundle was created.
 
 ## OPERATIONMOS WORK PERFORMED (WHAT WAS ACTUALLY DONE)
 

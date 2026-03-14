@@ -1,0 +1,155 @@
+timestamp_utc	author	sha	subject
+2026-03-10T00:19:53+00:00	Andrew Shea <ashea951@gmail.com>	7df1c4d20de57c608cb31a492b7b8c6b5dd5b3ea	harden app service deployments
+2026-03-10T00:25:53+00:00	Andrew Shea <ashea951@gmail.com>	453c202c810641c2012c4eb8b7e2f44bc6918d92	fix workflow lint action
+2026-03-10T00:26:59+00:00	Andrew Shea <ashea951@gmail.com>	25ad5b6975029d1de5e10a0205de1d7d6f63520c	fix workflow lint runner
+2026-03-10T00:29:03+00:00	Andrew Shea <ashea951@gmail.com>	8a3be0ed4d018f963c0fa819c8cae9e725c75e63	fix workflow lint findings
+2026-03-10T00:35:46+00:00	Andrew Shea <ashea951@gmail.com>	f853b1617e4e7348f7e2209bba660df492e1f74b	fix bicep deployment metadata output
+2026-03-10T00:38:30+00:00	Andrew Shea <ashea951@gmail.com>	e33f5e47296aa5714746d080bf7bc736425cb1af	fix bicep region defaults
+2026-03-10T01:41:54+00:00	Andrew Shea <ashea951@gmail.com>	4236d380143ec625edc9fce6aaabfd435fa97175	document live app service hardening
+2026-03-10T02:34:24+00:00	Andrew Shea <ashea951@gmail.com>	7b08b742aaf17e26926009eab808ed3039b5582e	harden app startup and slot deploy migrations
+2026-03-10T03:39:58+00:00	Andrew Shea <ashea951@gmail.com>	f0752567e8e4b6ccd80630a156dc45cdadde9421	fix app service zip deploy verification
+2026-03-10T04:31:28+00:00	Andrew Shea <ashea951@gmail.com>	9b249aaa71bb63ed85d9fabf2909bbab62babf53	fix slot deploy verification path
+2026-03-10T04:50:38+00:00	Andrew Shea <ashea951@gmail.com>	50b55f10796c66389de07af7481db6c3d30e3132	fix(staging-deploy): avoid false archive verification failure
+2026-03-10T05:09:24+00:00	Andrew Shea <ashea951@gmail.com>	3a5fae781fc1e162bb713b5673a0359c088f375f	fix(staging-deploy): remove remaining archive verifier sigpipe
+2026-03-10T05:41:12+00:00	Andrew Shea <ashea951@gmail.com>	c943c684a36f88fdffa6256effb95eed6a4921aa	fix(appservice): use absolute startup script path
+2026-03-10T06:31:50+00:00	Andrew Shea <ashea951@gmail.com>	a898c561f55bbc9f2649d405d8057875114b3329	fix(appservice): use direct uvicorn startup contract
+2026-03-10T11:18:11+00:00	Andrew Shea <ashea951@gmail.com>	bba0739f643777b590a7ca45d0d622bcf1142a79	feat(eval-import): ground imported bullets and preserve source evidence
+2026-03-10T11:48:09+00:00	Andrew Shea <ashea951@gmail.com>	ef5304bc0e5a862367cc60ece84aa967eb6fdce8	ops(deploy): unify app service startup and slot rollout contract
+2026-03-10T11:58:59+00:00	Andrew Shea <ashea951@gmail.com>	5d585300d803071b59060483cef9286b56fb329e	fix(eval): cap OCR extraction work for scanned PDFs
+2026-03-10T11:59:13+00:00	Andrew Shea <ashea951@gmail.com>	ba726d86904bbea616470f18139c4932c1ff254d	docs: archive eval grounding investigation notes
+2026-03-10T12:03:45+00:00	Andrew Shea <ashea951@gmail.com>	4b3f9a57bad2ede4aa03dd9e3a6fe548390dc073	chore: ignore local eval benchmark corpora
+2026-03-10T12:15:34+00:00	Andrew Shea <ashea951@gmail.com>	2700708ff8053dd48e0b2a09f9db2ebf31ef32db	ci(deploy): drop frontend lint from go-live gate
+2026-03-10T12:30:59+00:00	Andrew Shea <ashea951@gmail.com>	1d5c76381f1508bd0ca07ac1d242605a4362ce51	test(dashboard): align stale progress copy assertions
+2026-03-10T12:39:31+00:00	Andrew Shea <ashea951@gmail.com>	e25b198f155ad95330dbcfb1fb6eae6bba2d1f16	ci(go-live): fallback to seeded staging user
+2026-03-10T13:23:37+00:00	Andrew Shea <ashea951@gmail.com>	870ec472877794930c65588f806328513893bc0d	test(go-live): relax dashboard shell assertion
+2026-03-10T13:41:26+00:00	Andrew Shea <ashea951@gmail.com>	26553b4a9559d85acfa1041daa3cbd006247bdcc	test(go-live): relax authenticated shell assertion
+2026-03-10T13:51:39+00:00	Andrew Shea <ashea951@gmail.com>	393682afc5666b906654e1137ce7aa0fb3cb166a	test(go-live): broaden linkedin page readiness markers
+2026-03-10T14:01:59+00:00	Andrew Shea <ashea951@gmail.com>	a0b6dd1082f6182c058e07bb05926b570ab1f11b	test(go-live): cover linkedin selector and not-ready states
+2026-03-10T14:13:11+00:00	Andrew Shea <ashea951@gmail.com>	c952825597a63368b2662454d5f957cd74f9e4ae	test(go-live): cover ats hub and decision states
+2026-03-10T14:30:57+00:00	Andrew Shea <ashea951@gmail.com>	78598b2387234594efa9e5d98cc783fef965bb42	ci(go-live): gate staging deploy on release smoke
+2026-03-10T15:05:29+00:00	Andrew Shea <ashea951@gmail.com>	63f0d6d00ade59c6fb9b2b6e11a20287af1718f9	ci(go-live): remove browser gate from deploy path
+2026-03-10T16:04:03+00:00	Andrew Shea <ashea951@gmail.com>	9649823efe2dab828eeafd3666e658bbafe620ca	fix(deploy): slim app service backend package
+2026-03-10T16:27:55+00:00	Andrew Shea <ashea951@gmail.com>	6a39d5ae9c7f0c7fa1e53ead64922a891b1098dd	fix(deploy): poll async app service deployment
+2026-03-10T16:51:12+00:00	Andrew Shea <ashea951@gmail.com>	d8ec24574438eed30fade9e1560ebcc9e09eec71	fix(deploy): retry staging slot swap
+2026-03-10T17:26:49+00:00	Andrew Shea <ashea951@gmail.com>	feb48f48bf7d4ca45b9a98a316ac07ea8feefee2	fix(staging): fallback when slot swap is Azure-blocked
+2026-03-10T18:17:41+00:00	Andrew Shea <ashea951@gmail.com>	a8f33531e50dd1ebfc365b8ae0935cf22f821017	docs(deploy): capture staging rollout lessons
+2026-03-10T18:24:24+00:00	Andrew Shea <ashea951@gmail.com>	c678eeb0132a90b0b7b144a1d2728944d99f55c5	fix(prod-deploy): handle Azure-blocked slot swaps
+2026-03-10T21:25:42+00:00	Andrew Shea <ashea951@gmail.com>	0c8c4cfee2f34cd25aa7857de09da509dd56a5ac	checkpoint: save CCC hardening and dashboard progress
+2026-03-11T03:23:27+00:00	Andrew Shea <ashea951@gmail.com>	e009429ece7352fd19110cfed76ff3407e5abe82	Fix prod startup contract and document recovery path
+2026-03-11T14:23:03+00:00	Andrew Shea <ashea951@gmail.com>	7bf297978ae53a41ac03ae39fa4b8d3ac849e6d6	Fix prod recovery follow-ups and deploy documentation
+2026-03-11T15:03:13+00:00	Andrew Shea <ashea951@gmail.com>	fcd61e254946bfce8754474072b0f41a1afd7a29	Hotfix production dashboard and ATS copy
+2026-03-11T17:23:15+00:00	Andrew Shea <ashea951@gmail.com>	63af1d3d6e619ae7671c83f2a1139894d26854c5	portal-ui phase1 admin reliability
+2026-03-11T18:24:30+00:00	Andrew Shea <ashea951@gmail.com>	0da22ba70684fbfda0a3e705f92ac9d2b03ed2a3	portal-ui phase1 admin shared-route auth fix
+2026-03-11T18:26:41+00:00	Andrew Shea <ashea951@gmail.com>	6077f60162f4a9790db6ddf9ac5a2ad6391832d1	Add managed FITREP OCR architecture
+2026-03-11T19:35:24+00:00	Andrew Shea <ashea951@gmail.com>	cb0e1bd5e046885593ea86cb681bcf2a6ad6bdc1	hotfix(staging): repair missing workhistory columns on startup
+2026-03-11T19:35:24+00:00	Andrew Shea <ashea951@gmail.com>	14128a6dd257720f33c29681634ece817fe7c80e	hotfix(staging): repair missing workhistory columns on startup
+2026-03-11T20:06:56+00:00	Andrew Shea <ashea951@gmail.com>	26767689e519c6323ebe5a7a5ecdc1c520c9a245	hotfix(staging): restore missing eval migration and use alembic heads
+2026-03-11T20:06:56+00:00	Andrew Shea <ashea951@gmail.com>	34d79c661eaa22897a514d549734c618b72e4a19	hotfix(staging): restore missing eval migration and use alembic heads
+2026-03-11T20:59:57+00:00	Andrew Shea <ashea951@gmail.com>	15aae2b235910c8aaead9f98cbe19f7fce8119f2	fix(admin): stage analytics requests for faster first snapshot
+2026-03-11T20:59:57+00:00	Andrew Shea <ashea951@gmail.com>	250685cefc3659bcaf9bfacdb3c2d255eeeb1d39	fix(admin): stage analytics requests for faster first snapshot
+2026-03-11T21:23:56+00:00	Andrew Shea <ashea951@gmail.com>	2d1ae1c44e6b5d622878db1125f532bca07c1e18	fix(admin): defer field abandonment analytics until requested
+2026-03-11T21:29:27+00:00	Andrew Shea <ashea951@gmail.com>	237fabdb5084967e4ad895fc520393687bb06783	fix(admin): align resume response typing for ci
+2026-03-11T21:42:36+00:00	Andrew Shea <ashea951@gmail.com>	2cb7195ef195770b97620f942b477a9953fa066c	fix(admin): stabilize deferred analytics panels on staging
+2026-03-11T21:58:06+00:00	Andrew Shea <ashea951@gmail.com>	b4a540a78f33227e5d72eb1f4c90079c198434f7	fix(admin): lazy-load advanced analytics panels
+2026-03-11T22:02:25+00:00	Andrew Shea <ashea951@gmail.com>	a0a26ebd78b81981c97eee7498800432c6311087	fix(admin): keep secure resume preview in modal
+2026-03-11T22:19:52+00:00	Andrew Shea <ashea951@gmail.com>	7c30ff9defd567cef2cee32d5cbb964cbeb86bca	refactor(admin): condense resume rows and animate preview modal
+2026-03-11T22:39:13+00:00	Andrew Shea <ashea951@gmail.com>	ccf0ffbdb3a3e958a34a8ccff60cd38e60219b32	test(admin): cover resume row preview and actions menu
+2026-03-11T23:11:17+00:00	Andrew Shea <ashea951@gmail.com>	1707ceade0474d9464819deb4bb4faa5fcfe1b22	fix(counselor): harden bootstrap recovery
+2026-03-11T23:11:17+00:00	Andrew Shea <ashea951@gmail.com>	14e2f4b82d02fa330dd5f885c557021f3110357b	fix(counselor): harden bootstrap recovery
+2026-03-11T23:21:36+00:00	Andrew Shea <ashea951@gmail.com>	b3147ab9d843d1b70830d3d6b819396e8ea0af32	test(counselor): mock protected route location
+2026-03-11T23:45:25+00:00	Andrew Shea <ashea951@gmail.com>	12574f3f0661e75df9740f1221b53acb9715a31d	fix(counselor): clarify login errors
+2026-03-11T23:59:24+00:00	Andrew Shea <ashea951@gmail.com>	15841ed315f885a063aa4249ad9a0c15ef7d4fe7	fix(counselor): route auth through configured api base
+2026-03-12T00:06:07+00:00	Andrew Shea <ashea951@gmail.com>	572e8731fd01205d13445eaa638c82ad59e9e585	test(dashboard): stabilize new resume navigation assertion
+2026-03-12T00:31:28+00:00	Andrew Shea <ashea951@gmail.com>	36f88b2a7dc808f64749e8a6a6991edf745b0052	feat(counselor): move login into shared portal shell
+2026-03-12T00:35:57+00:00	Andrew Shea <ashea951@gmail.com>	699f0a29dff9c5e4f8e98aa4ca80340afc9a7a87	test(auth): mock counselor context for shared login
+2026-03-12T01:12:50+00:00	Andrew Shea <ashea951@gmail.com>	79511b8d9223470ee4ae3b9a3d3b92960a44202d	feat(login): hide internal portals from public entry
+2026-03-12T01:26:08+00:00	Andrew Shea <ashea951@gmail.com>	5012befa7ff45cd87c411b248dc05501e25feb64	copy(login): shorten counselor portal description
+2026-03-12T02:08:55+00:00	Andrew Shea <ashea951@gmail.com>	2a92ed1b6794998835888461b1b9dcc5136d6c84	feat(admin): tighten enterprise and user workspaces
+2026-03-12T04:15:32+00:00	Andrew Shea <ashea951@gmail.com>	317bf5b9fbf1d6860609519becb88207919684ca	feat(enterprise): improve first-run guidance and settings routing
+2026-03-12T04:20:11+00:00	Andrew Shea <ashea951@gmail.com>	9c49b07160f9ea818822ff65be8ecd060b5acfaf	test(enterprise): stabilize date utils across CI timezones
+2026-03-12T04:42:37+00:00	Andrew Shea <ashea951@gmail.com>	ae8fe8d145ea4b5b10d4a17f40de762bebffe085	fix(enterprise): restore dashboard api contract
+2026-03-12T04:59:38+00:00	Andrew Shea <ashea951@gmail.com>	34e2446e637f82a9e3fa98b4e897ed3cde9d8a76	test(portal): align staging validation harness
+2026-03-12T13:18:28+00:00	Andrew Shea <ashea951@gmail.com>	8450ad0aeb192456c0d3d749f0363f433fe52bb4	docs(portal): preserve phase4 rollout evidence
+2026-03-12T13:22:43+00:00	Andrew Shea <ashea951@gmail.com>	0cd2b65cca4911ac66fac5847544e69151dd169b	feat(enterprise): rebalance utility hierarchy and audit readability
+2026-03-12T13:32:46+00:00	Andrew Shea <ashea951@gmail.com>	0fcf3a2dab39b86b442cbbb8d5046f567f5e2726	docs(portal): record phase5 staging evidence
+2026-03-12T13:33:09+00:00	Andrew Shea <ashea951@gmail.com>	ac02798821c14f76844d5c85f67725de16b486cf	On release/portal-ui-phase-5-enterprise-polish: snapshot: phase5 staging validation artifacts 2026-03-12
+2026-03-12T13:33:09+00:00	Andrew Shea <ashea951@gmail.com>	e920044d3493651129b6f6d0a47c69d0444dfa13	index on release/portal-ui-phase-5-enterprise-polish: 0cd2b65c feat(enterprise): rebalance utility hierarchy and audit readability
+2026-03-12T13:33:09+00:00	Andrew Shea <ashea951@gmail.com>	d227c1647979172bd8d9db27c0812b9e3e783e1c	untracked files on release/portal-ui-phase-5-enterprise-polish: 0cd2b65c feat(enterprise): rebalance utility hierarchy and audit readability
+2026-03-12T13:43:57+00:00	Andrew Shea <ashea951@gmail.com>	02340eae43480c6f3109f771ed24f667e43480da	fix(ocr): restore missing eval provenance migration
+2026-03-12T13:53:40+00:00	Andrew Shea <ashea951@gmail.com>	020062fcf311c60a8a84b7010fed2baff2ee1dd1	test(ocr): align mission pipeline navigation expectations
+2026-03-12T14:23:29+00:00	Andrew Shea <ashea951@gmail.com>	7f6f669d0f39a0691516fb3c0a58ecfbf632de3f	fix(deploy): preserve appservice runtime contract
+2026-03-12T15:26:11+00:00	Andrew Shea <ashea951@gmail.com>	60d6e51f5e3d84ab1a096373fd3391fca95099f1	feat(portal): align enterprise and counselor staging demo
+2026-03-12T15:26:11+00:00	Andrew Shea <ashea951@gmail.com>	234421ec639d7423116f1310fc7bf07cd15d85e5	feat(portal): align enterprise and counselor staging demo
+2026-03-12T15:57:41+00:00	Andrew Shea <ashea951@gmail.com>	b98d54c1ca4ed90ea6797e75a033255fb5508003	fix(counselor): restore staging login flow
+2026-03-12T15:57:41+00:00	Andrew Shea <ashea951@gmail.com>	b1b1662a8a35305ebca2c074c47d508f08f8e4da	fix(counselor): restore staging login flow
+2026-03-12T16:11:23+00:00	Andrew Shea <ashea951@gmail.com>	37cfe21da23f0ccb0fc43f6bc266accdc2937ef7	docs(deploy): codify appservice runtime contract
+2026-03-12T16:36:01+00:00	Andrew Shea <ashea951@gmail.com>	35c9fd53f7e8eee5ab23d4bf72127deea1f5cf66	test(portal): tune staging login expectations
+2026-03-12T16:36:01+00:00	Andrew Shea <ashea951@gmail.com>	0aab470db69eb5a944b519d4d0031b4c977467b1	test(portal): tune staging login expectations
+2026-03-12T17:25:56+00:00	Andrew Shea <ashea951@gmail.com>	b830d8a0103c956eb17b438501e2d16c6797f924	docs(portal): record enterprise demo and prod recovery evidence
+2026-03-12T17:50:43+00:00	Andrew Shea <ashea951@gmail.com>	3c623e3df27e804374efb98594f98721f448739d	fix(deploy): harden production appservice rollout
+2026-03-12T17:52:54+00:00	Andrew Shea <ashea951@gmail.com>	374a475ad67e03c98c7cc9d98467a541f9678403	docs(portal): note prod workflow hardening status
+2026-03-12T18:04:55+00:00	Andrew Shea <ashea951@gmail.com>	80c3e28c6b09955f9552e918e681eec4c411b026	fix(counselor): normalize assignment user ids
+2026-03-12T18:43:45+00:00	Andrew Shea <ashea951@gmail.com>	cddf2ebfb49445276a43306b85c969e4865dcd94	revert(enterprise): drop phase5 dashboard polish
+2026-03-12T19:22:10+00:00	Andrew Shea <ashea951@gmail.com>	5e5e1b5191bc9620c5b6c82a17bdf70bbdcd8571	fix(dashboard): restore individual flow and rebalance counselor contrast
+2026-03-12T19:36:06+00:00	Andrew Shea <ashea951@gmail.com>	2c0ad0419bbcb4b56d3cdb04ef7d7b097faf650c	fix(deploy): harden staging backend rollout
+2026-03-12T19:53:29+00:00	Andrew Shea <ashea951@gmail.com>	fe42f531e6433c9e9ea28c967341ba58c8126112	fix(dashboard): restore branch baseline for user flow
+2026-03-12T20:25:56+00:00	Andrew Shea <ashea951@gmail.com>	38f3d1d83cc18011c80351c1b2f880be03f56ec0	revert(frontend): restore morning staging dashboard state
+2026-03-12T20:32:53+00:00	Andrew Shea <ashea951@gmail.com>	67cddbb294417444473532981a8813c248468568	fix(dashboard): restore advice-driven staging home
+2026-03-12T20:40:26+00:00	Andrew Shea <ashea951@gmail.com>	a8f9d62fb0a72b30333232e3d44d250265fd901c	feat(dashboard): restore guided dashboard experience
+2026-03-12T20:48:56+00:00	Andrew Shea <ashea951@gmail.com>	d864ea7a238a9eb4d14255e2f5fbd9f9bd6383ca	fix(portal): tighten dashboard actions and deepen counselor contrast
+2026-03-12T22:00:20+00:00	Andrew Shea <ashea951@gmail.com>	155f47a714d1344f7706bd6e53b4547675013b9d	feat(ats): restore tailoring flow on portal dashboard
+2026-03-12T22:02:40+00:00	Andrew Shea <ashea951@gmail.com>	a9e7bef003c6c8b01947c8669cdf186db9dc077d	chore(deploy): run alembic before staging restart
+2026-03-12T22:04:04+00:00	Andrew Shea <ashea951@gmail.com>	c0a3b57330b09b6fb53828326f85dfb4984d2e1a	chore(deploy): harden production ats rollout
+2026-03-12T22:17:52+00:00	Andrew Shea <ashea951@gmail.com>	08833e4dc00758360c4519d36969c51cfeba0596	fix(deploy): use direct kudu zipdeploy for ats rollout
+2026-03-12T22:26:32+00:00	Andrew Shea <ashea951@gmail.com>	4546690e425bf6a2d56043a549b12aff28b4739b	fix(deploy): retry kudu locks during ats rollout
+2026-03-12T22:44:23+00:00	Andrew Shea <ashea951@gmail.com>	44ef6e8beeff6251a18746a6b15b8dbece7e428d	fix(deploy): repair remote alembic command quoting
+2026-03-12T23:52:46+00:00	Andrew Shea <ashea951@gmail.com>	f8ef74478296f19046883dfe94e8aac2b55405ac	fix(deploy): use appservice python for alembic
+2026-03-13T00:06:35+00:00	Andrew Shea <ashea951@gmail.com>	64248cd62962f4e61317fe42a9290be62c0c5746	fix(deploy): run alembic after appservice restart
+2026-03-13T00:30:09+00:00	Andrew Shea <ashea951@gmail.com>	c38b8c1983db68daf5b6badcd21ab6749b429f5d	fix(deploy): resolve app dir from live uvicorn process
+2026-03-13T00:53:39+00:00	Andrew Shea <ashea951@gmail.com>	383e9446b68ff3a23f786f0a8cf9536242ef8b21	fix(deploy): bootstrap kudu migration venv
+2026-03-13T01:09:30+00:00	Andrew Shea <ashea951@gmail.com>	331a6d6fe141ca9d0be1299fb3f70a8f00c5f1c6	chore(deploy): add fast staging slot finisher
+2026-03-13T01:10:45+00:00	Andrew Shea <ashea951@gmail.com>	5c30e897e0fc685724740989214bb03ef1a62602	fix(deploy): add fast slot-finisher mode
+2026-03-13T01:28:14+00:00	Andrew Shea <ashea951@gmail.com>	52b12f72b9df72c9a67b55d34342f1b48edc1868	fix(deploy): use pip target for kudu alembic
+2026-03-13T01:31:02+00:00	Andrew Shea <ashea951@gmail.com>	849309cbbbef12beaf248ce05299d6d1c606c4dc	fix(deploy): prefer oryx python for kudu alembic
+2026-03-13T01:34:08+00:00	Andrew Shea <ashea951@gmail.com>	d696191d885e48dda70a6f8e7afa4c3f01830b47	fix(deploy): run finisher alembic on actions runner
+2026-03-13T01:37:17+00:00	Andrew Shea <ashea951@gmail.com>	5d9c1ac4aeecf33b701084f91cb8e09891a15615	fix(deploy): pass cors settings to local alembic finisher
+2026-03-13T01:41:24+00:00	Andrew Shea <ashea951@gmail.com>	512b65d2ea98c429ac849f985a9fb31726799bd9	fix(deploy): reuse live app env for slot alembic
+2026-03-13T01:44:12+00:00	Andrew Shea <ashea951@gmail.com>	ba66fc1287f0fa48297723f3504b9b6d0747a711	fix(deploy): discover deployed site-packages for alembic
+2026-03-13T01:46:23+00:00	Andrew Shea <ashea951@gmail.com>	9376bd2222c25af8b4ab0be99ea75cd20ee5e717	fix(deploy): target live uvicorn python process
+2026-03-13T01:48:33+00:00	Andrew Shea <ashea951@gmail.com>	71a8a0bdddf74b19f7b0d448929771be2133dd56	fix(deploy): follow uvicorn shell wrapper to child python
+2026-03-13T01:50:38+00:00	Andrew Shea <ashea951@gmail.com>	d27370f2d08e963a2da722f2d2184b6bfc46d650	fix(deploy): resolve uvicorn child pid with ps
+2026-03-13T02:18:58+00:00	Andrew Shea <ashea951@gmail.com>	02b5c01385aa08b54cbf585eda3351b9c3cad351	fix(deploy): harden remote uvicorn env discovery
+2026-03-13T02:26:40+00:00	Andrew Shea <ashea951@gmail.com>	36c0f1b6398c00a0f675f30a709595d0828c8674	fix(deploy): base64-encode remote alembic script
+2026-03-13T02:37:57+00:00	Andrew Shea <ashea951@gmail.com>	72ba06edb1656290c7208c4f6b86e193fdf81c8b	fix(deploy): harden runner selection and migration modes
+2026-03-13T02:46:31+00:00	Andrew Shea <ashea951@gmail.com>	e7fdc697eae31150ef5051af20ee9bfc21b4dc41	feat(deploy): add appservice ssh migration mode
+2026-03-13T02:49:50+00:00	Andrew Shea <ashea951@gmail.com>	daac843ec8594864a77c19c422d62b1be9fc22bf	fix(deploy): base64-encode ssh alembic script
+2026-03-13T02:51:50+00:00	Andrew Shea <ashea951@gmail.com>	407c6efe1b57dac3941f4c38e11f163536d24849	docs(deploy): capture ats recovery architecture and handoff
+2026-03-13T02:52:56+00:00	Andrew Shea <ashea951@gmail.com>	fd87f05e3d22b4e94670fa9abcaae7db30f33763	fix(deploy): resolve live app dir for ssh alembic
+2026-03-13T02:59:38+00:00	Andrew Shea <ashea951@gmail.com>	35a0fd7d62e3c62d3440a7ced60e11ea1cb926e2	fix(deploy): tolerate staging schema drift in feb migrations
+2026-03-13T03:19:31+00:00	Andrew Shea <ashea951@gmail.com>	bbd2accac4c5435bfd7afac2a9a27ce3918d7dd3	fix(deploy): track kudu async deployment location
+2026-03-13T03:45:53+00:00	Andrew Shea <ashea951@gmail.com>	30819d0c9acd9e476423a6432ef8886dc6a1c802	fix(deploy): tolerate survey v2 staging drift
+2026-03-13T03:56:30+00:00	Andrew Shea <ashea951@gmail.com>	768e6247190d9258e4a521f0978b2ce0dede552e	test(deploy): stabilize backend gate on current deps
+2026-03-13T04:07:36+00:00	Andrew Shea <ashea951@gmail.com>	e1e9652d6b598ded4680d368a27f7a40704e43d9	fix(deploy): sync current migrations during ssh finisher
+2026-03-13T04:19:59+00:00	Andrew Shea <ashea951@gmail.com>	f5b88047a0ecc5e074d92d1903f3829038b666b9	fix(deploy): allow direct main staging deploy
+2026-03-13T04:42:41+00:00	Andrew Shea <ashea951@gmail.com>	54ecd4c9414bc96a619dcfb51826915536183038	docs(deploy): capture ats recovery lessons learned
+2026-03-13T04:46:48+00:00	Andrew Shea <ashea951@gmail.com>	c8ac38b6c318e0a45b2b430e30568c81c79e5db8	test(ats): add staging and production smoke gate
+2026-03-13T04:47:40+00:00	Andrew Shea <ashea951@gmail.com>	6b4393997ab524d3dd35c27c61e8f429f216f8ea	fix(deploy): restore reusable go-live gate
+2026-03-13T04:51:06+00:00	Andrew Shea <ashea951@gmail.com>	993ce229a248296ca1dfa1c74075885ae62866c4	docs(deploy): add backend deploy sop
+2026-03-13T05:22:48+00:00	Andrew Shea <ashea951@gmail.com>	5ac83d44bde9e3a1330c392bd82e1310cf0078bd	fix(deploy): sync migrations before prod ssh alembic
+2026-03-13T05:57:01+00:00	Andrew Shea <ashea951@gmail.com>	3c9cda96bdb3144e599394015bbadcef952f5a11	fix(deploy): use alembic heads for multi-head repos
+2026-03-13T12:23:42+00:00	Andrew Shea <ashea951@gmail.com>	df642dd062dbc8b2960599633cea66e1eef5b6af	fix(deploy): restore eval migration chain on prod release
+2026-03-13T12:52:35+00:00	Andrew Shea <ashea951@gmail.com>	fce882ca4b97ee31ed393e040db5421ee8c0def3	fix(deploy): tolerate prod interview prep migration drift
+2026-03-13T13:24:31+00:00	Andrew Shea <ashea951@gmail.com>	c5e7bfa087643a88bab10c94cdfa22748f032f0e	docs(deploy): clarify staging vs production migration procedure
+2026-03-13T13:39:44+00:00	Andrew Shea <ashea951@gmail.com>	325d0f427023f6f6fbd98ec91fb91884f6a016e8	chore(deploy): keep staging recovery poller helper
+2026-03-14T03:18:23+00:00	Andrew Shea <ashea951@gmail.com>	58ccad807adb54e57fff06ede778544dcb3b5724	feat(student): ship separate portal and coaching path
+2026-03-14T03:23:12+00:00	Andrew Shea <ashea951@gmail.com>	88fecf4e870b1ba524e43dcb38e5e30c5b6f0a13	test(frontend): stabilize cookie consent gate
+2026-03-14T03:32:58+00:00	Andrew Shea <ashea951@gmail.com>	7f52faad83e62acc5935a52176ea1883f30d08fa	test(ci): fix student deploy gate drift
+2026-03-14T03:42:57+00:00	Andrew Shea <ashea951@gmail.com>	c8e4eb58d551003ce9ca0981b37147bd59672c71	fix(ci): align student type contracts
+2026-03-14T03:48:59+00:00	Andrew Shea <ashea951@gmail.com>	560b1aea64dd3bd912a9a50ccead6d7e3a968bf9	fix(ci): add runtime gating files
+2026-03-14T03:53:20+00:00	Andrew Shea <ashea951@gmail.com>	1ba840c4270ca0c1c6aaf04b4f63136ae3469a86	fix(ci): sync student auth and ats hook contracts
+2026-03-14T03:58:58+00:00	Andrew Shea <ashea951@gmail.com>	47a1c5373c3653d7dbe8aebc796d31010764b6f0	test(ci): align ats hook recovery expectations
+2026-03-14T09:13:06+00:00	Andrew Shea <ashea951@gmail.com>	8ad756eccd022054d39f6e79d0de08ee3844e512	fix(staging): self-heal student schema drift on startup
+2026-03-14T10:10:00+00:00	Andrew Shea <ashea951@gmail.com>	a634aacf3d23f7dc1c0937f8a31d122927e18b7c	fix(staging): harden legacy profile serialization
+2026-03-14T13:37:36+00:00	Andrew Shea <ashea951@gmail.com>	50a181432b7385694b645001f09f8e57b59ff9b1	feat(student): persist explicit opening statement mode
+2026-03-14T13:50:58+00:00	Andrew Shea <ashea951@gmail.com>	d01e2f7a757f07184e9deea3654054133005c60f	fix(student): clear opening mode frontend type gates
+2026-03-14T14:04:13+00:00	Andrew Shea <ashea951@gmail.com>	81e59ffc9ad23b6d13532c87e0ee33baa2298e5e	feat(student): add jst review import flow

@@ -1,0 +1,39 @@
+{
+  "window_utc": "2026-03-03T00:00:00Z to 2026-03-14T14:04:13Z",
+  "commit_count": 244,
+  "first_commit": "2026-03-03T00:36:55+00:00",
+  "last_commit": "2026-03-14T14:04:13+00:00",
+  "total_hours_30m": 38.13,
+  "total_hours_45m": 45.5,
+  "total_hours_60m": 53.25,
+  "weekly": [
+    {
+      "week": "W1_2026-03-03_to_2026-03-09",
+      "start": "2026-03-03",
+      "end": "2026-03-09",
+      "commits": 90,
+      "first_ts": "2026-03-03T00:36:55+00:00",
+      "last_ts": "2026-03-09T21:49:20+00:00",
+      "first_sha": "01fd756c1bc03a815b88191bfc5baf96e82001ac",
+      "last_sha": "7d0605369d153bcbb1cf0332e231f1367e84285a",
+      "evidence_file": "/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/W1_2026-03-03_to_2026-03-09_commits.tsv",
+      "hours_30m": 13.42,
+      "hours_45m": 14.32,
+      "hours_60m": 16.63
+    },
+    {
+      "week": "W2_2026-03-10_to_2026-03-14",
+      "start": "2026-03-10",
+      "end": "2026-03-14",
+      "commits": 154,
+      "first_ts": "2026-03-10T00:19:53+00:00",
+      "last_ts": "2026-03-14T14:04:13+00:00",
+      "first_sha": "7df1c4d20de57c608cb31a492b7b8c6b5dd5b3ea",
+      "last_sha": "81e59ffc9ad23b6d13532c87e0ee33baa2298e5e",
+      "evidence_file": "/Users/andrewshea/Desktop/CURSOR/SpadesInstitute/audit_evidence/operationmos_mar3_mar14_time_audit/W2_2026-03-10_to_2026-03-14_commits.tsv",
+      "hours_30m": 24.72,
+      "hours_45m": 31.18,
+      "hours_60m": 36.62
+    }
+  ]
+}
