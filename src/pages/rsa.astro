@@ -745,21 +745,25 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       transform: scale(1);
     }
 
-    /* Waitlist / at-capacity tile */
-    .checkbox-tile.waitlist {
-      opacity: 0.55;
+    /* At-capacity tile */
+    .checkbox-tile.capacity-locked {
+      opacity: 0.52;
       border-color: rgba(255, 255, 255, 0.15);
       background: rgba(255, 255, 255, 0.03);
+      color: rgba(184, 200, 216, 0.72);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
 
-    .checkbox-tile.waitlist .tile-content {
+    .checkbox-tile.capacity-locked .tile-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2px;
     }
 
-    .checkbox-tile.waitlist .waitlist-badge {
+    .checkbox-tile.capacity-locked .capacity-badge {
       font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
@@ -768,21 +772,22 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
       opacity: 0.9;
     }
 
-    .checkbox-tile.waitlist:hover {
-      opacity: 0.75;
-      border-color: rgba(255, 255, 255, 0.3);
+    .checkbox-tile.capacity-locked:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(184, 200, 216, 0.72);
+      transform: none;
+      box-shadow: none;
     }
 
-    .checkbox-tile.waitlist.active {
-      opacity: 0.8;
-      border-color: #d09040;
-      background: rgba(208, 144, 64, 0.15);
+    .checkbox-tile.capacity-locked .check-icon {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    .checkbox-tile.waitlist.active .check-icon {
-      background: linear-gradient(135deg, #d09040, #b07830);
-      border-color: #d09040;
-      box-shadow: 0 2px 8px rgba(208, 144, 64, 0.4);
+    .checkbox-tile.capacity-locked .check-icon svg {
+      opacity: 0;
+      transform: scale(0);
     }
 
     .capacity-note {
@@ -1069,6 +1074,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
             <div class="event-details">
               <div class="event-header">
                 <span class="event-name">Pre-RSAC with Spades</span>
+                <span class="limited-tag">At capacity</span>
               </div>
               <div class="event-datetime">Sunday, March 22, 2026 · 4:30 PM – 7:00 PM PT</div>
               <div class="event-venue">Private venue near Fisherman's Wharf (details after approval)</div>
@@ -1137,9 +1143,9 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
 
           <div class="selection-group">
             <label class="selection-label">Events</label>
-            <p class="selection-helper">Select one or both events</p>
+            <p class="selection-helper">Select an available event to request an invitation</p>
             <div class="checkbox-tiles" role="group" aria-label="Select events to attend">
-              <button type="button" class="checkbox-tile waitlist" data-event="prersac" role="checkbox" aria-checked="false" aria-label="Pre-RSAC with Spades event on Sunday, March 22 — at capacity, select to join waiting list">
+              <button type="button" class="checkbox-tile capacity-locked" disabled aria-disabled="true" aria-label="Pre-RSAC with Spades event on Sunday, March 22 is at capacity">
                 <span class="check-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"></polyline>
@@ -1147,7 +1153,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
                 </span>
                 <span class="tile-content">
                   Pre-RSAC
-                  <span class="waitlist-badge">At capacity — join waiting list</span>
+                  <span class="capacity-badge">At capacity</span>
                 </span>
               </button>
               <button type="button" class="checkbox-tile" data-event="readyroom" role="checkbox" aria-checked="false" aria-label="Ready Room event on Wednesday, March 25">
@@ -1159,7 +1165,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
                 Ready Room
               </button>
             </div>
-            <p class="capacity-note">Pre-RSAC is at capacity. Select to be added to the waiting list.</p>
+            <p class="capacity-note">Pre-RSAC is at capacity. Ready Room registration remains open.</p>
           </div>
 
           <button type="submit" class="submit-btn">Request invitation</button>
@@ -1228,6 +1234,8 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     const form = document.getElementById('rsaForm');
     const successEl = document.getElementById('success-msg');
     const errorEl = document.getElementById('error-msg');
+    const genericErrorText = 'Something went wrong. Please try again.';
+    const deliveryErrorText = 'Submission failed. Please try another browser/network or email info@spadesinstitute.org.';
 
     // Field references
     const nameInput = document.getElementById('name');
@@ -1306,7 +1314,10 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       successEl?.classList.add('hidden');
-      errorEl?.classList.add('hidden');
+      if (errorEl) {
+        errorEl.textContent = genericErrorText;
+        errorEl.classList.add('hidden');
+      }
 
       if (!validateForm()) return;
 
@@ -1332,18 +1343,36 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://www.spadesinstitute.
             events: Array.from(selected).join(', ')
           })
         });
-        if ((await res.json()).success) {
+
+        const contentType = res.headers.get('content-type') || '';
+        let response = null;
+        if (contentType.includes('application/json')) {
+          response = await res.json();
+        } else {
+          const bodyText = await res.text();
+          console.warn('RSA signup returned non-JSON response', {
+            status: res.status,
+            body: bodyText.slice(0, 300)
+          });
+        }
+
+        if (res.ok && response?.success) {
           successEl?.classList.remove('hidden');
           form.reset();
           tiles.forEach(t => t.classList.remove('active'));
           selected.clear();
           // Clear valid states
           [nameInput, companyInput, emailInput].forEach(input => input?.classList.remove('valid'));
-        } else {
-          errorEl?.classList.remove('hidden');
+        } else if (errorEl) {
+          errorEl.textContent = response?.message || response?.error || deliveryErrorText;
+          errorEl.classList.remove('hidden');
         }
-      } catch {
-        errorEl?.classList.remove('hidden');
+      } catch (err) {
+        console.warn('RSA signup request failed', err);
+        if (errorEl) {
+          errorEl.textContent = deliveryErrorText;
+          errorEl.classList.remove('hidden');
+        }
       }
 
       // Reset button state
